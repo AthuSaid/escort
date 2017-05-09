@@ -2,6 +2,11 @@ body {
   background-color: #fcfcfc;
 }
 
+.divCropperCamera {
+  height: 500px;
+  width: 100%;
+}
+
 .imgPortraitModel {
   display: block;  
   height: 833px;

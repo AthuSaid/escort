@@ -14,6 +14,8 @@
   'use strict';
 
   var console = window.console || { log: function () {} };
+  //if (cropperFileUpload != '')
+	//  alert(cropperFileUpload);
   
   function CropAvatar($element, $modal) {
 	 
@@ -63,6 +65,7 @@
         this.initIframe();
       }
 
+      this.url = null;
       this.initTooltip();
       this.initModal();
       this.addListener();
@@ -357,9 +360,10 @@
   };
 
   $(function () {
-    var cropPortrait = new CropAvatar($('#cropImgPortrait'), 'portrait');
-    var cropLandscape = new CropAvatar($('#cropImgLandscape'), 'landscape');
-    var cropGallery = new CropAvatar($('#cropImgGallery'), 'gallery');
+    window.cropPortrait = new CropAvatar($('#cropImgPortrait'), 'portrait');
+    window.cropLandscape = new CropAvatar($('#cropImgLandscape'), 'landscape');
+    window.cropGallery = new CropAvatar($('#cropImgGallery'), 'gallery');
   });
+  
 
 });

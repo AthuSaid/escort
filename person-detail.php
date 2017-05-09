@@ -171,7 +171,7 @@
                             	<div class="container openmodal" data-modal="portrait" id="cropImgPortrait">											    
 								    <div class="m_details_img">
 								    	<div class="imgPortraitModel">
-								      		<img src="<?php echo SIS_URL; ?>images/persons/<?php echo $retPerson[0]['url']; ?>/<?php echo $retPerson[0]['thumb']; ?>" alt="Avatar">
+								      		<img id="imgposter" src="<?php echo SIS_URL; ?>images/persons/<?php echo $retPerson[0]['url']; ?>/<?php echo $retPerson[0]['thumb']; ?>" alt="Avatar">
 									    </div>
 								    </div>								
 								    <!-- Cropping modal -->
@@ -185,7 +185,7 @@
 								            </div>
 								            <div class="modal-body">
 								              <div class="avatar-body">
-								                <div class="avatar-upload">
+								                <div id="fileupload" class="avatar-upload">
 								                  <input type="hidden" class="avatar-src" name="avatar_src">
 								                  <input type="hidden" class="avatar-data" name="avatar_data">
 								                  <input type="hidden" value="<?php echo $retPerson[0]['apid'];?>" name="apid">								                  
@@ -196,17 +196,20 @@
 								                </div>			
 								                <div class="row">
 								                  <div class="col-md-9">
-								                    <div class="avatar-wrapper"></div>
+								                    <div id="cropper" class="avatar-wrapper"></div>
+								                    <div id="webcam" class="divCropperCamera"></div>								                    
 								                  </div>
 								                  <div class="col-md-3">
 								                    <div class="avatar-preview preview-lg"></div>			                    
-								                  </div>								                  
+								                  </div>
 								                </div>			
 								                <div class="row avatar-btns">
 								                  <div class="col-md-9">
 								                    <div class="btn-group">
 								                      <button type="button" class="btn btn-primary" data-method="rotate" data-option="-30" title="Girar 30 Graus Antihorario"><i class="fa fa-rotate-left"></i></button>
 								                      <button type="button" class="btn btn-primary" data-method="rotate" data-option="30" title="Girar 30 Graus Horario"><i class="fa fa-rotate-right"></i></button>
+								                      <button type="button" id="show-camera" class="btn btn-primary" title="Tirar Foto"><i class="fa fa-camera"></i></button>
+								                      <button type="button" id="popup-webcam-take-photo" disabled="disabled" class="btn btn-warning shot">Capturar Imagem <i class="fa fa-save"></i></button>
 								                    </div>
 								                  </div>
 								                  <div class="col-md-3">
@@ -440,8 +443,12 @@
         </div>
 
         <!-- JS includes -->
-        <script>var $urlProj = '<?php echo SIS_URL; ?>';</script>
+        <script>var $urlProj = '<?php echo SIS_URL; ?>';
+		        var cropperFileUpload;
+        </script>
         <script src="<?php echo SIS_URL; ?>assets/js/vendor/jquery-1.11.2.min.js"></script>
+        <script type="text/javascript" src="<?php echo SIS_URL; ?>assets/webcam/jquery.webcam.as3.js"></script>
+                
         <script src="<?php echo SIS_URL; ?>assets/js/vendor/bootstrap.min.js"></script>
         <script src="<?php echo SIS_URL; ?>assets/js/isotope.min.js"></script>
         <script src="<?php echo SIS_URL; ?>assets/js/jquery.magnific-popup.js"></script>
@@ -460,7 +467,8 @@
         <script src="<?php echo SIS_URL; ?>assets/js/form.js"></script>
         
         <script src="<?php echo SIS_URL; ?>assets/js/cropper.js"></script>
-        <script src="<?php echo SIS_URL; ?>assets/js/croppermain.js"></script>        
+        <script src="<?php echo SIS_URL; ?>assets/js/croppermain.js"></script> 
+        <script type="text/javascript" src="<?php echo SIS_URL; ?>assets/webcam/webcam.poster.js"></script>      
         
         <script type="text/javascript">
         	<?php echo $functions->fGetPersonModalitiesBalloonTip($retPerson[0]['apid'], $retPerson[0]['sexo']); ?>            

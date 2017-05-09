@@ -1,6 +1,8 @@
 <?php
 require_once $_SERVER["DOCUMENT_ROOT"]."/_includes/_config/config.ini.php";
 
+error_reporting(E_ALL);
+
 class CropAvatar {
 	
   private $src;
@@ -9,13 +11,36 @@ class CropAvatar {
   private $httpDst;
   private $type;
   private $extension;
+  private $is_source_webcam = false;
   private $msg;
 
   function __construct($src, $data, $url, $apid, $ativo, $titulo, $descricao, $imgtype, $file) {
-    $this -> setSrc($url, $src, $hashPhoto, $apid, $ativo, $titulo, $descricao, $imgtype);
+  	
+  	$hashPhoto = $this->fRandomHashPhoto(12);
+  	
+  	if (substr($src, 0, 5) == 'data:')
+  	{
+  		$temp_file = 'tmp_'.$hashPhoto.'.jpeg';
+	  	$data = $src;	  	
+		list($type, $data) = explode(';', $data);
+		list(, $data)      = explode(',', $data);
+		$data = base64_decode($data);	
+		file_put_contents($temp_file, $data);
+		$file['name'] = $temp_file;
+		$file['tmp_name'] = $_SERVER["DOCUMENT_ROOT"]."/images/procimg/".$temp_file;
+		$file['error'] = UPLOAD_ERR_OK;
+		$file['size'] = filesize($temp_file);
+		$file['type'] = exif_imagetype($temp_file);
+		$this->is_source_webcam = true;
+		$src = null;		
+  	}
+  	
+  	$this -> setSrc($url, $src, $hashPhoto, $apid, $ativo, $titulo, $descricao, $imgtype);
     $this -> setData($data);
-    $this -> setFile($url, $this->fRandomHashPhoto(12), $apid, $ativo, $titulo, $descricao, $file, $imgtype);
-    $this -> crop($this -> src, $this -> dst, $this -> data, $imgtype);    
+    $this -> setFile($url, $hashPhoto, $apid, $ativo, $titulo, $descricao, $file, $imgtype);
+    $this -> crop($this -> src, $this -> dst, $this -> data, $imgtype);   
+    
+    unlink($temp_file);
   }
   
   public function fRandomHashPhoto($numsize){
@@ -69,7 +94,10 @@ class CropAvatar {
             unlink($src);
           }
 
-          $result = move_uploaded_file($file['tmp_name'], $src);
+          if (!$this->is_source_webcam)
+          	$result = move_uploaded_file($file['tmp_name'], $src);
+          else
+	          $result = copy($file['tmp_name'], $src);
 
           if ($result) {
           	
