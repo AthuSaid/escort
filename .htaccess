@@ -1,0 +1,43 @@
+RewriteEngine On
+
+RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+
+RewriteRule ^(.*)$ http://%1%{REQUEST_URI} [R=301,QSA,NC,L]
+
+RewriteRule ^not-found$ 404.php
+
+ErrorDocument 404 /persons
+
+RewriteRule ^home$ index.php
+
+RewriteRule ^signin$ signin.php
+
+RewriteRule ^signin/([A-Za-z0-9_\-]+)$ signin.php?page=$1 [NC,L]
+
+RewriteRule ^signup$ signup.php
+
+RewriteRule ^signout$ signout.php
+
+RewriteRule ^plans$ plans.php
+
+RewriteRule ^payment$ payment.php
+
+RewriteRule ^profile$ signup.php
+
+RewriteRule ^dashboard$ dashboard.php
+
+RewriteRule ^ad$ ad.php
+
+RewriteRule ^ad/([A-Za-z0-9_\-]+)/([A-Za-z0-9_\-]+)$ ad.php?person=$1&ad=$2 [NC,L]
+
+RewriteRule ^persons$ persons.php
+
+RewriteRule ^person/([A-Za-z0-9_\-]+)/([A-Za-z0-9_\-]+)$ person-detail.php?person=$1&ad=$2 [NC,L]
+
+RewriteRule ^verify/(.*)$ verify.php?hash=$1 [B]
+
+RewriteRule ^servicos$ servicos.php
+
+RewriteRule ^privacy$ privacy.php
+
+RewriteRule ^contact$ contact.php

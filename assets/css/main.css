@@ -1,0 +1,141 @@
+/*
+ * Author: Carlos Alvarez
+ * URL: http://alvarez.is
+ *
+ * Project Name: FLATTY - Free Bootstrap 3 Theme
+ * Version: 1.0
+ * URL: http://blacktie.co
+ */
+
+
+
+/* Helpers */
+
+.mt {
+	margin-top: 40px;
+	margin-bottom: 40px;
+}
+
+/* HeaderWrap */
+#headerwrap {
+	background-color: #52B1E7;
+	margin-top:68px;
+	background-attachment: relative;
+	background-position: center center;
+	min-height: 430px;
+	width: 100%;
+	
+    -webkit-background-size: 100%;
+    -moz-background-size: 100%;
+    -o-background-size: 100%;
+    background-size: 100%;
+
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+	background-image:url(../img/headerBg.jpg);
+	background-attachment:fixed;
+}
+
+.logoHeader{
+	font-family: 'Mrs Sheppards', cursive;
+	font-size: 145px;
+	line-height: 31px;
+	margin: 105px   0 7px;
+	color: #FFF;
+	display: block;
+	position: relative;
+	z-index: 1;
+	text-shadow: 8px 8px 0px rgba(0,0,0,0.1);
+	text-align: center;
+	width: 430px;
+}
+
+#headerwrap h2 {
+	margin-top: 82px;
+	margin-bottom: 28px;
+	opacity: 0.8;
+	color: rgb(255, 255, 255);
+	font-size: 33px;
+	text-shadow: 2px 2px 0px rgba(0,0,0,0.2);
+	text-align: center;
+	width: 430px;
+	font-weight: 300;
+	letter-spacing: 1px;
+}
+
+
+.logoImg{
+	width: 130px;
+	margin: 0 145px 7px;
+}
+
+.downloadButton{
+	color: #FFFFFF;
+	margin: 10px 10px;
+	padding: 20px 50px;
+	width: 408px;
+	display: none;
+	text-align: center;
+	font-weight: 300;
+	background: transparent;
+	border-radius: 3px;
+	font-size: 38px;
+}
+
+.downloadButton sup{
+	font-family: 'Lato', sans-serif;
+	font-size:15px;
+}
+
+.cropHeaderWrapper{
+	overflow:hidden;
+	height: 420px;
+}
+
+#cropContainerHeaderButton{
+	color: #FFF;
+	margin: 10px 0 30px 71px;
+	padding: 15px 50px;
+	width: 407px;
+	display: block;
+	text-align: center;
+	font-weight: 400;
+	background: #2CE987;
+	text-transform: uppercase;
+	border-radius: 2px;
+	box-shadow: 8px 8px 0px rgba(0,0,0,0.1);
+	font-size: 20px;
+	
+}
+
+#cropContainerHeaderButton:hover {
+	background: #1CD139;
+}
+
+.optionsDiv{
+	
+	border-radius:2px;
+	position:absolute;
+}
+
+.optionsDiv a{
+	width:50%;
+	margin-right:20%;
+	float:left;
+	margin-bottom:10px;
+	cursor:pointer;
+}
+
+#optionsFloating.fixed{
+	position:fixed;
+	top:100px;
+}
+
+
+
+
+#imgPortraitModel{ width:100%; height:833px; position: relative; border:1px solid #ccc;}
+#imgLandscapeModel{ width:100%; height:649px; position: relative; border:1px solid #ccc;}
+#imgGalleryModel{ width:100%; height:278px; position: relative; border:1px solid #ccc;}
