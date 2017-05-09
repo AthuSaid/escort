@@ -84,10 +84,9 @@ $(document).ready(function() {
                      img.src = 'data:image/jpeg;base64,' + result;
                      
                      console.log(cropPortrait);
-                     cropPortrait.url = img.src;
-                     //cropPortrait.$avatarSrc = img.src
-                     //cropPortrait.$avatarInput = img.src
-                     //$('.avatar-src').val(img.src);
+                     cropPortrait.source_webcam = true;
+                     cropPortrait.url = img.src;                     
+                     $('.avatar-src').val(img.src);
                      cropPortrait.startCropper();
                      
                      $("#webcam").hide();

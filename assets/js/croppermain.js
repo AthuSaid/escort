@@ -65,6 +65,7 @@
         this.initIframe();
       }
 
+      this.source_webcam = false;
       this.url = null;
       this.initTooltip();
       this.initModal();
@@ -173,14 +174,20 @@
     },
 
     submit: function () {
-      if (!this.$avatarSrc.val() && !this.$avatarInput.val()) {
-        return false;
+    	
+      if (this.source_webcam == true){
+    	  this.ajaxUpload();
+          return false;
+      }else{
+    	  if (!this.$avatarSrc.val() && !this.$avatarInput.val()) {
+    	  	return false;
+    	  }
+    	  if (this.support.formData) {
+	        this.ajaxUpload();
+	        return false;
+	      }
       }
-
-      if (this.support.formData) {
-        this.ajaxUpload();
-        return false;
-      }
+      
     },
 
     rotate: function (e) {
@@ -267,7 +274,7 @@
 
     ajaxUpload: function () {
       var url = this.$avatarForm.attr('action');
-      var data = new FormData(this.$avatarForm[0]);
+      var data = new FormData(this.$avatarForm[0]);  
       var _this = this;
 
       $.ajax(url, {
@@ -341,6 +348,7 @@
     },
 
     cropDone: function () {
+    	//alert('crop done');
       this.$avatarForm.get(0).reset();
       this.$avatar.attr('src', this.url);
       this.stopCropper();

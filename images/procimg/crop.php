@@ -34,15 +34,17 @@ class CropAvatar {
 		$this->is_source_webcam = true;
 		$src = null;		
 		
+  	}else{
+  		$this -> setSrc($url, $src, $hashPhoto, $apid, $ativo, $titulo, $descricao, $imgtype);
+  		$this -> setData($data);
   	}
   	
-  	$this -> setSrc($url, $src, $hashPhoto, $apid, $ativo, $titulo, $descricao, $imgtype);
-    $this -> setData($data);
+  	
     $this -> setFile($url, $hashPhoto, $apid, $ativo, $titulo, $descricao, $file, $imgtype);
     $this -> crop($this -> src, $this -> dst, $this -> data, $imgtype);   
     
     if (substr($src, 0, 5) == 'data:')
-    	unlink($temp_file);
+    	unlink($file['tmp_name']);
   }
   
   public function fRandomHashPhoto($numsize){
