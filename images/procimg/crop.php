@@ -33,6 +33,7 @@ class CropAvatar {
 		$file['type'] = exif_imagetype($temp_file);
 		$this->is_source_webcam = true;
 		$src = null;		
+		
   	}
   	
   	$this -> setSrc($url, $src, $hashPhoto, $apid, $ativo, $titulo, $descricao, $imgtype);
@@ -40,7 +41,8 @@ class CropAvatar {
     $this -> setFile($url, $hashPhoto, $apid, $ativo, $titulo, $descricao, $file, $imgtype);
     $this -> crop($this -> src, $this -> dst, $this -> data, $imgtype);   
     
-    unlink($temp_file);
+    if (substr($src, 0, 5) == 'data:')
+    	unlink($temp_file);
   }
   
   public function fRandomHashPhoto($numsize){
