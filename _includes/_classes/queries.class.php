@@ -644,7 +644,7 @@ class queries extends mysqlconn {
 						    	FROM pessoas_fotos pf
 						    	WHERE pf.apid = ap.apid
 						    	AND pf.local = 1
-						    	AND pf.tipo = 2
+						    	AND pf.tipo = 1
 						    	AND pf.principal = 'S'
 						    	ORDER BY pf.fotid DESC LIMIT 1), '../no-portrait.jpg') AS thumb    	
 					    	FROM anuncios_pessoas ap

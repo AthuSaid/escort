@@ -203,11 +203,12 @@
                                             </div>                                            
                                             <div class="col-sm-4">                                              
                                                 <div class="form-group">
-                                                    <label><i class="fa fa-venus-mars"></i> Sexo *</label>
+                                                    <label><i class="fa fa-venus-mars"></i> Eu Sou *</label>
                                                     <select id="sexo" name="sexo" data-error="Por favor, informe seu Sexo." required class="form-control sexo">
 													  <option value="" selected>Selecione</option>
-													  <option value="M" <?php echo ($retPerson[0]['sexo'] == 'M' ? 'selected' : ''); ?>>Masculino</option>													   
-													  <option value="F" <?php echo ($retPerson[0]['sexo'] == 'F' ? 'selected' : ''); ?>>Feminino</option>
+													  <option value="M" <?php echo ($retPerson[0]['sexo'] == 'M' ? 'selected' : ''); ?>>Homem</option>													   
+													  <option value="F" <?php echo ($retPerson[0]['sexo'] == 'F' ? 'selected' : ''); ?>>Mulher</option>
+													  <option value="T" <?php echo ($retPerson[0]['sexo'] == 'T' ? 'selected' : ''); ?>>Travesti</option>
 													</select>
 													<div class="help-block with-errors"></div>
                                                 </div>
@@ -223,6 +224,9 @@
                                                     <?php }elseif ($retPerson[0]['sexo'] == 'F') { ?>
                                                     	<option value="venus" <?php echo ($retPerson[0]['genero'] == 'venus' ? 'selected' : ''); ?>>H&eacute;terossexual</option>
 														<option value="dbv" <?php echo ($retPerson[0]['genero'] == 'dbv' ? 'selected' : ''); ?>>Homossexual</option>
+														<option value="mercury" <?php echo ($retPerson[0]['genero'] == 'mercury' ? 'selected' : ''); ?>>Bissexual</option>
+                                                    <?php }elseif ($retPerson[0]['sexo'] == 'T') { ?>
+	                                                    <option value="dbv" <?php echo ($retPerson[0]['genero'] == 'dbv' ? 'selected' : ''); ?>>Homossexual</option>
 														<option value="mercury" <?php echo ($retPerson[0]['genero'] == 'mercury' ? 'selected' : ''); ?>>Bissexual</option>
                                                     <?php } ?>													  
 													</select>
@@ -498,9 +502,13 @@
 						$(".genero").append('<option value="" selected>Selecione</option>');
 						$(".genero").append('<option value="venus">H&eacute;terossexual</option>');
 						$(".genero").append('<option value="dbv">Homossexual</option>');
-						$(".genero").append('<option value="mercury">Bissexual</option>');
-					}else{
-				
+						$(".genero").append('<option value="mercury">Bissexual</option>');						
+					}else if($(this).val() == 'T'){
+						$(".genero option[value='mars']").remove();
+						$(".genero option[value='dbm']").remove();
+						$(".genero").append('<option value="" selected>Selecione</option>');
+						$(".genero").append('<option value="dbv">Homossexual</option>');
+						$(".genero").append('<option value="mercury">Bissexual</option>');				
 					}				
 				});
 				$( function() {

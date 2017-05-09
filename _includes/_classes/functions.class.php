@@ -1278,27 +1278,19 @@ class functions extends queries {
     
     	if (count($this->retRecords) > 0)
     	{
-    		$pullUp = 0;
-    		
     		$this->retHTML = null;
     		
     		for ($x = 0; $x < count($this->retRecords); $x++)
     		{
-    			
-    			$this->complHTML .= '<div class="teamskillbar clearfix m-top-50" data-percent="100%">
+    			$this->retHTML .= '<div class="col-md-'.((count($this->retRecords) > 3 ? 4 : (12 / count($this->retRecords)))).'">';
+    				$this->retHTML .= '<div class="teamskillbar clearfix m-top-50" data-percent="100%">
                                       	<h6 class="one"><strong>'.$this->retRecords[$x]['modalidade'].'</strong></span> 
                                       		<span class="pull-right font-size-pull-right-'.strtolower($gender).'">'.(!empty($this->retRecords[$x]['descricao']) ? '<i class="fa fa-question-circle descr_'.$this->retRecords[$x]['modid'].'"></i>' : '').'</span>
                                       	</h6>                                      	
                                       	<div class="teamskillbar-bar"></div>
                                    </div><!-- End Skill Bar -->';
-    			
-    			$pullUp++;
+    			$this->retHTML .= '</div>';
     		}
-    		
-    		
-    		$this->retHTML = '<div class="col-md-12">';
-    			$this->retHTML .= $this->complHTML;
-    		$this->retHTML .= '</div>';
 
     		return $this->retHTML;
     	}

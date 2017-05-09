@@ -16,7 +16,7 @@ define("SIS_EMAIL", "atendimento@url.com.br");
 /* Idioma do Proprietario */
 define("SIS_IDIOMA", "portugues");		
 /* Servidor de Conexao ao banco */
-die;define("SIS_HOST", "localhost");
+define("SIS_HOST", "localhost");
 /* Porta de Conexao ao banco */
 define("SIS_PORTA", "3306");
 /* Usuario de Conexao ao banco */

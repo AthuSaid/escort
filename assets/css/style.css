@@ -1724,6 +1724,12 @@ Footer Section style
 	color: #ff0080;
 }
 
+.font-size-pull-right-t {
+	font-size: 20px;
+	font-weight: bold;
+	color: #ff0080;
+}
+
 
 .teamskillbar-bar {
     height:2px;
@@ -1861,8 +1867,8 @@ Blog Details Page
 /*command*/
 
 .blog_comments_img img{
-    width:80px;
-    height: 80px;
+    width:120px;
+    height: 90px;
 }
 .comments_top_tex h5{
     font-size:16px;
