@@ -119,7 +119,7 @@ if($_SESSION['sPersonLogged'] && isset($_SESSION['sPersonID']))
 				
 			} else{
 				
-				$retJson = json_encode(array("ret" => false, "field" => "n-eml", "msg" => 'Email incorreto'));				
+				$retJson = json_encode(array("ret" => false, "field" => "n-eml", "msg" => 'E-mail incorreto'));				
 			}
 			
 		}else{
