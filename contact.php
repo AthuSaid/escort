@@ -178,7 +178,7 @@
                                                 <div class="help-block with-errors"></div>
                                             </div>
                                             <div class="form-group">
-                                                <button type="submit" class="btn btn-primary">ENVIAR <i class="fa fa-long-arrow-right"></i></button>
+                                                <button type="submit" class="btn btn-primary">ENVIAR <i class="fa fa-send"></i></button>
                                             </div>
                                         </div>
 
