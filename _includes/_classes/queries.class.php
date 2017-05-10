@@ -260,6 +260,7 @@ class queries extends mysqlconn {
 			$obj['ppid'] = $this->fGetLastInsertID();
 			
 			$_SESSION['sPersonPlanID'] = $obj['plaid'];
+			$_SESSION['sPersonPlanPaid'] = $obj['pago'];
 			$_SESSION['sPersonPlanName'] = $obj['name'];
 			$_SESSION['sPersonPlanExpires'] = $obj['vencimento'];
 			$_SESSION['sPersonMaxAds'] = $obj['ads'];
@@ -287,8 +288,8 @@ class queries extends mysqlconn {
 	 */
 	private function fQueryPaymentPlans($obj){
 		
-		$this->sqlQuery = "INSERT INTO planos_pagamentos (ppid, psid, vloriginal, vencimento)
-							VALUES (".$obj['ppid'].", '".$obj['psid']."', ".$obj['vloriginal'].", '".$obj['vencimento']."')";
+		$this->sqlQuery = "INSERT INTO planos_pagamentos (ppid, psid, vloriginal, pago, vencimento)
+							VALUES (".$obj['ppid'].", '".$obj['psid']."', ".$obj['vloriginal'].", ".($obj['pago'] == 1 ? 1 : '0').", '".$obj['vencimento']."')";
 		
 		if($this->fExecuteSql($this->sqlQuery))
 		{
@@ -542,7 +543,8 @@ class queries extends mysqlconn {
 							 FROM planos_pagamentos pp2
 							 INNER JOIN planos_pessoas pp ON pp.ppid = pp2.ppid								 
 							 WHERE pp2.ppid = pp.ppid
-							 AND pp.pesid = p.pesid							 
+							 AND pp.pesid = p.pesid
+							 AND pp2.pago = 1 
 							 ORDER BY pp2.pgid DESC LIMIT 1) AS vencimento,
 		    				NULL AS localizacao
 		    			FROM destaque_pessoas dp
@@ -586,14 +588,15 @@ class queries extends mysqlconn {
 								 FROM planos_pagamentos pp2
 								 INNER JOIN planos_pessoas pp ON pp.ppid = pp2.ppid								 
 								 WHERE pp2.ppid = pp.ppid
-								 AND pp.pesid = p.pesid								 
+								 AND pp.pesid = p.pesid	
+								 AND pp2.pago = 1 
 								 ORDER BY pp2.pgid DESC LIMIT 1) AS vencimento,
     						IFNULL((SELECT pf.imagemurl AS thumb 
 							     FROM pessoas_fotos pf 
 							     WHERE pf.apid = ap.apid 
 							     AND pf.ativo = 1 
 							     AND pf.local = 1 
-							     AND pf.tipo = 2 
+							     AND pf.tipo = 1 
 							     AND pf.principal = 'S'
 							     ORDER BY pf.fotid DESC LIMIT 1), 0) AS thumb
 					    	FROM anuncios_pessoas ap
@@ -874,7 +877,7 @@ class queries extends mysqlconn {
      * @return	 array
      */
     public function fQueryEditPersonAd($person, $ad){
-    	echo $this->sqlQuery = "SELECT
+    	$this->sqlQuery = "SELECT
 								ap.*
 							FROM anuncios_pessoas ap							
 							INNER JOIN pessoas p ON p.pesid = ap.pesid

@@ -84,6 +84,11 @@ class auth extends functions {
 			$sql = "SELECT
 						p.*,
 						(SELECT 
+							IF(pp2.vloriginal = 0, 1, pp2.pago) AS pago 
+						 FROM planos_pagamentos pp2
+						 WHERE pp2.ppid = pp.ppid
+						 ORDER BY pp2.pgid DESC LIMIT 1) AS pago,
+						(SELECT 
 							DATEDIFF(pp2.vencimento, now()) 
 						 FROM planos_pagamentos pp2
 						 WHERE pp2.ppid = pp.ppid
@@ -134,6 +139,7 @@ class auth extends functions {
 				$_SESSION['sPersonComeBack'] = $ret[0]['removido'];
 				$_SESSION['sPersonPlanID'] = $ret[0]['plaid'];
 				$_SESSION['sPersonPlanName'] = $ret[0]['plano'];
+				$_SESSION['sPersonPlanPaid'] = $ret[0]['pago'];				
 				$_SESSION['sPersonPlanExpires'] = $ret[0]['diasvencimento'];
 				$_SESSION['sPersonPlanExpiresDate'] = $ret[0]['vencimento'];
 				$_SESSION['sPersonMaxAds'] = $ret[0]['numanuncios'];

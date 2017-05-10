@@ -206,6 +206,7 @@ if ($_POST['method'] != 'free') //Only paid plans - Invoke PagSeguro Payment Gat
 					  "photos" 		=> $retPlan[0]['fotos'],
 					  "videos" 		=> $retPlan[0]['videos'],				
 					  "vloriginal" 	=> 0,
+					  "pago" 		=> 1,
 					  "vencimento" 	=> date('Y-m-d H:i:s', strtotime("+".SIS_DIAS_GRATIS." day")));
 	
 	if($functions->fQuerySavePersonPlan($arrPlano))

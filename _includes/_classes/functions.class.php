@@ -524,11 +524,11 @@ class functions extends queries {
 	* Reference to user by gender
 	* @return    string
 	*/
-	public function fReference(){
-		if ($_SESSION['sClientGender'] == "M")
-			$str = "dele";
+	public function fReference($gender){
+		if ($gender == "M")
+			$str = "o";
 		else
-			$str = "dela";
+			$str = "a";
 		return $str;
 	}
 	
@@ -614,7 +614,7 @@ class functions extends queries {
 		                             $this->retHTML .= '<h4><strong>R$ '.number_format($this->retRecords[$x]['valor'], 2, ",", ".").'</strong>'.$cobranca.'</h4>';
 		                             $this->retHTML .= '<p>em at&eacute; '.SIS_PARCELAS_SEM_JUROS.'x sem juros no cart&atilde;o*</p>';
 								}else{ 
-									$this->retHTML .= '<h3><strong>Gr&aacute;tis por '.SIS_DIAS_GRATIS.' dias *</strong></h3>';
+									$this->retHTML .= '<h3><strong>'.SIS_DIAS_GRATIS.' dias gr&aacute;tis*</strong></h3>';
                             		$this->retHTML .= '<p>* Renovar para Premium ou Advanced!</p>';
 								}
 							

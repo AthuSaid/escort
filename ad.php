@@ -13,7 +13,7 @@
     	
     		$countAds = $functions->fGetCountDashboardAds($_SESSION['sPersonID']);
     		
-    		if (count($retAd) == 0 && ($countAds >= $_SESSION['sPersonMaxAds'] || $_SESSION['sPersonPlanExpires'] < 0))
+    		if (count($retAd) == 0 && ($countAds >= $_SESSION['sPersonMaxAds'] || $_SESSION['sPersonPlanExpires'] < 0 || $_SESSION['sPersonPlanPaid'] < 1))
     		{
     			header('Location: '.SIS_URL.'dashboard');
     			exit;
@@ -150,17 +150,7 @@
                                             </div>
                                          </div> 
                                          <hr/>                           	  
-                                         <h4>Seu An&uacute;ncio</h4>
-                                         <?php if (!empty($retAd[0]['apid'])){ ?>
-	                                          <div class="row"> 
-	                                           <div class="col-sm-12">                                                                                          
-	                                                <div class="form-group">
-	                                                	<input type="hidden" name="apid" id="apid" value="<?php echo $retAd[0]['apid']; ?>"> 
-	                                                    <input type="checkbox" name="ativo" id="ativo" class="active-ad" value="1" <?php echo ($retAd[0]['ativo'] == 1 ? 'checked' : ''); ?>> <strong>TORNAR MEU AN&Uacute;NCIO ATIVO!</strong>
-	                                                </div> 
-	                                            </div>
-	                                         </div>	                                         
-                                         <?php } ?>  
+                                         <h4><i class="fa fa-id-card"></i> Seu An&uacute;ncio</h4>
                                          <div class="row">                                         
 	                                            <div class="col-sm-12">                                                                                          
 	                                                <div class="form-group">
@@ -263,7 +253,7 @@
                                          
                                          <hr />                                                                               
                                          <div class="row">
-                                         		<div class="col-sm-4">                                                                                          
+                                         		<div class="col-sm-6">                                                                                          
 	                                                <div class="form-group">
 	                                                    <label><i class="fa fa-group"></i> Pessoas que Atendo *</label>
 	                                                    
@@ -277,7 +267,7 @@
 														<div class="help-block with-errors"></div>
 	                                             	</div> 
 	                                             </div>
-	                                             <div class="col-sm-4">                                                                                          
+	                                             <div class="col-sm-6">                                                                                          
 		                                                <div class="form-group">
 		                                                    <label><i class="fa fa-language"></i> Idiomas que Falo</label>
 		                                                    
@@ -374,12 +364,21 @@
 	                                            </div>
                                            </div>
                                          </div>
-                                          
+                                         <?php if (!empty($retAd[0]['apid'])){ ?>
+	                                          <div class="row"> 
+	                                           <div class="col-sm-12">                                                                                          
+	                                                <div class="form-group">
+	                                                	<input type="hidden" name="apid" id="apid" value="<?php echo $retAd[0]['apid']; ?>"> 
+	                                                    <input type="checkbox" name="ativo" id="ativo" class="active-ad" value="1" <?php echo ($retAd[0]['ativo'] == 1 ? 'checked' : ''); ?>> <strong>MANTER MEU AN&Uacute;NCIO ATIVO!</strong>
+	                                                </div> 
+	                                            </div>
+	                                         </div>	                                         
+                                         <?php } ?> 
                                          <hr/> 
                                          <div class="row"> 
                                            <div class="col-sm-12">                                                                                          
                                                 <div class="form-group">
-                                                    <h6><i class="fa fa-camera"></i> <strong>Clique em avan&ccedil;ar para personalizar seu an&uacute;ncio e adicionar suas fotos!</strong></h6>
+                                                    <h6><i class="fa fa-camera"></i> <i class="fa fa-video-camera"></i> <strong>Clique em avan&ccedil;ar para personalizar seu an&uacute;ncio e adicionar fotos e v&iacute;deos!</strong></h6>
                                                 </div> 
                                             </div>
                                          </div> 

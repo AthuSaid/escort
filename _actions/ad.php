@@ -14,12 +14,12 @@ if($_SESSION['sPersonLogged'] && isset($_SESSION['sPersonID']) && isset($_REQUES
 {
 	if ($_REQUEST['method'] == 'delete')
 	{
-		# Update Ad if success
+		# Remove Ad if success
 		if($functions->fRemoveAd($_REQUEST['apid']))
 		{
 			$countAds = $functions->fGetCountDashboardAds($_SESSION['sPersonID']);
 			
-			$showBtNewAd = ($countAds >= $_SESSION['sPersonMaxAds'] ? false : true);
+			$showBtNewAd = ($countAds >= $_SESSION['sPersonMaxAds'] && $_SESSION['sPersonPlanPaid'] < 1 ? false : true);
 			
 			$retJson = json_encode(array("ret" => true, "msg" => null, "shownewad" => $showBtNewAd));
 			

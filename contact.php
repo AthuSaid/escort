@@ -155,11 +155,26 @@
                                                 <div class="help-block with-errors"></div>
                                             </div>
                                         </div>
+                                        
+                                        <div class="col-sm-12">
+                                            <div class="form-group">
+                                                <label>Selecione o Assunto *</label>
+                                                <select id="subject" name="subject" data-error="Por favor, selecione o Assunto para atendimento!" required class="form-control">
+												    <option value="">Selecione</option>
+												    <option value="Duvidas">D&uacute;vidas</option>
+											        <option value="Elogios">Elogios</option>
+											        <option value="Reclamacoes">Reclama&ccedil;&otilde;es</option>
+											        <option value="Sugestoes">Sugest&otilde;es</option>
+											        <option value="Contratar">Contratar Servi&ccedil;o de Fotografia</option>
+												</select>
+                                                <div class="help-block with-errors"></div>
+                                            </div>
+                                        </div>
 
                                         <div class="col-sm-12">
                                             <div class="form-group"> 
                                                 <label>Sua Mensagem *</label>
-                                                <textarea id="message" name="message" class="form-control" rows="6" data-error="Por favor, digite sua Mensagem!" required ></textarea>
+                                                <textarea id="message" name="message" class="form-control" rows="9" data-error="Por favor, digite sua Mensagem!" required ></textarea>
                                                 <div class="help-block with-errors"></div>
                                             </div>
                                             <div class="form-group">

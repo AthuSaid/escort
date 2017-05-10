@@ -40,4 +40,6 @@ RewriteRule ^servicos$ servicos.php
 
 RewriteRule ^privacy$ privacy.php
 
+RewriteRule ^remove$ remove.php
+
 RewriteRule ^contact$ contact.php

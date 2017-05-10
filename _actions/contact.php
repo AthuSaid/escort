@@ -16,6 +16,7 @@ if ($functions->fSaveNewsletter($_REQUEST['name'], $_REQUEST['email'], $msg))
 	$message = '<html><img src="'.SIS_URL.'assets/images/logos/libidinous-transp-black.png"><br><br>
 				Ol&aacute; Administrador,<br><br>
 				O usu&aacute;rio '.$_REQUEST['name'].' ('.$_REQUEST['email'].') entrou em contato em '.date('d/m/Y H:i:s').'!<br><br>
+				<strong>ASSUNTO: '.$_REQUEST['subject'].'</strong><br>		
 				<i>"'.nl2br($msg).'"</i><br><br>
 				Responda-o o quanto antes!!!:<br><br>					
 				Atenciosamente,<br>		

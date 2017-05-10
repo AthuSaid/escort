@@ -23,6 +23,8 @@ $query = new queries();
 
 $email = new Email;
 
+$autoloadFuncs = spl_autoload_functions();
+
 foreach($autoloadFuncs as $unregisterFunc)
 {
 	spl_autoload_unregister($unregisterFunc);
@@ -47,10 +49,15 @@ spl_autoload_register(function ($class_name) {
 	 
 	 $response = PagSeguroTransactionSearchService::searchByDate($credentials, 1, 1000, $dateIni."T00:00", $dateEnd."T".$timeEnd);
 	
-	 if (is_object($response) && is_object($response->transactions))
-	 {
+	if (is_object($response) || is_object($response->transactions))
+	{	 	
 	 	foreach ($response->transactions as $transactions)
 	 	{
+	 		
+	 		print '<pre>';
+	 		print_r($transactions);
+	 		die;
+	 		
 	 		$retPlan = $query->getAcquiredPlans($transactions->code);
 	 	
 	 		if ($retPlan[0]['psid'] == $transactions->code)
@@ -67,12 +74,12 @@ spl_autoload_register(function ($class_name) {
 	 					{	 						
 	 						$arrPlan = array('psid' => $retPlan[0]['psid'],
 	 										 'pago' => 1,
-	 										 'vencimento' => date('Y-m-d H:i:s', strtotime('+30 day')),
+	 										 'vencimento' => date('Y-m-d H:i:s', strtotime('+'.$retPlan[0]['cobrancadias'].' day')),
 	 										 'pagamento' => date('Y-m-d H:i:s'),
 	 										 'vlcorrigido' => $transactions->grossAmount,
 	 										 'ppid' => $retPlan[0]['ppid']);
 	 							
-	 						if($query->updateAcquiredPlan($arrPlan))
+	 						if($query->setPlanPaid($arrPlan))
 	 						{
 	 							/*$arrEmail = array('EmpresaNomeFantasia' => $retPlan[0]['EmpresaNomeFantasia'],
 	 									'EmpresaResponsavelNome' => $retPlan[0]['EmpresaResponsavelNome'],
