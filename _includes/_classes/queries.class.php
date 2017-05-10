@@ -649,7 +649,7 @@ class queries extends mysqlconn {
 						    	ORDER BY pf.fotid DESC LIMIT 1), '../no-portrait.jpg') AS thumb    	
 					    	FROM anuncios_pessoas ap
 					    	INNER JOIN pessoas p ON p.pesid = ap.pesid
-					    	WHERE p.pesid = {$pesid}
+					    	WHERE p.pesid = {$pesid} AND p.removido = 0 
     						ORDER BY ap.visitascount DESC, ap.aprovado DESC, ap.cadastro DESC";
     	$this->fExecuteSql($this->sqlQuery);
     	$this->retRecords = $this->fShowRecords();
@@ -874,11 +874,11 @@ class queries extends mysqlconn {
      * @return	 array
      */
     public function fQueryEditPersonAd($person, $ad){
-    	$this->sqlQuery = "SELECT
+    	echo $this->sqlQuery = "SELECT
 								ap.*
 							FROM anuncios_pessoas ap							
 							INNER JOIN pessoas p ON p.pesid = ap.pesid
-							WHERE ap.url = '{$ad}'
+							WHERE ap.url = '{$ad}' 
 							AND p.url = '{$person}'";
     	$this->fExecuteSql($this->sqlQuery);
     	$this->retRecords = $this->fShowRecords();
@@ -1017,7 +1017,7 @@ class queries extends mysqlconn {
 							     AND pfl.tipo = 2 
 							     AND pfl.principal = 'S'), 'no-large.jpg') AS large
 					    	FROM pessoas_fotos pf
-					    	WHERE pf.ativo = 1
+					    	WHERE pf.fotid > 1
 					    	AND pf.apid = {$apid}
 					    	AND pf.local NOT IN (1,4)
 					    	GROUP BY pf.hash

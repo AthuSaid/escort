@@ -128,6 +128,8 @@
 				                    <div class="btn-group">
 				                      <button type="button" class="btn btn-primary" data-method="rotate" data-option="-30" title="Girar 30 Graus Antihorario"><i class="fa fa-rotate-left"></i></button>
 				                      <button type="button" class="btn btn-primary" data-method="rotate" data-option="30" title="Girar 30 Graus Horario"><i class="fa fa-rotate-right"></i></button>
+				                      <button type="button" class="btn btn-primary" data-method="zoom" data-option="0.03" title="Mais Zoom"><i class="fa fa-search-plus"></i></button>
+   								      <button type="button" class="btn btn-primary" data-method="zoom" data-option="-0.03" title="Menos Zoom"><i class="fa fa-search-minus"></i></button>
 				                    </div>
 				                  </div>
 				                  <div class="col-md-3">
@@ -197,7 +199,7 @@
 								                <div class="row">
 								                  <div class="col-md-9">
 								                    <div id="cropper" class="avatar-wrapper"></div>
-								                    <div id="webcam" class="divCropperCamera"></div>								                    
+								                    <!--div id="webcam" class="divCropperCamera"></div-->								                    
 								                  </div>
 								                  <div class="col-md-3">
 								                    <div class="avatar-preview preview-lg"></div>			                    
@@ -208,8 +210,10 @@
 								                    <div class="btn-group">
 								                      <button type="button" class="btn btn-primary" data-method="rotate" data-option="-30" title="Girar 30 Graus Antihorario"><i class="fa fa-rotate-left"></i></button>
 								                      <button type="button" class="btn btn-primary" data-method="rotate" data-option="30" title="Girar 30 Graus Horario"><i class="fa fa-rotate-right"></i></button>
-								                      <button type="button" id="show-camera" class="btn btn-primary" title="Tirar Foto"><i class="fa fa-camera"></i></button>
-								                      <button type="button" id="popup-webcam-take-photo" disabled="disabled" class="btn btn-warning shot">Capturar Imagem <i class="fa fa-save"></i></button>
+								                      <button type="button" class="btn btn-primary" data-method="zoom" data-option="0.03" title="Mais Zoom"><i class="fa fa-search-plus"></i></button>
+   								                      <button type="button" class="btn btn-primary" data-method="zoom" data-option="-0.03" title="Menos Zoom"><i class="fa fa-search-minus"></i></button>
+								                      <!--button type="button" id="show-camera" class="btn btn-primary" title="Tirar Foto"><i class="fa fa-user-o"></i></button>
+								                      <button type="button" id="popup-webcam-take-photo" disabled="disabled" class="btn btn-warning shot"><i class="fa fa-camera"></i></button-->
 								                    </div>
 								                  </div>
 								                  <div class="col-md-3">
@@ -464,11 +468,11 @@
         <script src="http://maps.google.com/maps/api/js?key=AIzaSyD_tAQD36pKp9v4at5AnpGbvBUsLCOSJx8"></script>
         <script src="<?php echo SIS_URL; ?>assets/js/gmaps.min.js"></script>                
         <script src="<?php echo SIS_URL; ?>assets/js/validator.js"></script>
-        <script src="<?php echo SIS_URL; ?>assets/js/form.js"></script>
-        
+        <script src="<?php echo SIS_URL; ?>assets/js/form.js"></script>        
         <script src="<?php echo SIS_URL; ?>assets/js/cropper.js"></script>
         <script src="<?php echo SIS_URL; ?>assets/js/croppermain.js"></script> 
-        <script type="text/javascript" src="<?php echo SIS_URL; ?>assets/webcam/webcam.poster.js"></script>      
+        <!--script type="text/javascript" src="<?php echo SIS_URL; ?>assets/webcam/webcam.poster.js"></script-->      
+        <script type="text/javascript" src="<?php echo SIS_URL; ?>assets/webcam/webcam.gallery.js"></script>
         
         <script type="text/javascript">
         	<?php echo $functions->fGetPersonModalitiesBalloonTip($retPerson[0]['apid'], $retPerson[0]['sexo']); ?>            

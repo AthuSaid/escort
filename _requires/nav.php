@@ -29,14 +29,14 @@
    		
 				<div class="service_items">
                      <div class="row">
-                             <div class="col-xs-3">
+                             <div class="col-xs-2">
                                  <div class="plus18">
                                     <div class="about-content">
                                     	<span class="fa font-bubble">18</span>
                                 	</div>    
-                             	</div>
+                             	</div>                             	
                              </div>
-                                <div class="col-xs-9">
+                                <div class="col-xs-10">
                                 <div class="text-left service_left_text">
                                 <h4 class="main-color black"><strong>ATEN&Ccedil;&Atilde;O</strong> Conte&uacute;do Adulto!</h4>
                             	<p>Antes de prosseguir sua visita no <?php echo SIS_TITULO?>, voc&ecirc; deve aceitar os seguintes termos:</p>
@@ -174,7 +174,7 @@
                             <li><a href="<?php echo SIS_URL; ?>"><?php echo SIS_TITULO; ?></a></li> 
 							<li><a href="<?php echo (!isset($_SESSION['sPersonLogged']) ? SIS_URL."signin/dashboard" : SIS_URL."dashboard"); ?>">anuncie agora!</a></li> 							                   
                             <li><a href="<?php echo SIS_URL; ?>persons">pessoas</a></li> 							
-                            <li><a href="<?php echo (!isset($_SESSION['sPersonLogged']) ? SIS_URL."signin/payment" : SIS_URL."payment"); ?>">planos</a></li>                                    
+                            <li><a href="<?php echo (!isset($_SESSION['sPersonLogged']) ? SIS_URL."plans" : SIS_URL."payment"); ?>">planos</a></li>                                    
                             <li><a href="<?php echo SIS_URL; ?>contact">contato</a></li>                    
                         </ul>
                     </div><!-- /.navbar-collapse -->

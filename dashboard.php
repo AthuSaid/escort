@@ -135,7 +135,7 @@
                                                     <li><a href="#" class="text-black"><?php echo ($countAds == 0 ? "Nenhum an&uacute;ncio cadastrado!" : "{$countAds} an&uacute;ncios cadastrados"); ?></a></li>
                                                 </ul>
                                                 <ul class="list-inline">                                                    
-                                                    <li><a href="#" class="text-black">Seu Plano atual &eacute; o <strong>Plano <?php echo $_SESSION['sPersonPlanName']; ?></strong> - com vencimento em <strong><?php echo $functions->fInvertDateBrazil($_SESSION['sPersonPlanExpiresDate'], false); ?></strong></a></li>                                                    
+                                                    <li><a href="<?php echo SIS_URL?>payment" class="text-black">Seu Plano atual &eacute; o <strong>Plano <?php echo $_SESSION['sPersonPlanName']; ?></strong> - com vencimento em <strong><?php echo $functions->fInvertDateBrazil($_SESSION['sPersonPlanExpiresDate'], false); ?></strong></a></li>                                                    
                                                 </ul>
                                             </div>
                                         </div> 
@@ -167,10 +167,11 @@
 												<?php } ?>
 												<a href="<?php echo SIS_URL; ?>remove" style="float: right; margin-top:40px;">Remover Conta</a>																																					
 												
-                                            <p class="m-top-30">Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum.
-                                                Mirum est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit
-                                                litterarum formas humanitatis per seacula quarta decima et quinta decima. Eodem modo
-                                                typi, qui nobisin futurum</p>
+                                            <p class="m-top-30"><strong><i class="fa fa-question-circle"></i> ATEN&Ccedil;&Atilde;O:</strong> Todos os dados de todos os perfis no <?php echo SIS_TITULO;?>, assim como os an&uacute;ncios e fotos 
+                                              passam por um processo de verifica&ccedil;&atilde;o de autenticidade e 
+                                              controle de preven&ccedil;&atilde;o de pr&aacute;ticas criminosas, como pedofilia e 
+                                              aliciamento de menores de 18 anos. Todos os dados s&atilde;o mantidos em sigilo, 
+                                              e ser&atilde;o disponibilizados a &oacute;rg&atilde;os superiores, quando solicitado!</p>
 
                                         </div>
 

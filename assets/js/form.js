@@ -244,8 +244,7 @@ $('.remove-ad').on('click', function(){
 	        	if(json.ret == true){
 	        		$('.item-' + apid).remove();
 	        		if (json.shownewad == true){
-	        			$('.btnads').html('<a href="' + $urlProj + 'signout" class="btn btn-warning m-top-30 cancel">Logout <i class="fa fa-sign-out"></i></a>' + 
-	        							  '<a href="' + $urlProj + 'ad" class="btn btn-primary m-top-30 next">Inserir Novo An&uacute;ncio <i class="fa fa-plus"></i></a>');	
+	        			$('.btnads').html('<a href="' + $urlProj + 'ad" class="btn btn-primary m-top-30 next">Inserir Novo An&uacute;ncio <i class="fa fa-plus"></i></a>');	
 	        		}
 	        	}else{
 	        		alert('Erro ao excluir o anuncio!');		        	

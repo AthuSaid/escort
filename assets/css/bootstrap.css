@@ -1142,7 +1142,8 @@ img {
           transition: all .2s ease-in-out;
 }
 .img-circle {
-  border-radius: 70%;
+  max-width: 85px;
+  border-radius: 10%;
 }
 hr {
   margin-top: 20px;
@@ -3655,6 +3656,7 @@ tbody.collapse.in {
     left: 0;
   }
 }
+
 .btn-group,
 .btn-group-vertical {
   position: relative;

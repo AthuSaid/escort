@@ -160,7 +160,8 @@ if ($_POST['method'] != 'free') //Only paid plans - Invoke PagSeguro Payment Gat
 							<strong>R$ '.number_format($return->getGrossAmount(), 2, ",", ".").'</strong> com vencimento em 
 							<strong>'.date('d/m/Y', strtotime("+30 day")).'</strong><br>
 						Com este plano voc&ecirc; poder&aacute; incluir at&eacute; '.$retPlan[0]['anuncios'].' an&uacute;ncios no site, <br>
-						bem como at&eacute; '.$retPlan[0]['fotos'].' fotos e '.$retPlan[0]['videos'].' v&iacute;deos! <br>
+						bem como '.($retPlan[0]['fotos'] == 999 ? 'fotos ilimitadas' : 'at&eacute; '.$retPlan[0]['fotos'].' fotos').' e 
+								 '.($retPlan[0]['videos'] == 999 ? 'v&iacute;deos ilimitados' : 'at&eacute; '.$retPlan[0]['videos'].' v&iacute;deos').'! <br>
 						Caso deseje acessar sua conta, clique no link abaixo:<br><br>
 						<a href="'.SIS_URL.'signin/dashboard">'.SIS_URL.'signin/dashboard</a><br><br>
 						Atenciosamente,<br>

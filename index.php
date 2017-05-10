@@ -160,25 +160,25 @@
                                 </div>                               
                             </div>
 
-                            <div class="col-md-4 sm-m-top-40 sm-text-center">
-                                <div class="service-img wow bounceIn">
-                                    <img src="assets/img/home-couple_<?php echo rand(1,3);?>.jpg" alt="Home Couple">
-                                </div>
-                            </div>
+	                            <div class="col-md-4 sm-m-top-40 sm-text-center">
+	                                <div class="service-img wow bounceIn">
+	                                    <img src="assets/img/home-couple_<?php echo rand(1,3);?>.jpg" alt="Home Couple">
+	                                </div>
+	                            </div>
 
                             <div class="col-md-4 service_right wow fadeInRight sm-m-top-40" >
                                 <div class="service_items">
                                     <div class="row">
                                         <div class="col-xs-9">
                                             <div class="service_right_text p-l-15 text-right">
-                                                <h4 class="main-color">Video Chat</h4>
+                                                <h4 class="main-color">Fotos & V&iacute;deos</h4>
                                                 <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie</p>
                                             </div>
                                         </div>
                                         <div class="col-xs-3">
                                             <div class="hexagon">
                                                 <div class="about-content">
-                                                    <span class="fa fa-video-camera"></span>
+                                                    <span class="fa fa-camera"></span>
                                                 </div>    
                                             </div>
                                         </div>

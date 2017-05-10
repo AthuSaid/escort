@@ -3,7 +3,7 @@ var longitude;
 
 function fSetCookieData() {
     var d = new Date();
-    d.setTime(d.getTime() + (365*24*60*60*1000));
+    d.setTime(d.getTime() + (24*60*60*1000));
     var expires = "expires="+ d.toUTCString();
     var mygender = $("#myGender").val();
     var findgender = $("#findGender").val();
@@ -39,7 +39,7 @@ function fSetCookieAge() {
 			alert('Proibido para menores de 18 anos!');
 			location.href = 'http://www.google.com';
 		}else{
-		    d.setTime(d.getTime() + (60*60*1000));
+		    d.setTime(d.getTime() + (24*60*60*1000));
 		    var expires = "expires="+ d.toUTCString();
 		    
 		    var cvalue = month + "/" + year;

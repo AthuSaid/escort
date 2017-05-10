@@ -347,8 +347,7 @@
     	}	
     },
 
-    cropDone: function () {
-    	//alert('crop done');
+    cropDone: function () {  
       this.$avatarForm.get(0).reset();
       this.$avatar.attr('src', this.url);
       this.stopCropper();

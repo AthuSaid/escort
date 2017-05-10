@@ -566,7 +566,10 @@ class functions extends queries {
 	 */
 	public function fGetPlans($type, $plaid = 0)
 	{
-		$this->retRecords = $this->fQueryPlans($type);
+		$this->retRecords = $this->fQueryPlans(($type == 2 ? 1 : 1));
+		
+		$link = ($type == 1 ? "javascript:void(0);" : SIS_URL."signin/dashboard");
+		$getplan = ($type == 1 ? "getplan" : "");		
 	
 		if (count($this->retRecords) > 0)
 		{
@@ -575,30 +578,30 @@ class functions extends queries {
 			for ($x = 0; $x < count($this->retRecords); $x++)
 			{
 				
-				if ($plaid == 0)
+				if ($plaid == 0 || $type == 2)
 				{
 					$upgradeOrSign = 'Assinar <i class="fa fa-cart-plus"></i>';
-					$disableBtn = 'href="javascript:void(0);" class="btn btn-primary m-top-10 getplan"';
+					$disableBtn = 'href="'.$link.'" class="btn btn-primary m-top-10 '.$getplan.'"';
 					
 				}elseif ($plaid != $this->retRecords[$x]['plaid'] && $this->retRecords[$x]['plaid'] > 1)
 				{
-					$upgradeOrSign = 'Atualizar para '.$this->retRecords[$x]['plano'].' <i class="fa fa-cart-plus"></i>';
-					$disableBtn = 'href="javascript:void(0);" class="btn btn-primary m-top-10 getplan"';
+					$upgradeOrSign = 'Alterar para '.$this->retRecords[$x]['plano'].' <i class="fa fa-cart-plus"></i>';
+					$disableBtn = 'href="'.$link.'" class="btn btn-primary m-top-10 '.$getplan.'"';
 					
 				}elseif ($plaid != $this->retRecords[$x]['plaid'] && $this->retRecords[$x]['plaid'] < 2)
 				{
-					$upgradeOrSign = 'N&atilde;o Permitido <i class="fa fa-times-circle"></i>';
-					$disableBtn = 'href="javascript:void(0);" disabled class="btn btn-primary m-top-10"';
+					$upgradeOrSign = 'Plano N&atilde;o Permitido <i class="fa fa-times-circle"></i>';
+					$disableBtn = 'href="'.$link.'" disabled class="btn btn-primary m-top-10"';
 					
 				}elseif ($plaid == $this->retRecords[$x]['plaid'] && $this->retRecords[$x]['plaid'] < 2)
 				{
 					$upgradeOrSign = 'N&atilde;o Permitido <i class="fa fa-times-circle"></i>';
-					$disableBtn = 'href="javascript:void(0);" disabled class="btn btn-primary m-top-10"';
+					$disableBtn = 'href="'.$link.'" disabled class="btn btn-primary m-top-10"';
 					
 				}elseif ($plaid == $this->retRecords[$x]['plaid'] && $this->retRecords[$x]['plaid'] > 1)
 				{
 					$upgradeOrSign = 'Renovar meu Plano Atual <i class="fa fa-star-half-empty"></i>';
-					$disableBtn = 'href="javascript:void(0);" class="btn btn-primary m-top-10 getplan"';
+					$disableBtn = 'href="'.$link.'" class="btn btn-primary m-top-10 '.$getplan.'"';
 				}
 				
 				
@@ -1229,7 +1232,7 @@ class functions extends queries {
     		for ($x = 0; $x < count($this->retRecords); $x++)
     		{
     			
-    			$active = ($personLogged ? '<h4 class="showphoto"><input type="checkbox" value="1"> <i class="fa fa-eye"></i></h4>' : '');
+    			$active = ($personLogged ? '<h4 class="showphoto"><input type="checkbox" value="1" '.($this->retRecords[$x]['ativo'] == '1' ? 'checked' : '').'> <i class="fa fa-eye"></i></h4>' : '');
     			$title = ($personLogged ? '<p><input type="text" maxlength="30" placeholder="Informe um titulo para sua foto" id="title" style="width: 300px; text-align: center; color: #ccc; background: transparent; border: 1px solid #ccc;" value="'.$this->retRecords[$x]['titulo'].'"></p>' : '<h4 class="text-white">'.$this->retRecords[$x]['titulo'].'</h4>');
     			$description = ($personLogged ? '<p><input type="text" placeholder="Descreva sua foto" id="description" style="width: 300px; text-align: center; color: #ccc; background: transparent; border: 1px solid #ccc;" value="'.$this->retRecords[$x]['descricao'].'"></p>' : '<h5 class="text-white"><em>'.$this->retRecords[$x]['descricao'].'</em></h5>');
     			$delete = ($personLogged ? '<div class="cropControls cropControlsUpload" onclick="removeImg(\''.$this->retRecords[$x]['hash'].'\')"><i class="cropControlRemoveCroppedImage" title="Remover Foto"></i></div>' : '');    			
@@ -1250,14 +1253,89 @@ class functions extends queries {
     	
     	if ($personLogged) {    	
     		
-	    			$this->retHTML .= '<div class="grid-item metal ium addphoto">
-	    									<div id="imgGalleryModel"></div>
-	                                    	<div class="grid_hover_area2 text-center">
-		                                        <div class="grid_hover_text m-top-110">
-		                                            <h4 class="text-white"><i class="fa fa-camera"></i> <i class="fa fa-upload"></i></h4>
-	    											<h6 class="text-white">Adicionar nova Foto</h6>
-		                                        </div>
-		                                    </div>
+	    			$this->retHTML .= '
+	    					
+	    									<div class="container openmodal" data-modal="gallery" id="cropImgGallery">											    
+											    <div class="grid-item metal ium addphoto">
+											    	<div class="imgGalleryModel">
+											      		<div class="grid_hover_area2 text-center">
+					                                        <div class="grid_hover_text m-top-110">
+					                                            <h4 class="text-white"><i class="fa fa-camera"></i> <i class="fa fa-upload"></i></h4>
+				    											<h6 class="text-white">Adicionar nova Foto</h6>
+					                                        </div>
+					                                    </div>
+												    </div>
+											    </div>								
+											    <!-- Cropping modal -->
+											    <div class="modal fade" id="galleryModal" aria-hidden="true" aria-labelledby="avatar-modal-label" role="dialog" tabindex="-1">
+											      <div class="modal-dialog modal-lg">
+											        <div class="modal-content">
+											          <form role="form" data-toggle="validator" style="text-align:left;" class="avatar-form" action="'.SIS_URL.'images/procimg/crop.php" enctype="multipart/form-data" method="post">
+											            <div class="modal-header">
+											              <button type="button" class="close" data-dismiss="modal">&times;</button>
+											              <h4 class="modal-title">Carregar M&iacute;dia no Site - Galeria de Fotos e V&iacute;deos</h4>
+											            </div>
+											            <div class="modal-body">
+											              <div class="avatar-body">
+											                <div class="avatar-upload">
+											                  <input type="hidden" class="avatar-src" name="avatar_src">
+											                  <input type="hidden" class="avatar-data" name="avatar_data">
+											                  <input type="hidden" value="'.$apid.'" name="apid">											          		
+											                  <input type="hidden" value="'.$_SESSION['sPersonUrl'].'" name="person_url">
+															  <input type="hidden" value="gallery" name="imgtype">
+											                  <label for="avatarInput">Selecione o Arquivo para Upload:</label>
+											                  <input type="file" class="avatar-input" id="avatarInput" name="avatar_file">
+											                </div>			
+											                <div class="row">
+											                  <div class="col-md-9">
+											                  	<div id="cropper2" class="avatar-wrapper"></div>
+								                    			<div id="webcam2" class="divCropperCamera"></div>
+											                  </div>
+											                  <div class="col-md-3">
+											                    <div class="avatar-preview preview-lg"></div>			                    
+											                  </div>
+											                  <br/>
+											                  <div class="col-md-3">
+											                    <div class="form-group">
+								                                    <input type="checkbox" name="ativo" id="ativo" class="active-img" value="1"> <strong><i class="fa fa-eye"></i> Vis&iacute;vel no site</strong>
+								                                 </div>			                    
+											                  </div>
+											                  <div class="col-md-3">                                                                                          
+								                                 <div class="form-group">
+								                                 	<label>T&iacute;tulo da Imagem/V&iacute;deo *</label>                                                    
+								                                 	<input type="text" id="titulo" name="titulo" data-error="T&iacute;tulo Obrigat&oacute;rio!" required class="form-control" maxlength="60">                                    
+											                  		<div class="help-block with-errors"></div>
+									                              </div> 
+								                              </div>
+								                              <div class="col-md-3">
+								    							 <div class="form-group">
+								                                 	<label>Descri&ccedil;&atilde;o</label>
+								                                    <textarea  id="descricao" name="descricao" class="form-control" rows="8"></textarea>
+								                                 </div>	                                                
+								                              </div>
+											                </div>			
+											                <div class="row avatar-btns">
+											                  <div class="col-md-9">
+											                    <div class="btn-group">
+											                        <button type="button" class="btn btn-primary" data-method="rotate" data-option="-30" title="Girar 30 Graus Antihorario"><i class="fa fa-rotate-left"></i></button>
+											                        <button type="button" class="btn btn-primary" data-method="rotate" data-option="30" title="Girar 30 Graus Horario"><i class="fa fa-rotate-right"></i></button>
+											                  		<button type="button" class="btn btn-primary" data-method="zoom" data-option="0.03" title="Mais Zoom"><i class="fa fa-search-plus"></i></button>
+   								                      				<button type="button" class="btn btn-primary" data-method="zoom" data-option="-0.03" title="Menos Zoom"><i class="fa fa-search-minus"></i></button>
+								                      				<button type="button" id="show-camera2" class="btn btn-primary" title="Usar Webcam"><i class="fa fa-camera"></i></button>
+								                      				<button type="button" id="popup-webcam-take-photo2" disabled="disabled" class="btn btn-warning shot" title="Tirar Foto"><i class="fa fa-check-circle"></i></button>
+											                    </div>
+											                  </div>
+											                  <div class="col-md-3">
+											                    <button type="submit" class="btn btn-warning btn-block avatar-save">Salvar</button>
+											                  </div>
+											                </div>
+											              </div>
+											            </div>
+											          </form>
+											        </div>
+											      </div>
+											    </div>			    
+											  </div>
 	                                	</div>';
     	}
     	

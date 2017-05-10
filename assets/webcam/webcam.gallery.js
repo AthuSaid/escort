@@ -1,17 +1,17 @@
 $(document).ready(function() {
 	
-	 $('#show-camera').click(function() {
-	   	 if (!$("#webcam").is(":visible")){
-	   		 $("#cropper").hide();
-		   	 $("#webcam").show();		   	 
+	 $('#show-camera2').click(function() {
+	   	 if (!$("#webcam2").is(":visible")){
+	   		 $("#cropper2").hide();
+		   	 $("#webcam2").show();		   	 
 	   	 }else{
-	   		 $("#cropper").show();
-		   	 $("#webcam").hide();
+	   		 $("#cropper2").show();
+		   	 $("#webcam2").hide();
 	   	 }	   	
      });
 	
-	 $("#webcam").webcam({
-         swffile: $urlProj + "assets/webcam/sAS3Cam.swf?v="+Math.random(),
+	 $("#webcam2").webcam({
+         swffile: $urlProj + "assets/webcam/sAS3Cam2.swf?v="+Math.random(),
 
          previewWidth: 621,
          previewHeight: 500,
@@ -19,8 +19,8 @@ $(document).ready(function() {
          resolutionWidth: 621,
          resolutionHeight: 500,
 		
-		videoDeblocking: 0,
-		videoSmoothing: 1,
+		 videoDeblocking: 0,
+		 videoSmoothing: 1,
 
          StageScaleMode: 'showAll', //
 
@@ -61,7 +61,7 @@ $(document).ready(function() {
              }
 
              setTimeout(function() {
-                 $("#popup-webcam-take-photo").removeAttr('disabled');                                  
+                 $("#popup-webcam-take-photo2").removeAttr('disabled');                                  
                  cameraApi.setCamera('0');                 
              }, 750);
 
@@ -74,24 +74,24 @@ $(document).ready(function() {
                  }
              });
 
-             $('#popup-webcam-take-photo').click(function() {
-                 var result = cameraApi.save();
+             $('#popup-webcam-take-photo2').click(function() {
+                 var result = cameraApi.save();               
                  if (result && result.length) {
                 	 
-                	 $("#cropper").show();
+                	 $("#cropper2").show();
                 	 
                      var actualShotResolution = cameraApi.getResolution();
 
                      var img = new Image();
                      img.src = 'data:image/jpeg;base64,' + result;
                      
-                     console.log(cropPortrait);
-                     cropPortrait.source_webcam = true;
-                     cropPortrait.url = img.src;                     
+                     console.log(cropGallery);
+                     cropGallery.source_webcam = true;
+                     cropGallery.url = img.src;                     
                      $('.avatar-src').val(img.src);
-                     cropPortrait.startCropper();
+                     cropGallery.startCropper();
                      
-                     $("#webcam").hide();
+                     $("#webcam2").hide();
                      
                      //alert('base64encoded jpeg (' + actualShotResolution[0] + 'x' + actualShotResolution[1] + '): ' + result.length + 'chars');
 
@@ -104,14 +104,14 @@ $(document).ready(function() {
 
 
              var reload = function() {
-                 $('#popup-webcam-take-photo').show();
+                 $('#popup-webcam-take-photo2').show();
              };
 
-             $('#popup-webcam-save').click(function() {
+             $('#popup-webcam-save2').click(function() {
                      reload();
              });
          }
      });
-	 $("#webcam").hide();
+	 $("#webcam2").hide();
 	 //$("#popup-webcam-take-photo").hide();
   });

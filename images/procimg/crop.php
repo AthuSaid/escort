@@ -20,31 +20,31 @@ class CropAvatar {
   	
   	if (substr($src, 0, 5) == 'data:')
   	{
-  		$temp_file = 'tmp_'.$hashPhoto.'.jpeg';
-	  	$data = $src;	  	
-		list($type, $data) = explode(';', $data);
-		list(, $data)      = explode(',', $data);
-		$data = base64_decode($data);	
-		file_put_contents($temp_file, $data);
+  		$temp_file = 'temp/tmp_'.$hashPhoto.'.jpeg';
+	  	$dataImg = $src;	  	
+		list($type, $dataImg) = explode(';', $dataImg);
+		list(, $dataImg)      = explode(',', $dataImg);
+		$dataImg = base64_decode($dataImg);	
+		file_put_contents($temp_file, $dataImg);
 		$file['name'] = $temp_file;
 		$file['tmp_name'] = $_SERVER["DOCUMENT_ROOT"]."/images/procimg/".$temp_file;
 		$file['error'] = UPLOAD_ERR_OK;
 		$file['size'] = filesize($temp_file);
 		$file['type'] = exif_imagetype($temp_file);
 		$this->is_source_webcam = true;
-		$src = null;		
-		
+		$src = null;
+		$imagePath = $_SERVER["DOCUMENT_ROOT"]."/images/persons/".$url;
+		$this -> dst = $imagePath.'/'. $hashPhoto . '.png';
   	}else{
   		$this -> setSrc($url, $src, $hashPhoto, $apid, $ativo, $titulo, $descricao, $imgtype);
-  		$this -> setData($data);
   	}
   	
-  	
+  	$this -> setData($data);
     $this -> setFile($url, $hashPhoto, $apid, $ativo, $titulo, $descricao, $file, $imgtype);
     $this -> crop($this -> src, $this -> dst, $this -> data, $imgtype);   
     
-    if (substr($src, 0, 5) == 'data:')
-    	unlink($file['tmp_name']);
+    if ($this->is_source_webcam)
+    	unlink($_SERVER["DOCUMENT_ROOT"]."/images/procimg/".$temp_file);
   }
   
   public function fRandomHashPhoto($numsize){
@@ -155,7 +155,8 @@ class CropAvatar {
   }
 
   private function crop($src, $dst, $data, $imgtype) {
-    if (!empty($src) && !empty($dst) && !empty($data)) {
+  	
+  	if (!empty($src) && !empty($dst) && !empty($data)) {
       switch ($this -> type) {
         case IMAGETYPE_GIF:
           $src_img = imagecreatefromgif($src);

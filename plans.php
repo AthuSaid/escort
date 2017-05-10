@@ -3,13 +3,7 @@
         
     require_once $_SERVER["DOCUMENT_ROOT"]."/_includes/_config/config.ini.php";
     
-    $functions = new functions();  
-     
-    if (!isset($_SESSION['sPersonLogged']))
-    {		
-		header('Location: '.SIS_URL.'home');
-    	exit;        		
-    }      
+    $functions = new functions();           
 ?>
 <!doctype html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
@@ -108,12 +102,9 @@
 	                                <div class="blog_details_left">                                    
 	                                    <div class="blog_details_content">
 	                                        <div class="blog_details_head m-top-40">
-	                                            <div class="blog_date">
-	                                                <span><?php echo date('d'); ?></span><br />
-	                                                <span><?php echo $functions->fGetReduceMonth(date('m')); ?></span>
-	                                            </div>
+	                                            
 	                                            <div class="head_text">
-	                                                <h2><?php echo $functions->fWelcomeMessage($_SESSION['sPersonAka'], $_SESSION['sPersonGender'], true); ?></h2>
+	                                                <h2>Conhe&ccedil;a os Planos <?php echo SIS_TITULO; ?>!</h2>
 	                                                <ul class="list-inline">                                                    
 	                                                    <li><a href="#" class="text-black">Escolha o melhor plano dispon&iacute;vel que atenda sua necessidade:</a></li>                                                   
 	                                                </ul>
@@ -123,7 +114,7 @@
 	                                            
 												<div class="row">
 												
-													<?php echo $functions->fGetPlans(1, $_SESSION['sPersonPlanID']); ?>
+													<?php echo $functions->fGetPlans(2, 0); ?>
 																																				
 												</div>
 	                                        </div>
