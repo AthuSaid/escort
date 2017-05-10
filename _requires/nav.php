@@ -172,8 +172,8 @@
                     <div class="collapse navbar-collapse" id="navbar-menu">
                         <ul class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
                             <li><a href="<?php echo SIS_URL; ?>"><?php echo SIS_TITULO; ?></a></li> 
-							<li><a href="<?php echo (!isset($_SESSION['sPersonLogged']) ? SIS_URL."signin/dashboard" : SIS_URL."dashboard"); ?>">anuncie agora!</a></li> 							                   
-                            <li><a href="<?php echo SIS_URL; ?>persons">pessoas</a></li> 							
+							<li><a href="<?php echo (!isset($_SESSION['sPersonLogged']) ? SIS_URL."signin/dashboard" : SIS_URL."dashboard"); ?>">anuncie-se!</a></li> 							                   
+                            <li><a href="<?php echo SIS_URL; ?>persons">novas pessoas</a></li> 							
                             <li><a href="<?php echo (!isset($_SESSION['sPersonLogged']) ? SIS_URL."plans" : SIS_URL."payment"); ?>">planos</a></li>                                    
                             <li><a href="<?php echo SIS_URL; ?>contact">contato</a></li>                    
                         </ul>

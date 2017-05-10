@@ -131,6 +131,7 @@ class auth extends functions {
 				$_SESSION['sPersonEmail'] = $ret[0]['email'];
 				$_SESSION['sPersonGender'] = $ret[0]['sexo'];
 				$_SESSION['sPersonLastLogon'] = $ret[0]['ultimoacesso'];
+				$_SESSION['sPersonComeBack'] = $ret[0]['removido'];
 				$_SESSION['sPersonPlanID'] = $ret[0]['plaid'];
 				$_SESSION['sPersonPlanName'] = $ret[0]['plano'];
 				$_SESSION['sPersonPlanExpires'] = $ret[0]['diasvencimento'];

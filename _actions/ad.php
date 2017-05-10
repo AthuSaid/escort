@@ -5,6 +5,8 @@ require_once $_SERVER["DOCUMENT_ROOT"]."/_includes/_config/config.ini.php";
 
 $functions = new functions();
 
+$email = new email();
+
 $_REQUEST = $functions->fSanitizeRequest($_POST);
 
 # Check if Person is logged to update signup

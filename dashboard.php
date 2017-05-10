@@ -128,7 +128,7 @@
                                                 <span><?php echo $functions->fGetReduceMonth(date('m')); ?></span>
                                             </div>
                                             <div class="head_text">
-                                                <h2><?php echo $functions->fWelcomeMessage($retPerson[0]['apelido'], $retPerson[0]['sexo']); ?></h2>
+                                                <h2><?php echo $functions->fWelcomeMessage($retPerson[0]['apelido'], $retPerson[0]['sexo'], $_SESSION['sPersonComeBack']); ?></h2>
                                                 <ul class="list-inline">                                                    
                                                     <li><a href="#" class="text-black"><?php echo $_SESSION['sPersonLastLogon']; ?></a></li>
                                                     <li><a href="#" class="text-black"><?php echo $_SESSION['sPersonAka']; ?></a></li>

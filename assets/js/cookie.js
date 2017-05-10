@@ -101,7 +101,7 @@ function fCheckCookieAge() {
 
 function fGetPosition(){
 	  // Verifica se o browser do usuario tem suporte a Geolocation
-	  if ( navigator.geolocation ){
+	  //if ( navigator.geolocation ){
 	    /*navigator.geolocation.getCurrentPosition( function( posicao ){
 	      console.log( posicao.coords.latitude, posicao.coords.longitude );
 	      latitude = posicao.coords.latitude;
@@ -111,7 +111,8 @@ function fGetPosition(){
 		latitude = -23.6821604;
 		longitude = -46.8754915;
 		fSetCookieLocation();
-	  }
+		console.log('set user location');
+	  //}
 	}
 
 

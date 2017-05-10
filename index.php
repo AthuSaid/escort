@@ -101,24 +101,23 @@
                         	<div class="col-md-12">
                                 <div class="head_title text-left sm-text-center wow fadeInDown">
                                     <h3>Conhe&ccedil;a novas Pessoas</h3>
-                                    <h5><em>Some our recent works is here. Discover them now!</em></h5>
-                                    <div class="separator_left"></div>
+                                    <h5><em>Venha desfrutar de momentos relaxantes com as melhores pessoas em <?php echo SIS_TITULO;?>!</em></h5>                                    
                                 </div>
                             </div>
                             <div class="col-md-4 service_left wow fadeInLeft">                                                                
                                 <div class="service_items">
                                     <div class="row">
                                         <div class="col-xs-3">
-                                            <div class="plus18">
+                                            <div class="hexagon">
                                                 <div class="about-content">
-                                                    <span class="fa font-bubble">18</span>
+                                                    <span class="fa font-bubble">18+</span>
                                                 </div>    
                                             </div>
                                         </div>
                                         <div class="col-xs-9">
                                             <div class="text-left service_left_text">
                                                 <h4 class="main-color black">Conte&uacute;do Adulto</h4>
-                                                <p>Este site cont&eacute;m a divulga&ccedil;&atilde;o de perfis para maiores de 18 anos.</p>
+                                                <p>Divulga&ccedil;&atilde;o exclusiva de perfis maiores de 18 anos com comprova&ccedil;&atilde;o de identidade.</p>
                                             </div>
                                         </div>
                                     </div>
@@ -129,14 +128,14 @@
                                         <div class="col-xs-3">
                                             <div class="hexagon">
                                                 <div class="about-content">
-                                                    <span class="fa fa-lock"></span>
+                                                    <span class="fa fa-eye"></span>
                                                 </div>    
                                             </div>
                                         </div>
                                         <div class="col-xs-9">
                                             <div class="text-left service_left_text">
-                                                <h4 class="main-color">Privacidade Total</h4>
-                                                <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie</p>
+                                                <h4 class="main-color">Maior Visibilidade nas Buscas</h4>
+                                                <p>O <?php echo SIS_TITULO;?> investe pesado em mecanismos de busca na Internet para divulgar seus perfis</p>
                                             </div>
                                         </div>
                                     </div>
@@ -146,14 +145,14 @@
                                         <div class="col-xs-3">
                                             <div class="hexagon">
                                                 <div class="about-content">
-                                                    <span class="fa fa-money"></span>
+                                                    <span class="fa fa-credit-card"></span>
                                                 </div>    
                                             </div>
                                         </div>
                                         <div class="col-xs-9">
                                             <div class="text-left service_left_text">
-                                                <h4 class="main-color">Pague Diretamente a Pessoa</h4>
-                                                <p>O conte&uacute;do publicado &eacute; de inteira responsabilidade dos anunciantes</p>
+                                                <h4 class="main-color">Contate Diretamente a Pessoa</h4>
+                                                <p>O <?php echo SIS_TITULO;?> n&atilde;o intermedia valores de Cach&ecirc;s ou qualquer encontro casual</p>
                                             </div>
                                         </div>
                                     </div>
@@ -171,8 +170,8 @@
                                     <div class="row">
                                         <div class="col-xs-9">
                                             <div class="service_right_text p-l-15 text-right">
-                                                <h4 class="main-color">Fotos & V&iacute;deos</h4>
-                                                <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie</p>
+                                                <h4 class="main-color">Publique Fotos & V&iacute;deos</h4>
+                                                <p>Divulge seus ensaios de fotos e v&iacute;deos e alcance maiores resultados!</p>
                                             </div>
                                         </div>
                                         <div class="col-xs-3">
@@ -188,8 +187,8 @@
                                     <div class="row">
                                         <div class="col-xs-9">
                                             <div class="service_right_text p-l-15 text-right">
-                                                <h4 class="main-color">Multi Generos</h4>
-                                                <p>Aqui, o espa&ccedil;o &eacute; livre para quem quiser anunciar. Fique a Vontade!</p>
+                                                <h4 class="main-color">Site Multi Generos</h4>
+                                                <p>Aqui, o espa&ccedil;o &eacute; livre para quem quiser anunciar. Sem distin&ccedil;&atilde;o! Fique a Vontade</p>
                                             </div>
                                         </div>
                                         <div class="col-xs-3">
@@ -205,14 +204,14 @@
                                     <div class="row">
                                         <div class="col-xs-9">
                                             <div class="service_right_text p-l-15 text-right">
-                                                <h4 class="main-color">And much more</h4>
-                                                <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie</p>
+                                                <h4 class="main-color">Perfis Aut&ecirc;nticos</h4>
+                                                <p>Todos os perfis passam por uma Pr&eacute; Aprova&ccedil;&atilde;o antes de ser divulgado</p>
                                             </div>
                                         </div>
                                         <div class="col-xs-3">
                                             <div class="hexagon">
                                                 <div class="about-content">
-                                                    <span class="fa fa-hand-o-right"></span>
+                                                    <span class="fa fa-check"></span>
                                                 </div>    
                                             </div>
                                         </div>

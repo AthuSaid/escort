@@ -254,7 +254,8 @@
                                             	<?php } ?>
                                             <?php }else{ ?>
                                             	<p>Dote:</p>
-                                            <?php } ?>	                                                                                       
+                                            <?php } ?>
+                                            <p>Possuo Local Pr&oacute;prio?</p>	                                                                                       
                                         </div>
                                         <div class="col-md-5 text-left2">                                            
                                             <p><strong><?php echo $functions->fGetGenderPerson($retPerson[0]['sexo']); ?></strong></p>
@@ -270,6 +271,7 @@
                                             <?php }else{ ?>	
                                             	<p><strong><?php echo $retPerson[0]['pcm']; ?> cm</strong></p>
                                             <?php } ?>                                                                                       
+                                            <p><strong><?php echo ($retPerson[0]['localproprio'] == 1 ? 'SIM' : 'N&Atilde;O'); ?></strong></p>
                                         </div>
                                     </div>
                                 </div>
@@ -373,29 +375,8 @@
                             </div>
                             
                             
-                            <div class="col-md-12">
-                               <hr />
-                                <div class="skill_bar m-top-40">    
-                                    <div class="row">
-                                         <div class="col-md-12 m-bottom-40">
-			                                <div class="head_title text-left sm-text-center wow fadeInDown">
-			                                    <h3>Onde Atendo?</h3>
-			                                    <h5><em>Confira no mapa abaixo os locais onde geralmente realizo os meus atendimentos. 			                                    	
-			                                    	<?php $arrKM = $functions->fGetPersonLocations($retPerson, 2); 
-			                                    	 	  if (min($arrKM) < 10) { ?>			                                    	
-			                                    			Um dos locais mais pr&oacute;ximos fica a <?php echo min($arrKM); ?> km do seu local atual!
-			                                    	<?php } ?>	
-			                                    </em></h5>			                            
-			                                </div>
-			                            </div>			                                                                                             
-							            <div id="map" class="map">
-							                <div class="ourmap"></div>
-							            </div>                                        
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            
+                            <?php echo $functions->fGetPersonLocations($retPerson, 2); ?>
+			                                    	 	
 
                         </div>
                     </div><!-- End off row -->

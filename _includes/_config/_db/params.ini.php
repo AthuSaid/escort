@@ -30,7 +30,7 @@ define("SIS_TEMPO", 7200);
 /* Registros por Pagina */		
 define("SIS_PAGINACAO", 20); 
 /* Dias gratis do Plano Gratuito */
-define ("SIS_DIAS_GRATIS", 10);
+define ("SIS_DIAS_GRATIS", 30);
 
 define("SIS_URL_PAGSEGURO", "https://stc.sandbox.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.directpayment.js");
 //define("SIS_URL_PAGSEGURO", "https://stc.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.directpayment.js");

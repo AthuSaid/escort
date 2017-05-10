@@ -489,12 +489,13 @@ class functions extends queries {
 	* Welcome message to user
 	* @return    string
 	*/	
-	public function fWelcomeMessage($name, $gender, $title = false){
+	public function fWelcomeMessage($name, $gender, $comeback = 0){
 		$name = $this->fReduceName($name);
+		$comeback = ($comeback == 1 ? 'novamente ' : '');
 		if ($gender == "M")
-			$str = "Bem Vindo ".$name;
+			$str = "Bem Vindo ".$comeback.$name;
 		else	
-			$str = "Bem Vinda ".$name;
+			$str = "Bem Vinda ".$comeback.$name;
 				
 		//$str .= ($title ? " ao ".SIS_TITULO : "");
 			
@@ -559,9 +560,8 @@ class functions extends queries {
 	
 	/**
 	 * Get all site plans
-	 * @param unknown $type
-	 * @param unknown $link
-	 * @param unknown $plaid
+	 * @param integer $type
+	 * @param integer $plaid
 	 * @return NULL|string
 	 */
 	public function fGetPlans($type, $plaid = 0)
@@ -605,12 +605,13 @@ class functions extends queries {
 				}
 				
 				
-				$this->retHTML .= '<div class="col-sm-4">
+				$this->retHTML .= '<div class="col-sm-'.(12 / count($this->retRecords)).'">
                                             <blockquote class="m-top-30 m-l-30">
                                             	<h2>'.$this->retRecords[$x]['plano'].'</h2>		                                            	
                                             	'.$this->retRecords[$x]['descricao'];
 								if ($this->retRecords[$x]['valor'] > 0){
-		                             $this->retHTML .= '<h3><strong>R$ '.number_format($this->retRecords[$x]['valor'], 2, ",", ".").'</strong> / m&ecirc;s</h3>';
+									 $cobranca = ($this->retRecords[$x]['cobrancadias'] == 30 ? ' / m&ecirc;s' : ($this->retRecords[$x]['cobrancadias'] == 180 ? ' semestre' : ' trimestre'));
+		                             $this->retHTML .= '<h4><strong>R$ '.number_format($this->retRecords[$x]['valor'], 2, ",", ".").'</strong>'.$cobranca.'</h4>';
 		                             $this->retHTML .= '<p>em at&eacute; '.SIS_PARCELAS_SEM_JUROS.'x sem juros no cart&atilde;o*</p>';
 								}else{ 
 									$this->retHTML .= '<h3><strong>Gr&aacute;tis por '.SIS_DIAS_GRATIS.' dias *</strong></h3>';
@@ -990,13 +991,11 @@ class functions extends queries {
     	}    	    	
     }
     
-    
-    # FIXME: Rever
+        
     /**
-     * Get Person Locations #################################################################
-     * @param unknown $person
-     * @return REVER UM MELHOR FUNCIONAMENTO DA APRESENTACAO DO MAPA !!!!!!!!!!!! ###########
-     * TODO: Rever
+     * Get Person Locations
+     * @param array $person
+     * @return map Location
      */
     public function fGetPersonLocations($arrPerson, $type)
     {
@@ -1027,8 +1026,20 @@ class functions extends queries {
 	    			
 	    			for ($x = 0; $x < count($this->retRecords); $x++)
 	    			{
-	    				//if ($this->retRecords[$x]['show'] == 1)
-	    				//{
+	    				$km_dist[] = $this->fConvertLatLng2Km($this->cookieLatitude, $this->cookieLongitude, $this->retRecords[$x]['latitude'], $this->retRecords[$x]['longitude']);
+	    				
+	    				if (min($km_dist) < 10)
+	    				{
+			    				$this->retHTML .= "map.drawRoute({
+								    					origin: [".$this->cookieLatitude.", ".$this->cookieLongitude."],
+								    					destination: [".$this->retRecords[$x]['latitude'].", ".$this->retRecords[$x]['longitude']."],
+								    					travelMode: 'driving',
+								    					strokeColor: '#131540',
+								    					strokeOpacity: 0.6,
+								    					strokeWeight: 6
+								    				});";
+	    				}	    				
+	    				
 	    					$this->retHTML .= "map.addMarker({
 									         		  lat: ".$this->retRecords[$x]['latitude'].",
 									         		  lng: ".$this->retRecords[$x]['longitude'].",
@@ -1041,22 +1052,6 @@ class functions extends queries {
 									         	          		    'CEP ".$this->retRecords[$x]['cep']."</p>'
 									         	        }
 								         		}); ";
-	    				/*}else{
-	    			
-	    					$this->retHTML .= "var circ{$x} = map.drawCircle({
-	    											 lat: ".$this->retRecords[$x]['latitude'].",
-    												  lng: ".$this->retRecords[$x]['longitude'].",
-    												  radius: 1500,
-    												  fillColor: '".($arrPerson[0]['sexo'] == 'M' ? '#BBD8E9' : '#FF55B0')."',
-													  fillOpacity: 0.4,
-    												  strokeColor: '".($arrPerson[0]['sexo'] == 'M' ? '#0080c0' : '#FF0080')."',
-													  strokeWeight: 1,
-													  click: function(e) {
-									         	          alert('Alerta');
-									         	        }
-													}); ";
-	    					//break;
-	    				}*/
 	    			}
 	    			
 	    			return $this->retHTML.'</script>';
@@ -1065,12 +1060,36 @@ class functions extends queries {
 	    		
 	    		case 2:
 	    			
+	    			$this->retHTML = '<div class="col-md-12">
+                               <hr />
+                                <div class="skill_bar m-top-40">    
+                                    <div class="row">
+                                         <div class="col-md-12 m-bottom-40">
+			                                <div class="head_title text-left sm-text-center wow fadeInDown">
+			                                    <h3>Onde Atendo?</h3>
+			                                    <h5><em>Confira no mapa abaixo os locais onde geralmente realizo os meus atendimentos.';
+	    			
+	    			
 	    			for ($x = 0; $x < count($this->retRecords); $x++)
 	    			{
 		    			$arrKM[] = $this->fConvertLatLng2Km($this->cookieLatitude, $this->cookieLongitude, $this->retRecords[$x]['latitude'], $this->retRecords[$x]['longitude']); 
 	    			}
 	    			
-	    			return $arrKM;
+	    			if (min($arrKM) < 10) {
+	    				$this->retHTML.= '<br><br><h6><strong><i class="fa fa-map-marker"></i> Um dos locais mais pr&oacute;ximos que atendo, fica a '.min($arrKM).' km de voc&ecirc;!</strong></h6>';
+	    			}
+	    			
+	    			$this->retHTML.= '</em></h5>			                            
+			                                </div>
+			                            </div>			                                                                                             
+							            <div id="map" class="map">
+							                <div class="ourmap"></div>
+							            </div>                                        
+                                    </div>
+                                </div>
+                            </div>';
+	    			
+	    			return $this->retHTML;
 	    			
 	    		break;	
 	    	}    	
