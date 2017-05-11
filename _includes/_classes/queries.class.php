@@ -603,13 +603,27 @@ class queries extends mysqlconn {
     	$this->sqlQueryCompl = (!empty($gender) ? "AND p.sexo = '{$gender}'" : "");
     	$this->sqlQuery = "SELECT		    				
 		    				p.apelido,
+		    				p.sexo,
 		    				p.genero,
+		    				p.whatsapp,
+		    				p.tel1,
+		    				p.tel2,		    				
+		    				p.facebook,
+		    				p.twitter,
+		    				p.googleplus,
+		    				p.nascimento,
 		    				p.url AS person,
 		    				ap.url AS ad,
 		    				ap.titulo AS titulo_anuncio,
 		    				pf.imagemurl,
 		    				pf.descricao AS descricao_foto,
 		    				ap.descricao AS descricao_pessoa,
+		    				(SELECT COUNT(1) 
+			    				 FROM pessoas_fotos pfc
+			    				 WHERE pfc.apid = ap.apid
+			    				 AND pfc.ativo = 1
+			    				 AND pfc.tipo = 1) AS count_fotos,
+			    			0 AS count_videos,	 
 		    				IFNULL((SELECT pfc.imagemurl AS cover 
 							     FROM pessoas_fotos pfc 
 							     WHERE pfc.apid = ap.apid 
@@ -663,7 +677,13 @@ class queries extends mysqlconn {
 						    	p.apelido,
 						    	p.genero,						    	
     							ap.pessoasatendimento, 
-    							(SELECT 
+    						(SELECT COUNT(1) 
+			    				 FROM pessoas_fotos pfc
+			    				 WHERE pfc.apid = ap.apid
+			    				 AND pfc.ativo = 1
+			    				 AND pfc.tipo = 1) AS count_fotos,
+			    			 0 AS count_videos,
+    						(SELECT 
 									DATEDIFF(pp2.vencimento, now()) 
 								 FROM planos_pagamentos pp2
 								 INNER JOIN planos_pessoas pp ON pp.ppid = pp2.ppid								 

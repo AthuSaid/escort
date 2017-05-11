@@ -700,6 +700,7 @@ class functions extends queries {
 					    					{
 												  $this->retHTML .= '<div class="grid-item model-item transition metal '.$this->retRecords[$x]['genero'].'">
 												                        <div class="model_img">
+				 												  			<div class="imgPhotoVideoCounterRight"><i class="fa fa-camera"></i> '.$this->retRecords[$x]['count_fotos'].' <i class="fa fa-video-camera"></i> '.$this->retRecords[$x]['count_videos'].'</div>
 																	  		<a href="'.SIS_URL.'person/'.$this->retRecords[$x]['person'].'/'.$this->retRecords[$x]['ad'].'">
 												                            	<img src="'.SIS_URL.'images/persons/'.$this->retRecords[$x]['person'].'/'.$this->retRecords[$x]['imagemurl'].'" alt="'.$this->retRecords[$x]['apelido'].'" />												                            
 													                            <div class="model_caption">
@@ -759,7 +760,8 @@ class functions extends queries {
 												  $this->retHTML .= '<div class="grid-item model-item transition metal '.$this->retRecords[$x]['genero'].'">
 												                        <div class="model_img">
 																	  		<a href="'.SIS_URL.'person/'.$this->retRecords[$x]['person'].'/'.$this->retRecords[$x]['ad'].'">
-												                            	<img src="'.SIS_URL.'images/persons/'.$this->retRecords[$x]['person'].'/'.$this->retRecords[$x]['thumb'].'" alt="'.$this->retRecords[$x]['apelido'].'" />												                            
+												                            	<div class="imgPhotoVideoCounterRight"><i class="fa fa-camera"></i> '.$this->retRecords[$x]['count_fotos'].' <i class="fa fa-video-camera"></i> '.$this->retRecords[$x]['count_videos'].'</div>
+																	  			<img src="'.SIS_URL.'images/persons/'.$this->retRecords[$x]['person'].'/'.$this->retRecords[$x]['thumb'].'" alt="'.$this->retRecords[$x]['apelido'].'" />												                            
 													                            <div class="model_caption">
 													                            	<h5 class="text-white">'.$this->retRecords[$x]['apelido'].'</h5>
 													                        	</div>
@@ -853,16 +855,16 @@ class functions extends queries {
 	    	
 	    			if ($this->retRecords[0]['vencimento'] > 0)
 	    			{
-		    			$this->retHTML = '<section id="hello" class="home bg-mega" style="background: url('.SIS_URL.'images/persons/'.$this->retRecords[0]['person'].'/'.$this->retRecords[0]['cover'].') no-repeat top center;">
-								             <div class="overlay"></div>
+		    			$this->retHTML = '<section id="hello" class="home bg-mega" style="background: url('.SIS_URL.'images/persons/'.$this->retRecords[0]['person'].'/'.$this->retRecords[0]['cover'].') no-repeat top center;">			    					
+								             <div class="overlay"></div>		    					
 								                <div class="container">
 								                    <div class="row">
 								                        <div class="main_home text-center">
 								                            <div class="home_text">
-								                                <h4 class="text-white text-uppercase">MODELO DA SEMANA</h4>
-								                                <h1 class="text-white text-uppercase">'.$this->retRecords[0]['apelido'].'</h1>
+								                                <h4 class="text-white text-uppercase shadow-text">DESTAQUE '.SIS_TITULO.'</h4>
+								                                <h1 class="text-white text-uppercase shadow-text">'.$this->retRecords[0]['apelido'].'</h1>
 								                                <div class="separator"></div>
-								                                <h5 class=" text-uppercase text-white">
+								                                <h5 class=" text-uppercase text-white shadow-text">
 								                                	<em><a href="'.SIS_URL.'person/'.$this->retRecords[0]['person'].'/'.$this->retRecords[0]['ad'].'" class="text-white">'.$this->retRecords[0]['titulo_anuncio'].'</a></em>
 								                                </h5>
 								                            </div>
@@ -885,18 +887,43 @@ class functions extends queries {
 						                                <!-- Head Title -->
 						                                <div class="head_title">
 						                                    <h3>'.$this->retRecords[0]['apelido'].'</h3>
-						                                    <h5><em>'.$this->retRecords[0]['descricao_foto'].'</em></h5>						                                    
+						                                    <h6>'.$this->fGetGenderPerson($this->retRecords[0]['sexo']).' - '.$this->fGetAge($this->retRecords[0]['nascimento']).'</h6>						                                    
 						                                </div><!-- End off Head Title -->					
 						                                <div class="feature_content wow fadeIn m-top-20">
 						                                    <p>'.nl2br($this->retRecords[0]['descricao_pessoa']).'</p>					
-						                                    <div class="feature_btns m-top-30">
-						                                        <a href="'.SIS_URL.'person/'.$this->retRecords[0]['person'].'/'.$this->retRecords[0]['ad'].'" class="btn btn-primary text-uppercase">mais sobre mim  <i class="fa fa-'.$this->retRecords[0]['genero'].'"></i></a>
-						                                    </div>
 						                                </div>
+						                                        		
+						                                <div class="feature_content wow fadeIn m-top-20"><h6>';  
+		    			
+							                                if (!empty($this->retRecords[0]['whatsapp'])){ 
+						                                		$this->retHTML.= '<span style="padding-right:25px;"><i class="fa fa-whatsapp"></i> <a href="call:'.$this->fRemoveNumFormat($this->retRecords[0]['whatsapp']).'">'.$this->retRecords[0]['whatsapp'].'</a></span>';
+						                                	} if (!empty($this->retRecords[0]['tel1'])){ 
+						                                		$this->retHTML.= '<span style="padding-right:25px;"><i class="fa fa-phone"></i> <a href="call:'.$this->fRemoveNumFormat($this->retRecords[0]['tel1']).'">'.$this->retRecords[0]['tel1'].'</a></span>';
+						                                	} if (!empty($this->retRecords[0]['tel2'])){ 
+						                                		$this->retHTML.= '<span style="padding-right:25px;"><i class="fa fa-phone"></i> <a href="call:'.$this->fRemoveNumFormat($this->retRecords[0]['tel2']).'">'.$this->retRecords[0]['tel2'].'</a></span>';
+						                                	}	
+					                                		
+						                                	$this->retHTML.= '</h6><br><h6>';
+					                                		
+						                                	if (!empty($this->retRecords[0]['facebook'])){ 
+						                                		$this->retHTML.= '<span style="padding-right:25px;"><i class="fa fa-facebook"></i> <a href="'.$this->retRecords[0]['facebook'].'" target="_blank">Visite meu Facebook</a></span>';
+						                                	} if (!empty($this->retRecords[0]['twitter'])){ 
+						                                		$this->retHTML.= '<span style="padding-right:25px;"><i class="fa fa-twitter"></i> <a href="'.$this->retRecords[0]['twitter'].'" target="_blank">@'.$this->retRecords[0]['person'].'</a></span>';
+						                                	} if (!empty($this->retRecords[0]['googleplus'])){ 
+						                                		$this->retHTML.= '<span style="padding-right:25px;"><i class="fa fa-instagram"></i> <a href="'.$this->retRecords[0]['googleplus'].'" target="_blank">'.ucwords($this->retRecords[0]['apelido']).'</a></span>';
+						                                	} 
+					                                	
+						                                	$this->retHTML.= '</h6>
+										                                		<div class="feature_btns m-top-30">
+											                                        <a href="'.SIS_URL.'person/'.$this->retRecords[0]['person'].'/'.$this->retRecords[0]['ad'].'" class="btn btn-primary text-uppercase">mais sobre mim  <i class="fa fa-'.$this->retRecords[0]['genero'].'"></i></a>
+											                                    </div>
+									                   </div>        		
+						                                     		
 						                            </div>
 						                            <div class="col-md-6">
 						                                <div class="feature_photo wow fadeIn sm-m-top-40">
-						                                    <div class="photo_border"></div>
+						                                    <div class="photo_border"><div class="imgPhotoVideoCounterLeft"><i class="fa fa-camera"></i> '.$this->retRecords[0]['count_fotos'].' <i class="fa fa-video-camera"></i> '.$this->retRecords[0]['count_videos'].'</div></div>
+											                											                                        		
 						                                    <div class="feature_img">
 						                                        <img src="'.SIS_URL.'images/persons/'.$this->retRecords[0]['person'].'/'.$this->retRecords[0]['imagemurl'].'" alt="'.$this->retRecords[0]['apelido'].'" />
 						                                    </div>
@@ -924,16 +951,18 @@ class functions extends queries {
 					    			$this->retHTML .= '<div class="col-md-7 col-md-offset-5 col-sm-12 col-xs-12">
 						                                <div class="work_item">
 						                                    <div class="row">
-						                                        <div class="col-md-7 col-sm-12 col-xs-12 text-right pull-right sm-text-center">
+						                                        <div class="col-md-7 col-sm-12 col-xs-12 text-right pull-right sm-text-center">					    					
 						                                            <div class="work_item_img">
+												    					<div class="imgPhotoVideoCounterRightPad"><i class="fa fa-camera"></i> '.$this->retRecords[$x]['count_fotos'].' <i class="fa fa-video-camera"></i> '.$this->retRecords[$x]['count_videos'].'</div>
 						                                                <img src="'.SIS_URL.'images/persons/'.$this->retRecords[$x]['person'].'/'.$this->retRecords[$x]['imagemurl'].'" alt="'.$this->retRecords[$x]['apelido'].'" />
 						                                            </div>
 						                                        </div>
 						                                        <div class="col-md-5 col-sm-12 col-xs-12 text-right pull-left sm-text-center">
 						                                            <div class="work_item_details m-top-80 sm-m-top-20">
 						                                                <h4>'.$this->retRecords[$x]['apelido'].'</h4>
+						                                                <h6>'.$this->fGetGenderPerson($this->retRecords[$x]['sexo']).' - '.$this->fGetAge($this->retRecords[$x]['nascimento']).'</h6>
 						                                                <div class="work_separator1"></div>
-						                                                <p class="m-top-40 sm-m-top-10">'.$this->retRecords[$x]['descricao_foto'].'</p>
+						                                                <p class="m-top-40 sm-m-top-10">'.$this->fLimitWords($this->retRecords[$x]['descricao_pessoa'], 250, false, SIS_URL.'person/'.$this->retRecords[0]['person'].'/'.$this->retRecords[0]['ad']).'</p>
 						                                            </div>
 						                                        </div>
 						                                    </div>
@@ -957,7 +986,7 @@ class functions extends queries {
 							                            <div class="col-md-12">
 							                                <div class="head_title text-left sm-text-center wow fadeInDown">
 							                                    <h3>Conhe&ccedil;a Novas Pessoas</h3>
-							                                    <h5><em>Elas est&atilde;o te esperando!</em></h5>							                                    
+							                                    <h5><em>Somente os melhores perfis selecionados exclusivamente para voc&ecirc;!</em></h5>							                                    
 							                                </div>
 							                            </div>';
 	    			
@@ -969,6 +998,7 @@ class functions extends queries {
 				                                <div class="model_item m-top-30 transition metal ">
 				            						<a href="'.SIS_URL.'person/'.$this->retRecords[$x]['person'].'/'.$this->retRecords[$x]['ad'].'" class="text-white m-top-40">
 					                                    <div class="model_img">
+				            								<div class="imgPhotoVideoCounterRight"><i class="fa fa-camera"></i> '.$this->retRecords[$x]['count_fotos'].' <i class="fa fa-video-camera"></i> '.$this->retRecords[$x]['count_videos'].'</div>
 					                                        <img src="'.SIS_URL.'images/persons/'.$this->retRecords[$x]['person'].'/'.$this->retRecords[$x]['imagemurl'].'" alt="'.$this->retRecords[$x]['apelido'].'" />
 					                                        <div class="model_caption">
 					                                            <h5 class="text-white">'.$this->retRecords[$x]['apelido'].'</h5>				                                    
@@ -982,7 +1012,7 @@ class functions extends queries {
 				                         
 				      $this->retHTML .= '<div class="col-md-3 col-sm-6">
 			                                <div class="model_item meet_team m-top-30">				      							
-			                                    <a href="'.SIS_URL.'persons"><h4><i class="fa fa-group"></i><br>Ver lista completa</h4></a>
+			                                    <a href="'.SIS_URL.'persons"><h4><i class="fa fa-intersex"></i><br>Ver lista completa</h4></a>
 			                                </div>
 			                            </div><!-- End off col-md-3 -->	
 			                        </div>
@@ -1489,7 +1519,7 @@ class functions extends queries {
                                                         <div class="col-sm-3 pull-right">                                                        	
                                                             <a href="'.SIS_URL.'ad/'.$this->retRecords[$x]['person'].'/'.$this->retRecords[$x]['ad'].'"><i class="fa fa-edit"></i> Editar </a> |
                                                             <a href="'.$adUrl.'"><i class="fa fa-eye"></i> Visualizar </a> |
-                                                            <a href="javascript:void(0);" class="remove-ad" data-register="'.$this->retRecords[$x]['apid'].'"><i class="fa fa-trash"></i>Excluir </a>
+                                                            <a href="javascript:void(0);" class="remove-ad" data-register="'.$this->retRecords[$x]['apid'].'"><i class="fa fa-trash"></i> Excluir </a>
                                                         </div>
                                                     </div>
                                                 </div>

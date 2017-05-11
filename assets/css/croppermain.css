@@ -30,7 +30,7 @@ body {
   border: 1px solid #ccc;
   cursor: pointer;
   overflow: hidden;
-  position: absolute;
+  position: absolute;  
 }
 
 .imgLandscapeModel img {
