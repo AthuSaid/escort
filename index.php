@@ -261,7 +261,6 @@
         <script src="<?php echo SIS_URL; ?>assets/js/counter.js"></script> 
         <script src="<?php echo SIS_URL; ?>assets/js/cookie.js"></script>        
         <script src="<?php echo SIS_URL; ?>assets/js/validator.js"></script>
-        <script src="<?php echo SIS_URL; ?>assets/js/form.js"></script>     
-        
+        <script src="<?php echo SIS_URL; ?>assets/js/form.js"></script>             
     </body>
 </html>
