@@ -303,7 +303,15 @@ class queries extends mysqlconn {
 	
 	
 	public function getAcquiredPlans($psid) {
-		
+		$this->sqlQuery = "SELECT *
+							FROM planos_pagamentos pp2
+							INNER JOIN planos_pessoas pp ON pp.ppid = pp2.ppid
+							INNER JOIN planos pl ON pl.plaid = pp.plaid
+							INNER JOIN pessoas p ON p.pesid = pp.pesid
+							WHERE pp2.psid = '{$psid}'";
+		$this->fExecuteSql($this->sqlQuery);
+		$this->retRecords = $this->fShowRecords();
+		return $this->retRecords;
 	}
 	
 	
@@ -521,6 +529,68 @@ class queries extends mysqlconn {
     	$this->fExecuteSql($sql);
     	return true;	
     }
+    
+    
+    /**
+     * Update Person Plan to Paid or Cancel
+     * @param unknown $obj
+     * @return boolean
+     */
+    public function fUpdatePersonPlan($obj){
+    	$this->sqlQuery = "UPDATE planos_pagamentos SET 
+			    					pagamento = '{$obj['pagamento']}',
+			    					pago = {$obj['pago']},
+			    					vlcorrigido = {$obj['vlcorrigido']},
+			    					vencimento = '{$obj['vencimento']}'    					
+			    			WHERE psid = '{$obj['psid']}'
+			    			AND ppid = {$obj['ppid']}";
+    	$this->fExecuteSql($this->sqlQuery);
+    	return true;
+    }
+    
+    
+    /**
+     * Get Featured Models By PSID
+     * @param integer $apid
+     */
+    public function fGetPersonAdsToInsertFeatureds($psid){
+    	$this->sqlQuery = "SELECT 
+			    					ap.apid
+							FROM planos_pagamentos pp2
+							INNER JOIN planos_pessoas pp ON pp.ppid = pp2.ppid
+							INNER JOIN pessoas p ON p.pesid = pp.pesid
+							INNER JOIN anuncios_pessoas ap ON ap.pesid = p.pesid
+							WHERE pp2.psid = '{$psid}'";
+    	$this->fExecuteSql($this->sqlQuery);
+    	$this->retRecords = $this->fShowRecords();
+    	return $this->retRecords;
+    }
+    
+    
+    /**
+     * Delete Featured Models Before Insert
+     * @param integer $apid     
+     */
+    public function fDeleteFeaturedModelsBeforeInsert($apid){
+    	$this->sqlQuery = "DELETE FROM destaque_pessoas WHERE apid = {$apid}";
+    	$this->fExecuteSql($this->sqlQuery);
+    	return true;
+    }
+    
+    
+    /**
+     * Insert Featured Models By Plans
+     * @param integer $apid
+     * @param integer $feature
+     * @param date $start
+     * @param date $end
+     */
+    public function fInsertFeaturedModelsByPlans($apid, $feature, $start, $end){
+    	$this->sqlQuery = "INSERT INTO destaque_pessoas (apid, destaque, inicio, final) VALUES ";
+    	$this->sqlQuery.= "({$apid}, {$feature}, '{$start}', '{$end}')";
+    	$this->fExecuteSql($this->sqlQuery);
+    	return true;
+    }
        
     
     /**
@@ -533,11 +603,21 @@ class queries extends mysqlconn {
     	$this->sqlQueryCompl = (!empty($gender) ? "AND p.sexo = '{$gender}'" : "");
     	$this->sqlQuery = "SELECT		    				
 		    				p.apelido,
+		    				p.genero,
 		    				p.url AS person,
 		    				ap.url AS ad,
+		    				ap.titulo AS titulo_anuncio,
 		    				pf.imagemurl,
 		    				pf.descricao AS descricao_foto,
 		    				ap.descricao AS descricao_pessoa,
+		    				IFNULL((SELECT pfc.imagemurl AS cover 
+							     FROM pessoas_fotos pfc 
+							     WHERE pfc.apid = ap.apid 
+							     AND pfc.ativo = 1 
+							     AND pfc.local = 4 
+							     AND pfc.tipo = 1 
+							     AND pfc.principal = 'S'
+							     ORDER BY pfc.fotid DESC LIMIT 1), '../no-cover.jpg') AS cover,
 		    				(SELECT 
 								DATEDIFF(pp2.vencimento, now()) 
 							 FROM planos_pagamentos pp2
@@ -1194,5 +1274,18 @@ class queries extends mysqlconn {
     	$sql = "DELETE FROM pessoas_fotos WHERE apid = {$apid} AND local = {$local}";
     	$this->fExecuteSql($sql);
     	return true;
-    }               
+    }
+    
+    
+    /**
+     * Insert LOG Actions
+     * @param array $obj
+     * @return boolean
+     */
+    public function fInsertLogActions($obj){
+    	$this->sqlQuery = "INSERT INTO logs (pesid, plaid, apid, fotid, psid, acao) VALUES ";
+    	$this->sqlQuery.= "({$obj['pesid']}, {$obj['plaid']}, {$obj['apid']}, {$obj['fotid']}, '{$obj['psid']}', '{$obj['acao']}')";
+    	$this->fExecuteSql($this->sqlQuery);
+    	return true;
+    }
 }

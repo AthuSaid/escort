@@ -312,6 +312,7 @@ class functions extends queries {
  	public function fGetGenderPerson($gender){
  		if ($gender == 'M') $gender = 'Homem';
  		if ($gender == 'F') $gender = 'Mulher';
+ 		if ($gender == 'T') $gender = 'Transg&ecirc;nero';
  		return $gender;
  	}
 	
@@ -669,70 +670,17 @@ class functions extends queries {
     			
     			if (count($this->retRecords) > 0)
     			{
-    				$this->retHTML = '<section id="gallery" class="gallery margin-top-120 bg-grey">
-				                <div class="container">
-				                    <div class="row">
-				                        <div class="main-gallery roomy-80">
-				                            <div class="col-md-12">
-				                                <div class="head_title text-left sm-text-center wow fadeInDown">
-				                                    <h2>Pessoas Recentes</h2>
-				                                    <h5><em>Some our recent works is here. Discover them now!</em></h5>
-				                                    <div class="separator_left"></div>
-				                                </div>
-				                            </div>
-				                            <div class="col-md-12 m-bottom-60">
-				                                <div class="filters-button-group text-right sm-text-center">
-				                                    <button class="button is-checked" data-filter="*">Ver todos</button>
-				                                    <button class="button" data-filter=".mars">Marte</button>
-				                                    <button class="button" data-filter=".venus">Venus</button>
-				                                    <button class="button" data-filter=".dbm">Duplo Marte</button>
-				                                    <button class="button" data-filter=".dbv">Duplo Venus</button>
-    												<button class="button" data-filter=".transgender-alt">Mercurio</button>
-				                                </div>
-				                            </div>
-				                            <div style="clear: both;"></div>
-				                            <div class="grid text-center">';
-    			
-    				for ($x = 0; $x < count($this->retRecords); $x++)
-    				{
-    					if ($this->retRecords[$x]['vencimento'] > 0)
-    					{
-	    					$this->retHTML .= '<div class="grid-item post-transition mars venus dbm dbv mercury numberGreaterThan50 ium">
-					                                    <img alt="'.$this->retRecords[$x]['apelido'].'" src="'.SIS_URL.'images/persons/'.$this->retRecords[$x]['person'].'/'.$this->retRecords[$x]['imagemurl'].'">
-					                                    <div class="grid_hover_area text-center">
-					                                        <div class="grid_hover_text m-top-110">
-					                                            <h4 class="text-white">'.$this->retRecords[$x]['apelido'].'</h4>
-					                                            <h5 class="text-white"><em>'.$this->retRecords[$x]['localizacao'].'</em></h5>
-					                                            <a href="#" class="text-white m-top-40">Ver Perfil <i class="fa fa-venus-double"></i></a>
-					                                        </div>
-					                                    </div>
-					                                </div>';
-    					}
-    				}
-    			
-    				$this->retHTML .= '</div>
-				                            <div style="clear: both;"></div>
-				                        </div>
-				                    </div>
-				                </div>
-				            </section>';
-    				
-    				return $this->retHTML;
-    			}
-    			
-    		break;
-    		
-    		case 2:
-    			
-    			$this->retRecords = $this->fQueryGalleryModels($this->genderPrefer);
-    			 
-    			if (count($this->retRecords) > 0)
-    			{
     				$this->retHTML = '<section id="gallery" class="gallery margin-top-120 bg-white">
 							                <!-- Portfolio container-->
 							                <div class="container">
 							                    <div class="row">
 							                        <div class="main-gallery main-model roomy-80">
+			    										<div class="col-md-12">
+							                                <div class="head_title text-left sm-text-center wow fadeInDown">
+							                                    <h3>&Uacute;ltimas Novidades '.SIS_TITULO.'</h3>
+							                                    <h5><em>Somente os melhores profissionais voc&ecirc; encontra por aqui. Descubra-os agora!</em></h5>				                                    
+							                                </div>
+							                            </div>
 							                            <div class="col-md-12 m-bottom-60">
 							                                <div class="filters-button-group text-right sm-text-center">
 							                                    <button class="button is-checked" data-filter="*"><strong>Ver todos</strong></button>
@@ -752,11 +700,70 @@ class functions extends queries {
 					    					{
 												  $this->retHTML .= '<div class="grid-item model-item transition metal '.$this->retRecords[$x]['genero'].'">
 												                        <div class="model_img">
-												                            <img src="'.SIS_URL.'images/persons/'.$this->retRecords[$x]['person'].'/'.$this->retRecords[$x]['thumb'].'" alt="'.$this->retRecords[$x]['apelido'].'" />
-												                            <a href="'.SIS_URL.'person/'.$this->retRecords[$x]['person'].'/'.$this->retRecords[$x]['ad'].'" class="btn btn-default m-top-20">Ver Perfil<i class="fa fa-long-arrow-right"></i></a>
-												                            <div class="model_caption">
-												                            	<h5 class="text-white">'.$this->retRecords[$x]['apelido'].'</h5>
-												                        	</div>
+																	  		<a href="'.SIS_URL.'person/'.$this->retRecords[$x]['person'].'/'.$this->retRecords[$x]['ad'].'">
+												                            	<img src="'.SIS_URL.'images/persons/'.$this->retRecords[$x]['person'].'/'.$this->retRecords[$x]['imagemurl'].'" alt="'.$this->retRecords[$x]['apelido'].'" />												                            
+													                            <div class="model_caption">
+													                            	<h5 class="text-white">'.$this->retRecords[$x]['apelido'].'</h5>
+													                        	</div>
+												                            </a>
+												                    	</div>
+												                	</div>';
+					    					}
+					    				}	               
+														                                							
+							          $this->retHTML .= '<div style="clear: both;"></div>							
+							                        </div>
+							                    </div>
+							                </div><!-- Portfolio container end -->
+							            </section><!-- End off portfolio section -->';
+							          
+					return $this->retHTML;
+    			}
+    			
+    		break;
+    		
+    		case 2:
+    			
+    			$this->retRecords = $this->fQueryGalleryModels($this->genderPrefer);
+    			 
+    			if (count($this->retRecords) > 0)
+    			{
+    				$this->retHTML = '<section id="gallery" class="gallery margin-top-120 bg-white">
+							                <!-- Portfolio container-->
+							                <div class="container">
+							                    <div class="row">
+							                        <div class="main-gallery main-model roomy-80">
+			    										<div class="col-md-12">
+							                                <div class="head_title text-left sm-text-center wow fadeInDown">
+							                                    <h3>Galeria '.SIS_TITULO.'</h3>
+							                                    <h5><em>Somente os melhores profissionais voc&ecirc; encontra por aqui. Descubra-os agora!</em></h5>				                                    
+							                                </div>
+							                            </div>
+							                            <div class="col-md-12 m-bottom-60">
+							                                <div class="filters-button-group text-right sm-text-center">
+							                                    <button class="button is-checked" data-filter="*"><strong>Ver todos</strong></button>
+							                                    <button class="button" data-filter=".mars"><i class="fa fa-mars"></i> Marte</button>
+							                                    <button class="button" data-filter=".venus"><i class="fa fa-venus"></i> Venus</button>
+							                                    <button class="button" data-filter=".dbm"><i class="fa fa-mars-double"></i> Duplo Marte</button>
+							                                    <button class="button" data-filter=".dbv"><i class="fa fa-venus-double"></i> Duplo Venus</button>
+			    												<button class="button" data-filter=".mercury"><i class="fa fa-mercury"></i> Mercurio</button>
+							                                </div>
+							                            </div>							
+							                            <div style="clear: both;"></div>							
+							                            <div class="grid models text-center">';
+    				
+					    				for ($x = 0; $x < count($this->retRecords); $x++)
+					    				{      
+					    					if ($this->retRecords[$x]['vencimento'] > 0)
+					    					{
+												  $this->retHTML .= '<div class="grid-item model-item transition metal '.$this->retRecords[$x]['genero'].'">
+												                        <div class="model_img">
+																	  		<a href="'.SIS_URL.'person/'.$this->retRecords[$x]['person'].'/'.$this->retRecords[$x]['ad'].'">
+												                            	<img src="'.SIS_URL.'images/persons/'.$this->retRecords[$x]['person'].'/'.$this->retRecords[$x]['thumb'].'" alt="'.$this->retRecords[$x]['apelido'].'" />												                            
+													                            <div class="model_caption">
+													                            	<h5 class="text-white">'.$this->retRecords[$x]['apelido'].'</h5>
+													                        	</div>
+												                            </a>
 												                    	</div>
 												                	</div>';
 					    					}
@@ -846,7 +853,7 @@ class functions extends queries {
 	    	
 	    			if ($this->retRecords[0]['vencimento'] > 0)
 	    			{
-		    			$this->retHTML = '<section id="hello" class="home bg-mega" style="background: url('.SIS_URL.'images/persons/'.$this->retRecords[0]['person'].'/'.$this->retRecords[0]['imagemurl'].') no-repeat top center;">
+		    			$this->retHTML = '<section id="hello" class="home bg-mega" style="background: url('.SIS_URL.'images/persons/'.$this->retRecords[0]['person'].'/'.$this->retRecords[0]['cover'].') no-repeat top center;">
 								             <div class="overlay"></div>
 								                <div class="container">
 								                    <div class="row">
@@ -856,7 +863,7 @@ class functions extends queries {
 								                                <h1 class="text-white text-uppercase">'.$this->retRecords[0]['apelido'].'</h1>
 								                                <div class="separator"></div>
 								                                <h5 class=" text-uppercase text-white">
-								                                	<em><a href="'.SIS_URL.'person/'.$this->retRecords[0]['person'].'/'.$this->retRecords[0]['ad'].'" class="text-white">'.$this->retRecords[0]['descricao_foto'].'</a></em>
+								                                	<em><a href="'.SIS_URL.'person/'.$this->retRecords[0]['person'].'/'.$this->retRecords[0]['ad'].'" class="text-white">'.$this->retRecords[0]['titulo_anuncio'].'</a></em>
 								                                </h5>
 								                            </div>
 								                        </div>
@@ -864,6 +871,7 @@ class functions extends queries {
 								                </div><!--End off container -->
 								            </section> <!--End off Home Sections-->';
 	    			}
+	    			
 	    		break;
 	    		
 	    		case 2: # MODELO DESTAQUE LIVRETO
@@ -876,14 +884,13 @@ class functions extends queries {
 						                            <div class="col-md-6 m-top-120">
 						                                <!-- Head Title -->
 						                                <div class="head_title">
-						                                    <h2>'.$this->retRecords[0]['apelido'].'</h2>
-						                                    <h5><em>'.$this->retRecords[0]['descricao_foto'].'</em></h5>
-						                                    <div class="separator_left"></div>
+						                                    <h3>'.$this->retRecords[0]['apelido'].'</h3>
+						                                    <h5><em>'.$this->retRecords[0]['descricao_foto'].'</em></h5>						                                    
 						                                </div><!-- End off Head Title -->					
 						                                <div class="feature_content wow fadeIn m-top-20">
 						                                    <p>'.nl2br($this->retRecords[0]['descricao_pessoa']).'</p>					
 						                                    <div class="feature_btns m-top-30">
-						                                        <a href="'.SIS_URL.'person/'.$this->retRecords[0]['person'].'/'.$this->retRecords[0]['ad'].'" class="btn btn-default text-uppercase">mais sobre mim <i class="fa fa-long-arrow-right"></i></a>
+						                                        <a href="'.SIS_URL.'person/'.$this->retRecords[0]['person'].'/'.$this->retRecords[0]['ad'].'" class="btn btn-primary text-uppercase">mais sobre mim  <i class="fa fa-'.$this->retRecords[0]['genero'].'"></i></a>
 						                                    </div>
 						                                </div>
 						                            </div>
@@ -949,9 +956,8 @@ class functions extends queries {
 							                        <div class="main_models text-center">
 							                            <div class="col-md-12">
 							                                <div class="head_title text-left sm-text-center wow fadeInDown">
-							                                    <h2>Novas Pessoas</h2>
-							                                    <h5><em>Elas est&atilde;o te esperando!</em></h5>
-							                                    <div class="separator_left"></div>
+							                                    <h3>Conhe&ccedil;a Novas Pessoas</h3>
+							                                    <h5><em>Elas est&atilde;o te esperando!</em></h5>							                                    
 							                                </div>
 							                            </div>';
 	    			
@@ -960,7 +966,7 @@ class functions extends queries {
 	    				if ($this->retRecords[$x]['vencimento'] > 0)
 	    				{
 				            $this->retHTML .= '<div class="col-md-3 col-sm-6">
-				                                <div class="model_item m-top-30">
+				                                <div class="model_item m-top-30 transition metal ">
 				            						<a href="'.SIS_URL.'person/'.$this->retRecords[$x]['person'].'/'.$this->retRecords[$x]['ad'].'" class="text-white m-top-40">
 					                                    <div class="model_img">
 					                                        <img src="'.SIS_URL.'images/persons/'.$this->retRecords[$x]['person'].'/'.$this->retRecords[$x]['imagemurl'].'" alt="'.$this->retRecords[$x]['apelido'].'" />
@@ -1047,9 +1053,7 @@ class functions extends queries {
 									         		  icon: '".SIS_URL."assets/images/markers/marker-{$arrPerson[0]['sexo']}.png',
 			    										         		  infoWindow: {
 			    										         		  content: '<p><strong>".$this->retRecords[$x]['local']."</strong></p>' +
-									         	          		    '<p>".$this->retRecords[$x]['endereco']." ".$this->retRecords[$x]['numero']."<br>' +
-									         	          		    '".$this->retRecords[$x]['bairro']." - ".$this->retRecords[$x]['cidade']."/".$this->retRecords[$x]['uf']."<br>' +
-									         	          		    'CEP ".$this->retRecords[$x]['cep']."</p>'
+									         	          		    			   '<p>".$this->retRecords[$x]['endereco']."</p>'
 									         	        }
 								         		}); ";
 	    			}

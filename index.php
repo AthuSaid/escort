@@ -100,7 +100,7 @@
                         <div class="service_content_area">
                         	<div class="col-md-12">
                                 <div class="head_title text-left sm-text-center wow fadeInDown">
-                                    <h3>Conhe&ccedil;a novas Pessoas</h3>
+                                    <h3>Seja <?php echo SIS_TITULO; ?>!</h3>
                                     <h5><em>Venha desfrutar de momentos relaxantes com as melhores pessoas em <?php echo SIS_TITULO;?>!</em></h5>                                    
                                 </div>
                             </div>

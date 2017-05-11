@@ -333,7 +333,7 @@ ul{
     background-color: rgba(51,51,51,0.50);
     position: absolute;
     left:0;
-    top:0;
+    top:-52px;
     width:100%;
     height: 100%;
 }
@@ -1040,11 +1040,11 @@ About section style
     width:100%;
 }
 .photo_border{
-    width:100%;
+    width:102%;
     height: 100%;
     position: absolute;
-    left:5%;
-    top:5%;
+    left:1%;
+    top:1%;
     border:10px solid #c9c9c9;
 
 }
@@ -1079,9 +1079,9 @@ About section style
 .work_separator1:before{
     content: "";
     position: absolute;
-    right: -40%;
-    top: 43%;
-    width: 180px;
+    right: -12%;
+    top: 110%;
+    width: 200px;
     height: 1px;
     background-color: #550000;
     z-index: 1;
@@ -1414,7 +1414,7 @@ Models Section style
 }
 
 .meet_team a{
-    padding:120px 0px;
+    padding:163px 0px;
     display: inline-block;
     font-weight: 400;
     font-size:14px;
@@ -1670,7 +1670,7 @@ Footer Section style
 
 
 .main-model .model-item{
-    width:270px;
+    width:200px; /*was 233*/
     margin: 10px;
 	position:relative;
 }

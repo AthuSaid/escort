@@ -195,7 +195,8 @@
 													  <option value="Cafuza" <?php echo ($retPerson[0]['etnia'] == 'Cafuza' ? 'selected' : ''); ?>>Cafuza</option>													   
 													  <option value="Indigena" <?php echo ($retPerson[0]['etnia'] == 'Indigena' ? 'selected' : ''); ?>>Indigena</option>
 													  <option value="Mulata" <?php echo ($retPerson[0]['etnia'] == 'Mulata' ? 'selected' : ''); ?>>Mulata</option>
-													  <option value="Negra" <?php echo ($retPerson[0]['etnia'] == 'Negra' ? 'selected' : ''); ?>>Negra</option>													  
+													  <option value="Negra" <?php echo ($retPerson[0]['etnia'] == 'Negra' ? 'selected' : ''); ?>>Negra</option>
+													  <option value="Oriental" <?php echo ($retPerson[0]['etnia'] == 'Oriental' ? 'selected' : ''); ?>>Oriental</option>													  
 													  <option value="Parda" <?php echo ($retPerson[0]['etnia'] == 'Parda' ? 'selected' : ''); ?>>Parda</option>
 													</select>
 													<div class="help-block with-errors"></div>
@@ -208,7 +209,7 @@
 													  <option value="" selected>Selecione</option>
 													  <option value="M" <?php echo ($retPerson[0]['sexo'] == 'M' ? 'selected' : ''); ?>>Homem</option>													   
 													  <option value="F" <?php echo ($retPerson[0]['sexo'] == 'F' ? 'selected' : ''); ?>>Mulher</option>
-													  <option value="T" <?php echo ($retPerson[0]['sexo'] == 'T' ? 'selected' : ''); ?>>Travesti</option>
+													  <option value="T" <?php echo ($retPerson[0]['sexo'] == 'T' ? 'selected' : ''); ?>>Transg&ecirc;nero</option>
 													</select>
 													<div class="help-block with-errors"></div>
                                                 </div>
@@ -490,7 +491,7 @@
 				$('.sexo').on('change', function(){
 					$(".genero option[value='mercury']").remove();
 					if($(this).val() == 'M'){
-						$(".genero option[value='venus']").remove();
+						
 						$(".genero option[value='dbv']").remove();
 						$(".genero").append('<option value="" selected>Selecione</option>');
 						$(".genero").append('<option value="mars">H&eacute;terossexual</option>');
@@ -506,6 +507,8 @@
 					}else if($(this).val() == 'T'){
 						$(".genero option[value='mars']").remove();
 						$(".genero option[value='dbm']").remove();
+						$(".genero option[value='dbv']").remove();
+						$(".genero option[value='venus']").remove();
 						$(".genero").append('<option value="" selected>Selecione</option>');
 						$(".genero").append('<option value="dbv">Homossexual</option>');
 						$(".genero").append('<option value="mercury">Bissexual</option>');				

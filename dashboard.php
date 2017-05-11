@@ -135,7 +135,7 @@
                                                     <li><a href="#" class="text-black"><?php echo ($countAds == 0 ? "Nenhum an&uacute;ncio cadastrado!" : "{$countAds} an&uacute;ncios cadastrados"); ?></a></li>
                                                 </ul>
                                                 <ul class="list-inline">                                                    
-                                                    <li><a href="<?php echo SIS_URL?>payment" class="text-black">Seu Plano atual &eacute; o <strong>Plano <?php echo $_SESSION['sPersonPlanName']; ?></strong> - com vencimento em <strong><?php echo $functions->fInvertDateBrazil($_SESSION['sPersonPlanExpiresDate'], false); ?></strong></a></li>                                                    
+                                                    <li><a href="<?php echo SIS_URL?>payment" class="text-black">Seu Plano atual &eacute; o <strong>Plano <?php echo $_SESSION['sPersonPlanName']; ?></strong><?php if ($_SESSION['sPersonPlanPaid'] > 0){ ?> - com vencimento em <strong><?php echo $functions->fInvertDateBrazil($_SESSION['sPersonPlanExpiresDate'], false); }else{ echo '. Aguardando comprova&ccedil;&atilde;o do Pagamento'; } ?></strong></a></li>                                                    
                                                 </ul>
                                             </div>
                                         </div> 
@@ -173,7 +173,7 @@
 												
                                             <p class="m-top-30"><strong><i class="fa fa-question-circle"></i> ATEN&Ccedil;&Atilde;O:</strong> Todos os dados de todos os perfis no <?php echo SIS_TITULO;?>, assim como os an&uacute;ncios e fotos 
                                               passam por um processo de verifica&ccedil;&atilde;o de autenticidade e 
-                                              controle de preven&ccedil;&atilde;o de pr&aacute;ticas criminosas, como pedofilia e 
+                                              controle de preven&ccedil;&atilde;o de pr&aacute;ticas criminosas, como pedofilia, agenciamento e 
                                               aliciamento de menores de 18 anos. Todos os dados s&atilde;o mantidos em sigilo, 
                                               e ser&atilde;o disponibilizados a &oacute;rg&atilde;os superiores, quando solicitado!</p>
 
