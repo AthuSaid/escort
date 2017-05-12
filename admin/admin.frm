@@ -22,6 +22,7 @@ Begin VB.Form teste
    ScaleHeight     =   7785
    ScaleWidth      =   11535
    ShowInTaskbar   =   0   'False
+   StartUpPosition =   2  'CenterScreen
    Begin VB.TextBox txtFields 
       DataField       =   "cpf"
       BeginProperty Font 
@@ -71,10 +72,10 @@ Begin VB.Form teste
       EndProperty
       Height          =   285
       Index           =   7
-      Left            =   9120
+      Left            =   4800
       TabIndex        =   28
       Top             =   1080
-      Width           =   1215
+      Width           =   2415
    End
    Begin VB.TextBox txtFields 
       DataField       =   "sexo"
@@ -110,7 +111,7 @@ Begin VB.Form teste
       Left            =   9120
       TabIndex        =   24
       Top             =   480
-      Width           =   2055
+      Width           =   2175
    End
    Begin VB.TextBox txtFields 
       DataField       =   "apelido"
@@ -479,9 +480,28 @@ Begin VB.Form teste
       Top             =   6360
       Width           =   495
    End
+   Begin VB.Label lblLabels 
+      Caption         =   "Status do Perfil:"
+      BeginProperty Font 
+         Name            =   "Tahoma"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   255
+      Index           =   9
+      Left            =   5880
+      TabIndex        =   35
+      Top             =   6390
+      Width           =   1815
+   End
    Begin VB.Label lblIdade 
+      Alignment       =   1  'Right Justify
       AutoSize        =   -1  'True
-      Caption         =   "00"
+      Caption         =   "00 ANOS"
       DataField       =   "idade"
       BeginProperty Font 
          Name            =   "Tahoma"
@@ -494,10 +514,10 @@ Begin VB.Form teste
       EndProperty
       ForeColor       =   &H00000040&
       Height          =   675
-      Left            =   10440
+      Left            =   8700
       TabIndex        =   34
-      Top             =   765
-      Width           =   720
+      Top             =   840
+      Width           =   2580
    End
    Begin VB.Label lblLabels 
       Caption         =   "CPF:"
@@ -536,7 +556,7 @@ Begin VB.Form teste
       Width           =   2055
    End
    Begin VB.Label lblLabels 
-      Caption         =   "Nascimento:"
+      Caption         =   "Data de Nascimento:"
       BeginProperty Font 
          Name            =   "Tahoma"
          Size            =   9
@@ -548,10 +568,10 @@ Begin VB.Form teste
       EndProperty
       Height          =   255
       Index           =   6
-      Left            =   9120
+      Left            =   4800
       TabIndex        =   29
       Top             =   840
-      Width           =   1335
+      Width           =   2415
    End
    Begin VB.Label lblLabels 
       Caption         =   "Sexo:"
@@ -704,7 +724,7 @@ Private Sub Form_Load()
   db.Open "PROVIDER=MSDataShape;Data PROVIDER=MSDASQL;driver={MySQL ODBC 5.3 Unicode Driver};server=127.0.0.1;uid=root;pwd=mysql1981;database=escort;"
 
   Set adoPrimaryRS = New Recordset
-  adoPrimaryRS.Open "select pesid, DATEDIFF(now(), nascimento) AS idade, rg, cpf, nascimento, CASE WHEN sexo = 'M' THEN 'MASCULINO' WHEN sexo = 'F' THEN 'FEMININO' WHEN sexo = 'T' THEN 'TRANSGENERO' END AS sexo, nome, cadastro, apelido, aprovado, documento, comprovacao from pessoas Order by pesid", db, adOpenStatic, adLockOptimistic
+  adoPrimaryRS.Open "select pesid, CONCAT(ROUND(DATEDIFF(now(), nascimento) / 365), ' ANOS') AS idade, rg, cpf, nascimento, CASE WHEN sexo = 'M' THEN 'MASCULINO' WHEN sexo = 'F' THEN 'FEMININO' WHEN sexo = 'T' THEN 'TRANSGENERO' END AS sexo, nome, cadastro, apelido, aprovado, documento, comprovacao from pessoas Order by pesid", db, adOpenStatic, adLockOptimistic
 
   Dim oText As TextBox
   'Bind the text boxes to the data provider
@@ -713,9 +733,6 @@ Private Sub Form_Load()
     Set oText.DataSource = adoPrimaryRS
   Next
   Set lblIdade.DataSource = adoPrimaryRS
-  
-  
-  'Set Check1.DataSource = adoPrimaryRS
   
    On Local Error Resume Next
     Dim strSaveAs As String
