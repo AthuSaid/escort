@@ -73,8 +73,9 @@ Author URI: http://www.xpeedstudio.com
     }
     .main-gallery .grid-item {
         position: relative;
-        margin: 5px;
-        width:350px;
+        margin: 15px;
+        width: 200px;
+        height: 280px;
         overflow: hidden;
     }
 
