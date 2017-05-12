@@ -2032,6 +2032,25 @@ Blog Details Page
 	padding-left:5px;
 }
 
+.divChangeMedias{
+	z-index:2;
+	position:absolute;
+	height:23px;
+	display:block;
+	/* top: -31px; */
+	top: 10px;
+	right: 25px;
+	min-width: 50px;
+	text-align: center;
+	font-family: 'Montserrat', sans-serif;
+	color: #fff;
+	cursor: pointer; 
+	font-size: 18px;
+	background-color:rgba(0,0,0,0.35); 
+	padding-right:5px;
+	padding-left:5px;
+}
+
 #mymap {
        height: 300px;
        width: 100%;

@@ -371,7 +371,15 @@
   $(function () {
     window.cropPortrait = new CropAvatar($('#cropImgPortrait'), 'portrait');
     window.cropLandscape = new CropAvatar($('#cropImgLandscape'), 'landscape');
-    window.cropGallery = new CropAvatar($('#cropImgGallery'), 'gallery');
+    window.cropGallery = new CropAvatar($('#cropImgGallery'), 'gallery');    
+    
+    $(".port").on("click", function() {
+    	$("#portraitModal").modal("show");
+	});
+    $(".land").on("click", function() {
+    	$("#landscapeModal").modal("show");
+	});
+	
   });
   
 

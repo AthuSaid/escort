@@ -140,6 +140,7 @@
 				  </div>
             
             	<div class="imgLandscapeModel" class="bg-mega" style="background: url('<?php echo SIS_URL.'images/persons/'.$retPerson[0]['person'].'/'.$retPerson[0]['cover']; ?>') no-repeat bottom center;">                
+            		<div class="divChangeMedias land"><i class="fa fa-camera"></i> Alterar Foto</div>							    	
 	                <div class="container">
 	                    <div class="row">
 	                        <div class="main_home text-center">
@@ -156,25 +157,6 @@
 	                    </div><!--End off row-->
 	                </div><!--End off container -->
 	            </div> <!--End off Home Sections-->
-            
-            
-            	<!-- div class="container">
-                    <div class="row">
-                        <div class="main_home text-center">
-                        <?php //if ($retPerson[0]['cover'] != '../no-cover.jpg') {?>
-                            <div class="model_text">
-                                <h1 class="text-white text-uppercase shadow-text"><?php echo $retPerson[0]['apelido']; ?></h1>
-                                <h3 class="text-white text-uppercase shadow-text"><?php echo $retPerson[0]['titulo']; ?></h3>
-                                <ol class="breadcrumb text-uppercase">
-                                    <li class="shadow-text"><a href="<?php echo SIS_URL; ?>">Home</a></li>
-                                    <li class="shadow-text"><a href="<?php echo SIS_URL; ?>dashboard">Minha Conta</a></li>
-                                    <li class="active shadow-text"><a href="<?php echo SIS_URL.'person/'.$retPerson[0]['person'].'/'.$retPerson[0]['ad']; ?>"><?php echo $retPerson[0]['apelido']; ?></a></li>
-                                </ol>
-                            </div>
-                        <?php //} ?>    
-                        </div>
-                    </div--><!--End off row-->
-                
             </div> <!--End off Home Sections-->
 
             <!--Model Details Section-->
@@ -184,7 +166,8 @@
                         <div class="main_details">
                             <div class="col-md-6">
                             
-								<div class="m_details_img">								    	
+								<div class="m_details_img">	
+									<div class="divChangeMedias port"><i class="fa fa-camera"></i> Alterar Foto</div>							    	
 								   	<div class="imgPortraitModel" style="background: url('<?php echo SIS_URL; ?>images/persons/<?php echo $retPerson[0]['url']; ?>/<?php echo $retPerson[0]['thumb']; ?>') no-repeat bottom center; border: 5px solid #550000; max-width:555px; "></div>									    
 							    </div>
                             
