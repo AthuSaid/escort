@@ -140,7 +140,9 @@
 				  </div>
             
             	<div class="imgLandscapeModel" class="bg-mega" style="background: url('<?php echo SIS_URL.'images/persons/'.$retPerson[0]['person'].'/'.$retPerson[0]['cover']; ?>') no-repeat bottom center;">                
-            		<div class="divChangeMedias land"><i class="fa fa-camera"></i> Alterar Foto</div>							    	
+            		<?php if ($logged) { ?>
+            			<div class="divChangeMedias land"><i class="fa fa-camera"></i> Alterar Foto</div>							    	
+            		<?php } ?>	
 	                <div class="container">
 	                    <div class="row">
 	                        <div class="main_home text-center">
@@ -166,8 +168,10 @@
                         <div class="main_details">
                             <div class="col-md-6">
                             
-								<div class="m_details_img">	
-									<div class="divChangeMedias port"><i class="fa fa-camera"></i> Alterar Foto</div>							    	
+								<div class="m_details_img">
+								    <?php if ($logged) { ?>	
+										<div class="divChangeMedias port"><i class="fa fa-camera"></i> Alterar Foto</div>							    	
+									<?php } ?>	
 								   	<div class="imgPortraitModel" style="background: url('<?php echo SIS_URL; ?>images/persons/<?php echo $retPerson[0]['url']; ?>/<?php echo $retPerson[0]['thumb']; ?>') no-repeat bottom center; border: 5px solid #550000; max-width:555px; "></div>									    
 							    </div>
                             
