@@ -1,9 +1,10 @@
 VERSION 5.00
 Begin VB.Form teste 
-   Caption         =   "destaque_pessoas"
+   BorderStyle     =   3  'Fixed Dialog
+   Caption         =   "Aprovação de Perfis"
    ClientHeight    =   7785
-   ClientLeft      =   1170
-   ClientTop       =   450
+   ClientLeft      =   1095
+   ClientTop       =   375
    ClientWidth     =   11535
    BeginProperty Font 
       Name            =   "Tahoma"
@@ -16,8 +17,137 @@ Begin VB.Form teste
    EndProperty
    KeyPreview      =   -1  'True
    LinkTopic       =   "Form2"
+   MaxButton       =   0   'False
+   MinButton       =   0   'False
    ScaleHeight     =   7785
    ScaleWidth      =   11535
+   ShowInTaskbar   =   0   'False
+   Begin VB.TextBox txtFields 
+      DataField       =   "cpf"
+      BeginProperty Font 
+         Name            =   "Tahoma"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   285
+      Index           =   9
+      Left            =   2520
+      TabIndex        =   31
+      Top             =   1080
+      Width           =   2175
+   End
+   Begin VB.TextBox txtFields 
+      DataField       =   "rg"
+      BeginProperty Font 
+         Name            =   "Tahoma"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   285
+      Index           =   8
+      Left            =   240
+      TabIndex        =   30
+      Top             =   1080
+      Width           =   2175
+   End
+   Begin VB.TextBox txtFields 
+      DataField       =   "nascimento"
+      BeginProperty Font 
+         Name            =   "Tahoma"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   285
+      Index           =   7
+      Left            =   9120
+      TabIndex        =   28
+      Top             =   1080
+      Width           =   1215
+   End
+   Begin VB.TextBox txtFields 
+      DataField       =   "sexo"
+      BeginProperty Font 
+         Name            =   "Tahoma"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   285
+      Index           =   6
+      Left            =   7440
+      TabIndex        =   26
+      Top             =   480
+      Width           =   1575
+   End
+   Begin VB.TextBox txtFields 
+      DataField       =   "cadastro"
+      BeginProperty Font 
+         Name            =   "Tahoma"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   285
+      Index           =   5
+      Left            =   9120
+      TabIndex        =   24
+      Top             =   480
+      Width           =   2055
+   End
+   Begin VB.TextBox txtFields 
+      DataField       =   "apelido"
+      BeginProperty Font 
+         Name            =   "Tahoma"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   285
+      Index           =   4
+      Left            =   4320
+      TabIndex        =   21
+      Top             =   480
+      Width           =   3015
+   End
+   Begin VB.TextBox txtFields 
+      DataField       =   "nome"
+      BeginProperty Font 
+         Name            =   "Tahoma"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   285
+      Index           =   3
+      Left            =   240
+      TabIndex        =   20
+      Top             =   480
+      Width           =   3975
+   End
    Begin VB.ComboBox Combo1 
       BeginProperty Font 
          Name            =   "Tahoma"
@@ -316,8 +446,8 @@ Begin VB.Form teste
    Begin VB.TextBox txtFields 
       DataField       =   "documento"
       BeginProperty Font 
-         Name            =   "MS Sans Serif"
-         Size            =   8.25
+         Name            =   "Tahoma"
+         Size            =   9.75
          Charset         =   0
          Weight          =   400
          Underline       =   0   'False
@@ -326,16 +456,16 @@ Begin VB.Form teste
       EndProperty
       Height          =   285
       Index           =   2
-      Left            =   2040
+      Left            =   240
       TabIndex        =   1
-      Top             =   700
-      Width           =   3375
+      Top             =   6240
+      Width           =   5415
    End
    Begin VB.TextBox txtFields 
       DataField       =   "pesid"
       BeginProperty Font 
-         Name            =   "MS Sans Serif"
-         Size            =   8.25
+         Name            =   "Tahoma"
+         Size            =   9.75
          Charset         =   0
          Weight          =   400
          Underline       =   0   'False
@@ -344,10 +474,156 @@ Begin VB.Form teste
       EndProperty
       Height          =   285
       Index           =   1
-      Left            =   2040
+      Left            =   9240
       TabIndex        =   0
-      Top             =   380
-      Width           =   3375
+      Top             =   6360
+      Width           =   495
+   End
+   Begin VB.Label lblIdade 
+      AutoSize        =   -1  'True
+      Caption         =   "00"
+      DataField       =   "idade"
+      BeginProperty Font 
+         Name            =   "Tahoma"
+         Size            =   27.75
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   &H00000040&
+      Height          =   675
+      Left            =   10440
+      TabIndex        =   34
+      Top             =   765
+      Width           =   720
+   End
+   Begin VB.Label lblLabels 
+      Caption         =   "CPF:"
+      BeginProperty Font 
+         Name            =   "Tahoma"
+         Size            =   9
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   255
+      Index           =   8
+      Left            =   2520
+      TabIndex        =   33
+      Top             =   840
+      Width           =   2055
+   End
+   Begin VB.Label lblLabels 
+      Caption         =   "RG:"
+      BeginProperty Font 
+         Name            =   "Tahoma"
+         Size            =   9
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   255
+      Index           =   7
+      Left            =   240
+      TabIndex        =   32
+      Top             =   840
+      Width           =   2055
+   End
+   Begin VB.Label lblLabels 
+      Caption         =   "Nascimento:"
+      BeginProperty Font 
+         Name            =   "Tahoma"
+         Size            =   9
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   255
+      Index           =   6
+      Left            =   9120
+      TabIndex        =   29
+      Top             =   840
+      Width           =   1335
+   End
+   Begin VB.Label lblLabels 
+      Caption         =   "Sexo:"
+      BeginProperty Font 
+         Name            =   "Tahoma"
+         Size            =   9
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   255
+      Index           =   5
+      Left            =   7440
+      TabIndex        =   27
+      Top             =   240
+      Width           =   1575
+   End
+   Begin VB.Label lblLabels 
+      Caption         =   "Data de Cadastro:"
+      BeginProperty Font 
+         Name            =   "Tahoma"
+         Size            =   9
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   255
+      Index           =   2
+      Left            =   9120
+      TabIndex        =   25
+      Top             =   240
+      Width           =   2055
+   End
+   Begin VB.Label lblLabels 
+      Caption         =   "Apelido:"
+      BeginProperty Font 
+         Name            =   "Tahoma"
+         Size            =   9
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   255
+      Index           =   1
+      Left            =   4320
+      TabIndex        =   23
+      Top             =   240
+      Width           =   2055
+   End
+   Begin VB.Label lblLabels 
+      Caption         =   "Nome Completo:"
+      BeginProperty Font 
+         Name            =   "Tahoma"
+         Size            =   9
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   255
+      Index           =   0
+      Left            =   240
+      TabIndex        =   22
+      Top             =   240
+      Width           =   2055
    End
    Begin VB.Label lblLabels 
       Caption         =   "Comprovação de Identidade:"
@@ -428,7 +704,7 @@ Private Sub Form_Load()
   db.Open "PROVIDER=MSDataShape;Data PROVIDER=MSDASQL;driver={MySQL ODBC 5.3 Unicode Driver};server=127.0.0.1;uid=root;pwd=mysql1981;database=escort;"
 
   Set adoPrimaryRS = New Recordset
-  adoPrimaryRS.Open "select pesid, aprovado,  documento from pessoas Order by pesid", db, adOpenStatic, adLockOptimistic
+  adoPrimaryRS.Open "select pesid, DATEDIFF(now(), nascimento) AS idade, rg, cpf, nascimento, CASE WHEN sexo = 'M' THEN 'MASCULINO' WHEN sexo = 'F' THEN 'FEMININO' WHEN sexo = 'T' THEN 'TRANSGENERO' END AS sexo, nome, cadastro, apelido, aprovado, documento, comprovacao from pessoas Order by pesid", db, adOpenStatic, adLockOptimistic
 
   Dim oText As TextBox
   'Bind the text boxes to the data provider
@@ -436,6 +712,8 @@ Private Sub Form_Load()
   For Each oText In Me.txtFields
     Set oText.DataSource = adoPrimaryRS
   Next
+  Set lblIdade.DataSource = adoPrimaryRS
+  
   
   'Set Check1.DataSource = adoPrimaryRS
   
