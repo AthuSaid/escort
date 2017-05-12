@@ -7,32 +7,6 @@ body {
   width: 100%;
 }
 
-.imgPortraitModel {
-  display: block;  
-  height: 833px;
-  width: 555px;
-  border: 1px solid #ccc;
-  cursor: pointer;
-  overflow: hidden;
-  position: relative;
-}
-
-.imgPortraitModel img {
-  width: 100%;
-}
-
-.imgLandscapeModel {
-  display: block;  
-  height: 649px;
-  width: 1920px;
-  left: -1px;
-  margin-top: 79px;
-  border: 1px solid #ccc;
-  cursor: pointer;
-  overflow: hidden;
-  position: absolute;  
-}
-
 .imgLandscapeModel img {
   width: 100%;
 }

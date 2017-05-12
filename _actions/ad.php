@@ -45,7 +45,7 @@ if($_SESSION['sPersonLogged'] && isset($_SESSION['sPersonID']) && isset($_REQUES
 					$message = '<html><img src="'.SIS_URL.'assets/images/logos/libidinous-transp-black.png"><br><br>
 										Ol&aacute; '.$functions->fReduceName($_SESSION['sPersonUrl']).',<br><br>
 										Seu an&uacute;ncio no '.SIS_TITULO.' foi alterado com sucesso!<br>
-										Nossa equipe de moderadores est&aacute; avaliando o conte&uacute;do modificado do seu an&uacute;ncio e <br>
+										Nossa equipe de moderadores est&aacute; avaliando veemente o conte&uacute;do modificado do seu an&uacute;ncio e <br>
 										no m&aacute;ximo de 2 horas, voc&ecirc; ser&aacute; notificado(a) se o mesmo foi aprovado ou reprovado! <br>
 										Caso deseje alterar algum dado em seu an&uacute;ncio, clique no link abaixo:<br><br>
 										<a href="'.SIS_URL.'ad/'.$_SESSION['sPersonUrl'].'/'.$_REQUEST['url'].'">'.SIS_URL.'ad/'.$_SESSION['sPersonUrl'].'/'.$_REQUEST['url'].'</a><br><br>

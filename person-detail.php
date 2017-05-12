@@ -93,11 +93,6 @@
 
 	        <!--Home Sections-->	        
             <div class="container openmodal" data-modal="landscape" id="cropImgLandscape">											    
-				
-					<div class="imgLandscapeModel">
-						<img src="<?php echo SIS_URL; ?>images/persons/<?php echo $retPerson[0]['url']; ?>/<?php echo $retPerson[0]['cover']; ?>" alt="Avatar">
-					</div>
-												
 				  <!-- Cropping modal -->
 				    <div class="modal fade" id="landscapeModal" aria-hidden="true" aria-labelledby="avatar-modal-label" role="dialog" tabindex="-1">
 				      <div class="modal-dialog modal-lg">
@@ -144,7 +139,26 @@
 				    </div>			    
 				  </div>
             
-            	<div class="container">
+            	<div class="imgLandscapeModel" class="bg-mega" style="background: url('<?php echo SIS_URL.'images/persons/'.$retPerson[0]['person'].'/'.$retPerson[0]['cover']; ?>') no-repeat bottom center;">                
+	                <div class="container">
+	                    <div class="row">
+	                        <div class="main_home text-center">
+	                            <div class="model_text">
+                                <h1 class="text-white text-uppercase shadow-text"><?php echo $retPerson[0]['apelido']; ?></h1>
+                                <h3 class="text-white text-uppercase shadow-text"><?php echo $retPerson[0]['titulo']; ?></h3>
+                                <ol class="breadcrumb text-uppercase">
+                                    <li class="shadow-text"><a href="<?php echo SIS_URL; ?>">Home</a></li>
+                                    <li class="shadow-text"><a href="<?php echo SIS_URL; ?>dashboard">Minha Conta</a></li>
+                                    <li class="active shadow-text"><a href="<?php echo SIS_URL.'person/'.$retPerson[0]['person'].'/'.$retPerson[0]['ad']; ?>"><?php echo $retPerson[0]['apelido']; ?></a></li>
+                                </ol>
+                            </div>
+	                        </div>
+	                    </div><!--End off row-->
+	                </div><!--End off container -->
+	            </div> <!--End off Home Sections-->
+            
+            
+            	<!-- div class="container">
                     <div class="row">
                         <div class="main_home text-center">
                         <?php //if ($retPerson[0]['cover'] != '../no-cover.jpg') {?>
@@ -159,7 +173,7 @@
                             </div>
                         <?php //} ?>    
                         </div>
-                    </div><!--End off row-->
+                    </div--><!--End off row-->
                 
             </div> <!--End off Home Sections-->
 
@@ -170,12 +184,16 @@
                         <div class="main_details">
                             <div class="col-md-6">
                             
+	                            <!--div class="m_details_img">								    	
+								    <div class="imgPortraitModel" style="background: url('<?php echo SIS_URL; ?>images/persons/<?php echo $retPerson[0]['url']; ?>/<?php echo $retPerson[0]['thumb']; ?>') no-repeat bottom center; border: 5px solid #550000; max-width:555px; "></div>									    
+							    </div-->
+                            
                             	<div class="container openmodal" data-modal="portrait" id="cropImgPortrait">											    
-								    <div class="m_details_img">
-								    	<div class="imgPortraitModel">
-								      		<img id="imgposter" src="<?php echo SIS_URL; ?>images/persons/<?php echo $retPerson[0]['url']; ?>/<?php echo $retPerson[0]['thumb']; ?>" alt="Avatar">
-									    </div>
-								    </div>								
+                            	
+	                            	<div class="imgPortraitModel">								    	
+									    <img src="<?php echo SIS_URL; ?>images/persons/<?php echo $retPerson[0]['url']; ?>/<?php echo $retPerson[0]['thumb']; ?>" style="border: 5px solid #550000; max-width:555px; ">									    
+								    </div>
+                            	
 								    <!-- Cropping modal -->
 								    <div class="modal fade" id="portraitModal" aria-hidden="true" aria-labelledby="avatar-modal-label" role="dialog" tabindex="-1">
 								      <div class="modal-dialog modal-lg">
