@@ -184,16 +184,11 @@
                         <div class="main_details">
                             <div class="col-md-6">
                             
-	                            <!--div class="m_details_img">								    	
-								    <div class="imgPortraitModel" style="background: url('<?php echo SIS_URL; ?>images/persons/<?php echo $retPerson[0]['url']; ?>/<?php echo $retPerson[0]['thumb']; ?>') no-repeat bottom center; border: 5px solid #550000; max-width:555px; "></div>									    
-							    </div-->
+								<div class="m_details_img">								    	
+								   	<div class="imgPortraitModel" style="background: url('<?php echo SIS_URL; ?>images/persons/<?php echo $retPerson[0]['url']; ?>/<?php echo $retPerson[0]['thumb']; ?>') no-repeat bottom center; border: 5px solid #550000; max-width:555px; "></div>									    
+							    </div>
                             
                             	<div class="container openmodal" data-modal="portrait" id="cropImgPortrait">											    
-                            	
-	                            	<div class="imgPortraitModel">								    	
-									    <img src="<?php echo SIS_URL; ?>images/persons/<?php echo $retPerson[0]['url']; ?>/<?php echo $retPerson[0]['thumb']; ?>" style="border: 5px solid #550000; max-width:555px; ">									    
-								    </div>
-                            	
 								    <!-- Cropping modal -->
 								    <div class="modal fade" id="portraitModal" aria-hidden="true" aria-labelledby="avatar-modal-label" role="dialog" tabindex="-1">
 								      <div class="modal-dialog modal-lg">

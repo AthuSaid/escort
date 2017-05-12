@@ -230,7 +230,7 @@
       if (this.active) {
         this.$img.cropper('replace', this.url);
       } else {
-        this.$img = $('<img src="' + this.url + '">');
+    	this.$img = $('<img src="' + this.url + '">');
         this.$avatarWrapper.empty().html(this.$img);
         this.$img.cropper({
           
@@ -349,7 +349,9 @@
 
     cropDone: function () {  
       this.$avatarForm.get(0).reset();
-      this.$avatar.attr('src', this.url);
+      //this.$avatar.attr('src', this.url);
+      //setted RELOAD to FIX BUG in background images on a div
+      location.reload();
       this.stopCropper();
       this.$avatarModal.modal('hide');
     },
