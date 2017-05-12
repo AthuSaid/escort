@@ -615,8 +615,14 @@ class queries extends mysqlconn {
 		    				p.url AS person,
 		    				ap.url AS ad,
 		    				ap.titulo AS titulo_anuncio,
-		    				pf.imagemurl,
-		    				pf.descricao AS descricao_foto,
+		    				IFNULL((SELECT pfc.imagemurl AS imagemurl 
+							     FROM pessoas_fotos pfc 
+							     WHERE pfc.apid = ap.apid 
+							     AND pfc.ativo = 1 
+							     AND pfc.local = 1 
+							     AND pfc.tipo = 1 
+							     AND pfc.principal = 'S'
+							     ORDER BY pfc.fotid DESC LIMIT 1), '../no-cover.jpg') AS imagemurl,		    				
 		    				ap.descricao AS descricao_pessoa,
 		    				(SELECT COUNT(1) 
 			    				 FROM pessoas_fotos pfc
@@ -642,19 +648,14 @@ class queries extends mysqlconn {
 							 ORDER BY pp2.pgid DESC LIMIT 1) AS vencimento,
 		    				NULL AS localizacao
 		    			FROM destaque_pessoas dp
-		    			INNER JOIN anuncios_pessoas ap ON ap.apid = dp.apid
-		    			INNER JOIN pessoas_fotos pf ON pf.apid = ap.apid
+		    			INNER JOIN anuncios_pessoas ap ON ap.apid = dp.apid		    			
 		    			INNER JOIN pessoas p ON p.pesid = ap.pesid
 		    			WHERE ap.ativo = 1
 		    			AND ap.aprovado = 1 
 		    			AND p.aprovado = 1 
 		    			AND p.ativo = 1
 		    			AND p.removido = 0 
-		    			{$this->sqlQueryCompl}
-		    			AND pf.ativo = 1 
-    					AND pf.principal = 'S'
-    					AND pf.local = 1
-    					AND pf.tipo = 1
+		    			{$this->sqlQueryCompl}		    			
 		    			AND dp.destaque = {$feature}    					
 		    			AND NOW() BETWEEN dp.inicio AND dp.final
 		    			GROUP BY p.url
