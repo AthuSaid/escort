@@ -1,8 +1,8 @@
 VERSION 5.00
-Begin VB.Form teste 
+Begin VB.Form frmPerfis 
    BorderStyle     =   3  'Fixed Dialog
    Caption         =   "Aprovação de Perfis"
-   ClientHeight    =   7785
+   ClientHeight    =   7710
    ClientLeft      =   1095
    ClientTop       =   375
    ClientWidth     =   11535
@@ -19,10 +19,155 @@ Begin VB.Form teste
    LinkTopic       =   "Form2"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   7785
+   ScaleHeight     =   7710
    ScaleWidth      =   11535
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
+   Begin VB.TextBox txtFields 
+      DataField       =   "email"
+      BeginProperty Font 
+         Name            =   "Tahoma"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   285
+      Index           =   17
+      Left            =   6480
+      Locked          =   -1  'True
+      TabIndex        =   39
+      Top             =   1680
+      Width           =   4815
+   End
+   Begin VB.TextBox txtFields 
+      DataField       =   "tel2"
+      BeginProperty Font 
+         Name            =   "Tahoma"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   285
+      Index           =   16
+      Left            =   4320
+      TabIndex        =   38
+      Top             =   1680
+      Width           =   2055
+   End
+   Begin VB.TextBox txtFields 
+      DataField       =   "tel1"
+      BeginProperty Font 
+         Name            =   "Tahoma"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   285
+      Index           =   15
+      Left            =   2280
+      TabIndex        =   37
+      Top             =   1680
+      Width           =   1935
+   End
+   Begin VB.TextBox txtFields 
+      DataField       =   "whatsapp"
+      BeginProperty Font 
+         Name            =   "Tahoma"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   285
+      Index           =   14
+      Left            =   240
+      TabIndex        =   36
+      Top             =   1680
+      Width           =   1935
+   End
+   Begin VB.CommandButton cmdReprov 
+      Caption         =   "Reprovação"
+      BeginProperty Font 
+         Name            =   "Tahoma"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   350
+      Left            =   3000
+      TabIndex        =   34
+      Top             =   2280
+      Width           =   1335
+   End
+   Begin VB.TextBox txtFields 
+      DataField       =   "mensagem"
+      BeginProperty Font 
+         Name            =   "Courier New"
+         Size            =   6.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   360
+      Index           =   12
+      Left            =   4560
+      MultiLine       =   -1  'True
+      TabIndex        =   32
+      Top             =   2280
+      Width           =   4575
+   End
+   Begin VB.TextBox txtFields 
+      DataField       =   "comprovacao"
+      BeginProperty Font 
+         Name            =   "Tahoma"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   285
+      Index           =   11
+      Left            =   5880
+      TabIndex        =   31
+      Top             =   6960
+      Width           =   5415
+   End
+   Begin VB.TextBox txtFields 
+      DataField       =   "url"
+      BeginProperty Font 
+         Name            =   "Tahoma"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   285
+      Index           =   10
+      Left            =   6720
+      TabIndex        =   28
+      Top             =   480
+      Width           =   2295
+   End
    Begin VB.TextBox txtFields 
       DataField       =   "cpf"
       BeginProperty Font 
@@ -36,8 +181,8 @@ Begin VB.Form teste
       EndProperty
       Height          =   285
       Index           =   9
-      Left            =   2520
-      TabIndex        =   31
+      Left            =   4200
+      TabIndex        =   22
       Top             =   1080
       Width           =   2175
    End
@@ -54,8 +199,8 @@ Begin VB.Form teste
       EndProperty
       Height          =   285
       Index           =   8
-      Left            =   240
-      TabIndex        =   30
+      Left            =   1920
+      TabIndex        =   21
       Top             =   1080
       Width           =   2175
    End
@@ -72,10 +217,10 @@ Begin VB.Form teste
       EndProperty
       Height          =   285
       Index           =   7
-      Left            =   4800
-      TabIndex        =   28
+      Left            =   6480
+      TabIndex        =   19
       Top             =   1080
-      Width           =   2415
+      Width           =   1935
    End
    Begin VB.TextBox txtFields 
       DataField       =   "sexo"
@@ -90,9 +235,9 @@ Begin VB.Form teste
       EndProperty
       Height          =   285
       Index           =   6
-      Left            =   7440
-      TabIndex        =   26
-      Top             =   480
+      Left            =   240
+      TabIndex        =   17
+      Top             =   1080
       Width           =   1575
    End
    Begin VB.TextBox txtFields 
@@ -109,7 +254,7 @@ Begin VB.Form teste
       Height          =   285
       Index           =   5
       Left            =   9120
-      TabIndex        =   24
+      TabIndex        =   15
       Top             =   480
       Width           =   2175
    End
@@ -126,10 +271,10 @@ Begin VB.Form teste
       EndProperty
       Height          =   285
       Index           =   4
-      Left            =   4320
-      TabIndex        =   21
+      Left            =   4200
+      TabIndex        =   12
       Top             =   480
-      Width           =   3015
+      Width           =   2415
    End
    Begin VB.TextBox txtFields 
       DataField       =   "nome"
@@ -145,9 +290,9 @@ Begin VB.Form teste
       Height          =   285
       Index           =   3
       Left            =   240
-      TabIndex        =   20
+      TabIndex        =   11
       Top             =   480
-      Width           =   3975
+      Width           =   3855
    End
    Begin VB.ComboBox Combo1 
       BeginProperty Font 
@@ -161,11 +306,12 @@ Begin VB.Form teste
       EndProperty
       Height          =   360
       ItemData        =   "admin.frx":0000
-      Left            =   8040
+      Left            =   240
       List            =   "admin.frx":000D
-      TabIndex        =   18
-      Top             =   6360
-      Width           =   3255
+      Style           =   2  'Dropdown List
+      TabIndex        =   9
+      Top             =   2280
+      Width           =   2775
    End
    Begin VB.TextBox txtFields 
       DataField       =   "aprovado"
@@ -180,13 +326,12 @@ Begin VB.Form teste
       EndProperty
       Height          =   285
       Index           =   0
-      Left            =   8040
-      TabIndex        =   19
-      Top             =   6360
-      Width           =   615
+      Left            =   360
+      TabIndex        =   10
+      Top             =   2280
+      Width           =   495
    End
    Begin VB.PictureBox picButtons 
-      Align           =   2  'Align Bottom
       Appearance      =   0  'Flat
       BorderStyle     =   0  'None
       BeginProperty Font 
@@ -199,157 +344,14 @@ Begin VB.Form teste
          Strikethrough   =   0   'False
       EndProperty
       ForeColor       =   &H80000008&
-      Height          =   300
+      Height          =   420
       Left            =   0
-      ScaleHeight     =   300
-      ScaleWidth      =   11535
-      TabIndex        =   8
-      Top             =   7185
-      Width           =   11535
-      Begin VB.CommandButton cmdCancel 
-         Caption         =   "&Cancel"
-         BeginProperty Font 
-            Name            =   "MS Sans Serif"
-            Size            =   8.25
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   300
-         Left            =   1213
-         TabIndex        =   15
-         Top             =   0
-         Visible         =   0   'False
-         Width           =   1095
-      End
-      Begin VB.CommandButton cmdUpdate 
-         Caption         =   "&Update"
-         BeginProperty Font 
-            Name            =   "MS Sans Serif"
-            Size            =   8.25
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   300
-         Left            =   59
-         TabIndex        =   14
-         Top             =   0
-         Visible         =   0   'False
-         Width           =   1095
-      End
-      Begin VB.CommandButton cmdClose 
-         Caption         =   "&Close"
-         BeginProperty Font 
-            Name            =   "MS Sans Serif"
-            Size            =   8.25
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   300
-         Left            =   4675
-         TabIndex        =   13
-         Top             =   0
-         Width           =   1095
-      End
-      Begin VB.CommandButton cmdRefresh 
-         Caption         =   "&Refresh"
-         BeginProperty Font 
-            Name            =   "MS Sans Serif"
-            Size            =   8.25
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   300
-         Left            =   3521
-         TabIndex        =   12
-         Top             =   0
-         Width           =   1095
-      End
-      Begin VB.CommandButton cmdDelete 
-         Caption         =   "&Delete"
-         BeginProperty Font 
-            Name            =   "MS Sans Serif"
-            Size            =   8.25
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   300
-         Left            =   2367
-         TabIndex        =   11
-         Top             =   0
-         Width           =   1095
-      End
-      Begin VB.CommandButton cmdEdit 
-         Caption         =   "&Edit"
-         BeginProperty Font 
-            Name            =   "MS Sans Serif"
-            Size            =   8.25
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   300
-         Left            =   1213
-         TabIndex        =   10
-         Top             =   0
-         Width           =   1095
-      End
-      Begin VB.CommandButton cmdAdd 
-         Caption         =   "&Add"
-         BeginProperty Font 
-            Name            =   "MS Sans Serif"
-            Size            =   8.25
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   300
-         Left            =   59
-         TabIndex        =   9
-         Top             =   0
-         Width           =   1095
-      End
-   End
-   Begin VB.PictureBox picStatBox 
-      Align           =   2  'Align Bottom
-      Appearance      =   0  'Flat
-      BorderStyle     =   0  'None
-      BeginProperty Font 
-         Name            =   "MS Sans Serif"
-         Size            =   8.25
-         Charset         =   0
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      ForeColor       =   &H80000008&
-      Height          =   300
-      Left            =   0
-      ScaleHeight     =   300
+      ScaleHeight     =   420
       ScaleWidth      =   11535
       TabIndex        =   2
-      Top             =   7485
+      Top             =   7320
       Width           =   11535
-      Begin VB.CommandButton cmdLast 
+      Begin VB.CommandButton cmdFirst 
          BeginProperty Font 
             Name            =   "MS Sans Serif"
             Size            =   8.25
@@ -360,29 +362,10 @@ Begin VB.Form teste
             Strikethrough   =   0   'False
          EndProperty
          Height          =   300
-         Left            =   4545
+         Left            =   240
          Picture         =   "admin.frx":0056
          Style           =   1  'Graphical
-         TabIndex        =   6
-         Top             =   0
-         UseMaskColor    =   -1  'True
-         Width           =   345
-      End
-      Begin VB.CommandButton cmdNext 
-         BeginProperty Font 
-            Name            =   "MS Sans Serif"
-            Size            =   8.25
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   300
-         Left            =   4200
-         Picture         =   "admin.frx":0398
-         Style           =   1  'Graphical
-         TabIndex        =   5
+         TabIndex        =   47
          Top             =   0
          UseMaskColor    =   -1  'True
          Width           =   345
@@ -398,15 +381,15 @@ Begin VB.Form teste
             Strikethrough   =   0   'False
          EndProperty
          Height          =   300
-         Left            =   345
-         Picture         =   "admin.frx":06DA
+         Left            =   600
+         Picture         =   "admin.frx":0398
          Style           =   1  'Graphical
-         TabIndex        =   4
+         TabIndex        =   46
          Top             =   0
          UseMaskColor    =   -1  'True
          Width           =   345
       End
-      Begin VB.CommandButton cmdFirst 
+      Begin VB.CommandButton cmdNext 
          BeginProperty Font 
             Name            =   "MS Sans Serif"
             Size            =   8.25
@@ -417,17 +400,15 @@ Begin VB.Form teste
             Strikethrough   =   0   'False
          EndProperty
          Height          =   300
-         Left            =   0
-         Picture         =   "admin.frx":0A1C
+         Left            =   960
+         Picture         =   "admin.frx":06DA
          Style           =   1  'Graphical
-         TabIndex        =   3
+         TabIndex        =   45
          Top             =   0
          UseMaskColor    =   -1  'True
          Width           =   345
       End
-      Begin VB.Label lblStatus 
-         BackColor       =   &H00FFFFFF&
-         BorderStyle     =   1  'Fixed Single
+      Begin VB.CommandButton cmdLast 
          BeginProperty Font 
             Name            =   "MS Sans Serif"
             Size            =   8.25
@@ -437,11 +418,84 @@ Begin VB.Form teste
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   285
-         Left            =   690
-         TabIndex        =   7
+         Height          =   300
+         Left            =   1320
+         Picture         =   "admin.frx":0A1C
+         Style           =   1  'Graphical
+         TabIndex        =   44
          Top             =   0
-         Width           =   3360
+         UseMaskColor    =   -1  'True
+         Width           =   345
+      End
+      Begin VB.CommandButton cmdCancel 
+         Caption         =   "&Cancelar"
+         BeginProperty Font 
+            Name            =   "Tahoma"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   300
+         Left            =   10200
+         TabIndex        =   6
+         Top             =   0
+         Visible         =   0   'False
+         Width           =   1095
+      End
+      Begin VB.CommandButton cmdUpdate 
+         Caption         =   "&Salvar"
+         BeginProperty Font 
+            Name            =   "Tahoma"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   300
+         Left            =   8280
+         TabIndex        =   5
+         Top             =   0
+         Visible         =   0   'False
+         Width           =   1815
+      End
+      Begin VB.CommandButton cmdRefresh 
+         Caption         =   "&Atualizar "
+         BeginProperty Font 
+            Name            =   "Tahoma"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   300
+         Left            =   10200
+         TabIndex        =   4
+         Top             =   0
+         Width           =   1095
+      End
+      Begin VB.CommandButton cmdEdit 
+         Caption         =   "&Atualizar Dados"
+         BeginProperty Font 
+            Name            =   "Tahoma"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   300
+         Left            =   8280
+         TabIndex        =   3
+         Top             =   0
+         Width           =   1815
       End
    End
    Begin VB.TextBox txtFields 
@@ -459,7 +513,7 @@ Begin VB.Form teste
       Index           =   2
       Left            =   240
       TabIndex        =   1
-      Top             =   6240
+      Top             =   6960
       Width           =   5415
    End
    Begin VB.TextBox txtFields 
@@ -475,10 +529,173 @@ Begin VB.Form teste
       EndProperty
       Height          =   285
       Index           =   1
-      Left            =   9240
+      Left            =   1440
       TabIndex        =   0
-      Top             =   6360
+      Top             =   2280
       Width           =   495
+   End
+   Begin VB.TextBox txtFields 
+      DataField       =   "lido"
+      BeginProperty Font 
+         Name            =   "Tahoma"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   270
+      Index           =   13
+      Left            =   2040
+      TabIndex        =   33
+      Top             =   2280
+      Width           =   855
+   End
+   Begin VB.Label lblLabels 
+      Caption         =   "Email:"
+      BeginProperty Font 
+         Name            =   "Tahoma"
+         Size            =   9
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   255
+      Index           =   16
+      Left            =   6480
+      TabIndex        =   43
+      Top             =   1440
+      Width           =   2055
+   End
+   Begin VB.Label lblLabels 
+      Caption         =   "Telefone 2:"
+      BeginProperty Font 
+         Name            =   "Tahoma"
+         Size            =   9
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   255
+      Index           =   15
+      Left            =   4320
+      TabIndex        =   42
+      Top             =   1440
+      Width           =   2055
+   End
+   Begin VB.Label lblLabels 
+      Caption         =   "Telefone 1:"
+      BeginProperty Font 
+         Name            =   "Tahoma"
+         Size            =   9
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   255
+      Index           =   14
+      Left            =   2280
+      TabIndex        =   41
+      Top             =   1440
+      Width           =   2055
+   End
+   Begin VB.Label lblLabels 
+      Caption         =   "WhatsApp:"
+      BeginProperty Font 
+         Name            =   "Tahoma"
+         Size            =   9
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   255
+      Index           =   13
+      Left            =   240
+      TabIndex        =   40
+      Top             =   1440
+      Width           =   2055
+   End
+   Begin VB.Label lblLabels 
+      Caption         =   "Motivo Reprovação:"
+      BeginProperty Font 
+         Name            =   "Tahoma"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   255
+      Index           =   12
+      Left            =   4560
+      TabIndex        =   35
+      Top             =   2040
+      Width           =   2415
+   End
+   Begin VB.Label lblLabels 
+      Caption         =   "Alterar Status:"
+      BeginProperty Font 
+         Name            =   "Tahoma"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   255
+      Index           =   11
+      Left            =   240
+      TabIndex        =   30
+      Top             =   2040
+      Width           =   1935
+   End
+   Begin VB.Label lblLabels 
+      Caption         =   "URL Amigável:"
+      BeginProperty Font 
+         Name            =   "Tahoma"
+         Size            =   9
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   255
+      Index           =   10
+      Left            =   6720
+      TabIndex        =   29
+      Top             =   240
+      Width           =   2055
+   End
+   Begin VB.Label lblAprovado 
+      Caption         =   "AGUARDANDO"
+      DataField       =   "status_aprovado"
+      BeginProperty Font 
+         Name            =   "Tahoma"
+         Size            =   12
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   &H00000080&
+      Height          =   255
+      Left            =   9360
+      TabIndex        =   27
+      Top             =   2280
+      Width           =   1935
    End
    Begin VB.Label lblLabels 
       Caption         =   "Status do Perfil:"
@@ -493,10 +710,10 @@ Begin VB.Form teste
       EndProperty
       Height          =   255
       Index           =   9
-      Left            =   5880
-      TabIndex        =   35
-      Top             =   6390
-      Width           =   1815
+      Left            =   9360
+      TabIndex        =   26
+      Top             =   2040
+      Width           =   1695
    End
    Begin VB.Label lblIdade 
       Alignment       =   1  'Right Justify
@@ -514,9 +731,9 @@ Begin VB.Form teste
       EndProperty
       ForeColor       =   &H00000040&
       Height          =   675
-      Left            =   8700
-      TabIndex        =   34
-      Top             =   840
+      Left            =   8640
+      TabIndex        =   25
+      Top             =   800
       Width           =   2580
    End
    Begin VB.Label lblLabels 
@@ -532,8 +749,8 @@ Begin VB.Form teste
       EndProperty
       Height          =   255
       Index           =   8
-      Left            =   2520
-      TabIndex        =   33
+      Left            =   4200
+      TabIndex        =   24
       Top             =   840
       Width           =   2055
    End
@@ -550,8 +767,8 @@ Begin VB.Form teste
       EndProperty
       Height          =   255
       Index           =   7
-      Left            =   240
-      TabIndex        =   32
+      Left            =   1920
+      TabIndex        =   23
       Top             =   840
       Width           =   2055
    End
@@ -568,10 +785,10 @@ Begin VB.Form teste
       EndProperty
       Height          =   255
       Index           =   6
-      Left            =   4800
-      TabIndex        =   29
+      Left            =   6480
+      TabIndex        =   20
       Top             =   840
-      Width           =   2415
+      Width           =   2055
    End
    Begin VB.Label lblLabels 
       Caption         =   "Sexo:"
@@ -586,9 +803,9 @@ Begin VB.Form teste
       EndProperty
       Height          =   255
       Index           =   5
-      Left            =   7440
-      TabIndex        =   27
-      Top             =   240
+      Left            =   240
+      TabIndex        =   18
+      Top             =   840
       Width           =   1575
    End
    Begin VB.Label lblLabels 
@@ -605,7 +822,7 @@ Begin VB.Form teste
       Height          =   255
       Index           =   2
       Left            =   9120
-      TabIndex        =   25
+      TabIndex        =   16
       Top             =   240
       Width           =   2055
    End
@@ -622,8 +839,8 @@ Begin VB.Form teste
       EndProperty
       Height          =   255
       Index           =   1
-      Left            =   4320
-      TabIndex        =   23
+      Left            =   4200
+      TabIndex        =   14
       Top             =   240
       Width           =   2055
    End
@@ -641,7 +858,7 @@ Begin VB.Form teste
       Height          =   255
       Index           =   0
       Left            =   240
-      TabIndex        =   22
+      TabIndex        =   13
       Top             =   240
       Width           =   2055
    End
@@ -659,8 +876,8 @@ Begin VB.Form teste
       Height          =   255
       Index           =   4
       Left            =   5880
-      TabIndex        =   17
-      Top             =   1680
+      TabIndex        =   8
+      Top             =   2760
       Width           =   3255
    End
    Begin VB.Label lblLabels 
@@ -677,8 +894,8 @@ Begin VB.Form teste
       Height          =   255
       Index           =   3
       Left            =   240
-      TabIndex        =   16
-      Top             =   1680
+      TabIndex        =   7
+      Top             =   2760
       Width           =   2055
    End
    Begin VB.Image Comprovacao 
@@ -686,7 +903,7 @@ Begin VB.Form teste
       Height          =   4095
       Left            =   5880
       Stretch         =   -1  'True
-      Top             =   2040
+      Top             =   3120
       Width           =   5415
    End
    Begin VB.Image Documento 
@@ -694,11 +911,11 @@ Begin VB.Form teste
       Height          =   4095
       Left            =   240
       Stretch         =   -1  'True
-      Top             =   2040
+      Top             =   3120
       Width           =   5415
    End
 End
-Attribute VB_Name = "teste"
+Attribute VB_Name = "frmPerfis"
 Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
@@ -713,18 +930,41 @@ Dim mbDataChanged As Boolean
 Option Explicit
 Private Declare Function URLDownloadToFile Lib "urlmon" Alias "URLDownloadToFileA" (ByVal pCaller As Long, ByVal szURL As String, ByVal szFileName As String, ByVal dwReserved As Long, ByVal lpfnCB As Long) As Long
 
+Private Sub cmdReprov_Click()
+    frmMotivo.Show vbModal, Me
+End Sub
+
 Private Sub Combo1_click()
  txtFields(0).Text = Combo1.ListIndex
+ If Combo1.ListIndex = 2 Then
+    frmMotivo.Show vbModal, Me
+ ElseIf Combo1.ListIndex = 1 Then
+    txtFields(12).Text = ""
+ End If
+End Sub
+
+Private Sub Comprovacao_Click()
+    With frmImage
+        .Image1.Picture = Comprovacao.Picture
+        .Show
+    End With
+End Sub
+
+Private Sub Documento_Click()
+    With frmImage
+        .Image1.Picture = Documento.Picture
+        .Show
+    End With
 End Sub
 
 Private Sub Form_Load()
   Dim db As Connection
   Set db = New Connection
   db.CursorLocation = adUseClient
-  db.Open "PROVIDER=MSDataShape;Data PROVIDER=MSDASQL;driver={MySQL ODBC 5.3 Unicode Driver};server=127.0.0.1;uid=root;pwd=mysql1981;database=escort;"
+  db.Open "PROVIDER=MSDataShape;Data PROVIDER=MSDASQL;driver={MySQL ODBC 5.3 Unicode Driver};server=127.0.0.1;uid=root;pwd=;database=escort;"
 
   Set adoPrimaryRS = New Recordset
-  adoPrimaryRS.Open "select pesid, CONCAT(ROUND(DATEDIFF(now(), nascimento) / 365), ' ANOS') AS idade, rg, cpf, nascimento, CASE WHEN sexo = 'M' THEN 'MASCULINO' WHEN sexo = 'F' THEN 'FEMININO' WHEN sexo = 'T' THEN 'TRANSGENERO' END AS sexo, nome, cadastro, apelido, aprovado, documento, comprovacao from pessoas Order by pesid", db, adOpenStatic, adLockOptimistic
+  adoPrimaryRS.Open "select pesid, whatsapp, tel1, tel2, email, lido, mensagem, CONCAT(ROUND(DATEDIFF(now(), nascimento) / 365), ' ANOS') AS idade, url, rg, cpf, nascimento, CASE WHEN sexo = 'M' THEN 'MASCULINO' WHEN sexo = 'F' THEN 'FEMININO' WHEN sexo = 'T' THEN 'TRANSGENERO' END AS sexo, CASE WHEN aprovado = 0 THEN 'AGUARDANDO' WHEN aprovado = 1 THEN 'APROVADO' WHEN aprovado = 2 THEN 'REPROVADO' END AS status_aprovado, nome, cadastro, apelido, aprovado, documento, comprovacao from pessoas where aprovado = 0 Order by pesid", db, adOpenStatic, adLockOptimistic
 
   Dim oText As TextBox
   'Bind the text boxes to the data provider
@@ -733,25 +973,11 @@ Private Sub Form_Load()
     Set oText.DataSource = adoPrimaryRS
   Next
   Set lblIdade.DataSource = adoPrimaryRS
+  Set lblAprovado.DataSource = adoPrimaryRS
   
-   On Local Error Resume Next
-    Dim strSaveAs As String
-    Dim lonReturn As Long
-    strSaveAs = App.Path & "\documento-atual.jpeg" ' This is the path I use. You can use another path.
-    lonReturn = URLDownloadToFile(0, "http://escort.local:9099/images/persons/sammy-maynardi/e1zu74dvgam0.original.jpeg", strSaveAs, 0, 0)
-    Set Documento.Picture = LoadPicture(strSaveAs)
+  changeImage txtFields(10).Text, txtFields(2).Text, txtFields(11).Text
 
   mbDataChanged = False
-End Sub
-
-Private Sub Form_Resize()
-  On Error Resume Next
-  'This will resize the grid when the form is resized
-  'grdDataGrid.Width = Me.ScaleWidth
-  'grdDataGrid.Height = Me.ScaleHeight - grdDataGrid.Top - 30 - picButtons.Height - picStatBox.Height
-  lblStatus.Width = Me.Width - 1500
-  cmdNext.Left = lblStatus.Width + 700
-  cmdLast.Left = cmdNext.Left + 340
 End Sub
 
 Private Sub Form_KeyDown(KeyCode As Integer, Shift As Integer)
@@ -785,7 +1011,7 @@ End Sub
 
 Private Sub adoPrimaryRS_MoveComplete(ByVal adReason As ADODB.EventReasonEnum, ByVal pError As ADODB.Error, adStatus As ADODB.EventStatusEnum, ByVal pRecordset As ADODB.Recordset)
   'This will display the current record position for this recordset
-  lblStatus.Caption = "Record: " & CStr(adoPrimaryRS.AbsolutePosition)
+  'lblStatus.Caption = "Record: " & CStr(adoPrimaryRS.AbsolutePosition)
 End Sub
 
 Private Sub adoPrimaryRS_WillChangeRecord(ByVal adReason As ADODB.EventReasonEnum, ByVal cRecords As Long, adStatus As ADODB.EventStatusEnum, ByVal pRecordset As ADODB.Recordset)
@@ -842,8 +1068,10 @@ End Sub
 Private Sub cmdRefresh_Click()
   'This is only needed for multi user apps
   On Error GoTo RefreshErr
-  Set grdDataGrid.DataSource = Nothing
+  'Set grdDataGrid.DataSource = Nothing
   adoPrimaryRS.Requery
+  changeImage txtFields(10).Text, txtFields(2).Text, txtFields(11).Text
+  'changeImage txtFields(2).Text
   Exit Sub
 RefreshErr:
   MsgBox Err.Description
@@ -852,7 +1080,7 @@ End Sub
 Private Sub cmdEdit_Click()
   On Error GoTo EditErr
 
-  lblStatus.Caption = "Edit record"
+  'lblStatus.Caption = "Edit record"
   mbEditFlag = True
   SetButtons False
   Exit Sub
@@ -889,7 +1117,7 @@ Private Sub cmdUpdate_Click()
   mbAddNewFlag = False
   SetButtons True
   mbDataChanged = False
-
+  adoPrimaryRS.Requery
   Exit Sub
 UpdateErr:
   MsgBox Err.Description
@@ -904,7 +1132,7 @@ Private Sub cmdFirst_Click()
 
   adoPrimaryRS.MoveFirst
   mbDataChanged = False
-
+  changeImage txtFields(10).Text, txtFields(2).Text, txtFields(11).Text
   Exit Sub
 
 GoFirstError:
@@ -916,7 +1144,7 @@ Private Sub cmdLast_Click()
 
   adoPrimaryRS.MoveLast
   mbDataChanged = False
-
+  changeImage txtFields(10).Text, txtFields(2).Text, txtFields(11).Text
   Exit Sub
 
 GoLastError:
@@ -934,7 +1162,7 @@ Private Sub cmdNext_Click()
   End If
   'show the current record
   mbDataChanged = False
-
+  changeImage txtFields(10).Text, txtFields(2).Text, txtFields(11).Text
   Exit Sub
 GoNextError:
   MsgBox Err.Description
@@ -951,7 +1179,7 @@ Private Sub cmdPrevious_Click()
   End If
   'show the current record
   mbDataChanged = False
-
+  changeImage txtFields(10).Text, txtFields(2).Text, txtFields(11).Text
   Exit Sub
 
 GoPrevError:
@@ -959,16 +1187,51 @@ GoPrevError:
 End Sub
 
 Private Sub SetButtons(bVal As Boolean)
-  cmdAdd.Visible = bVal
+  
   cmdEdit.Visible = bVal
   cmdUpdate.Visible = Not bVal
   cmdCancel.Visible = Not bVal
-  cmdDelete.Visible = bVal
-  cmdClose.Visible = bVal
+  'cmdDelete.Visible = bVal
+  'cmdClose.Visible = bVal
   cmdRefresh.Visible = bVal
   cmdNext.Enabled = bVal
   cmdFirst.Enabled = bVal
   cmdLast.Enabled = bVal
   cmdPrevious.Enabled = bVal
+End Sub
+
+Function changeImage(pes As String, doc As String, cpr As String)
+ On Local Error Resume Next
+    Dim strDocSaveAs As String
+    Dim strCprSaveAs As String
+    Dim lonReturn1 As Long
+    Dim lonReturn2 As Long
+    strDocSaveAs = App.Path & "\documento-atual.jpeg" ' This is the path I use. You can use another path.
+    strCprSaveAs = App.Path & "\comprovacao-atual.jpeg" ' This is the path I use. You can use another path.
+    lonReturn1 = URLDownloadToFile(0, "http://escort.local/images/persons/" & pes & "/" & doc, strDocSaveAs, 0, 0)
+    lonReturn2 = URLDownloadToFile(0, "http://escort.local/images/persons/" & pes & "/" & cpr, strCprSaveAs, 0, 0)
+    Set Documento.Picture = LoadPicture(strDocSaveAs)
+    Set Comprovacao.Picture = LoadPicture(strCprSaveAs)
+    'MsgBox "http://escort.local/images/persons/" & pes & "/" & cpr
+End Function
+
+Private Sub lblAprovado_Change()
+    If lblAprovado.Caption = "APROVADO" Then
+        lblAprovado.ForeColor = &HC000&
+        Combo1.Enabled = False
+        cmdReprov.Enabled = False
+        txtFields(12).Enabled = False
+        lblLabels(12).Enabled = False
+    ElseIf lblAprovado.Caption = "REPROVADO" Then
+        txtFields(12).Enabled = True
+        lblLabels(12).Enabled = True
+        lblAprovado.ForeColor = &HC0&
+    Else
+        Combo1.Enabled = True
+        cmdReprov.Enabled = True
+        txtFields(12).Enabled = False
+        lblLabels(12).Enabled = False
+        lblAprovado.ForeColor = &H80&
+    End If
 End Sub
 

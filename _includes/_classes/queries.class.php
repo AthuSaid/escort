@@ -172,7 +172,7 @@ class queries extends mysqlconn {
 	 * @param	 object $_REQUEST
 	 * @return	 boolean
 	 */
-	public function fUpdateCurrentPerson($obj){
+	public function fUpdateCurrentPerson($obj, $files){
 		
 		$this->sqlQuery = "UPDATE pessoas SET   
 									nome = '".$obj['nome']."', 												  
@@ -195,8 +195,18 @@ class queries extends mysqlconn {
 									twitter = '".$obj['twitter']."', 
 									googleplus = '".$obj['googleplus']."',												
 									nascimento = '".$obj['nascimento']."', 
-									naturalidade = '".$obj['naturalidade']."'
-							WHERE pesid = ".$_SESSION['sPersonID'];
+									naturalidade = '".$obj['naturalidade']."'";
+		
+		if ($files['documento'] != '' && $files['comprovacao'] != '')
+		{
+			$this->sqlQuery .= ", documento = '".$files['documento']."',
+								  comprovacao = '".$files['comprovacao']."', 
+								  aprovado = 0, 
+								  lido = 0,
+								  mensagem = '' ";
+		}		
+		
+		$this->sqlQuery	.= "WHERE pesid = ".$_SESSION['sPersonID'];
 		
 		return $this->fExecuteSql($this->sqlQuery);									
 	}
