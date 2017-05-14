@@ -20,7 +20,6 @@ Begin VB.Form frmAnuncios
    MinButton       =   0   'False
    ScaleHeight     =   8670
    ScaleWidth      =   10230
-   ShowInTaskbar   =   0   'False
    StartUpPosition =   3  'Windows Default
    Begin VB.TextBox txtFields 
       DataField       =   "idiomas"

@@ -21,7 +21,6 @@ Begin VB.Form frmPerfis
    MinButton       =   0   'False
    ScaleHeight     =   7710
    ScaleWidth      =   11535
-   ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
    Begin VB.TextBox txtFields 
       DataField       =   "email"
