@@ -5,7 +5,7 @@ Begin VB.Form frmMotivo
    ClientHeight    =   4680
    ClientLeft      =   45
    ClientTop       =   390
-   ClientWidth     =   6525
+   ClientWidth     =   6660
    BeginProperty Font 
       Name            =   "Tahoma"
       Size            =   9.75
@@ -20,9 +20,45 @@ Begin VB.Form frmMotivo
    MaxButton       =   0   'False
    MinButton       =   0   'False
    ScaleHeight     =   4680
-   ScaleWidth      =   6525
+   ScaleWidth      =   6660
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
+   Begin VB.OptionButton optMotivo 
+      Caption         =   "Fotografias do anúncio infringem regras dos Termos de Uso"
+      BeginProperty Font 
+         Name            =   "Tahoma"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   375
+      Index           =   7
+      Left            =   360
+      TabIndex        =   9
+      Top             =   3240
+      Width           =   6135
+   End
+   Begin VB.OptionButton optMotivo 
+      Caption         =   "Anúncio fora do padrão determinado"
+      BeginProperty Font 
+         Name            =   "Tahoma"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   375
+      Index           =   6
+      Left            =   360
+      TabIndex        =   8
+      Top             =   2880
+      Width           =   5775
+   End
    Begin VB.CommandButton cmdOk 
       Caption         =   "Aplicar"
       Default         =   -1  'True
@@ -56,7 +92,7 @@ Begin VB.Form frmMotivo
       Index           =   5
       Left            =   360
       TabIndex        =   6
-      Top             =   3120
+      Top             =   2520
       Width           =   5775
    End
    Begin VB.OptionButton optMotivo 
@@ -74,7 +110,7 @@ Begin VB.Form frmMotivo
       Index           =   4
       Left            =   360
       TabIndex        =   5
-      Top             =   2640
+      Top             =   2160
       Width           =   5775
    End
    Begin VB.OptionButton optMotivo 
@@ -92,7 +128,7 @@ Begin VB.Form frmMotivo
       Index           =   3
       Left            =   360
       TabIndex        =   4
-      Top             =   2160
+      Top             =   1800
       Width           =   5775
    End
    Begin VB.OptionButton optMotivo 
@@ -110,7 +146,7 @@ Begin VB.Form frmMotivo
       Index           =   2
       Left            =   360
       TabIndex        =   3
-      Top             =   1680
+      Top             =   1440
       Width           =   5895
    End
    Begin VB.OptionButton optMotivo 
@@ -128,7 +164,7 @@ Begin VB.Form frmMotivo
       Index           =   1
       Left            =   360
       TabIndex        =   2
-      Top             =   1200
+      Top             =   1080
       Width           =   5895
    End
    Begin VB.OptionButton optMotivo 
@@ -164,13 +200,45 @@ Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Private msg As String
+Public mFlag As Integer
 
-Private Sub cmdOk_Click()
-    With frmPerfis
-        .txtFields(12).Text = msg
-        .txtFields(13).Text = 0
-    End With
+Private Sub cmdOK_Click()
+    If mFlag = 0 Then
+        With frmPerfis
+            .txtFields(12).Text = msg
+            .txtFields(13).Text = 0
+            .txtFields(12).Enabled = True
+            .lblLabels(12).Enabled = True
+        End With
+    Else
+        With frmAnuncios
+            .txtFields(12).Text = msg
+            .txtFields(6).Text = 0
+            .txtFields(12).Enabled = True
+            .lblLabels(12).Enabled = True
+        End With
+    End If
     Unload Me
+End Sub
+
+Private Sub Form_Load()
+    If mFlag = 1 Then
+        optMotivo(1).Enabled = False
+        optMotivo(2).Enabled = False
+        optMotivo(3).Enabled = False
+        optMotivo(4).Enabled = False
+        optMotivo(5).Enabled = False
+        optMotivo(6).Enabled = True
+        optMotivo(7).Enabled = True
+    Else
+        optMotivo(1).Enabled = True
+        optMotivo(2).Enabled = True
+        optMotivo(3).Enabled = True
+        optMotivo(4).Enabled = True
+        optMotivo(5).Enabled = True
+        optMotivo(6).Enabled = False
+        optMotivo(7).Enabled = False
+    End If
 End Sub
 
 Private Sub optMotivo_Click(Index As Integer)
