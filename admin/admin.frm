@@ -2,7 +2,7 @@ VERSION 5.00
 Begin VB.Form frmPerfis 
    BorderStyle     =   3  'Fixed Dialog
    Caption         =   "Aprovação de Perfis"
-   ClientHeight    =   7710
+   ClientHeight    =   7770
    ClientLeft      =   1095
    ClientTop       =   375
    ClientWidth     =   11535
@@ -15,11 +15,12 @@ Begin VB.Form frmPerfis
       Italic          =   0   'False
       Strikethrough   =   0   'False
    EndProperty
+   Icon            =   "admin.frx":0000
    KeyPreview      =   -1  'True
    LinkTopic       =   "Form2"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   7710
+   ScaleHeight     =   7770
    ScaleWidth      =   11535
    StartUpPosition =   2  'CenterScreen
    Begin VB.TextBox txtFields 
@@ -304,9 +305,9 @@ Begin VB.Form frmPerfis
          Strikethrough   =   0   'False
       EndProperty
       Height          =   360
-      ItemData        =   "admin.frx":0000
+      ItemData        =   "admin.frx":000C
       Left            =   240
-      List            =   "admin.frx":000D
+      List            =   "admin.frx":0019
       Style           =   2  'Dropdown List
       TabIndex        =   9
       Top             =   2280
@@ -331,6 +332,7 @@ Begin VB.Form frmPerfis
       Width           =   495
    End
    Begin VB.PictureBox picButtons 
+      Align           =   2  'Align Bottom
       Appearance      =   0  'Flat
       BorderStyle     =   0  'None
       BeginProperty Font 
@@ -348,7 +350,7 @@ Begin VB.Form frmPerfis
       ScaleHeight     =   420
       ScaleWidth      =   11535
       TabIndex        =   2
-      Top             =   7320
+      Top             =   7350
       Width           =   11535
       Begin VB.CommandButton cmdFirst 
          BeginProperty Font 
@@ -362,7 +364,7 @@ Begin VB.Form frmPerfis
          EndProperty
          Height          =   300
          Left            =   240
-         Picture         =   "admin.frx":0056
+         Picture         =   "admin.frx":0062
          Style           =   1  'Graphical
          TabIndex        =   47
          Top             =   0
@@ -381,7 +383,7 @@ Begin VB.Form frmPerfis
          EndProperty
          Height          =   300
          Left            =   600
-         Picture         =   "admin.frx":0398
+         Picture         =   "admin.frx":03A4
          Style           =   1  'Graphical
          TabIndex        =   46
          Top             =   0
@@ -400,7 +402,7 @@ Begin VB.Form frmPerfis
          EndProperty
          Height          =   300
          Left            =   960
-         Picture         =   "admin.frx":06DA
+         Picture         =   "admin.frx":06E6
          Style           =   1  'Graphical
          TabIndex        =   45
          Top             =   0
@@ -419,7 +421,7 @@ Begin VB.Form frmPerfis
          EndProperty
          Height          =   300
          Left            =   1320
-         Picture         =   "admin.frx":0A1C
+         Picture         =   "admin.frx":0A28
          Style           =   1  'Graphical
          TabIndex        =   44
          Top             =   0
@@ -926,11 +928,15 @@ Dim mvBookMark As Variant
 Dim mbEditFlag As Boolean
 Dim mbAddNewFlag As Boolean
 Dim mbDataChanged As Boolean
+Public pesID As Integer
 Option Explicit
 Private Declare Function URLDownloadToFile Lib "urlmon" Alias "URLDownloadToFileA" (ByVal pCaller As Long, ByVal szURL As String, ByVal szFileName As String, ByVal dwReserved As Long, ByVal lpfnCB As Long) As Long
 
 Private Sub cmdReprov_Click()
-    frmMotivo.Show vbModal, Me
+    With frmMotivo
+        .mFlag = 0
+        .Show vbModal, Me
+    End With
 End Sub
 
 Private Sub Combo1_click()
@@ -958,15 +964,34 @@ End Sub
 
 Private Sub Form_Load()
   Dim db As Connection
+  Dim flagSql As String
   Set db = New Connection
+  
   db.CursorLocation = adUseClient
-  db.Open "PROVIDER=MSDataShape;Data PROVIDER=MSDASQL;driver={MySQL ODBC 5.3 Unicode Driver};server=127.0.0.1;uid=root;pwd=;database=escort;"
+  db.Open "PROVIDER=MSDataShape;Data PROVIDER=MSDASQL;driver={MySQL ODBC 5.3 Unicode Driver};server=127.0.0.1;uid=root;pwd=mysql1981;database=escort;"
 
+  If pesID > 0 Then
+    flagSql = "pesid = " & pesID
+  Else
+    flagSql = "aprovado = 0"
+  End If
+  
   Set adoPrimaryRS = New Recordset
-  adoPrimaryRS.Open "select pesid, whatsapp, tel1, tel2, email, lido, mensagem, CONCAT(ROUND(DATEDIFF(now(), nascimento) / 365), ' ANOS') AS idade, url, rg, cpf, nascimento, CASE WHEN sexo = 'M' THEN 'MASCULINO' WHEN sexo = 'F' THEN 'FEMININO' WHEN sexo = 'T' THEN 'TRANSGENERO' END AS sexo, CASE WHEN aprovado = 0 THEN 'AGUARDANDO' WHEN aprovado = 1 THEN 'APROVADO' WHEN aprovado = 2 THEN 'REPROVADO' END AS status_aprovado, nome, cadastro, apelido, aprovado, documento, comprovacao from pessoas where aprovado = 0 Order by pesid", db, adOpenStatic, adLockOptimistic
+    adoPrimaryRS.Open "SELECT " & _
+                      "pesid, whatsapp, tel1, tel2, email, lido, mensagem, " & _
+                      "CONCAT(ROUND(DATEDIFF(now(), nascimento) / 365), ' ANOS') AS idade, " & _
+                      "url, rg, cpf, nascimento, " & _
+                      "CASE WHEN sexo = 'M' THEN 'MASCULINO' " & _
+                      "WHEN sexo = 'F' THEN 'FEMININO' " & _
+                      "WHEN sexo = 'T' THEN 'TRANSGENERO' END AS sexo, " & _
+                      "CASE WHEN aprovado = 0 THEN 'AGUARDANDO' " & _
+                      "WHEN aprovado = 1 THEN 'APROVADO' " & _
+                      "WHEN aprovado = 2 THEN 'REPROVADO' END AS status_aprovado, " & _
+                      "nome, cadastro, apelido, aprovado, documento, comprovacao " & _
+                      "FROM pessoas " & _
+                      "WHERE " & flagSql & " ORDER BY cadastro ASC", db, adOpenStatic, adLockOptimistic
 
   Dim oText As TextBox
-  'Bind the text boxes to the data provider
   
   For Each oText In Me.txtFields
     Set oText.DataSource = adoPrimaryRS
@@ -1008,16 +1033,8 @@ Private Sub Form_Unload(Cancel As Integer)
   Screen.MousePointer = vbDefault
 End Sub
 
-Private Sub adoPrimaryRS_MoveComplete(ByVal adReason As ADODB.EventReasonEnum, ByVal pError As ADODB.Error, adStatus As ADODB.EventStatusEnum, ByVal pRecordset As ADODB.Recordset)
-  'This will display the current record position for this recordset
-  'lblStatus.Caption = "Record: " & CStr(adoPrimaryRS.AbsolutePosition)
-End Sub
-
 Private Sub adoPrimaryRS_WillChangeRecord(ByVal adReason As ADODB.EventReasonEnum, ByVal cRecords As Long, adStatus As ADODB.EventStatusEnum, ByVal pRecordset As ADODB.Recordset)
-  'This is where you put validation code
-  'This event gets called when the following actions occur
   Dim bCancel As Boolean
-
   Select Case adReason
   Case adRsnAddNew
   Case adRsnClose
@@ -1035,42 +1052,11 @@ Private Sub adoPrimaryRS_WillChangeRecord(ByVal adReason As ADODB.EventReasonEnu
   If bCancel Then adStatus = adStatusCancel
 End Sub
 
-Private Sub cmdAdd_Click()
-  On Error GoTo AddErr
-  With adoPrimaryRS
-    If Not (.BOF And .EOF) Then
-      mvBookMark = .Bookmark
-    End If
-    .AddNew
-    lblStatus.Caption = "Add record"
-    mbAddNewFlag = True
-    SetButtons False
-  End With
-
-  Exit Sub
-AddErr:
-  MsgBox Err.Description
-End Sub
-
-Private Sub cmdDelete_Click()
-  On Error GoTo DeleteErr
-  With adoPrimaryRS
-    .Delete
-    .MoveNext
-    If .EOF Then .MoveLast
-  End With
-  Exit Sub
-DeleteErr:
-  MsgBox Err.Description
-End Sub
-
 Private Sub cmdRefresh_Click()
   'This is only needed for multi user apps
   On Error GoTo RefreshErr
-  'Set grdDataGrid.DataSource = Nothing
   adoPrimaryRS.Requery
   changeImage txtFields(10).Text, txtFields(2).Text, txtFields(11).Text
-  'changeImage txtFields(2).Text
   Exit Sub
 RefreshErr:
   MsgBox Err.Description
@@ -1078,18 +1064,14 @@ End Sub
 
 Private Sub cmdEdit_Click()
   On Error GoTo EditErr
-
-  'lblStatus.Caption = "Edit record"
   mbEditFlag = True
   SetButtons False
   Exit Sub
-
 EditErr:
   MsgBox Err.Description
 End Sub
 Private Sub cmdCancel_Click()
   On Error Resume Next
-
   SetButtons True
   mbEditFlag = False
   mbAddNewFlag = False
@@ -1100,66 +1082,52 @@ Private Sub cmdCancel_Click()
     adoPrimaryRS.MoveFirst
   End If
   mbDataChanged = False
-
 End Sub
 
 Private Sub cmdUpdate_Click()
   On Error GoTo UpdateErr
-
   adoPrimaryRS.UpdateBatch adAffectAll
-
   If mbAddNewFlag Then
-    adoPrimaryRS.MoveLast              'move to the new record
+    adoPrimaryRS.MoveLast
   End If
-
   mbEditFlag = False
   mbAddNewFlag = False
   SetButtons True
   mbDataChanged = False
-  adoPrimaryRS.Requery
+  cmdFirst_Click
+  MsgBox "Perfil alterado com sucesso!", , App.Title
   Exit Sub
 UpdateErr:
   MsgBox Err.Description
 End Sub
 
-Private Sub cmdClose_Click()
-  Unload Me
-End Sub
-
 Private Sub cmdFirst_Click()
   On Error GoTo GoFirstError
-
   adoPrimaryRS.MoveFirst
   mbDataChanged = False
   changeImage txtFields(10).Text, txtFields(2).Text, txtFields(11).Text
   Exit Sub
-
 GoFirstError:
   MsgBox Err.Description
 End Sub
 
 Private Sub cmdLast_Click()
   On Error GoTo GoLastError
-
   adoPrimaryRS.MoveLast
   mbDataChanged = False
   changeImage txtFields(10).Text, txtFields(2).Text, txtFields(11).Text
   Exit Sub
-
 GoLastError:
   MsgBox Err.Description
 End Sub
 
 Private Sub cmdNext_Click()
   On Error GoTo GoNextError
-
   If Not adoPrimaryRS.EOF Then adoPrimaryRS.MoveNext
   If adoPrimaryRS.EOF And adoPrimaryRS.RecordCount > 0 Then
     Beep
-     'moved off the end so go back
     adoPrimaryRS.MoveLast
   End If
-  'show the current record
   mbDataChanged = False
   changeImage txtFields(10).Text, txtFields(2).Text, txtFields(11).Text
   Exit Sub
@@ -1169,29 +1137,22 @@ End Sub
 
 Private Sub cmdPrevious_Click()
   On Error GoTo GoPrevError
-
   If Not adoPrimaryRS.BOF Then adoPrimaryRS.MovePrevious
   If adoPrimaryRS.BOF And adoPrimaryRS.RecordCount > 0 Then
     Beep
-    'moved off the end so go back
     adoPrimaryRS.MoveFirst
   End If
-  'show the current record
   mbDataChanged = False
   changeImage txtFields(10).Text, txtFields(2).Text, txtFields(11).Text
   Exit Sub
-
 GoPrevError:
   MsgBox Err.Description
 End Sub
 
 Private Sub SetButtons(bVal As Boolean)
-  
   cmdEdit.Visible = bVal
   cmdUpdate.Visible = Not bVal
   cmdCancel.Visible = Not bVal
-  'cmdDelete.Visible = bVal
-  'cmdClose.Visible = bVal
   cmdRefresh.Visible = bVal
   cmdNext.Enabled = bVal
   cmdFirst.Enabled = bVal
@@ -1205,13 +1166,12 @@ Function changeImage(pes As String, doc As String, cpr As String)
     Dim strCprSaveAs As String
     Dim lonReturn1 As Long
     Dim lonReturn2 As Long
-    strDocSaveAs = App.Path & "\documento-atual.jpeg" ' This is the path I use. You can use another path.
-    strCprSaveAs = App.Path & "\comprovacao-atual.jpeg" ' This is the path I use. You can use another path.
+    strDocSaveAs = App.Path & "\documento-atual.jpeg"
+    strCprSaveAs = App.Path & "\comprovacao-atual.jpeg"
     lonReturn1 = URLDownloadToFile(0, "http://escort.local/images/persons/" & pes & "/" & doc, strDocSaveAs, 0, 0)
     lonReturn2 = URLDownloadToFile(0, "http://escort.local/images/persons/" & pes & "/" & cpr, strCprSaveAs, 0, 0)
     Set Documento.Picture = LoadPicture(strDocSaveAs)
     Set Comprovacao.Picture = LoadPicture(strCprSaveAs)
-    'MsgBox "http://escort.local/images/persons/" & pes & "/" & cpr
 End Function
 
 Private Sub lblAprovado_Change()
@@ -1233,4 +1193,3 @@ Private Sub lblAprovado_Change()
         lblAprovado.ForeColor = &H80&
     End If
 End Sub
-
