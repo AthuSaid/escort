@@ -272,7 +272,8 @@ class queries extends mysqlconn {
 			$_SESSION['sPersonPlanID'] = $obj['plaid'];
 			$_SESSION['sPersonPlanPaid'] = $obj['pago'];
 			$_SESSION['sPersonPlanName'] = $obj['name'];
-			$_SESSION['sPersonPlanExpires'] = $obj['vencimento'];
+			//$_SESSION['sPersonPlanExpires'] = $obj['vencimento'];
+			$_SESSION['sPersonPlanExpiresDate'] = $obj['vencimento'];
 			$_SESSION['sPersonMaxAds'] = $obj['ads'];
 			$_SESSION['sPersonMaxPhotos'] = $obj['photos'];
 			$_SESSION['sPersonMaxVideos'] = $obj['videos'];
@@ -1067,14 +1068,12 @@ class queries extends mysqlconn {
 						    		MAX(lp1.latitude) 
 						    	FROM locais_pessoas lp1 
 						    	WHERE lp1.apid = ap.apid 
-						    	AND lp1.ativo = 1 						    	
-						    	HAVING COUNT(lp1.locid) > 1) AS max_latitude,						    	
+						    	AND lp1.ativo = 1) AS max_latitude,						    	
 						    	(SELECT 
 						    		MIN(lp2.longitude) 
 						    	FROM locais_pessoas lp2 
 						    	WHERE lp2.apid = ap.apid 
-						    	AND lp2.ativo = 1 						    	
-						    	HAVING COUNT(lp2.locid) > 1) AS min_longitude						    							    	
+						    	AND lp2.ativo = 1) AS min_longitude						    							    	
 					    	FROM locais_pessoas lp
 					    	INNER JOIN anuncios_pessoas ap ON ap.apid = lp.apid					    	
 					    	WHERE lp.ativo = 1

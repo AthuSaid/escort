@@ -76,14 +76,14 @@
 
 
             <!--Home Sections-->
-            <section id="hello" class="contact-banner bg-mega">
+            <section id="hello" class="person-banner bg-mega">
                 <div class="overlay"></div>
                 <div class="container">
                     <div class="row">
                         <div class="main_home text-center">
                             <div class="model_text">
-                                <h1 class="text-white text-uppercase"><?php echo SIS_TITULO; ?></h1>
-                                <ol class="breadcrumb">
+                                <h1 class="text-white text-uppercase shadow-text"><?php echo SIS_TITULO; ?></h1>
+                                <ol class="breadcrumb shadow-text">
                                     <li><a href="<?php echo SIS_URL; ?>">Home</a></li>
                                     <li class="active"><a href="<?php echo SIS_URL; ?>persons">Pessoas</a></li>
                                 </ol>
