@@ -2,7 +2,7 @@ VERSION 5.00
 Begin VB.Form frmAnuncios 
    BorderStyle     =   3  'Fixed Dialog
    Caption         =   "Aprovação de Anúncios"
-   ClientHeight    =   7710
+   ClientHeight    =   7440
    ClientLeft      =   45
    ClientTop       =   390
    ClientWidth     =   10215
@@ -19,7 +19,7 @@ Begin VB.Form frmAnuncios
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   7710
+   ScaleHeight     =   7440
    ScaleWidth      =   10215
    StartUpPosition =   2  'CenterScreen
    Begin VB.TextBox txtModalidadesCache 
@@ -38,7 +38,7 @@ Begin VB.Form frmAnuncios
       MultiLine       =   -1  'True
       ScrollBars      =   2  'Vertical
       TabIndex        =   48
-      Top             =   3840
+      Top             =   3600
       Width           =   9735
    End
    Begin VB.CommandButton cmdPerfil 
@@ -55,7 +55,7 @@ Begin VB.Form frmAnuncios
       Height          =   255
       Left            =   5760
       TabIndex        =   46
-      Top             =   600
+      Top             =   360
       Width           =   375
    End
    Begin VB.TextBox txtFields 
@@ -64,7 +64,7 @@ Begin VB.Form frmAnuncios
       Index           =   0
       Left            =   240
       TabIndex        =   0
-      Top             =   1800
+      Top             =   1560
       Width           =   4935
    End
    Begin VB.TextBox txtFields 
@@ -73,7 +73,7 @@ Begin VB.Form frmAnuncios
       Index           =   8
       Left            =   1920
       TabIndex        =   44
-      Top             =   1800
+      Top             =   1560
       Width           =   495
    End
    Begin VB.TextBox txtFields 
@@ -82,7 +82,7 @@ Begin VB.Form frmAnuncios
       Index           =   7
       Left            =   1320
       TabIndex        =   43
-      Top             =   1800
+      Top             =   1560
       Width           =   495
    End
    Begin VB.ListBox galeria 
@@ -99,7 +99,7 @@ Begin VB.Form frmAnuncios
       Height          =   915
       Left            =   240
       TabIndex        =   42
-      Top             =   6240
+      Top             =   6000
       Width           =   9735
    End
    Begin VB.ComboBox Combo1 
@@ -118,7 +118,7 @@ Begin VB.Form frmAnuncios
       List            =   "frmAnuncios.frx":0019
       Style           =   2  'Dropdown List
       TabIndex        =   35
-      Top             =   5520
+      Top             =   5280
       Width           =   2775
    End
    Begin VB.TextBox txtFields 
@@ -137,7 +137,7 @@ Begin VB.Form frmAnuncios
       Left            =   4440
       MultiLine       =   -1  'True
       TabIndex        =   34
-      Top             =   5520
+      Top             =   5280
       Width           =   3615
    End
    Begin VB.CommandButton cmdReprov 
@@ -154,7 +154,7 @@ Begin VB.Form frmAnuncios
       Height          =   350
       Left            =   3000
       TabIndex        =   33
-      Top             =   5520
+      Top             =   5280
       Width           =   1335
    End
    Begin VB.PictureBox picButtons 
@@ -176,7 +176,7 @@ Begin VB.Form frmAnuncios
       ScaleHeight     =   420
       ScaleWidth      =   10215
       TabIndex        =   24
-      Top             =   7290
+      Top             =   7020
       Width           =   10215
       Begin VB.CommandButton cmdEdit 
          Caption         =   "&Atualizar Dados"
@@ -331,7 +331,7 @@ Begin VB.Form frmAnuncios
       Index           =   5
       Left            =   7080
       TabIndex        =   13
-      Top             =   4800
+      Top             =   4560
       Width           =   2895
    End
    Begin VB.TextBox txtFields 
@@ -340,7 +340,7 @@ Begin VB.Form frmAnuncios
       Index           =   4
       Left            =   4080
       TabIndex        =   8
-      Top             =   4800
+      Top             =   4560
       Width           =   2895
    End
    Begin VB.TextBox txtFields 
@@ -349,7 +349,7 @@ Begin VB.Form frmAnuncios
       Index           =   3
       Left            =   240
       TabIndex        =   6
-      Top             =   4800
+      Top             =   4560
       Width           =   3735
    End
    Begin VB.TextBox txtFields 
@@ -358,7 +358,7 @@ Begin VB.Form frmAnuncios
       Index           =   2
       Left            =   5280
       TabIndex        =   4
-      Top             =   1800
+      Top             =   1560
       Width           =   4695
    End
    Begin VB.TextBox txtFields 
@@ -378,7 +378,7 @@ Begin VB.Form frmAnuncios
       MultiLine       =   -1  'True
       ScrollBars      =   2  'Vertical
       TabIndex        =   1
-      Top             =   2400
+      Top             =   2160
       Width           =   9735
    End
    Begin VB.TextBox txtFields 
@@ -387,7 +387,7 @@ Begin VB.Form frmAnuncios
       Index           =   6
       Left            =   1680
       TabIndex        =   40
-      Top             =   5520
+      Top             =   5280
       Width           =   375
    End
    Begin VB.TextBox txtFields 
@@ -396,7 +396,7 @@ Begin VB.Form frmAnuncios
       Index           =   9
       Left            =   3720
       TabIndex        =   45
-      Top             =   1800
+      Top             =   1560
       Width           =   495
    End
    Begin VB.Label lblLabels 
@@ -414,7 +414,7 @@ Begin VB.Form frmAnuncios
       Index           =   15
       Left            =   240
       TabIndex        =   47
-      Top             =   3600
+      Top             =   3360
       Width           =   2775
    End
    Begin VB.Label lblLabels 
@@ -433,7 +433,7 @@ Begin VB.Form frmAnuncios
       Index           =   17
       Left            =   240
       TabIndex        =   41
-      Top             =   6000
+      Top             =   5760
       Width           =   8895
    End
    Begin VB.Label lblRecords 
@@ -454,7 +454,7 @@ Begin VB.Form frmAnuncios
       Index           =   0
       Left            =   240
       TabIndex        =   10
-      Top             =   600
+      Top             =   360
       Width           =   4815
    End
    Begin VB.Label lblLabels 
@@ -472,7 +472,7 @@ Begin VB.Form frmAnuncios
       Index           =   14
       Left            =   8160
       TabIndex        =   39
-      Top             =   5280
+      Top             =   5040
       Width           =   1935
    End
    Begin VB.Label lblAprovado 
@@ -491,7 +491,7 @@ Begin VB.Form frmAnuncios
       Height          =   255
       Left            =   8160
       TabIndex        =   38
-      Top             =   5520
+      Top             =   5280
       Width           =   1935
    End
    Begin VB.Label lblLabels 
@@ -509,7 +509,7 @@ Begin VB.Form frmAnuncios
       Index           =   13
       Left            =   240
       TabIndex        =   37
-      Top             =   5280
+      Top             =   5040
       Width           =   1935
    End
    Begin VB.Label lblLabels 
@@ -527,7 +527,7 @@ Begin VB.Form frmAnuncios
       Index           =   12
       Left            =   4440
       TabIndex        =   36
-      Top             =   5280
+      Top             =   5040
       Width           =   2415
    End
    Begin VB.Label lblRecords 
@@ -538,7 +538,7 @@ Begin VB.Form frmAnuncios
       Index           =   5
       Left            =   960
       TabIndex        =   23
-      Top             =   1080
+      Top             =   840
       Width           =   5175
    End
    Begin VB.Label lblLabels 
@@ -556,7 +556,7 @@ Begin VB.Form frmAnuncios
       Index           =   11
       Left            =   240
       TabIndex        =   22
-      Top             =   1080
+      Top             =   840
       Width           =   735
    End
    Begin VB.Label lblLabels 
@@ -574,7 +574,7 @@ Begin VB.Form frmAnuncios
       Index           =   10
       Left            =   6360
       TabIndex        =   21
-      Top             =   1080
+      Top             =   840
       Width           =   1215
    End
    Begin VB.Label lblLabels 
@@ -592,7 +592,7 @@ Begin VB.Form frmAnuncios
       Index           =   9
       Left            =   6360
       TabIndex        =   20
-      Top             =   840
+      Top             =   600
       Width           =   1095
    End
    Begin VB.Label lblLabels 
@@ -610,7 +610,7 @@ Begin VB.Form frmAnuncios
       Index           =   8
       Left            =   6360
       TabIndex        =   19
-      Top             =   600
+      Top             =   360
       Width           =   1095
    End
    Begin VB.Label lblRecords 
@@ -621,7 +621,7 @@ Begin VB.Form frmAnuncios
       Index           =   4
       Left            =   7800
       TabIndex        =   18
-      Top             =   1080
+      Top             =   840
       Width           =   2175
    End
    Begin VB.Label lblRecords 
@@ -632,7 +632,7 @@ Begin VB.Form frmAnuncios
       Index           =   3
       Left            =   7800
       TabIndex        =   17
-      Top             =   840
+      Top             =   600
       Width           =   2175
    End
    Begin VB.Label lblRecords 
@@ -643,14 +643,14 @@ Begin VB.Form frmAnuncios
       Index           =   2
       Left            =   7800
       TabIndex        =   16
-      Top             =   600
+      Top             =   360
       Width           =   2175
    End
    Begin VB.Label lblLabels 
       Caption         =   "Telefones de Contato:"
       BeginProperty Font 
          Name            =   "Tahoma"
-         Size            =   9.75
+         Size            =   11.25
          Charset         =   0
          Weight          =   700
          Underline       =   0   'False
@@ -661,7 +661,7 @@ Begin VB.Form frmAnuncios
       Index           =   7
       Left            =   6360
       TabIndex        =   15
-      Top             =   360
+      Top             =   120
       Width           =   2175
    End
    Begin VB.Label lblLabels 
@@ -679,7 +679,7 @@ Begin VB.Form frmAnuncios
       Index           =   6
       Left            =   7080
       TabIndex        =   14
-      Top             =   4560
+      Top             =   4320
       Width           =   2775
    End
    Begin VB.Label lblRecords 
@@ -700,14 +700,14 @@ Begin VB.Form frmAnuncios
       Index           =   1
       Left            =   255
       TabIndex        =   12
-      Top             =   840
+      Top             =   600
       Width           =   5895
    End
    Begin VB.Label lblLabels 
       Caption         =   "Anunciante:"
       BeginProperty Font 
          Name            =   "Tahoma"
-         Size            =   9.75
+         Size            =   11.25
          Charset         =   0
          Weight          =   700
          Underline       =   0   'False
@@ -718,7 +718,7 @@ Begin VB.Form frmAnuncios
       Index           =   5
       Left            =   240
       TabIndex        =   11
-      Top             =   360
+      Top             =   120
       Width           =   1455
    End
    Begin VB.Label lblLabels 
@@ -736,7 +736,7 @@ Begin VB.Form frmAnuncios
       Index           =   4
       Left            =   4080
       TabIndex        =   9
-      Top             =   4560
+      Top             =   4320
       Width           =   2775
    End
    Begin VB.Label lblLabels 
@@ -754,7 +754,7 @@ Begin VB.Form frmAnuncios
       Index           =   3
       Left            =   240
       TabIndex        =   7
-      Top             =   4560
+      Top             =   4320
       Width           =   2775
    End
    Begin VB.Label lblLabels 
@@ -772,7 +772,7 @@ Begin VB.Form frmAnuncios
       Index           =   2
       Left            =   5280
       TabIndex        =   5
-      Top             =   1560
+      Top             =   1320
       Width           =   1935
    End
    Begin VB.Label lblLabels 
@@ -790,7 +790,7 @@ Begin VB.Form frmAnuncios
       Index           =   1
       Left            =   240
       TabIndex        =   3
-      Top             =   2160
+      Top             =   1920
       Width           =   1935
    End
    Begin VB.Label lblLabels 
@@ -808,7 +808,7 @@ Begin VB.Form frmAnuncios
       Index           =   0
       Left            =   240
       TabIndex        =   2
-      Top             =   1560
+      Top             =   1320
       Width           =   1935
    End
 End
@@ -830,6 +830,7 @@ Dim mvBookMark As Variant
 Dim mbEditFlag As Boolean
 Dim mbAddNewFlag As Boolean
 Dim mbDataChanged As Boolean
+Dim db As Connection
 Option Explicit
 Private Declare Function URLDownloadToFile Lib "urlmon" Alias "URLDownloadToFileA" (ByVal pCaller As Long, ByVal szURL As String, ByVal szFileName As String, ByVal dwReserved As Long, ByVal lpfnCB As Long) As Long
 
@@ -864,13 +865,17 @@ Private Sub cmdPerfil_Click()
 End Sub
 
 Private Sub Form_Load()
-  Dim db As Connection
+  
   Dim oText As TextBox
   Dim oLabel As Label
   
   Set db = New Connection
   db.CursorLocation = adUseClient
-  db.Open "PROVIDER=MSDataShape;Data PROVIDER=MSDASQL;driver={MySQL ODBC 5.3 Unicode Driver};server=127.0.0.1;uid=root;pwd=mysql1981;database=escort;"
+  db.Open "PROVIDER=MSDataShape;Data PROVIDER=MSDASQL;driver={MySQL ODBC 5.3 Unicode Driver};" & _
+          "server=" & GetSetting(App.Title, "CFGSYS", "CFGHOST") & ";" & _
+          "uid=" & GetSetting(App.Title, "CFGSYS", "CFGUSER") & ";" & _
+          "pwd=" & GetSetting(App.Title, "CFGSYS", "CFGPASS") & ";" & _
+          "database=" & GetSetting(App.Title, "CFGSYS", "CFGDATA") & ";"
 
   Set adoPrimaryRS = New Recordset
   adoPrimaryRS.Open "SELECT " & _
@@ -889,7 +894,31 @@ Private Sub Form_Load()
   
   Set lblAprovado.DataSource = adoPrimaryRS
   
+  updateGallery
+  updateModalitiesCaches
   
+
+  mbDataChanged = False
+End Sub
+
+Function updateGallery()
+  Set adoGallery = New Recordset
+     adoGallery.Open "SELECT " & _
+                        "pf.* " & _
+                     "FROM pessoas_fotos pf " & _
+                     "WHERE pf.apid = " & txtFields(7).Text & " AND pf.tipo = 1", db, adOpenStatic, adLockOptimistic
+
+  With galeria
+    .Clear
+    Do While Not adoGallery.EOF
+      .AddItem adoGallery(3)
+      adoGallery.MoveNext
+    Loop
+  End With
+End Function
+
+Function updateModalitiesCaches()
+  txtModalidadesCache.Text = ""
   Set adoModalities = New Recordset
     adoModalities.Open "SELECT " & _
                           "mo.* " & _
@@ -903,21 +932,7 @@ Private Sub Form_Load()
                        "FROM pessoas_cache pc " & _
                        "WHERE pc.apid = " & txtFields(7).Text, db, adOpenStatic, adLockOptimistic
                      
-  
-  Set adoGallery = New Recordset
-     adoGallery.Open "SELECT " & _
-                        "pf.* " & _
-                     "FROM pessoas_fotos pf " & _
-                     "WHERE pf.apid = " & txtFields(7).Text & " AND pf.tipo = 1", db, adOpenStatic, adLockOptimistic
-
-  With galeria
-    Do While Not adoGallery.EOF
-      .AddItem adoGallery(3)
-      adoGallery.MoveNext
-    Loop
-  End With
-  
-  With txtModalidadesCache
+ With txtModalidadesCache
     Do While Not adoModalities.EOF
       .Text = .Text & adoModalities(2) & " - "
       adoModalities.MoveNext
@@ -932,9 +947,7 @@ Private Sub Form_Load()
   "8H: " & Format(adoCaches(7), "##0.00") & " " & _
   "Pernoite: " & Format(adoCaches(8), "##0.00") & " " & _
   "Viagens: " & Format(adoCaches(9), "##0.00")
-
-  mbDataChanged = False
-End Sub
+End Function
 
 Private Sub adoPrimaryRS_WillChangeRecord(ByVal adReason As ADODB.EventReasonEnum, ByVal cRecords As Long, adStatus As ADODB.EventStatusEnum, ByVal pRecordset As ADODB.Recordset)
   'This is where you put validation code
@@ -1025,6 +1038,8 @@ Private Sub cmdFirst_Click()
 
   adoPrimaryRS.MoveFirst
   mbDataChanged = False
+  updateGallery
+  updateModalitiesCaches
   Exit Sub
 
 GoFirstError:
@@ -1036,6 +1051,8 @@ Private Sub cmdLast_Click()
 
   adoPrimaryRS.MoveLast
   mbDataChanged = False
+  updateGallery
+  updateModalitiesCaches
   Exit Sub
 
 GoLastError:
@@ -1045,11 +1062,16 @@ End Sub
 Private Sub cmdNext_Click()
   On Error GoTo GoNextError
 
-  If Not adoPrimaryRS.EOF Then adoPrimaryRS.MoveNext
+  If Not adoPrimaryRS.EOF Then
+    adoPrimaryRS.MoveNext
+    updateGallery
+    updateModalitiesCaches
+  End If
   If adoPrimaryRS.EOF And adoPrimaryRS.RecordCount > 0 Then
     Beep
-     'moved off the end so go back
     adoPrimaryRS.MoveLast
+    updateGallery
+    updateModalitiesCaches
   End If
   'show the current record
   mbDataChanged = False
@@ -1061,11 +1083,16 @@ End Sub
 Private Sub cmdPrevious_Click()
   On Error GoTo GoPrevError
 
-  If Not adoPrimaryRS.BOF Then adoPrimaryRS.MovePrevious
+  If Not adoPrimaryRS.BOF Then
+    adoPrimaryRS.MovePrevious
+    updateGallery
+    updateModalitiesCaches
+  End If
   If adoPrimaryRS.BOF And adoPrimaryRS.RecordCount > 0 Then
     Beep
-    'moved off the end so go back
     adoPrimaryRS.MoveFirst
+    updateGallery
+    updateModalitiesCaches
   End If
   'show the current record
   mbDataChanged = False
