@@ -1279,6 +1279,16 @@ service section style
     font-size:1.5rem;
     color:#fff;
 }
+.service_items .about-content2 {
+    width: 100%;
+    z-index: 22;
+    line-height: 3.2rem;
+    text-align: center;
+}
+.service_items .about-content2 span.icon{
+    font-size:1.5rem;
+    color:#fff;
+}
 .service_right_text h4,
 .service_left_text h4{
     font-weight: 400;

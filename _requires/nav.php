@@ -1,4 +1,4 @@
-<div id="divFirstAccess" style="display:none;">
+<div id="divFirstAccess" class="modal-dialog" style="display:none;">
    		<p>Thanks for clicking.  That felt good.  <a href="#" rel="modal:close">Close</a> or press ESC</p>      
 	   <div class="col-sm-6">
 			<div class="form-group"> 
@@ -25,18 +25,18 @@
 	        </div>
 	  </div>   
 </div>
-<div id="divDisclaimerAge" style="display:none;">
+<div id="divDisclaimerAge" class="modal-dialog" style="display:none;">
    		
 				<div class="service_items">
                      <div class="row">
-                             <div class="col-xs-2">
-                                 <div class="plus18">
-                                    <div class="about-content">
+                             <div class="col-sm-2">                             	
+                                  <div class="plus18">
+                                    <div class="about-content2">
                                     	<span class="fa font-bubble">18</span>
                                 	</div>    
-                             	</div>                             	
+                             	  </div>							                           	
                              </div>
-                                <div class="col-xs-10">
+                             <div class="col-sm-10">                               
                                 <div class="text-left service_left_text">
                                 <h4 class="main-color black"><strong>ATEN&Ccedil;&Atilde;O</strong> Conte&uacute;do Adulto!</h4>
                             	<p>Antes de prosseguir sua visita no <?php echo SIS_TITULO?>, voc&ecirc; deve aceitar os seguintes termos:</p>
@@ -46,6 +46,7 @@
 									<p><strong>d.</strong> Confirmando minha idade abaixo, eu concordo que os propriet&aacute;rios e fundadores do <?php echo SIS_TITULO?>, bem como os provedores de Internet, n&atilde;o se encarregam da responsabilidade sobre os conte&uacute;dos publicados e o uso dos mesmos.									
 								<p>Para mais informa&ccedil;&atilde;oes, por favor leia nossos <a href="<?php echo SIS_URL?>privacy" target="_blank">Termos de Uso</a>.</p>
                         	</div>
+                        	
                     	</div>
                 	</div>
                 </div>    		

@@ -6766,6 +6766,10 @@ button.close {
 }
 @media print {
   .hidden-print {
+  
+@media (max-width: @screen-xs-min) {
+  .modal-xs { width: @modal-sm; }
+}  
     display: none !important;
   }
 }

@@ -18,7 +18,6 @@ Begin VB.Form frmAlertas
    Icon            =   "frmAlertas.frx":0000
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
-   Moveable        =   0   'False
    ScaleHeight     =   4530
    ScaleWidth      =   9525
    Begin VB.PictureBox Picture1 
@@ -33,11 +32,78 @@ Begin VB.Form frmAlertas
       Width           =   9615
       Begin VB.CommandButton cmdConfig 
          Caption         =   "Config"
+         BeginProperty Font 
+            Name            =   "Tahoma"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   375
          Left            =   8160
          TabIndex        =   8
          Top             =   480
-         Width           =   975
+         Width           =   855
+      End
+      Begin VB.Label Label1 
+         BackStyle       =   0  'Transparent
+         Caption         =   "App.Title"
+         BeginProperty Font 
+            Name            =   "Tahoma"
+            Size            =   12
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H00000040&
+         Height          =   375
+         Index           =   3
+         Left            =   2520
+         TabIndex        =   21
+         Top             =   315
+         Width           =   4335
+      End
+      Begin VB.Label Label1 
+         BackStyle       =   0  'Transparent
+         Caption         =   "Sistema de Gerenciamento de Aprovações"
+         BeginProperty Font 
+            Name            =   "Tahoma"
+            Size            =   9
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   255
+         Index           =   2
+         Left            =   2520
+         TabIndex        =   20
+         Top             =   600
+         Width           =   3855
+      End
+      Begin VB.Label Label1 
+         BackStyle       =   0  'Transparent
+         Caption         =   "Versão: 1.1"
+         BeginProperty Font 
+            Name            =   "Tahoma"
+            Size            =   6.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   255
+         Index           =   1
+         Left            =   2520
+         TabIndex        =   19
+         Top             =   840
+         Width           =   1935
       End
    End
    Begin VB.Timer piscapisca 
@@ -99,6 +165,7 @@ Begin VB.Form frmAlertas
          Strikethrough   =   0   'False
       EndProperty
       Height          =   495
+      Index           =   0
       Left            =   7440
       TabIndex        =   18
       Top             =   4080
@@ -500,6 +567,7 @@ Dim db As Connection
   mbDataChanged = False
   
   lblLabels(2).Caption = "Receita " & UCase(Format(Now, "mmm")) & "/" & Format(Now, "yyyy") & ":"
+  Label1(3).Caption = App.Title
   
   If GetSetting(App.Title, "CFGSYS", "PROFILE") = "operator" Then
     cmdConfig.Visible = False
