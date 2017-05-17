@@ -968,7 +968,11 @@ Private Sub Form_Load()
   Set db = New Connection
   
   db.CursorLocation = adUseClient
-  db.Open "PROVIDER=MSDataShape;Data PROVIDER=MSDASQL;driver={MySQL ODBC 5.3 Unicode Driver};server=127.0.0.1;uid=root;pwd=mysql1981;database=escort;"
+  db.Open "PROVIDER=MSDataShape;Data PROVIDER=MSDASQL;driver={MySQL ODBC 5.3 Unicode Driver};" & _
+          "server=" & GetSetting(App.Title, "CFGSYS", "CFGHOST") & ";" & _
+          "uid=" & GetSetting(App.Title, "CFGSYS", "CFGUSER") & ";" & _
+          "pwd=" & GetSetting(App.Title, "CFGSYS", "CFGPASS") & ";" & _
+          "database=" & GetSetting(App.Title, "CFGSYS", "CFGDATA") & ";"
 
   If pesID > 0 Then
     flagSql = "pesid = " & pesID

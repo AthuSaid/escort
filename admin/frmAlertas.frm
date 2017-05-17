@@ -30,6 +30,14 @@ Begin VB.Form frmAlertas
       TabIndex        =   6
       Top             =   0
       Width           =   9615
+      Begin VB.CommandButton cmdConfig 
+         Caption         =   "Config"
+         Height          =   375
+         Left            =   8160
+         TabIndex        =   8
+         Top             =   480
+         Width           =   975
+      End
    End
    Begin VB.Timer piscapisca 
       Interval        =   400
@@ -219,15 +227,25 @@ Private Sub cmdAnuncios_Click()
     frmAnuncios.Show
 End Sub
 
+Private Sub cmdConfig_Click()
+    frmCOnfig.Show vbModal, Me
+End Sub
+
 Private Sub cmdPerfis_Click()
     frmPerfis.Show
 End Sub
+
+
 
 Private Sub Form_Load()
 Dim db As Connection
   Set db = New Connection
   db.CursorLocation = adUseClient
-  db.Open "PROVIDER=MSDataShape;Data PROVIDER=MSDASQL;driver={MySQL ODBC 5.3 Unicode Driver};server=127.0.0.1;uid=root;pwd=mysql1981;database=escort;"
+  db.Open "PROVIDER=MSDataShape;Data PROVIDER=MSDASQL;driver={MySQL ODBC 5.3 Unicode Driver};" & _
+          "server=" & GetSetting(App.Title, "CFGSYS", "CFGHOST") & ";" & _
+          "uid=" & GetSetting(App.Title, "CFGSYS", "CFGUSER") & ";" & _
+          "pwd=" & GetSetting(App.Title, "CFGSYS", "CFGPASS") & ";" & _
+          "database=" & GetSetting(App.Title, "CFGSYS", "CFGDATA") & ";"
 
   Set adoPrimaryRS = New Recordset
   adoPrimaryRS.Open "SELECT " & _
