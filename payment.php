@@ -113,7 +113,7 @@
 	                                                <span><?php echo $functions->fGetReduceMonth(date('m')); ?></span>
 	                                            </div>
 	                                            <div class="head_text">
-	                                                <h2><?php echo $functions->fWelcomeMessage($_SESSION['sPersonAka'], $_SESSION['sPersonGender'], true); ?></h2>
+	                                                <h2><?php echo $functions->fWelcomeMessage($_SESSION['sPersonAka'], $_SESSION['sPersonGender'], $_SESSION['sPersonComeBack']); ?></h2>
 	                                                <ul class="list-inline">                                                    
 	                                                    <li><a href="#" class="text-black">Escolha o melhor plano dispon&iacute;vel que atenda sua necessidade:</a></li>                                                   
 	                                                </ul>
