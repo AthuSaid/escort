@@ -914,7 +914,7 @@ Function updateGallery()
      adoGallery.Open "SELECT " & _
                         "pf.* " & _
                      "FROM pessoas_fotos pf " & _
-                     "WHERE pf.apid = " & txtFields(7).Text & " AND pf.tipo = 1", db, adOpenStatic, adLockOptimistic
+                     "WHERE pf.apid = " & txtFields(7).Text & " AND pf.tipo = 2", db, adOpenStatic, adLockOptimistic
 
   With galeria
     .Clear
@@ -1130,7 +1130,7 @@ Function LoadGallery(pes As String, Gallery As String)
  On Local Error Resume Next
     Dim strGalSaveAs As String
     Dim lonReturn1 As Long
-    strGalSaveAs = App.Path & "\galeria_atual.jpeg"
+    strGalSaveAs = App.Path & "\galeria_atual.jpg"
     lonReturn1 = URLDownloadToFile(0, GetSetting(App.Title, "CFGSYS", "CFGSITE") & pes & "/" & Gallery, strGalSaveAs, 0, 0)
      With frmImage
         .Image1.Picture = LoadPicture(strGalSaveAs)
@@ -1141,5 +1141,6 @@ End Function
 Private Sub galeria_Click()
     Dim img As String
     img = galeria.List(galeria.ListIndex)
-    LoadGallery txtFields(8).Text, img
+    LoadGallery txtRecords(8).Text, img
 End Sub
+

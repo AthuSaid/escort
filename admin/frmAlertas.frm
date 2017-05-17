@@ -42,10 +42,10 @@ Begin VB.Form frmAlertas
             Strikethrough   =   0   'False
          EndProperty
          Height          =   255
-         Left            =   8640
+         Left            =   8520
          TabIndex        =   8
          Top             =   840
-         Width           =   615
+         Width           =   735
       End
       Begin VB.Label Label1 
          Alignment       =   1  'Right Justify

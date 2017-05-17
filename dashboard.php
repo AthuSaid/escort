@@ -143,7 +143,8 @@
                                         </div> 
                                         <div class="blog_details_figure m-top-40">
                                         
-                                        <?php if($_SESSION['sPersonPlanID'] == 0){ ?>
+                                        <?php if ($retPerson[0]['aprovado'] > 0){
+                                        	    if($_SESSION['sPersonPlanID'] == 0){ ?>
                                             <h6>Para dar prosseguimento a inclus&atilde;o de seus an&uacute;ncios, 
 	                                            voc&ecirc; deve aderir a algum dos planos dispon&iacute;veis em nosso site!<br>
 	                                            <br>Clique no bot&atilde;o <strong>CONTRATAR UM PLANO AGORA</strong> para assinar um plano que melhor atenda a sua necessidade!</h6>
@@ -155,7 +156,7 @@
 											<h4><i class="fa fa-warning"></i> Seu <strong>Plano <?php echo $_SESSION['sPersonPlanName']; ?></strong> foi contratado com sucesso por&eacute;m ainda est&aacute;<br>&nbsp;&nbsp;aguardando a comprova&ccedil;&atilde;o do pagamento pela Institui&ccedil;&atilde;o Financeira!</h4><br>  
 	                                            <h6>Voc&ecirc; s&oacute; poder&aacute; incluir an&uacute;ncios ap&oacute;s o retorno desta comprova&ccedil;&atilde;o!<br>
 	                                            <br>Fique tranquil<?php echo $functions->fReference($retPerson[0]['sexo']);?>! O vencimento contar&aacute; a partir da data da comprova&ccedil;&atilde;o do pagamento!</h6>
-										<?php } ?>
+										<?php }} ?>
 										
                                             <blockquote class="m-top-30 m-l-30">
                                                 <h5>
@@ -166,7 +167,7 @@
 												
 
 												<a href="<?php echo SIS_URL; ?>profile" class="btn btn-primary m-top-30">Editar meu Perfil <i class="fa fa-user"></i></a>												
-												<?php if($_SESSION['sPersonPlanID'] == 0){ ?>
+												<?php if($_SESSION['sPersonPlanID'] == 0 && $retPerson[0]['aprovado'] > 0){ ?>
 													<a href="<?php echo SIS_URL; ?>payment" class="btn btn-warning m-top-30">Contratar um Plano Agora <i class="fa fa-cart-plus"></i></a>
 												<?php }elseif($_SESSION['sPersonPlanID'] != 0 && $_SESSION['sPersonPlanExpires'] <= 5){ ?>
 													<a href="<?php echo SIS_URL; ?>payment" class="btn btn-warning m-top-30">Renovar Plano <i class="fa fa-cart-plus"></i></a>													
