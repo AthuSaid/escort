@@ -834,13 +834,6 @@ Dim db As Connection
 Option Explicit
 Private Declare Function URLDownloadToFile Lib "urlmon" Alias "URLDownloadToFileA" (ByVal pCaller As Long, ByVal szURL As String, ByVal szFileName As String, ByVal dwReserved As Long, ByVal lpfnCB As Long) As Long
 
-Private Sub Capa_Click()
-    With frmImage
-        .Image1.Picture = Capa.Picture
-        .Show
-    End With
-End Sub
-
 Private Sub cmdReprov_Click()
     With frmMotivo
         .mFlag = 1
@@ -1111,20 +1104,6 @@ Private Sub SetButtons(bVal As Boolean)
   cmdPrevious.Enabled = bVal
 End Sub
 
-Function changeImage(pes As String, Poster As String, Capa As String)
- On Local Error Resume Next
-    Dim strPosSaveAs As String
-    Dim strCapSaveAs As String
-    Dim lonReturn1 As Long
-    Dim lonReturn2 As Long
-    strPosSaveAs = App.Path & "\poster_atual.jpeg"
-    strCapSaveAs = App.Path & "\capa_atual.jpeg"
-    lonReturn1 = URLDownloadToFile(0, GetSetting(App.Title, "CFGSYS", "CFGSITE") & pes & "/" & Poster, strPosSaveAs, 0, 0)
-    lonReturn2 = URLDownloadToFile(0, GetSetting(App.Title, "CFGSYS", "CFGSITE") & pes & "/" & Capa, strCapSaveAs, 0, 0)
-    Set Poster.Picture = LoadPicture(strPosSaveAs)
-    Set Capa.Picture = LoadPicture(strCapSaveAs)
-End Function
-
 Function LoadGallery(pes As String, Gallery As String)
  On Local Error Resume Next
     Dim strGalSaveAs As String
@@ -1141,11 +1120,4 @@ Private Sub galeria_Click()
     Dim img As String
     img = galeria.List(galeria.ListIndex)
     LoadGallery txtFields(8).Text, img
-End Sub
-
-Private Sub Poster_Click()
-    With frmImage
-        .Image1.Picture = Poster.Picture
-        .Show
-    End With
 End Sub

@@ -1012,8 +1012,6 @@ Private Sub Form_KeyDown(KeyCode As Integer, Shift As Integer)
   If mbEditFlag Or mbAddNewFlag Then Exit Sub
 
   Select Case KeyCode
-    Case vbKeyEscape
-      cmdClose_Click
     Case vbKeyEnd
       cmdLast_Click
     Case vbKeyHome
