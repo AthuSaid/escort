@@ -1172,8 +1172,8 @@ Function changeImage(pes As String, doc As String, cpr As String)
     Dim lonReturn2 As Long
     strDocSaveAs = App.Path & "\documento-atual.jpeg"
     strCprSaveAs = App.Path & "\comprovacao-atual.jpeg"
-    lonReturn1 = URLDownloadToFile(0, "http://escort.local/images/persons/" & pes & "/" & doc, strDocSaveAs, 0, 0)
-    lonReturn2 = URLDownloadToFile(0, "http://escort.local/images/persons/" & pes & "/" & cpr, strCprSaveAs, 0, 0)
+    lonReturn1 = URLDownloadToFile(0, GetSetting(App.Title, "CFGSYS", "CFGSITE") & pes & "/" & doc, strDocSaveAs, 0, 0)
+    lonReturn2 = URLDownloadToFile(0, GetSetting(App.Title, "CFGSYS", "CFGSITE") & pes & "/" & cpr, strCprSaveAs, 0, 0)
     Set Documento.Picture = LoadPicture(strDocSaveAs)
     Set Comprovacao.Picture = LoadPicture(strCprSaveAs)
 End Function

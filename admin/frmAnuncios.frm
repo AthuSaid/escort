@@ -1073,7 +1073,6 @@ Private Sub cmdNext_Click()
     updateGallery
     updateModalitiesCaches
   End If
-  'show the current record
   mbDataChanged = False
   Exit Sub
 GoNextError:
@@ -1094,7 +1093,6 @@ Private Sub cmdPrevious_Click()
     updateGallery
     updateModalitiesCaches
   End If
-  'show the current record
   mbDataChanged = False
   Exit Sub
 
@@ -1103,12 +1101,9 @@ GoPrevError:
 End Sub
 
 Private Sub SetButtons(bVal As Boolean)
-  
   cmdEdit.Visible = bVal
   cmdUpdate.Visible = Not bVal
   cmdCancel.Visible = Not bVal
-  'cmdDelete.Visible = bVal
-  'cmdClose.Visible = bVal
   cmdRefresh.Visible = bVal
   cmdNext.Enabled = bVal
   cmdFirst.Enabled = bVal
@@ -1124,8 +1119,8 @@ Function changeImage(pes As String, Poster As String, Capa As String)
     Dim lonReturn2 As Long
     strPosSaveAs = App.Path & "\poster_atual.jpeg"
     strCapSaveAs = App.Path & "\capa_atual.jpeg"
-    lonReturn1 = URLDownloadToFile(0, "http://escort.local/images/persons/" & pes & "/" & Poster, strPosSaveAs, 0, 0)
-    lonReturn2 = URLDownloadToFile(0, "http://escort.local/images/persons/" & pes & "/" & Capa, strCapSaveAs, 0, 0)
+    lonReturn1 = URLDownloadToFile(0, GetSetting(App.Title, "CFGSYS", "CFGSITE") & pes & "/" & Poster, strPosSaveAs, 0, 0)
+    lonReturn2 = URLDownloadToFile(0, GetSetting(App.Title, "CFGSYS", "CFGSITE") & pes & "/" & Capa, strCapSaveAs, 0, 0)
     Set Poster.Picture = LoadPicture(strPosSaveAs)
     Set Capa.Picture = LoadPicture(strCapSaveAs)
 End Function
@@ -1135,7 +1130,7 @@ Function LoadGallery(pes As String, Gallery As String)
     Dim strGalSaveAs As String
     Dim lonReturn1 As Long
     strGalSaveAs = App.Path & "\galeria_atual.jpeg"
-    lonReturn1 = URLDownloadToFile(0, "http://escort.local/images/persons/" & pes & "/" & Gallery, strGalSaveAs, 0, 0)
+    lonReturn1 = URLDownloadToFile(0, GetSetting(App.Title, "CFGSYS", "CFGSITE") & pes & "/" & Gallery, strGalSaveAs, 0, 0)
      With frmImage
         .Image1.Picture = LoadPicture(strGalSaveAs)
         .Show

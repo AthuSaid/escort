@@ -78,8 +78,10 @@ Begin VB.Form frmConfig
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
+      IMEMode         =   3  'DISABLE
       Index           =   2
       Left            =   1080
+      PasswordChar    =   "*"
       TabIndex        =   4
       Top             =   1080
       Width           =   2415

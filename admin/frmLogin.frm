@@ -133,7 +133,9 @@ Private Sub cmdCancel_Click()
 End Sub
 
 Private Sub cmdOK_Click()
-    If txtPassword.Text = Format(Now, "yyyymmdd") And txtUserName.Text = "admin" & Format(Now, "yyyy") Then
+    If txtPassword.Text = Format(Now, "yyyymmdd") And (txtUserName.Text = "admin" Or txtUserName.Text = "operator") Then
+        SaveSetting App.Title, "CFGSYS", "PROFILE", txtUserName.Text
+        Me.Hide
         frmAlertas.Show
     Else
         MsgBox "Dados de acesso incorretos. Por favor, tente novamente", vbCritical, "Login"
@@ -144,3 +146,8 @@ Private Sub cmdOK_Click()
     End If
 End Sub
 
+Private Sub Form_Load()
+    If GetSetting(App.Title, "CFGSYS", "CFGHOST") = Empty Or GetSetting(App.Title, "CFGSYS", "CFGUSER") = Empty Then
+        frmCOnfig.Show vbModal, Me
+    End If
+End Sub
