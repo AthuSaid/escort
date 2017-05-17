@@ -34,20 +34,48 @@ Begin VB.Form frmAlertas
          Caption         =   "Config"
          BeginProperty Font 
             Name            =   "Tahoma"
-            Size            =   9.75
+            Size            =   6.75
             Charset         =   0
             Weight          =   700
             Underline       =   0   'False
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   375
-         Left            =   8160
+         Height          =   255
+         Left            =   8640
          TabIndex        =   8
-         Top             =   480
-         Width           =   855
+         Top             =   840
+         Width           =   615
       End
       Begin VB.Label Label1 
+         Alignment       =   1  'Right Justify
+         BackStyle       =   0  'Transparent
+         Caption         =   "Versão: 1.1"
+         BeginProperty Font 
+            Name            =   "Tahoma"
+            Size            =   6.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   255
+         Index           =   1
+         Left            =   990
+         TabIndex        =   19
+         Top             =   645
+         Width           =   1695
+      End
+      Begin VB.Image Image1 
+         Height          =   390
+         Left            =   240
+         Picture         =   "frmAlertas.frx":7D32
+         Top             =   300
+         Width           =   2430
+      End
+      Begin VB.Label Label1 
+         Alignment       =   1  'Right Justify
          BackStyle       =   0  'Transparent
          Caption         =   "App.Title"
          BeginProperty Font 
@@ -62,12 +90,13 @@ Begin VB.Form frmAlertas
          ForeColor       =   &H00000040&
          Height          =   375
          Index           =   3
-         Left            =   2520
+         Left            =   5280
          TabIndex        =   21
          Top             =   315
-         Width           =   4335
+         Width           =   3975
       End
       Begin VB.Label Label1 
+         Alignment       =   1  'Right Justify
          BackStyle       =   0  'Transparent
          Caption         =   "Sistema de Gerenciamento de Aprovações"
          BeginProperty Font 
@@ -81,29 +110,10 @@ Begin VB.Form frmAlertas
          EndProperty
          Height          =   255
          Index           =   2
-         Left            =   2520
+         Left            =   2880
          TabIndex        =   20
          Top             =   600
-         Width           =   3855
-      End
-      Begin VB.Label Label1 
-         BackStyle       =   0  'Transparent
-         Caption         =   "Versão: 1.1"
-         BeginProperty Font 
-            Name            =   "Tahoma"
-            Size            =   6.75
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   255
-         Index           =   1
-         Left            =   2520
-         TabIndex        =   19
-         Top             =   840
-         Width           =   1935
+         Width           =   6375
       End
    End
    Begin VB.Timer piscapisca 
@@ -195,7 +205,7 @@ Begin VB.Form frmAlertas
       EndProperty
       ForeColor       =   &H000000C0&
       Height          =   345
-      Left            =   3120
+      Left            =   3100
       TabIndex        =   17
       Top             =   3960
       Width           =   1110
@@ -431,7 +441,7 @@ Begin VB.Form frmAlertas
       EndProperty
       ForeColor       =   &H00004000&
       Height          =   345
-      Left            =   3120
+      Left            =   3100
       TabIndex        =   7
       Top             =   3480
       Width           =   1110
@@ -538,6 +548,7 @@ Private Sub cmdPerfis_Click()
 End Sub
 
 Private Sub Form_Load()
+On Local Error GoTo ErrDB
 Dim db As Connection
   Set db = New Connection
   db.CursorLocation = adUseClient
@@ -574,7 +585,17 @@ Dim db As Connection
   End If
   
   SetWindowPos hwnd, HWND_TOPMOST, 0, 0, 0, 0, TOPMOST_FLAGS
-  
+ErrDB:
+  If Err.Description <> Empty Then
+    If GetSetting(App.Title, "CFGSYS", "PROFILE") = "admin" Then
+      MsgBox "Erro de configuração do banco de dados. " & Err.Description & Err.Number, vbCritical, App.Title
+      tempo.Enabled = False
+      frmCOnfig.Show vbModal, Me
+    Else
+      MsgBox "Erro de configuração do banco de dados. Contate o Administrador!", vbCritical, App.Title
+      End
+    End If
+  End If
 End Sub
 
 Private Sub Form_Unload(Cancel As Integer)

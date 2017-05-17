@@ -1,18 +1,18 @@
 VERSION 5.00
 Begin VB.Form frmConfig 
    BorderStyle     =   3  'Fixed Dialog
-   Caption         =   "Configurações"
+   Caption         =   "Configurações Banco de Dados MySQL"
    ClientHeight    =   2535
    ClientLeft      =   45
    ClientTop       =   390
-   ClientWidth     =   4950
+   ClientWidth     =   5895
    Icon            =   "frmConfig.frx":0000
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
    Moveable        =   0   'False
    ScaleHeight     =   2535
-   ScaleWidth      =   4950
+   ScaleWidth      =   5895
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
    Begin VB.CommandButton cmdSave 
@@ -28,7 +28,7 @@ Begin VB.Form frmConfig
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   3720
+      Left            =   4680
       TabIndex        =   10
       Top             =   120
       Width           =   1095
@@ -48,7 +48,7 @@ Begin VB.Form frmConfig
       Left            =   1080
       TabIndex        =   8
       Top             =   2040
-      Width           =   2415
+      Width           =   3375
    End
    Begin VB.TextBox txtFields 
       BeginProperty Font 
@@ -65,7 +65,7 @@ Begin VB.Form frmConfig
       Left            =   1080
       TabIndex        =   7
       Top             =   1560
-      Width           =   2415
+      Width           =   3375
    End
    Begin VB.TextBox txtFields 
       BeginProperty Font 
@@ -84,7 +84,7 @@ Begin VB.Form frmConfig
       PasswordChar    =   "*"
       TabIndex        =   4
       Top             =   1080
-      Width           =   2415
+      Width           =   3375
    End
    Begin VB.TextBox txtFields 
       BeginProperty Font 
@@ -101,7 +101,7 @@ Begin VB.Form frmConfig
       Left            =   1080
       TabIndex        =   2
       Top             =   600
-      Width           =   2415
+      Width           =   3375
    End
    Begin VB.TextBox txtFields 
       BeginProperty Font 
@@ -118,7 +118,7 @@ Begin VB.Form frmConfig
       Left            =   1080
       TabIndex        =   0
       Top             =   120
-      Width           =   2415
+      Width           =   3375
    End
    Begin VB.Label lblLabels 
       Caption         =   "URL Site:"
@@ -216,13 +216,21 @@ Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
+Private Declare Function SetWindowPos Lib "user32" (ByVal hwnd As Long, ByVal hWndInsertAfter As Long, ByVal x As Long, y, ByVal cx As Long, ByVal cy As Long, ByVal wFlags As Long) As Long
+Private Const HWND_TOPMOST = -1
+Private Const HWND_NOTOPMOST = -2
+Private Const SWP_NOMOVE = &H2
+Private Const SWP_NOSIZE = &H1
+Private Const TOPMOST_FLAGS = SWP_NOMOVE Or SWP_NOSIZE
+
 Private Sub cmdSave_Click()
     SaveSetting App.Title, "CFGSYS", "CFGHOST", txtFields(0).Text
     SaveSetting App.Title, "CFGSYS", "CFGUSER", txtFields(1).Text
     SaveSetting App.Title, "CFGSYS", "CFGPASS", txtFields(2).Text
     SaveSetting App.Title, "CFGSYS", "CFGDATA", txtFields(3).Text
     SaveSetting App.Title, "CFGSYS", "CFGSITE", txtFields(4).Text
-    Unload Me
+    MsgBox "Por favor, reinicie o sistema para carregar as novas configurações!"
+    End
 End Sub
 
 Private Sub Form_Load()
@@ -231,4 +239,5 @@ Private Sub Form_Load()
     txtFields(2).Text = GetSetting(App.Title, "CFGSYS", "CFGPASS")
     txtFields(3).Text = GetSetting(App.Title, "CFGSYS", "CFGDATA")
     txtFields(4).Text = GetSetting(App.Title, "CFGSYS", "CFGSITE")
+    SetWindowPos hwnd, HWND_TOPMOST, 0, 0, 0, 0, TOPMOST_FLAGS
 End Sub
