@@ -272,7 +272,7 @@ class queries extends mysqlconn {
 			$_SESSION['sPersonPlanID'] = $obj['plaid'];
 			$_SESSION['sPersonPlanPaid'] = $obj['pago'];
 			$_SESSION['sPersonPlanName'] = $obj['name'];
-			//$_SESSION['sPersonPlanExpires'] = $obj['vencimento'];
+			$_SESSION['sPersonPlanExpires'] = $obj['planexpires'];
 			$_SESSION['sPersonPlanExpiresDate'] = $obj['vencimento'];
 			$_SESSION['sPersonMaxAds'] = $obj['ads'];
 			$_SESSION['sPersonMaxPhotos'] = $obj['photos'];

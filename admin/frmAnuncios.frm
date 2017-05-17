@@ -67,7 +67,7 @@ Begin VB.Form frmAnuncios
       Top             =   1560
       Width           =   4935
    End
-   Begin VB.TextBox txtFields 
+   Begin VB.TextBox txtRecords 
       DataField       =   "urlpes"
       Height          =   285
       Index           =   8
@@ -390,7 +390,7 @@ Begin VB.Form frmAnuncios
       Top             =   5280
       Width           =   375
    End
-   Begin VB.TextBox txtFields 
+   Begin VB.TextBox txtRecords 
       DataField       =   "pesid"
       Height          =   285
       Index           =   9
@@ -825,6 +825,8 @@ Dim WithEvents adoCaches As Recordset
 Attribute adoCaches.VB_VarHelpID = -1
 Dim WithEvents adoGallery As Recordset
 Attribute adoGallery.VB_VarHelpID = -1
+Dim WithEvents adoPerson As Recordset
+Attribute adoPerson.VB_VarHelpID = -1
 Dim mbChangedByCode As Boolean
 Dim mvBookMark As Variant
 Dim mbEditFlag As Boolean
@@ -860,7 +862,6 @@ End Sub
 Private Sub Form_Load()
   
   Dim oText As TextBox
-  Dim oLabel As Label
   
   Set db = New Connection
   db.CursorLocation = adUseClient
@@ -872,27 +873,41 @@ Private Sub Form_Load()
 
   Set adoPrimaryRS = New Recordset
   adoPrimaryRS.Open "SELECT " & _
-                        "ap.*, p.pesid, p.url AS urlpes, p.apelido, p.nome, p.email, p.whatsapp, p.tel1, p.tel2, " & _
+                        "ap.*, " & _
                         "CASE WHEN ap.aprovado = 0 THEN 'AGUARDANDO' WHEN ap.aprovado = 1 THEN 'APROVADO' WHEN ap.aprovado = 2 THEN 'REPROVADO' END AS status_aprovado " & _
                      "FROM anuncios_pessoas ap " & _
-                     "INNER JOIN pessoas p ON p.pesid = ap.pesid " & _
                      "WHERE ap.aprovado = 0 ORDER BY ap.cadastro ASC ", db, adOpenStatic, adLockOptimistic
 
   For Each oText In Me.txtFields
     Set oText.DataSource = adoPrimaryRS
   Next
-  For Each oLabel In Me.lblRecords
-    Set oLabel.DataSource = adoPrimaryRS
-  Next
   
   Set lblAprovado.DataSource = adoPrimaryRS
   
+  updatePerson
   updateGallery
   updateModalitiesCaches
-  
 
   mbDataChanged = False
 End Sub
+
+Function updatePerson()
+  Dim oLabel As Label
+  Dim oText As TextBox
+  Set adoPerson = New Recordset
+     adoPerson.Open "SELECT " & _
+                        "p.pesid, p.url AS urlpes, p.apelido, p.nome, p.email, p.whatsapp, p.tel1, p.tel2 " & _
+                     "FROM anuncios_pessoas ap " & _
+                     "INNER JOIN pessoas p ON p.pesid = ap.pesid " & _
+                     "WHERE ap.apid = " & txtFields(7).Text, db, adOpenStatic, adLockOptimistic
+
+  For Each oLabel In Me.lblRecords
+    Set oLabel.DataSource = adoPerson
+  Next
+  For Each oText In Me.txtRecords
+    Set oText.DataSource = adoPerson
+  Next
+End Function
 
 Function updateGallery()
   Set adoGallery = New Recordset
@@ -973,6 +988,7 @@ Private Sub cmdRefresh_Click()
   adoGallery.Requery
   adoModalities.Requery
   adoCaches.Requery
+  adoPerson.Requery
   Exit Sub
 RefreshErr:
   MsgBox Err.Description
@@ -1033,6 +1049,7 @@ Private Sub cmdFirst_Click()
   mbDataChanged = False
   updateGallery
   updateModalitiesCaches
+  updatePerson
   Exit Sub
 
 GoFirstError:
@@ -1046,6 +1063,7 @@ Private Sub cmdLast_Click()
   mbDataChanged = False
   updateGallery
   updateModalitiesCaches
+  updatePerson
   Exit Sub
 
 GoLastError:
@@ -1059,12 +1077,14 @@ Private Sub cmdNext_Click()
     adoPrimaryRS.MoveNext
     updateGallery
     updateModalitiesCaches
+    updatePerson
   End If
   If adoPrimaryRS.EOF And adoPrimaryRS.RecordCount > 0 Then
     Beep
     adoPrimaryRS.MoveLast
     updateGallery
     updateModalitiesCaches
+    updatePerson
   End If
   mbDataChanged = False
   Exit Sub
@@ -1079,12 +1099,14 @@ Private Sub cmdPrevious_Click()
     adoPrimaryRS.MovePrevious
     updateGallery
     updateModalitiesCaches
+    updatePerson
   End If
   If adoPrimaryRS.BOF And adoPrimaryRS.RecordCount > 0 Then
     Beep
     adoPrimaryRS.MoveFirst
     updateGallery
     updateModalitiesCaches
+    updatePerson
   End If
   mbDataChanged = False
   Exit Sub

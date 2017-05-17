@@ -134,9 +134,11 @@
                                                     <li><a href="#" class="text-black"><?php echo $_SESSION['sPersonAka']; ?></a></li>
                                                     <li><a href="#" class="text-black"><?php echo ($countAds == 0 ? "Nenhum an&uacute;ncio cadastrado!" : "{$countAds} an&uacute;ncios cadastrados"); ?></a></li>
                                                 </ul>
-                                                <ul class="list-inline">                                                    
-                                                    <li><a href="<?php echo SIS_URL?>payment" class="text-black">Seu Plano atual &eacute; o <strong>Plano <?php echo $_SESSION['sPersonPlanName']; ?></strong><?php if ($_SESSION['sPersonPlanPaid'] > 0){ ?> - com vencimento em <strong><?php echo $functions->fInvertDateBrazil($_SESSION['sPersonPlanExpiresDate'], false); }else{ echo '. Aguardando comprova&ccedil;&atilde;o do Pagamento'; } ?></strong></a></li>                                                    
-                                                </ul>
+                                                <?php if($_SESSION['sPersonPlanID'] > 0){ ?>
+	                                                <ul class="list-inline">                                                    
+	                                                    <li><a href="<?php echo SIS_URL?>payment" class="text-black">Seu Plano atual &eacute; o <strong>Plano <?php echo $_SESSION['sPersonPlanName']; ?></strong><?php if ($_SESSION['sPersonPlanPaid'] > 0){ ?> - com vencimento em <strong><?php echo $functions->fInvertDateBrazil($_SESSION['sPersonPlanExpiresDate'], false); }else{ echo '. Aguardando comprova&ccedil;&atilde;o do Pagamento'; } ?></strong></a></li>                                                    
+	                                                </ul>
+                                                <?php } ?>
                                             </div>
                                         </div> 
                                         <div class="blog_details_figure m-top-40">

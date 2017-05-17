@@ -149,6 +149,7 @@ if ($_POST['method'] != 'free') //Only paid plans - Invoke PagSeguro Payment Gat
 							  "videos" 				=> $retPlan[0]['videos'],
 							  "psid"                => $return->getCode(),
 							  "vloriginal"			=> $return->getGrossAmount(),
+							  "planexpires"         => $retPlan[0]['cobrancadias'],
 							  "vencimento"			=> date('Y-m-d H:i:s', strtotime("+".$retPlan[0]['cobrancadias']." day")));
 	
 			if($functions->fQuerySavePersonPlan($arrPlano))
@@ -207,6 +208,7 @@ if ($_POST['method'] != 'free') //Only paid plans - Invoke PagSeguro Payment Gat
 					  "videos" 		=> $retPlan[0]['videos'],				
 					  "vloriginal" 	=> 0,
 					  "pago" 		=> 1,
+			          "planexpires" => SIS_DIAS_GRATIS,
 					  "vencimento" 	=> date('Y-m-d H:i:s', strtotime("+".SIS_DIAS_GRATIS." day")));
 	
 	if($functions->fQuerySavePersonPlan($arrPlano))

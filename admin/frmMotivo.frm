@@ -2,7 +2,7 @@ VERSION 5.00
 Begin VB.Form frmMotivo 
    BorderStyle     =   3  'Fixed Dialog
    Caption         =   "Motivo de Reprovação"
-   ClientHeight    =   4680
+   ClientHeight    =   4845
    ClientLeft      =   45
    ClientTop       =   390
    ClientWidth     =   6660
@@ -19,10 +19,28 @@ Begin VB.Form frmMotivo
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   4680
+   ScaleHeight     =   4845
    ScaleWidth      =   6660
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
+   Begin VB.OptionButton optMotivo 
+      Caption         =   "Anúncio não contem Fotos ou Vídeos"
+      BeginProperty Font 
+         Name            =   "Tahoma"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   375
+      Index           =   8
+      Left            =   360
+      TabIndex        =   10
+      Top             =   3600
+      Width           =   6135
+   End
    Begin VB.OptionButton optMotivo 
       Caption         =   "Fotografias do anúncio infringem regras dos Termos de Uso"
       BeginProperty Font 
@@ -74,7 +92,7 @@ Begin VB.Form frmMotivo
       Height          =   495
       Left            =   2280
       TabIndex        =   7
-      Top             =   3960
+      Top             =   4200
       Width           =   2055
    End
    Begin VB.OptionButton optMotivo 
@@ -230,6 +248,7 @@ Private Sub Form_Load()
         optMotivo(5).Enabled = False
         optMotivo(6).Enabled = True
         optMotivo(7).Enabled = True
+        optMotivo(8).Enabled = True
     Else
         optMotivo(1).Enabled = True
         optMotivo(2).Enabled = True
@@ -238,6 +257,7 @@ Private Sub Form_Load()
         optMotivo(5).Enabled = True
         optMotivo(6).Enabled = False
         optMotivo(7).Enabled = False
+        optMotivo(8).Enabled = False
     End If
 End Sub
 
