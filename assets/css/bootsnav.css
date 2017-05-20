@@ -639,7 +639,7 @@ body.on-side .wrap-sticky nav.navbar.bootsnav.sticked{
     /* Navbar Transparent - AJUSTAR
     =================================*/  
     nav.navbar.bootsnav.no-background{
-        background-color: #550000;
+        background-color: transparent;
         border: none;
     }
     

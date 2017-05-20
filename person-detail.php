@@ -139,21 +139,21 @@
 				    </div>			    
 				  </div>
             
-            	<div class="imgLandscapeModel" class="bg-mega" style="background: url('<?php echo SIS_URL.'images/persons/'.$retPerson[0]['person'].'/'.$retPerson[0]['cover']; ?>') no-repeat bottom center;">                
-            		<?php if ($logged) { ?>
-            			<div class="divChangeMedias land"><i class="fa fa-camera"></i> Alterar Foto</div>							    	
-            		<?php } ?>	
+            	<div class="imgLandscapeModel" class="bg-mega" style="background: url('<?php echo SIS_URL.'images/persons/'.$retPerson[0]['person'].'/'.$retPerson[0]['cover']; ?>') no-repeat bottom center;">                            			
 	                <div class="container">
 	                    <div class="row">
 	                        <div class="main_home text-center">
 	                            <div class="model_text">
                                 <h1 class="text-white text-uppercase shadow-text"><?php echo $retPerson[0]['apelido']; ?></h1>
-                                <h3 class="text-white text-uppercase shadow-text"><?php echo $retPerson[0]['titulo']; ?></h3>
+                                <h3 class="text-white text-uppercase shadow-text"><?php echo $retPerson[0]['titulo']; ?></h3>                                
                                 <ol class="breadcrumb text-uppercase">
                                     <li class="shadow-text"><a href="<?php echo SIS_URL; ?>">Home</a></li>
                                     <li class="shadow-text"><a href="<?php echo SIS_URL; ?>dashboard">Minha Conta</a></li>
                                     <li class="active shadow-text"><a href="<?php echo SIS_URL.'person/'.$retPerson[0]['person'].'/'.$retPerson[0]['ad']; ?>"><?php echo $retPerson[0]['apelido']; ?></a></li>
                                 </ol>
+                                <?php if ($logged) { ?>
+			            			<div class="divChangeMediasLandscape centerLand land" ><i class="fa fa-camera"></i> Alterar Foto</div>							    	
+			            		<?php } ?>
                             </div>
 	                        </div>
 	                    </div><!--End off row-->
@@ -341,7 +341,7 @@
                                          <div class="col-md-12 m-bottom-40">
 			                                <div class="head_title text-left sm-text-center wow fadeInDown">
 			                                    <h3>Minhas Especialidades</h3>
-			                                    <h5><em>Sou profissional e realizo as seguintes fantasias que desejar:</em></h5>			                                    
+			                                    <h5><em>Sou profissional e realizo as seguintes modalidades:</em></h5>			                                    
 			                                </div>
 			                            </div>
 			                            <div style="clear: both;"></div>                                       
@@ -397,7 +397,7 @@
                             <div class="col-md-12 m-bottom-40">
                                 <div class="head_title text-left sm-text-center wow fadeInDown">
                                     <h3>Meu Ensaio Fotogr&aacute;fico</h3>
-                                    <h5><em>Confira a minha galeria de fotos profissionais. Espero que voc&ecirc; goste!</em></h5>                                    
+                                    <h5><em>Confira a minha galeria de fotos profissionais.</em></h5>                                    
                                 </div>
                             </div>
                             <div style="clear: both;"></div>

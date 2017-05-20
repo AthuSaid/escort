@@ -75,14 +75,13 @@
 
 
 	            <!--Home Sections-->
-	            <section id="hello" class="blog-banner bg-mega">
-	                <div class="overlay"></div>
+	            <section id="hello" class="dash-banner-<?php echo $functions->genderPrefer;?> bg-mega">
 	                <div class="container">
 	                    <div class="row">
 	                        <div class="main_home text-center">
 	                            <div class="about_text">
-	                                <h1 class="text-white text-uppercase">Planos de Contrata&ccedil;&atilde;o</h1>
-	                                <ol class="breadcrumb">
+	                                <h1 class="text-white text-uppercase text-shadow">Planos de Contrata&ccedil;&atilde;o</h1>
+	                                <ol class="breadcrumb text-shadow">
 	                                    <li><a href="<?php echo SIS_URL; ?>">Home</a></li>
 	                                    <li><a href="<?php echo SIS_URL; ?>dashboard">Minha Conta</a></li>
 	                                    <li class="active"><a href="<?php echo SIS_URL; ?>payment">Planos de Contrata&ccedil;&atilde;o</a></li>

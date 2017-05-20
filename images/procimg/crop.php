@@ -141,7 +141,7 @@ class CropAvatar {
     				  'imagemurl' => $hashPhoto . '.png', 
     		          'local' => $local, 
     		          'hash' => $hashPhoto);    
-    $query->fQuerySavePhoto($arrPhoto);
+    $query->fQuerySavePhoto($arrPhoto, true);
     
     $arrPhoto = array('apid' => $apid, 
     				  'tipo' => 2, 

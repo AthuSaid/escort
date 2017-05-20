@@ -163,7 +163,7 @@
 
 	                            <div class="col-md-4 sm-m-top-40 sm-text-center">
 	                                <div class="service-img wow bounceIn">
-	                                    <img src="assets/img/home-couple_<?php echo rand(1,3);?>.jpg" alt="Home Couple">
+	                                    <img src="assets/img/home<?php echo rand(1,4);?>.png" alt="Home Couple">
 	                                </div>
 	                            </div>
 

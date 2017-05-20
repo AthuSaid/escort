@@ -162,7 +162,7 @@
 	                                            <div class="col-sm-12">
 	                                                <div class="form-group">
 	                                                    <label><i class="fa fa-question-circle descr"></i> Descreva sobre voc&ecirc; e os servi&ccedil;os que realiza *</label>
-	                                                    <textarea  id="descricao" name="descricao" data-error="Por favor, informe a Descri&ccedil;&atilde;o dos servi&ccedil;os que realiza! ATEN&Ccedil;&Atilde;O: N&atilde;o mencione telefones ou endere&ccedil;os de internet no corpo de seu an&uacute;ncio! Utilize os campos apropriados no seu cadastro!" required class="form-control" rows="12"><?php echo $retAd[0]['descricao']; ?></textarea>
+	                                                    <textarea id="descricao" name="descricao" data-minlength="200" data-error="Por favor, informe a Descri&ccedil;&atilde;o dos servi&ccedil;os que realiza! ATEN&Ccedil;&Atilde;O: N&atilde;o mencione telefones ou endere&ccedil;os de internet no corpo de seu an&uacute;ncio! Utilize os campos apropriados no seu cadastro!" required class="form-control" rows="12"><?php echo $retAd[0]['descricao']; ?></textarea>
 	                                                    <div class="help-block with-errors descricao"></div>
 	                                                </div>	                                                
 	                                            </div>	                                               

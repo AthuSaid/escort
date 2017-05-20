@@ -96,7 +96,7 @@
 
 
             <!--Home Sections-->
-            <section id="hello" class="blog-banner bg-mega">
+            <section id="hello" class="cad-banner bg-mega">
                 <div class="overlay"></div>
                 <div class="container">
                     <div class="row">

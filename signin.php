@@ -84,8 +84,7 @@
 
 
 	            <!--Home Sections-->
-	            <section id="hello" class="blog-banner bg-mega">
-	                <div class="overlay"></div>
+	            <section id="hello" class="cad-banner bg-mega">	                
 	                <div class="container">
 	                    <div class="row">
 	                        <div class="main_home text-center">

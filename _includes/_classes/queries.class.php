@@ -1269,9 +1269,10 @@ class queries extends mysqlconn {
 	 * Query Save Photo
 	 * @param object $_REQUEST
 	 */
-    public function fQuerySavePhoto($obj){
-    	//if ($obj['local'] == 1 || $obj['local'] == 4)
-    	//$this->fQueryRemoveCoverAndMainPhotos($obj['apid'], $obj['local']);
+    public function fQuerySavePhoto($obj, $remove = false){
+    	
+    	if ($remove)
+    		$this->fQueryRemoveCoverAndMainPhotos($obj['apid'], $obj['local']);
     	
     	$sql = "INSERT INTO pessoas_fotos (apid, tipo, imagemurl, local, hash, ativo, titulo, descricao)
        			VALUES ({$obj['apid']}, {$obj['tipo']}, '{$obj['imagemurl']}', {$obj['local']}, '{$obj['hash']}', ".($obj['ativo'] == 1 ? 1 : '0').", '{$obj['titulo']}', '{$obj['descricao']}')";
@@ -1288,7 +1289,7 @@ class queries extends mysqlconn {
      * @return boolean
      */
     private function fQuerySetAdToDisabled($apid){
-    	$sql = "UPDATE anuncios_pessoas SET aprovado = 0 WHERE apid = {$apid}";
+    	$sql = "UPDATE anuncios_pessoas SET aprovado = 0, lido = 0 WHERE apid = {$apid}";
     	$this->fExecuteSql($sql);
     	return true;
     }

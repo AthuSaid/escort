@@ -19,7 +19,7 @@
 		<meta name="google" content="translate" />
 		<meta name="google" content="nositelinkssearchbox" />
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="icon" type="image/png" href="favicon.ico">
+        <link rel="icon" type="image/png" href="<?php echo SIS_URL; ?>favicon.ico">
         <!--Google Fonts link-->
         <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Crimson+Text:400,400i,600,600i,700,700i" rel="stylesheet">
@@ -76,8 +76,8 @@
 
 
             <!--Home Sections-->
-            <section id="hello" class="person-banner bg-mega">
-                <div class="overlay"></div>
+            <section class="person-banner bg-mega">
+                <!--div class="overlay"></div-->
                 <div class="container">
                     <div class="row">
                         <div class="main_home text-center">
@@ -117,14 +117,16 @@
         <script src="<?php echo SIS_URL; ?>assets/js/jquery.magnific-popup.js"></script>
         <script src="<?php echo SIS_URL; ?>assets/js/jquery.easing.1.3.js"></script>
         <script src="<?php echo SIS_URL; ?>assets/js/slick.min.js"></script>
-        <script src="<?php echo SIS_URL; ?>assets/js/jquery.collapse.js"></script>
-        <script src="<?php echo SIS_URL; ?>assets/js/jquery.modal.min.js"</script>
+        <script src="<?php echo SIS_URL; ?>assets/js/jquery.collapse.js"></script>        
+        
         <script src="<?php echo SIS_URL; ?>assets/js/bootsnav.js"></script>
+       
         <script src="<?php echo SIS_URL; ?>assets/js/plugins.js"></script>
         <script src="<?php echo SIS_URL; ?>assets/js/main.js"></script>
         <script src="<?php echo SIS_URL; ?>assets/js/counter.js"></script> 
 		<script src="<?php echo SIS_URL; ?>assets/js/cookie.js"></script>
 		<script src="<?php echo SIS_URL; ?>assets/js/validator.js"></script>
         <script src="<?php echo SIS_URL; ?>assets/js/form.js"></script>
+        <script src="<?php echo SIS_URL; ?>assets/js/jquery.modal.min.js"</script>
     </body>
 </html>
