@@ -990,6 +990,18 @@ Nav Menu style
 .dash-banner-F1{
     background: url(../img/dashboard-f1.jpg) no-repeat bottom center; height:650px;
 }
+.dash-banner-F2{
+    background: url(../img/dashboard-f2.jpg) no-repeat bottom center; height:650px;
+}
+.dash-banner-F3{
+    background: url(../img/dashboard-f3.jpg) no-repeat bottom center; height:650px;
+}
+.dash-banner-F4{
+    background: url(../img/dashboard-f4.jpg) no-repeat bottom center; height:650px;
+}
+.dash-banner-F5{
+    background: url(../img/dashboard-f5.jpg) no-repeat bottom center; height:650px;
+}
 .dash-banner-M1{
     background: url(../img/dashboard-m1.jpg) no-repeat bottom center; height:650px;
 }

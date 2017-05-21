@@ -16,6 +16,7 @@
     }
     
     $countPhotos = $functions->fGetCountPersonPhotos($retPerson[0]['pesid']);
+    $countVideos = $functions->fGetCountPersonVideos($retPerson[0]['pesid']);
 ?>
 <!doctype html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
@@ -277,6 +278,7 @@
                                 </div>
                                  <hr />
                                  
+                                 <?php if ($retPerson[0]['fake'] != 1){ ?>
                                  	<?php if (!empty($retPerson[0]['whatsapp'])){ ?>
                                 		<h4><i class="fa fa-whatsapp"></i> <?php echo $retPerson[0]['whatsapp']; ?></h4>
                                 	<?php } if (!empty($retPerson[0]['tel1'])){ ?>
@@ -289,7 +291,7 @@
                                 		<h6> <i class="fa fa-twitter"></i> <a href="<?php echo $retPerson[0]['twitter']; ?>" target="_blank">@<?php echo $retPerson[0]['url']; ?></a></h6>
                                 	<?php } if (!empty($retPerson[0]['googleplus'])){ ?>
                                 		<h6> <i class="fa fa-instagram"></i> <a href="<?php echo $retPerson[0]['googleplus']; ?>" target="_blank"><?php echo ucwords($retPerson[0]['apelido']); ?></a></h6>
-                                	<?php } ?>
+                                <?php }} ?>
                                 	
                                 	<?php /* ###### DESATIVADO ATE O FATURAMENTO FAZER VALER A PENA INVESTIR!! #####
                                 	if ($retPerson[0]['ppv'] == 1){ ?>
@@ -405,7 +407,7 @@
                             
                             
                                 <!-- PERSON GALLERY ########################################### -->
-           						<?php echo $functions->fGetPersonPhotos($retPerson[0]['apid'], $retPerson[0]['url']); ?>
+           						<?php echo $functions->fGetPersonPhotos($retPerson[0]['apid'], $retPerson[0]['url'], count($countPhotos), count($countVideos)); ?>
 
 
                             </div>

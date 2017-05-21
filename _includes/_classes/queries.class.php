@@ -506,6 +506,19 @@ class queries extends mysqlconn {
 	}
     
 	
+	/**
+	 * Remove Photo
+	 *
+	 * @author    Daniel Triboni
+	 * @param	 string $hash
+	 * @return	 boolean
+	 */
+	public function fRemovePhoto($hash){
+		$this->sqlQuery = "DELETE FROM pessoas_fotos WHERE hash = '{$hash}'";
+		return $this->fExecuteSql($this->sqlQuery);
+	}
+	
+	
     /**
 	* Query SQL Errors
 	*	
@@ -784,7 +797,30 @@ class queries extends mysqlconn {
 					    	FROM pessoas_fotos pf
 					    	INNER JOIN anuncios_pessoas ap ON ap.apid = pf.apid
 					    	INNER JOIN pessoas p ON p.pesid = ap.pesid
-					    	WHERE p.pesid = {$pesid}";
+					    	WHERE p.pesid = {$pesid} 
+					    	AND pf.local NOT IN (1,4)
+					    	AND pf.tipo = 1";
+    	$this->fExecuteSql($this->sqlQuery);
+    	$this->retRecords = $this->fShowRecords();
+    	return $this->retRecords;
+    }
+    
+    
+    /**
+     * Get Query All Person Videos
+     *
+     * @author    Daniel Triboni
+     * @return	 array
+     */
+    public function fQueryAllPersonVideos($pesid){
+    	$this->sqlQuery = "SELECT
+					    		pf.fotid
+					    	FROM pessoas_fotos pf
+					    	INNER JOIN anuncios_pessoas ap ON ap.apid = pf.apid
+					    	INNER JOIN pessoas p ON p.pesid = ap.pesid
+					    	WHERE p.pesid = {$pesid}
+					    	AND pf.local = 3
+					    	AND pf.tipo = 1";
     	$this->fExecuteSql($this->sqlQuery);
     	$this->retRecords = $this->fShowRecords();
     	return $this->retRecords;
@@ -1095,6 +1131,7 @@ class queries extends mysqlconn {
     public function fQueryCurrentPersonPhotos($apid){
     	$this->sqlQuery = "SELECT
     						pf.hash,
+    						pf.local,
     						IFNULL((SELECT pft.ativo AS ativo
 							     FROM pessoas_fotos pft 
 							     WHERE pft.hash = pf.hash 							     
@@ -1128,12 +1165,19 @@ class queries extends mysqlconn {
 							     AND pfl.ativo = 1 
 							     AND pfl.local = 2 
 							     AND pfl.tipo = 2 
-							     AND pfl.principal = 'S'), 'no-large.jpg') AS large
+							     AND pfl.principal = 'S'), 'no-large.jpg') AS large,
+							IFNULL((SELECT pfl.imagemurl AS video 
+							     FROM pessoas_fotos pfl 
+							     WHERE pfl.hash = pf.hash 
+							     AND pfl.ativo = 1 
+							     AND pfl.local = 3 
+							     AND pfl.tipo = 1 
+							     AND pfl.principal = 'S'), 'no-large.jpg') AS video     
 					    	FROM pessoas_fotos pf
 					    	WHERE pf.fotid > 1
 					    	AND pf.apid = {$apid}
 					    	AND pf.local NOT IN (1,4)
-					    	GROUP BY pf.hash
+					    	GROUP BY pf.hash, pf.local
     						ORDER BY pf.fotid ASC";
     	$this->fExecuteSql($this->sqlQuery);
     	$this->retRecords = $this->fShowRecords();
@@ -1271,7 +1315,7 @@ class queries extends mysqlconn {
 	 */
     public function fQuerySavePhoto($obj, $remove = false){
     	
-    	if ($remove)
+    	if ($remove && ($obj['local'] == 1 || $obj['local'] == 4))
     		$this->fQueryRemoveCoverAndMainPhotos($obj['apid'], $obj['local']);
     	
     	$sql = "INSERT INTO pessoas_fotos (apid, tipo, imagemurl, local, hash, ativo, titulo, descricao)

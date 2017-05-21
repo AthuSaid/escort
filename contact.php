@@ -77,14 +77,13 @@
 
 
             <!--Home Sections-->
-            <section id="hello" class="contact-banner bg-mega">
-                <div class="overlay"></div>
+            <section id="hello" class="dash-banner-<?php echo $functions->genderPrefer.rand(1,5);?> bg-mega">
                 <div class="container">
                     <div class="row">
                         <div class="main_home text-center">
                             <div class="contact_text">
-                                <h1 class="text-white text-uppercase">Contate-nos</h1>
-                                <ol class="breadcrumb">
+                                <h1 class="text-white text-uppercase shadow-text">Contate-nos</h1>
+                                <ol class="breadcrumb shadow-text">
                                     <li><a href="<?php echo SIS_URL; ?>">Home</a></li>
                                     <li class="active"><a href="#">Contate-nos</a></li>
                                 </ol>

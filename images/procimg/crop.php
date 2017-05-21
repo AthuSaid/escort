@@ -81,6 +81,9 @@ class CropAvatar {
     if ($errorCode === UPLOAD_ERR_OK) {
       $type = exif_imagetype($file['tmp_name']);
 
+      $ext = pathinfo($file['name'], PATHINFO_EXTENSION);
+      
+      
       if ($type) {
         $extension = image_type_to_extension($type);
         
@@ -89,6 +92,8 @@ class CropAvatar {
         if (!file_exists($imagePath)) {
         	mkdir($imagePath, 0777, true);
         }
+        
+        
         
         $src = $imagePath.'/'. $hashPhoto . '.original' . $extension;
 

@@ -341,7 +341,7 @@
 
     submitEnd: function () {
     	if(this.$mymodal == 'gallery'){
-    		location.reload();
+    		//location.reload();
     	}else{
     		$("#loading").fadeOut(500);
     	}	

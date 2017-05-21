@@ -178,8 +178,19 @@ jQuery(document).ready(function ($) {
 function removeImg(hash) {
 	if (confirm('Deseja remover esta foto?'))
 	{
-		//$('.grid').isotope('insert', $(fakeElement.getGroup()));
-		$('.grid').isotope('remove', $('.hash_' + hash));		
+		$.ajax({
+            url: $urlProj + "_actions/photo.php",
+            type: 'GET',
+            data: {mtd: 'delete', hash: hash},
+            dataType: "html",
+            success: function (data) {
+            	var json = $.parseJSON(data);
+            	if(json.ret == true){            		
+            		$('.grid').isotope('remove', $('.hash_' + hash));		
+            	}
+            },
+            cache: false        
+        });		
 	}
 }
 

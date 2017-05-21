@@ -1266,7 +1266,7 @@ class functions extends queries {
      * @param number $pesid
      * @return string|NULL
      */
-    public function fGetPersonPhotos($apid = 0, $url = null)
+    public function fGetPersonPhotos($apid = 0, $url = null, $numPhotos, $numVideos)
     {
     	$this->retRecords = $this->fQueryCurrentPersonPhotos($apid);
 
@@ -1276,7 +1276,7 @@ class functions extends queries {
     	
     	if ($personLogged) {
     	
-    		$this->retHTML .= '<div class="grid-item transition metal ium" style="background: url(\''.SIS_URL.'assets/img/contrate.jpg\') no-repeat;">
+    		$this->retHTML .= '<div class="grid-item transition metalloid ium" style="background: url(\''.SIS_URL.'assets/img/contrate.jpg\') no-repeat;">
     									<div class="text-center">	                                        
 	                                    </div>
                                 	</div>';
@@ -1293,31 +1293,31 @@ class functions extends queries {
     			$description = ($personLogged ? '<p><input type="text" placeholder="Descreva sua foto" id="description" style="width: 300px; text-align: center; color: #ccc; background: transparent; border: 1px solid #ccc;" value="'.$this->retRecords[$x]['descricao'].'"></p>' : '<h5 class="text-white"><em>'.$this->retRecords[$x]['descricao'].'</em></h5>');
     			$delete = ($personLogged ? '<div class="cropControls cropControlsUpload" onclick="removeImg(\''.$this->retRecords[$x]['hash'].'\')"><i class="cropControlRemoveCroppedImage" title="Remover Foto"></i></div>' : '');    			
     			
-    			$this->retHTML .= '<div class="grid-item transition metal ium hash_'.$this->retRecords[$x]['hash'].'" style="background: url(\''.SIS_URL.'images/persons/'.$url.'/'.$this->retRecords[$x]['thumb'].'\') no-repeat;">                                    	
+    			$this->retHTML .= '<div class="grid-item transition metalloid ium hash_'.$this->retRecords[$x]['hash'].'" style="background: url(\''.SIS_URL.'images/persons/'.$url.'/'.$this->retRecords[$x]['thumb'].'\') no-repeat;">                                    	
                                     	'.$delete.'
     									<div class="grid_hover_area text-center">
 	                                        <div class="grid_hover_text m-top-110">
 	                                            '.$active.'
                                     			'.$title.'
 	                                            '.$description.'
-	                                            <a href="'.SIS_URL.'images/persons/'.$url.'/'.$this->retRecords[$x]['large'].'" class="popup-img text-white m-top-40">Ampliar <i class="fa fa-search-plus"></i></a>
+	                                            <a href="'.($this->retRecords[$x]['local'] == 3 ? $this->retRecords[$x]['video'] : SIS_URL.'images/persons/'.$url.'/'.$this->retRecords[$x]['large']).'" class="'.($this->retRecords[$x]['local'] == 3 ? 'video-link' : 'popup-img').' text-white m-top-40">Ampliar <i class="fa fa-search-plus"></i></a>
 	                                        </div>
 	                                    </div>		
                                 	</div>';
     		}
     	}
     	
-    	if ($personLogged) {    	
+    	if ($personLogged /*&& $numPhotos < $_SESSION['sPersonMaxPhotos']*/) {    	
     		
 	    			$this->retHTML .= '
 	    					
 	    									<div class="container openmodal" data-modal="gallery" id="cropImgGallery">											    
-											    <div class="grid-item metal ium addphoto">
+											    <div class="grid-item metalloid ium addphoto">
 											    	<div class="imgGalleryModel">
 											      		<div class="grid_hover_area2 text-center">
 					                                        <div class="grid_hover_text m-top-110">
-					                                            <h4 class="text-white"><i class="fa fa-camera"></i> <i class="fa fa-upload"></i></h4>
-				    											<h6 class="text-white">Adicionar nova Foto</h6>
+					                                            <h4 class="text-white"><i class="fa fa-video-camera"></i> <i class="fa fa-upload"></i></h4>
+				    											<h6 class="text-white">Adicionar Foto/V&iacute;deo</h6>
 					                                        </div>
 					                                    </div>
 												    </div>
@@ -1339,7 +1339,7 @@ class functions extends queries {
 											                  <input type="hidden" value="'.$apid.'" name="apid">											          		
 											                  <input type="hidden" value="'.$_SESSION['sPersonUrl'].'" name="person_url">
 															  <input type="hidden" value="gallery" name="imgtype">
-											                  <label for="avatarInput">Selecione o Arquivo para Upload:</label>
+											                  <label for="avatarInput">Selecione a Imagem/V&iacute;deo para Upload: </label>
 											                  <input type="file" class="avatar-input" id="avatarInput" name="avatar_file">
 											                </div>			
 											                <div class="row">
@@ -1347,9 +1347,9 @@ class functions extends queries {
 											                  	<div id="cropper2" class="avatar-wrapper"></div>
 								                    			<div id="webcam2" class="divCropperCamera"></div>
 											                  </div>
-											                  <div class="col-md-3">
+											                  <!--div class="col-md-3">
 											                    <div class="avatar-preview preview-lg"></div>			                    
-											                  </div>
+											                  </div-->
 											                  <br/>
 											                  <div class="col-md-3">
 											                    <div class="form-group">
@@ -1475,13 +1475,22 @@ class functions extends queries {
     
     /**
      * Get Person Count Photos
-     * @param unknown $type
      * @param unknown $pesid
-     * @param unknown $gender
      */
     public function fGetCountPersonPhotos($pesid)
     {
     	$this->retRecords = $this->fQueryAllPersonPhotos($pesid);
+    
+    	return count($this->retRecords);
+    }
+    
+    /**
+     * Get Person Count Videos
+     * @param unknown $pesid
+     */
+    public function fGetCountPersonVideos($pesid)
+    {
+    	$this->retRecords = $this->fQueryAllPersonVideos($pesid);
     
     	return count($this->retRecords);
     }
