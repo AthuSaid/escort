@@ -11,6 +11,16 @@ body {
   width: 100%;
 }
 
+.divVideoModal {
+  display: block;  
+  height: 278px;
+  width: 370px;
+  left: -1px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  overflow: hidden;  
+}
+
 .imgGalleryModel {
   display: block;  
   height: 278px;
@@ -59,8 +69,7 @@ body {
 }
 
 .avatar-upload input {
-  display: block;
-  margin-left: 110px;
+  display: block; 
 }
 
 .avatar-alert {

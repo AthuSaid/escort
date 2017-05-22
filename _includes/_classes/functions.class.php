@@ -1289,18 +1289,18 @@ class functions extends queries {
     		{
     			
     			$active = ($personLogged ? '<h4 class="showphoto"><input type="checkbox" value="1" '.($this->retRecords[$x]['ativo'] == '1' ? 'checked' : '').'> <i class="fa fa-eye"></i></h4>' : '');
-    			$title = ($personLogged ? '<p><input type="text" maxlength="30" placeholder="Informe um titulo para sua foto" id="title" style="width: 300px; text-align: center; color: #ccc; background: transparent; border: 1px solid #ccc;" value="'.$this->retRecords[$x]['titulo'].'"></p>' : '<h4 class="text-white">'.$this->retRecords[$x]['titulo'].'</h4>');
-    			$description = ($personLogged ? '<p><input type="text" placeholder="Descreva sua foto" id="description" style="width: 300px; text-align: center; color: #ccc; background: transparent; border: 1px solid #ccc;" value="'.$this->retRecords[$x]['descricao'].'"></p>' : '<h5 class="text-white"><em>'.$this->retRecords[$x]['descricao'].'</em></h5>');
+    			$title = ($personLogged ? '<p><input type="text" maxlength="30" placeholder="Informe um titulo para sua foto" id="title" style="width: 91%; text-align: center; color: #ccc; background: transparent; border: 1px solid #ccc;" value="'.$this->retRecords[$x]['titulo'].'"></p>' : '<h4 class="text-white">'.$this->retRecords[$x]['titulo'].'</h4>');
+    			$description = ($personLogged ? '<p><input type="text" placeholder="Descreva sua foto" id="description" style="width: 91%; text-align: center; color: #ccc; background: transparent; border: 1px solid #ccc;" value="'.$this->retRecords[$x]['descricao'].'"></p>' : '<h5 class="text-white"><em>'.$this->retRecords[$x]['descricao'].'</em></h5>');
     			$delete = ($personLogged ? '<div class="cropControls cropControlsUpload" onclick="removeImg(\''.$this->retRecords[$x]['hash'].'\')"><i class="cropControlRemoveCroppedImage" title="Remover Foto"></i></div>' : '');    			
     			
-    			$this->retHTML .= '<div class="grid-item transition metalloid ium hash_'.$this->retRecords[$x]['hash'].'" style="background: url(\''.SIS_URL.'images/persons/'.$url.'/'.$this->retRecords[$x]['thumb'].'\') no-repeat;">                                    	
+    			$this->retHTML .= '<div class="grid-item transition metalloid ium hash_'.$this->retRecords[$x]['hash'].'" style="background: url(\''.SIS_URL.'images/persons/'.$url.'/'.($this->retRecords[$x]['local'] == 3 ? $this->retRecords[$x]['video']: $this->retRecords[$x]['thumb']).'\') no-repeat;">                                    	
                                     	'.$delete.'
     									<div class="grid_hover_area text-center">
-	                                        <div class="grid_hover_text m-top-110">
+	                                        <div class="grid_hover_text m-top-90">
 	                                            '.$active.'
                                     			'.$title.'
 	                                            '.$description.'
-	                                            <a href="'.($this->retRecords[$x]['local'] == 3 ? $this->retRecords[$x]['video'] : SIS_URL.'images/persons/'.$url.'/'.$this->retRecords[$x]['large']).'" class="'.($this->retRecords[$x]['local'] == 3 ? 'video-link' : 'popup-img').' text-white m-top-40">Ampliar <i class="fa fa-search-plus"></i></a>
+	                                            <a href="'.($this->retRecords[$x]['local'] == 3 ? SIS_URL.'images/persons/'.$url.'/'.$this->retRecords[$x]['video'] : SIS_URL.'images/persons/'.$url.'/'.$this->retRecords[$x]['large']).'" class="'.($this->retRecords[$x]['local'] == 3 ? 'video-link' : 'popup-img').' text-white m-top-40">Ampliar <i class="fa fa-search-plus"></i></a>
 	                                        </div>
 	                                    </div>		
                                 	</div>';
@@ -1310,26 +1310,27 @@ class functions extends queries {
     	if ($personLogged /*&& $numPhotos < $_SESSION['sPersonMaxPhotos']*/) {    	
     		
 	    			$this->retHTML .= '
-	    					
-	    									<div class="container openmodal" data-modal="gallery" id="cropImgGallery">											    
+											<div class="container openmodal" data-modal="gallery" id="cropImgGallery">
+
 											    <div class="grid-item metalloid ium addphoto">
 											    	<div class="imgGalleryModel">
 											      		<div class="grid_hover_area2 text-center">
 					                                        <div class="grid_hover_text m-top-110">
-					                                            <h4 class="text-white"><i class="fa fa-video-camera"></i> <i class="fa fa-upload"></i></h4>
-				    											<h6 class="text-white">Adicionar Foto/V&iacute;deo</h6>
+					                                            <h4 class="text-white"><i class="fa fa-camera"></i></h4>
+				    											<h6 class="text-white">Adicionar Fotos</h6>
 					                                        </div>
 					                                    </div>
 												    </div>
-											    </div>								
-											    <!-- Cropping modal -->
+											    </div>
+
+											    <!-- Cropping Gallery modal -->
 											    <div class="modal fade" id="galleryModal" aria-hidden="true" aria-labelledby="avatar-modal-label" role="dialog" tabindex="-1">
 											      <div class="modal-dialog modal-lg">
 											        <div class="modal-content">
 											          <form role="form" data-toggle="validator" style="text-align:left;" class="avatar-form" action="'.SIS_URL.'images/procimg/crop.php" enctype="multipart/form-data" method="post">
 											            <div class="modal-header">
 											              <button type="button" class="close" data-dismiss="modal">&times;</button>
-											              <h4 class="modal-title">Carregar M&iacute;dia no Site - Galeria de Fotos e V&iacute;deos</h4>
+											              <h4 class="modal-title">Galeria de Fotos e V&iacute;deos</h4>
 											            </div>
 											            <div class="modal-body">
 											              <div class="avatar-body">
@@ -1339,7 +1340,7 @@ class functions extends queries {
 											                  <input type="hidden" value="'.$apid.'" name="apid">											          		
 											                  <input type="hidden" value="'.$_SESSION['sPersonUrl'].'" name="person_url">
 															  <input type="hidden" value="gallery" name="imgtype">
-											                  <label for="avatarInput">Selecione a Imagem/V&iacute;deo para Upload: </label>
+											                  
 											                  <input type="file" class="avatar-input" id="avatarInput" name="avatar_file">
 											                </div>			
 											                <div class="row">
@@ -1371,16 +1372,18 @@ class functions extends queries {
 								                              </div>
 											                </div>			
 											                <div class="row avatar-btns">
-											                  <div class="col-md-9">
+											                  <div class="col-md-12">
 											                    <div class="btn-group">
-											                        <button type="button" class="btn btn-primary" data-method="rotate" data-option="-30" title="Girar 30 Graus Antihorario"><i class="fa fa-rotate-left"></i></button>
-											                        <button type="button" class="btn btn-primary" data-method="rotate" data-option="30" title="Girar 30 Graus Horario"><i class="fa fa-rotate-right"></i></button>
+											                        <!--button type="button" class="btn btn-primary" data-method="rotate" data-option="-30" title="Girar 30 Graus Antihorario"><i class="fa fa-rotate-left"></i></button>
+											                        <button type="button" class="btn btn-primary" data-method="rotate" data-option="30" title="Girar 30 Graus Horario"><i class="fa fa-rotate-right"></i></button-->
 											                  		<button type="button" class="btn btn-primary" data-method="zoom" data-option="0.03" title="Mais Zoom"><i class="fa fa-search-plus"></i></button>
    								                      				<button type="button" class="btn btn-primary" data-method="zoom" data-option="-0.03" title="Menos Zoom"><i class="fa fa-search-minus"></i></button>
 								                      				<button type="button" id="show-camera2" class="btn btn-primary" title="Usar Webcam"><i class="fa fa-camera"></i></button>
 								                      				<button type="button" id="popup-webcam-take-photo2" disabled="disabled" class="btn btn-warning shot" title="Tirar Foto"><i class="fa fa-check-circle"></i></button>
 											                    </div>
 											                  </div>
+															</div>
+															<div class="row avatar-btns">
 											                  <div class="col-md-3">
 											                    <button type="submit" class="btn btn-warning btn-block avatar-save">Salvar</button>
 											                  </div>
@@ -1392,7 +1395,47 @@ class functions extends queries {
 											      </div>
 											    </div>			    
 											  </div>
-	                                	</div>';
+	                                	</div>
+
+										<div class="container openmodal" data-modal="gallery" id="cropVideoGallery">
+												<div class="grid-item metalloid ium addvideo">
+											    	<div class="divVideoModal">
+											      		<div class="grid_hover_area2 text-center">
+					                                        <div class="grid_hover_text m-top-110">
+					                                            <h4 class="text-white"><i class="fa fa-video-camera"></i></h4>
+				    											<h6 class="text-white">Gravar V&iacute;deo Pessoal</h6>
+					                                        </div>
+					                                    </div>
+												    </div>
+											    </div>
+
+												<!-- Cropping Video modal -->
+											    <div class="modal fade" id="videoModal" aria-hidden="true" aria-labelledby="avatar-modal-label" role="dialog" tabindex="-1">
+											      <div class="modal-dialog modal-lg">
+											        <div class="modal-content">
+											            <div class="modal-header">
+											              <button type="button" class="close" data-dismiss="modal">&times;</button>
+											              <h4 class="modal-title">Gravar V&iacute;deo Pessoal</h4>
+											            </div>
+														<div class="modal-body">
+															<div id="containerVideo">
+															<div style = "text-align:center;">																
+																<video controls autoplay></video><br>
+																<div class="btn-group">
+																	<button id="rec" class="btn btn-primary" onclick="onBtnRecordClicked()"><i class="fa fa-circle"></i></button>
+																	<button id="pauseRes" class="btn btn-primary" onclick="onPauseResumeClicked()" disabled><i class="fa fa-pause"></i></button>
+																	<button id="stop" class="btn btn-primary" onclick="onBtnStopClicked()" disabled><i class="fa fa-stop"></i></button>
+																	<button id="save" class="btn btn-warning" onclick="saveVideo(\''.$this->fRandomPassword(12).'\', '.$apid.')" disabled><i class="fa fa-save"></i></button>
+																</div> 	
+															</div>
+															<a id="downloadLink" download="mediarecorder.webm" name="mediarecorder.webm" href></a>
+															<p id="data"></p>
+														</div>
+													</div>
+								  				  </div>
+												</div>
+											</div>';
+	    			
     	}
     	
     	return $this->retHTML.'</div>';

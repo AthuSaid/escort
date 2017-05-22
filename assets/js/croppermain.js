@@ -28,6 +28,9 @@
     }else if (this.$mymodal == 'landscape'){ 
     	this.$imgPhotoVideo = this.$container.find('.imgLandscapeModel');
     	this.$avatarModal = this.$container.find('#landscapeModal');
+    }else if (this.$mymodal == 'video'){ 
+    	this.$imgPhotoVideo = this.$container.find('.divVideoModal');
+    	this.$avatarModal = this.$container.find('#videoModal');	
     }else{  
     	this.$imgPhotoVideo = this.$container.find('.imgGalleryModel');
     	this.$avatarModal = this.$container.find('#galleryModal');
@@ -371,6 +374,7 @@
   $(function () {
     window.cropPortrait = new CropAvatar($('#cropImgPortrait'), 'portrait');
     window.cropLandscape = new CropAvatar($('#cropImgLandscape'), 'landscape');
+    window.cropGallery = new CropAvatar($('#cropVideoGallery'), 'video');    
     window.cropGallery = new CropAvatar($('#cropImgGallery'), 'gallery');    
     
     $(".port").on("click", function() {

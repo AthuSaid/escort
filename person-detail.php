@@ -50,6 +50,7 @@
         
         <link rel="stylesheet" href="<?php echo SIS_URL; ?>assets/css/cropper.css">
 		<link rel="stylesheet" href="<?php echo SIS_URL; ?>assets/css/croppermain.css">
+		<link rel="stylesheet" href="<?php echo SIS_URL; ?>assets/css/recorder.css">
 		
         <!--For Plugins external css-->
         <!--<link rel="stylesheet" href="assets/css/plugins.css" />-->
@@ -101,7 +102,7 @@
 				          <form class="avatar-form" action="<?php echo SIS_URL;?>images/procimg/crop.php" enctype="multipart/form-data" method="post">
 				            <div class="modal-header">
 				              <button type="button" class="close" data-dismiss="modal">&times;</button>
-				              <h4 class="modal-title">Carregar M&iacute;dia no Site - Foto Chamativa</h4>
+				              <h4 class="modal-title">Inserir Foto de Capa</h4>
 				            </div>
 				            <div class="modal-body">
 				              <div class="avatar-body">
@@ -110,8 +111,7 @@
 				                  <input type="hidden" class="avatar-data" name="avatar_data">
 								  <input type="hidden" value="<?php echo $retPerson[0]['apid'];?>" name="apid">
 				                  <input type="hidden" value="<?php echo $_SESSION['sPersonUrl'];?>" name="person_url">
-				                  <input type="hidden" value="landscape" name="imgtype">
-				                  <label for="avatarInput">Selecione o Arquivo para Upload:</label>
+				                  <input type="hidden" value="landscape" name="imgtype">				                  
 				                  <input type="file" class="avatar-input" id="avatarInput" name="avatar_file">
 				                </div>
 				                <div class="row">
@@ -120,7 +120,7 @@
 				                  </div>
  			                   </div>				                			
 				                <div class="row avatar-btns">
-				                  <div class="col-md-9">
+				                  <div class="col-md-12">
 				                    <div class="btn-group">
 				                      <button type="button" class="btn btn-primary" data-method="rotate" data-option="-30" title="Girar 30 Graus Antihorario"><i class="fa fa-rotate-left"></i></button>
 				                      <button type="button" class="btn btn-primary" data-method="rotate" data-option="30" title="Girar 30 Graus Horario"><i class="fa fa-rotate-right"></i></button>
@@ -128,6 +128,8 @@
    								      <button type="button" class="btn btn-primary" data-method="zoom" data-option="-0.03" title="Menos Zoom"><i class="fa fa-search-minus"></i></button>
 				                    </div>
 				                  </div>
+				                </div>
+				                <div class="row avatar-btns">  
 				                  <div class="col-md-3">
 				                    <button type="submit" class="btn btn-warning btn-block avatar-save">Salvar</button>
 				                  </div>
@@ -184,7 +186,7 @@
 								          <form class="avatar-form" action="<?php echo SIS_URL;?>images/procimg/crop.php" enctype="multipart/form-data" method="post">
 								            <div class="modal-header">
 								              <button type="button" class="close" data-dismiss="modal">&times;</button>
-								              <h4 class="modal-title" id="avatar-modal-label">Carregar M&iacute;dia no Site - Poster</h4>
+								              <h4 class="modal-title" id="avatar-modal-label">Inserir Foto Poster</h4>
 								            </div>
 								            <div class="modal-body">
 								              <div class="avatar-body">
@@ -193,8 +195,7 @@
 								                  <input type="hidden" class="avatar-data" name="avatar_data">
 								                  <input type="hidden" value="<?php echo $retPerson[0]['apid'];?>" name="apid">								                  
 								                  <input type="hidden" value="<?php echo $_SESSION['sPersonUrl'];?>" name="person_url">
-												  <input type="hidden" value="portrait" name="imgtype">
-								                  <label for="avatarInput">Selecione o Arquivo para Upload:</label>
+												  <input type="hidden" value="portrait" name="imgtype">								                  
 								                  <input type="file" class="avatar-input" id="avatarInput" name="avatar_file">
 								                </div>			
 								                <div class="row">
@@ -202,12 +203,12 @@
 								                    <div id="cropper" class="avatar-wrapper"></div>
 								                    <!--div id="webcam" class="divCropperCamera"></div-->								                    
 								                  </div>
-								                  <div class="col-md-3">
+								                  <!--div class="col-md-3">
 								                    <div class="avatar-preview preview-lg"></div>			                    
-								                  </div>
+								                  </div-->
 								                </div>			
 								                <div class="row avatar-btns">
-								                  <div class="col-md-9">
+								                  <div class="col-md-12">
 								                    <div class="btn-group">
 								                      <button type="button" class="btn btn-primary" data-method="rotate" data-option="-30" title="Girar 30 Graus Antihorario"><i class="fa fa-rotate-left"></i></button>
 								                      <button type="button" class="btn btn-primary" data-method="rotate" data-option="30" title="Girar 30 Graus Horario"><i class="fa fa-rotate-right"></i></button>
@@ -217,6 +218,8 @@
 								                      <button type="button" id="popup-webcam-take-photo" disabled="disabled" class="btn btn-warning shot"><i class="fa fa-camera"></i></button-->
 								                    </div>
 								                  </div>
+								                </div>
+								                <div class="row avatar-btns">  
 								                  <div class="col-md-3">
 								                    <button type="submit" class="btn btn-warning btn-block avatar-save">Salvar</button>
 								                  </div>
@@ -256,7 +259,7 @@
                                             <?php }else{ ?>
                                             	<p>Dote:</p>
                                             <?php } ?>
-                                            <p>Possuo Local Pr&oacute;prio?</p>	                                                                                       
+                                            <p>&nbsp;</p>	                                                                                       
                                         </div>
                                         <div class="col-md-5 text-left2">                                            
                                             <p><strong><?php echo $functions->fGetGenderPerson($retPerson[0]['sexo']); ?></strong></p>
@@ -272,7 +275,7 @@
                                             <?php }else{ ?>	
                                             	<p><strong><?php echo $retPerson[0]['pcm']; ?> cm</strong></p>
                                             <?php } ?>                                                                                       
-                                            <p><strong><?php echo ($retPerson[0]['localproprio'] == 1 ? 'SIM' : 'N&Atilde;O'); ?></strong></p>
+                                            <p><strong><?php echo ($retPerson[0]['localproprio'] == 1 ? 'POSSUO LOCAL PR&Oacute;PRIO!' : ''); ?></strong></p>
                                         </div>
                                     </div>
                                 </div>
@@ -456,6 +459,7 @@
         <script src="<?php echo SIS_URL; ?>assets/js/croppermain.js"></script> 
         <!--script type="text/javascript" src="<?php echo SIS_URL; ?>assets/webcam/webcam.poster.js"></script-->      
         <script type="text/javascript" src="<?php echo SIS_URL; ?>assets/webcam/webcam.gallery.js"></script>
+        <script type="text/javascript" src="<?php echo SIS_URL; ?>assets/js/recorder.js"></script>
         
         <script type="text/javascript">
         	<?php echo $functions->fGetPersonModalitiesBalloonTip($retPerson[0]['apid'], $retPerson[0]['sexo']); ?>            

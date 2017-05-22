@@ -21,6 +21,23 @@ if($_SESSION['sPersonLogged'] && isset($_SESSION['sPersonID']) && isset($_REQUES
 			
 		}else
 			$retJson = json_encode(array("ret" => false, "msg" => 'Erro ao remover a midia!'));
+
+	}else{
+		
+		if (isset($_FILES["video-blob"])) {
+			$fileName = $_POST["video-filename"];
+			
+			$uploadDirectory = SIS_URL.'images/persons/'.$_SESSION['sPersonUrl'].'/'.$fileName;
+			
+			if (!move_uploaded_file($_FILES["video-blob"]["tmp_name"], $uploadDirectory)) {
+				echo(" problem moving uploaded file");
+			}
+			
+			return true;
+		}
+		
+		//file_put_contents($_SERVER["DOCUMENT_ROOT"]."/images/persons/".$_SESSION['sPersonUrl']."/video_".$_REQUEST['hash'].".webm", $file);		
+		//return true;
 	}	
 	
 }
