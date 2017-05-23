@@ -2,8 +2,7 @@
  
 /**
  * Action to generate PAGSEGURO token
- * @author Daniel Triboni
- * @package Escort 2017
+ * @author Libidinous Development Team
  */
 
 error_reporting(E_ERROR & ~E_NOTICE);

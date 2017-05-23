@@ -2,7 +2,7 @@
 /**
 * DEFINICOES DE CONEXAO COM BANCO DE DADOS
 * @tutorial NOTA: Manter o bloqueio caso este arquivo seja acessado diretamente!
-* @author Daniel Triboni
+* @author Libidinous Development Team
 */
 
 /* Nome do Proprietario */

@@ -2,9 +2,7 @@
 
 /** 
 * Classe de Conexao MySQL
-*
-* @author    Daniel Triboni
-* @copyright (c) 2017 - Escort - Todos os Direitos Reservados
+* @author Libidinous Development Team
 */  
 class mysqlconn {
 		

@@ -2,9 +2,7 @@
 
 /**
 * Classe para execucao de Queries
-*
-* @author    Daniel Triboni
-* @copyright (c) 2017 - Escort - All Rights Reserved
+* @author Libidinous Development Team
 */
 class queries extends mysqlconn {
 		
@@ -515,6 +513,25 @@ class queries extends mysqlconn {
 	 */
 	public function fRemovePhoto($hash){
 		$this->sqlQuery = "DELETE FROM pessoas_fotos WHERE hash = '{$hash}'";
+		return $this->fExecuteSql($this->sqlQuery);
+	}
+	
+	
+	/**
+	 * Update Photo
+	 *
+	 * @author   Daniel Triboni
+	 * @param	 array $obj
+	 * @return	 boolean
+	 */
+	public function fUpdatePhoto($obj){
+		$this->sqlQueryCompl = null;
+		$this->sqlQueryCompl.= ($obj['active'] != "" ? "ativo = {$obj['active']}," : "");
+		$this->sqlQueryCompl.= ($obj['title'] != "" ? "titulo = '{$obj['title']}'," : "");
+		$this->sqlQueryCompl.= ($obj['descr'] != "" ? "descricao = '{$obj['descr']}' " : "");
+		$this->sqlQuery = "UPDATE pessoas_fotos SET ";
+		$this->sqlQuery .= substr($this->sqlQueryCompl, 0, strlen($this->sqlQueryCompl)-1);
+		$this->sqlQuery .= " WHERE hash = '{$obj['hash']}'";
 		return $this->fExecuteSql($this->sqlQuery);
 	}
 	
@@ -1121,68 +1138,63 @@ class queries extends mysqlconn {
     	return $this->retRecords;
     }
     
-    
     /**
-     * Show person photos except cover photo
-     *
-     * @author    Daniel Triboni
-     * @return	 array
+     * Show person photos except cover photo and poster
+     * @param integer $apid
+     * @param string $url
+     * @return array
      */
-    public function fQueryCurrentPersonPhotos($apid){
+    public function fQueryCurrentPersonPhotos($apid, $url = null){
+    	$this->sqlQueryCompl = ($_SESSION['sPersonLogged'] == true && $_SESSION['sPersonUrl'] == $url ? "" : "AND pf.ativo = 1");
     	$this->sqlQuery = "SELECT
     						pf.hash,
     						pf.local,
     						IFNULL((SELECT pft.ativo AS ativo
 							     FROM pessoas_fotos pft 
 							     WHERE pft.hash = pf.hash 							     
-							     AND pft.local = 2 
+							     AND pft.local IN (2,3) 
 							     AND pft.tipo = 2 
 							     AND pft.principal = 'S'), '') AS ativo,
     						IFNULL((SELECT pft.titulo AS titulo
 							     FROM pessoas_fotos pft 
 							     WHERE pft.hash = pf.hash 
-							     AND pft.ativo = 1 
-							     AND pft.local = 2 
+							     AND pft.local IN (2,3) 
 							     AND pft.tipo = 2 
 							     AND pft.principal = 'S'), '') AS titulo,
 							IFNULL((SELECT pft.descricao AS descricao
 							     FROM pessoas_fotos pft 
 							     WHERE pft.hash = pf.hash 
-							     AND pft.ativo = 1 
-							     AND pft.local = 2 
+							     AND pft.local IN (2,3) 
 							     AND pft.tipo = 2 
 							     AND pft.principal = 'S'), '') AS descricao,	
 							IFNULL((SELECT pft.imagemurl AS thumb 
 							     FROM pessoas_fotos pft 
 							     WHERE pft.hash = pf.hash 
-							     AND pft.ativo = 1 
 							     AND pft.local = 2 
 							     AND pft.tipo = 1 
 							     AND pft.principal = 'S'), 'no-thumb.jpg') AS thumb,
 					    	IFNULL((SELECT pfl.imagemurl AS large 
 							     FROM pessoas_fotos pfl 
 							     WHERE pfl.hash = pf.hash 
-							     AND pfl.ativo = 1 
 							     AND pfl.local = 2 
 							     AND pfl.tipo = 2 
 							     AND pfl.principal = 'S'), 'no-large.jpg') AS large,
 							IFNULL((SELECT pfl.imagemurl AS video 
 							     FROM pessoas_fotos pfl 
 							     WHERE pfl.hash = pf.hash 
-							     AND pfl.ativo = 1 
 							     AND pfl.local = 3 
 							     AND pfl.tipo = 1 
 							     AND pfl.principal = 'S'), 'no-large.jpg') AS capture, 
 							IFNULL((SELECT pfl.imagemurl AS video 
 							     FROM pessoas_fotos pfl 
 							     WHERE pfl.hash = pf.hash 
-							     AND pfl.ativo = 1 
 							     AND pfl.local = 3 
 							     AND pfl.tipo = 2 
 							     AND pfl.principal = 'S'), 'no-large.jpg') AS video     
 					    	FROM pessoas_fotos pf
 					    	WHERE pf.fotid > 1
 					    	AND pf.apid = {$apid}
+							{$this->sqlQueryCompl}
 					    	AND pf.local NOT IN (1,4)
 					    	GROUP BY pf.hash, pf.local
     						ORDER BY pf.fotid ASC";

@@ -1,7 +1,7 @@
 <?php
  /****************************************************************
- * ESCORT (R) - Atendimento Online entre clientes e corretores	 
- * @copyright Daniel Triboni - 2017 - Todos os Direitos Reservados *  * Arquivo de configuracoes gerais
+ * LIBIDINOUS - Servico online de anuncios de Conteudo Adulto	 
+ * @author Libidinous Development Team * Arquivo de configuracoes gerais
  *****************************************************************/
 	/**
 	* EXIBICAO DE ERROS

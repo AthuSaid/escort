@@ -2,7 +2,7 @@
 
 /**
  * CronJob - Update Payment Statuses
- * @author Daniel Triboni - Escort
+ * @author Libidinous Development Team
  * @access Execute Hour by Hour
  * @tutorial TODO
 */

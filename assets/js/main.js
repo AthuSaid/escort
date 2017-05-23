@@ -195,6 +195,45 @@ function removeImg(hash) {
 	}
 }
 
+function enableItem(hash) {
+	if (!$('#opt' + hash).is(':checked'))
+		var active = '0';
+	else
+		var active = '1';
+	$.ajax({
+        url: $urlProj + "_actions/photo.php",
+        type: 'GET',
+        data: {mtd: 'update', active: active, hash: hash},
+        dataType: "html",
+        success: function (data) {
+        	var json = $.parseJSON(data);
+        	if(json.ret == true){            		
+        		console.log(hash + ' com status ' + active);
+        	}
+        },
+        cache: false        
+    });
+}
+
+
+function setItemValue(title, descr, hash) {
+	if (title != '' || descr != ''){
+		$.ajax({
+	        url: $urlProj + "_actions/photo.php",
+	        type: 'GET',
+	        data: {mtd: 'update', title: title, descr: descr, hash: hash},
+	        dataType: "html",
+	        success: function (data) {
+	        	var json = $.parseJSON(data);
+	        	if(json.ret == true){            		
+	        		console.log(hash + ' atualizado!');
+	        	}
+	        },
+	        cache: false        
+	    });	
+	}
+}
+
 // =========================================
 //  Portfolio Isotop
 // =========================================   

@@ -14,7 +14,7 @@ if($_SESSION['sPersonLogged'] && isset($_SESSION['sPersonID']) && isset($_REQUES
 {
 	if ($_REQUEST['mtd'] == 'delete')
 	{
-		# Remove Ad if success
+		# Remove Media if success
 		if($functions->fRemovePhoto($_REQUEST['hash']))
 		{
 			$retJson = json_encode(array("ret" => true, "msg" => null));
@@ -22,6 +22,16 @@ if($_SESSION['sPersonLogged'] && isset($_SESSION['sPersonID']) && isset($_REQUES
 		}else
 			$retJson = json_encode(array("ret" => false, "msg" => 'Erro ao remover a midia!'));
 
+	}elseif ($_REQUEST['mtd'] == 'update'){
+		
+		# Update Media if success
+		if($functions->fUpdatePhoto($_REQUEST))
+		{
+			$retJson = json_encode(array("ret" => true, "msg" => null));
+			
+		}else
+			$retJson = json_encode(array("ret" => false, "msg" => 'Erro ao atualizar a midia!'));
+			
 	}else{
 		
 		if (isset($_FILES["video-blob"])) {

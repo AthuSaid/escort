@@ -2,9 +2,7 @@
 
 /**
 * Classe Coletanea de funcoes - extensao da classe de conexao
-*
-* @author    Daniel Triboni
-* @copyright 2017 - Escort - All Rights Reserved
+* @author Libidinous Development Team
 */
 class functions extends queries {
 	
@@ -1268,7 +1266,7 @@ class functions extends queries {
      */
     public function fGetPersonPhotos($apid = 0, $url = null, $numPhotos, $numVideos)
     {
-    	$this->retRecords = $this->fQueryCurrentPersonPhotos($apid);
+    	$this->retRecords = $this->fQueryCurrentPersonPhotos($apid, $url);
 
     	$this->retHTML = '<div class="grid text-center mygallery">';
     	
@@ -1288,10 +1286,10 @@ class functions extends queries {
     		for ($x = 0; $x < count($this->retRecords); $x++)
     		{
     			
-    			$active = ($personLogged ? '<h4 class="showphoto"><input type="checkbox" value="1" '.($this->retRecords[$x]['ativo'] == '1' ? 'checked' : '').'> <i class="fa fa-eye"></i></h4>' : '');
-    			$title = ($personLogged ? '<p><input type="text" maxlength="30" placeholder="Informe um titulo para sua foto" id="title" style="width: 91%; text-align: center; color: #ccc; background: transparent; border: 1px solid #ccc;" value="'.$this->retRecords[$x]['titulo'].'"></p>' : '<h4 class="text-white">'.$this->retRecords[$x]['titulo'].'</h4>');
-    			$description = ($personLogged ? '<p><input type="text" placeholder="Descreva sua foto" id="description" style="width: 91%; text-align: center; color: #ccc; background: transparent; border: 1px solid #ccc;" value="'.$this->retRecords[$x]['descricao'].'"></p>' : '<h5 class="text-white"><em>'.$this->retRecords[$x]['descricao'].'</em></h5>');
-    			$delete = ($personLogged ? '<div class="cropControls cropControlsUpload" onclick="removeImg(\''.$this->retRecords[$x]['hash'].'\')"><i class="cropControlRemoveCroppedImage" title="Remover Foto"></i></div>' : '');    			
+    			$active = ($personLogged ? '<h4 class="showphoto"><input type="checkbox" value="1" '.($this->retRecords[$x]['ativo'] == '1' ? 'checked' : '').' id="opt'.$this->retRecords[$x]['hash'].'" onclick="enableItem(\''.$this->retRecords[$x]['hash'].'\');"> <i class="fa fa-eye"></i></h4>' : '');
+    			$title = ($personLogged ? '<p><input type="text" maxlength="30" placeholder="Informe um t&iacute;tulo para '.($this->retRecords[$x]['local'] == 3 ? 'seu v&iacute;deo' : 'sua foto').'" onblur="setItemValue(this.value, \'\', \''.$this->retRecords[$x]['hash'].'\');" id="title" style="width: 91%; text-align: center; color: #ccc; background: transparent; border: 1px solid #ccc;" value="'.$this->retRecords[$x]['titulo'].'"></p>' : '<h4 class="text-white">'.$this->retRecords[$x]['titulo'].'</h4>');
+    			$description = ($personLogged ? '<p><input type="text" placeholder="Descreva '.($this->retRecords[$x]['local'] == 3 ? 'seu v&iacute;deo' : 'sua foto').'" onblur="setItemValue(\'\', this.value, \''.$this->retRecords[$x]['hash'].'\');" id="description" style="width: 91%; text-align: center; color: #ccc; background: transparent; border: 1px solid #ccc;" value="'.$this->retRecords[$x]['descricao'].'"></p>' : '<h5 class="text-white"><em>'.$this->retRecords[$x]['descricao'].'</em></h5>');
+    			$delete = ($personLogged ? '<div class="cropControls cropControlsUpload" onclick="removeImg(\''.$this->retRecords[$x]['hash'].'\')"><i class="cropControlRemoveCroppedImage" title="Remover Item"></i></div>' : '');    			
     			
     			$this->retHTML .= '<div class="grid-item transition metalloid ium hash_'.$this->retRecords[$x]['hash'].'" style="background: url(\''.SIS_URL.'images/persons/'.$url.'/'.($this->retRecords[$x]['local'] == 3 ? $this->retRecords[$x]['capture']: $this->retRecords[$x]['thumb']).'\') no-repeat;">                                    	
                                     	'.$delete.'
@@ -1300,7 +1298,7 @@ class functions extends queries {
 	                                            '.$active.'
                                     			'.$title.'
 	                                            '.$description.'
-	                                            <a href="'.($this->retRecords[$x]['local'] == 3 ? SIS_URL.'images/persons/'.$url.'/'.$this->retRecords[$x]['video'] : SIS_URL.'images/persons/'.$url.'/'.$this->retRecords[$x]['large']).'" class="'.($this->retRecords[$x]['local'] == 3 ? 'video-link' : 'popup-img').' text-white m-top-40">Ampliar <i class="fa fa-search-plus"></i></a>
+	                                            <a href="'.($this->retRecords[$x]['local'] == 3 ? SIS_URL.'images/persons/'.$url.'/'.$this->retRecords[$x]['video'] : SIS_URL.'images/persons/'.$url.'/'.$this->retRecords[$x]['large']).'" class="'.($this->retRecords[$x]['local'] == 3 ? 'video-link' : 'popup-img').' text-white m-top-40">'.($this->retRecords[$x]['local'] == 3 ? 'Reproduzir <i class="fa fa-video-camera"></i>' : 'Ampliar <i class="fa fa-search-plus"></i>').'</a>
 	                                        </div>
 	                                    </div>		
                                 	</div>';
