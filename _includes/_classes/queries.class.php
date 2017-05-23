@@ -820,7 +820,7 @@ class queries extends mysqlconn {
 					    	INNER JOIN pessoas p ON p.pesid = ap.pesid
 					    	WHERE p.pesid = {$pesid}
 					    	AND pf.local = 3
-					    	AND pf.tipo = 1";
+					    	AND pf.tipo = 2";
     	$this->fExecuteSql($this->sqlQuery);
     	$this->retRecords = $this->fShowRecords();
     	return $this->retRecords;
@@ -1172,6 +1172,13 @@ class queries extends mysqlconn {
 							     AND pfl.ativo = 1 
 							     AND pfl.local = 3 
 							     AND pfl.tipo = 1 
+							     AND pfl.principal = 'S'), 'no-large.jpg') AS capture, 
+							IFNULL((SELECT pfl.imagemurl AS video 
+							     FROM pessoas_fotos pfl 
+							     WHERE pfl.hash = pf.hash 
+							     AND pfl.ativo = 1 
+							     AND pfl.local = 3 
+							     AND pfl.tipo = 2 
 							     AND pfl.principal = 'S'), 'no-large.jpg') AS video     
 					    	FROM pessoas_fotos pf
 					    	WHERE pf.fotid > 1

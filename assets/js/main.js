@@ -186,7 +186,8 @@ function removeImg(hash) {
             success: function (data) {
             	var json = $.parseJSON(data);
             	if(json.ret == true){            		
-            		$('.grid').isotope('remove', $('.hash_' + hash));		
+            		$('.grid').isotope('remove', $('.hash_' + hash));
+            		location.reload(); //FIX BUG jQuery Isotope Redistribute Items on Grid
             	}
             },
             cache: false        

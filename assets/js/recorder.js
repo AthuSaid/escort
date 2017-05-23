@@ -46,7 +46,7 @@ function saveVideo(hash, apid) {
 	    canvas.width = w;
 	    canvas.height = h;
 	    var ctx = canvas.getContext('2d');
-	    ctx.drawImage(video, 0, 0, w, h);
+	    ctx.drawImage(videoElement, 0, 0, w, h);
 	    var data = canvas.toDataURL("image/jpg");	    
 	    var xmlhttp = new XMLHttpRequest;	    
 	    xmlhttp.onreadystatechange = function(){

@@ -1293,7 +1293,7 @@ class functions extends queries {
     			$description = ($personLogged ? '<p><input type="text" placeholder="Descreva sua foto" id="description" style="width: 91%; text-align: center; color: #ccc; background: transparent; border: 1px solid #ccc;" value="'.$this->retRecords[$x]['descricao'].'"></p>' : '<h5 class="text-white"><em>'.$this->retRecords[$x]['descricao'].'</em></h5>');
     			$delete = ($personLogged ? '<div class="cropControls cropControlsUpload" onclick="removeImg(\''.$this->retRecords[$x]['hash'].'\')"><i class="cropControlRemoveCroppedImage" title="Remover Foto"></i></div>' : '');    			
     			
-    			$this->retHTML .= '<div class="grid-item transition metalloid ium hash_'.$this->retRecords[$x]['hash'].'" style="background: url(\''.SIS_URL.'images/persons/'.$url.'/'.($this->retRecords[$x]['local'] == 3 ? $this->retRecords[$x]['video']: $this->retRecords[$x]['thumb']).'\') no-repeat;">                                    	
+    			$this->retHTML .= '<div class="grid-item transition metalloid ium hash_'.$this->retRecords[$x]['hash'].'" style="background: url(\''.SIS_URL.'images/persons/'.$url.'/'.($this->retRecords[$x]['local'] == 3 ? $this->retRecords[$x]['capture']: $this->retRecords[$x]['thumb']).'\') no-repeat;">                                    	
                                     	'.$delete.'
     									<div class="grid_hover_area text-center">
 	                                        <div class="grid_hover_text m-top-90">
@@ -1307,8 +1307,13 @@ class functions extends queries {
     		}
     	}
     	
-    	if ($personLogged /*&& $numPhotos < $_SESSION['sPersonMaxPhotos']*/) {    	
+    	if ($personLogged) {    	
     		
+    		if ($numPhotos <= $_SESSION['sPersonMaxPhotos']) {
+    			
+    			$diffPhoto = ($_SESSION['sPersonMaxPhotos'] - $numPhotos);
+    			$restFotos = '<br>'.($diffPhoto < 2 ? $diffPhoto.' restante' : ($_SESSION['sPersonMaxPhotos'] == 999 ? '' : $diffPhoto.' restantes'));
+    			
 	    			$this->retHTML .= '
 											<div class="container openmodal" data-modal="gallery" id="cropImgGallery">
 
@@ -1317,7 +1322,7 @@ class functions extends queries {
 											      		<div class="grid_hover_area2 text-center">
 					                                        <div class="grid_hover_text m-top-110">
 					                                            <h4 class="text-white"><i class="fa fa-camera"></i></h4>
-				    											<h6 class="text-white">Adicionar Fotos</h6>
+				    											<h6 class="text-white">Adicionar Fotos'.$restFotos.'</h6>
 					                                        </div>
 					                                    </div>
 												    </div>
@@ -1395,15 +1400,21 @@ class functions extends queries {
 											      </div>
 											    </div>			    
 											  </div>
-	                                	</div>
+	                                	</div>';
+    		}
+    		
+    		if ($numVideos <= $_SESSION['sPersonMaxVideos']) {
+    			
+    			$diffVideo = ($_SESSION['sPersonMaxVideos'] - $numVideos);
+    			$restVideos = '<br>'.($diffVideo < 2 ? $diffVideo.' restante' : ($_SESSION['sPersonMaxVideos'] == 999 ? '' : $diffVideo.' restantes'));
 
-										<div class="container openmodal" data-modal="gallery" id="cropVideoGallery">
+	    			$this->retHTML .= '<div class="container openmodal" data-modal="gallery" id="cropVideoGallery">
 												<div class="grid-item metalloid ium addvideo">
 											    	<div class="divVideoModal">
 											      		<div class="grid_hover_area2 text-center">
 					                                        <div class="grid_hover_text m-top-110">
 					                                            <h4 class="text-white"><i class="fa fa-video-camera"></i></h4>
-				    											<h6 class="text-white">Gravar V&iacute;deo Pessoal</h6>
+				    											<h6 class="text-white">Gravar V&iacute;deo Pessoal'.$restVideos.'</h6>
 					                                        </div>
 					                                    </div>
 												    </div>
@@ -1435,11 +1446,11 @@ class functions extends queries {
 								  				  </div>
 												</div>
 											</div>';
+    		}
 	    			
     	}
     	
-    	return $this->retHTML.'</div>';
-    	    	    	
+    	return $this->retHTML.'</div>';    	    	    	
     }
     
     

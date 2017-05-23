@@ -16,6 +16,7 @@
     }
     
     $countPhotos = $functions->fGetCountPersonPhotos($retPerson[0]['pesid']);
+    
     $countVideos = $functions->fGetCountPersonVideos($retPerson[0]['pesid']);
 ?>
 <!doctype html>
@@ -451,7 +452,7 @@
         <script src="<?php echo SIS_URL; ?>assets/js/vendor/jquery.balloon.min.js"></script>
         <script src="<?php echo SIS_URL; ?>assets/js/main.js"></script>
         <script src="<?php echo SIS_URL; ?>assets/js/counter.js"></script>               
-        <script src="http://maps.google.com/maps/api/js?key=AIzaSyD_tAQD36pKp9v4at5AnpGbvBUsLCOSJx8"></script>
+        <script src="https://maps.google.com/maps/api/js?key=AIzaSyB0EgJjuN8-iBhgg8EMg2gjip6jRQSoTXs"></script>
         <script src="<?php echo SIS_URL; ?>assets/js/gmaps.min.js"></script>                
         <script src="<?php echo SIS_URL; ?>assets/js/validator.js"></script>
         <script src="<?php echo SIS_URL; ?>assets/js/form.js"></script>        

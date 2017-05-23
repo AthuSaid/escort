@@ -31,7 +31,7 @@ $hashVideo = $_POST['hash'];
 	if (isset($_POST["thumb"])) 
 	{		
 		if (!preg_match('/data:([^;]*);base64,(.*)/', $_POST['data'], $matches))
-			die("error");
+			return false;
 	
 		$data = $matches[2];
 		$data = str_replace(' ','+',$data);

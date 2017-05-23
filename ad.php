@@ -434,7 +434,7 @@
         <script src="<?php echo SIS_URL; ?>assets/js/form.js"></script>
         <script src="<?php echo SIS_URL; ?>assets/js/balloon.js"></script>
         <script src="<?php echo SIS_URL; ?>assets/js/hotels.js"></script>
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA6rl2gdPs77uwQqT-QDNVdmzGrbKA5Emo&libraries=places&callback=initMap" async defer></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB0EgJjuN8-iBhgg8EMg2gjip6jRQSoTXs&libraries=places&callback=initMap" async defer></script>
         <script type="text/javascript">
 			$(".multiple-select").select2({
 				placeholder: "Informe ao menos um item!"
