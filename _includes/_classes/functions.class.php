@@ -1434,7 +1434,7 @@ class functions extends queries {
 																	<button id="rec" class="btn btn-primary" onclick="onBtnRecordClicked()"><i class="fa fa-circle"></i></button>
 																	<button id="pauseRes" class="btn btn-primary" onclick="onPauseResumeClicked()" disabled><i class="fa fa-pause"></i></button>
 																	<button id="stop" class="btn btn-primary" onclick="onBtnStopClicked()" disabled><i class="fa fa-stop"></i></button>
-																	<button id="save" class="btn btn-warning" onclick="saveVideo(\''.$this->fRandomPassword(12).'\', '.$apid.')" disabled><i class="fa fa-save"></i></button>
+																	<button id="save" class="btn btn-warning" onclick="saveVideo(\''.$this->fRandomPassword(12).'\', '.$apid.')" disabled><i class="fa fa-check"></i></button>
 																</div> 	
 															</div>
 															<a id="downloadLink" download="mediarecorder.webm" name="mediarecorder.webm" href></a>
@@ -1576,11 +1576,11 @@ class functions extends queries {
                                             <div class="col-sm-11">
                                                 <div class="comments_top_tex">
                                                     <div class="row">
-                                                        <div class="col-sm-6 pull-left">
+                                                        <div class="col-sm-6 pull-left dets">
                                                             <h5 class="text-uppercase">'.$this->retRecords[$x]['titulo'].' ('.$this->retRecords[$x]['visitascount'].' visualiza&ccedil;&otilde;es)</h5>
                                                             <small><em>'.$this->retRecords[$x]['publicacao'].'</em></small>
                                                         </div>
-                                                        <div class="col-sm-3 pull-right">                                                        	
+                                                        <div class="col-sm-3 pull-right actions">                                                        	
                                                             <a href="'.SIS_URL.'ad/'.$this->retRecords[$x]['person'].'/'.$this->retRecords[$x]['ad'].'"><i class="fa fa-edit"></i> Editar </a> |
                                                             <a href="'.$adUrl.'"><i class="fa fa-eye"></i> Visualizar </a> |
                                                             <a href="javascript:void(0);" class="remove-ad" data-register="'.$this->retRecords[$x]['apid'].'"><i class="fa fa-trash"></i> Excluir </a>

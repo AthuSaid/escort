@@ -149,6 +149,7 @@ if ($_POST['method'] != 'free') //Only paid plans - Invoke PagSeguro Payment Gat
 							  "videos" 				=> $retPlan[0]['videos'],
 							  "psid"                => $return->getCode(),
 							  "vloriginal"			=> $return->getGrossAmount(),
+							  "pago"				=> 0,
 							  "planexpires"         => $retPlan[0]['cobrancadias'],
 							  "vencimento"			=> date('Y-m-d H:i:s', strtotime("+".$retPlan[0]['cobrancadias']." day")));
 	

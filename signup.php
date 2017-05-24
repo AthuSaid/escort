@@ -399,7 +399,7 @@
                                             </div>	
                                             <div class="col-sm-12 direita">                                                
                                                 <a href="<?php echo (!isset($_SESSION['sPersonLogged']) ? SIS_URL.'home' : SIS_URL.'dashboard'); ?>" class="btn btn-warning m-top-30">Voltar <i class="fa fa-arrow-left"></i></a>
-                                                <button type="submit" class="btn btn-primary m-top-30 signup">Salvar An&uacute;ncio <i class="fa fa-check"></i></button>                                                
+                                                <button type="submit" class="btn btn-primary m-top-30 signup">Salvar Perfil <i class="fa fa-check"></i></button>                                                
                                             </div>                                                                                        
                                          </div>
                                             

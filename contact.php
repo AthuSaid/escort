@@ -100,13 +100,13 @@
                 <div class="container">
                     <div class="row">
                         <div class="main_action text-center">
-                            <div class="col-md-4">
+                            <!--div class="col-md-4">
                                 <div class="action_item">
                                     <i class="fa fa-map-marker"></i>
                                     <h4 class="text-uppercase m-top-20">Address</h4>
                                     <p>7th floor - Palace Building - 221B Walk of Fame - <br /> London - UK</p>
                                 </div>
-                            </div>
+                            </div-->
                             <div class="col-md-4">
                                 <div class="action_item">
                                     <i class="fa fa-phone"></i>

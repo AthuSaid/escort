@@ -97,7 +97,7 @@
 
 
             <!--Home Sections-->
-            <section id="hello" class="dash-banner-<?php echo $functions->genderPrefer;?> bg-mega">
+            <section id="hello" class="dash-banner-<?php echo $functions->genderPrefer.rand(1,5);?> bg-mega">
                 <div class="container">
                     <div class="row">
                         <div class="main_home text-center">

@@ -1,22 +1,19 @@
-
-
 /*
 Author: Bootstrapthemes
 Author URI: http://www.xpeedstudio.com
 */
+
 
 /* Portrait tablets and medium desktops */
 @media (min-width: 992px) and (max-width: 1199px) {
     body {
         font-size: 1rem;
     }
-
-
-
-
-
-
+    .actions {
+		width: 100%;	
+	}
 }
+
 @media (max-width: 1000px) {
     .navbar-brand {
         height: 80px;
@@ -71,18 +68,65 @@ Author URI: http://www.xpeedstudio.com
     .separator_left{
         margin: 20px auto;
     }
-    .main-gallery .grid-item {
-        position: relative;
-        margin: 15px;
-        width: 295px;
-        height: 280px;
-        overflow: hidden;
-    }
+   
 
 
 }
+@media (min-width: 480px) and (max-width: 992px) {	
+	.main-gallery .grid-item {
+        position: relative;
+        margin: 5px;
+        width: 362px;
+        height: 280px;
+        overflow: hidden;        
+    }
+    .dash-banner-F1{
+	    background-size: 100% auto; background-position-y: 87px; height: 378px;
+	}
+	.dash-banner-F2{
+	    background-size: 100% auto; background-position-y: 87px; height: 378px;
+	}
+	.dash-banner-F3{
+	    background-size: 100% auto; background-position-y: 87px; height: 378px;
+	}
+	.dash-banner-F4{
+	    background-size: 100% auto; background-position-y: 87px; height: 378px;
+	}
+	.dash-banner-F5{
+	    background-size: 100% auto; background-position-y: 87px; height: 378px;
+	}
+	.main_home{
+	    overflow: hidden;
+	    padding-top: 130px;    
+	    position: relative;
+	    z-index: 1;
+	}
+	h1 {
+		font-size: 2em;
+	}	
+}
 
+@media (min-width: 1200px) {	
+	.actions {
+		width: 100%;
+		margin-top:20px;
+		margin-bottom:20px;
+	}
+}
 
+@media (min-width: 768px) and (max-width: 992px) {	
+	.col-sm-11 {
+	    margin-left: 40px;
+	}
+	.dets {
+		width: 100%;		
+	}
+	.actions {
+		width: 100%;
+		margin-top:20px;
+		margin-bottom:20px;
+	}
+}
 
 /* Landscape phones and portrait tablets */
 @media  (max-width: 768px) {
@@ -123,7 +167,9 @@ Author URI: http://www.xpeedstudio.com
     .main_testimonial .testimonial_slid .slick-arrow.nextprevright {
         top: -150px;
     }
-
+	.blog_comments_img {
+		margin-bottom: 20px;
+	}
 
 }
 
@@ -138,7 +184,52 @@ Author URI: http://www.xpeedstudio.com
     .testimonial_slid .slick-arrow {
         display: none;
     }
-
+    .main-gallery .grid {
+        margin: auto;
+        float: none;
+    }
+    .main-gallery .grid-item {
+        position: relative;
+        margin: 15px;
+        width: 372px;
+        height: 280px;
+        overflow: hidden;
+    }
+    .dash-banner-F1{
+	    background-size: 100% auto; background-position-y: 87px; height: 236px;
+	}
+	.dash-banner-F2{
+	    background-size: 100% auto; background-position-y: 87px; height: 236px;
+	}
+	.dash-banner-F3{
+	    background-size: 100% auto; background-position-y: 87px; height: 236px;
+	}
+	.dash-banner-F4{
+	    background-size: 100% auto; background-position-y: 87px; height: 236px;
+	}
+	.dash-banner-F5{
+	    background-size: 100% auto; background-position-y: 87px; height: 236px;
+	}
+	.main_home{
+	    overflow: hidden;
+	    padding-top: 130px;    
+	    position: relative;
+	    z-index: 1;
+	}
+	h1 {
+		font-size: 2em;
+	}
+	ol {
+		display: none;
+	}
+	.pull-right {
+		float:left !important;
+		margin-top: 10px;
+		margin-bottom: 20px;
+	}
+	.blog_comments_img {
+		margin-bottom: 20px;
+	}
 }
 
 
