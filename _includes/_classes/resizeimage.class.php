@@ -98,7 +98,10 @@ class resizeimage
 			case 'image/jpeg':
 				// Check PHP supports this file type
 				if (imagetypes() & IMG_JPG) {
-					$stamp = imagecreatefrompng($stampUrl);
+					global $arrContextOptions;
+					$response = file_get_contents($stampUrl, false, stream_context_create($arrContextOptions));
+					$stamp= imagecreatefromstring($response);
+					//$stamp = imagecreatefrompng($stampUrl);
 					$marge_right = 10;
 					$marge_bottom = 10;
 					$sx = imagesx($stamp);
@@ -112,7 +115,10 @@ class resizeimage
 			case 'image/gif':
 				// Check PHP supports this file type
 				if (imagetypes() & IMG_GIF) {
-					$stamp = imagecreatefrompng($stampUrl);
+					global $arrContextOptions;
+					$response = file_get_contents($stampUrl, false, stream_context_create($arrContextOptions));
+					$stamp= imagecreatefromstring($response);
+					//$stamp = imagecreatefrompng($stampUrl);
 					$marge_right = 10;
 					$marge_bottom = 10;
 					$sx = imagesx($stamp);
@@ -128,7 +134,10 @@ class resizeimage
 
 				// Check PHP supports this file type
 				if (imagetypes() & IMG_PNG) {
-					$stamp = imagecreatefrompng($stampUrl);
+					global $arrContextOptions;
+					$response = file_get_contents($stampUrl, false, stream_context_create($arrContextOptions));					
+					$stamp= imagecreatefromstring($response);					
+					//$stamp = imagecreatefrompng($stampUrl);
 					$marge_right = 10;
 					$marge_bottom = 10;
 					$sx = imagesx($stamp);

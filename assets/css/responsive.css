@@ -72,6 +72,8 @@ Author URI: http://www.xpeedstudio.com
 
 
 }
+
+
 @media (min-width: 480px) and (max-width: 992px) {	
 	.main-gallery .grid-item {
         position: relative;
@@ -80,6 +82,7 @@ Author URI: http://www.xpeedstudio.com
         height: 280px;
         overflow: hidden;        
     }
+    
     .dash-banner-F1{
 	    background-size: 100% auto; background-position-y: 87px; height: 378px;
 	}
@@ -95,6 +98,8 @@ Author URI: http://www.xpeedstudio.com
 	.dash-banner-F5{
 	    background-size: 100% auto; background-position-y: 87px; height: 378px;
 	}
+	
+	
 	.main_home{
 	    overflow: hidden;
 	    padding-top: 130px;    
@@ -195,6 +200,7 @@ Author URI: http://www.xpeedstudio.com
         height: 280px;
         overflow: hidden;
     }
+    
     .dash-banner-F1{
 	    background-size: 100% auto; background-position-y: 87px; height: 236px;
 	}
@@ -209,7 +215,7 @@ Author URI: http://www.xpeedstudio.com
 	}
 	.dash-banner-F5{
 	    background-size: 100% auto; background-position-y: 87px; height: 236px;
-	}
+	}	
 	.main_home{
 	    overflow: hidden;
 	    padding-top: 130px;    
@@ -222,6 +228,7 @@ Author URI: http://www.xpeedstudio.com
 	ol {
 		display: none;
 	}
+	
 	.pull-right {
 		float:left !important;
 		margin-top: 10px;

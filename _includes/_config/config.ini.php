@@ -27,5 +27,5 @@
 	*/    
 	$arrayTypeUserAdmin = array (1 => "PESSOA",
                               	 2 => "USUARIO",
-                              	 3 => "ADMINISTRADOR");
+                              	 3 => "ADMINISTRADOR");		$arrContextOptions=array(			"ssl"=>array(					"verify_peer"=>false,					"verify_peer_name"=>false,			),	);	
 	/**	* AUTOLOAD DAS CLASSES	*	* @author    Daniel Triboni	* @param	 string Nome da Classe	* @return	 include File	*/    //function __autoload($class_name) {    	    	//require_once $_SERVER["DOCUMENT_ROOT"]."/_includes/_classes/".$class_name.".class.php";    	spl_autoload_register(function ($class_name) {    		require_once $_SERVER["DOCUMENT_ROOT"]."/_includes/_classes/".$class_name.".class.php";    	});    //}

@@ -5,25 +5,27 @@ require_once $_SERVER["DOCUMENT_ROOT"]."/_includes/_config/config.ini.php";
 
 $functions = new functions();
 
-if (isset($_GET['apelido']))
+$_REQUEST = $functions->fSanitizeRequest($_GET);
+
+if (isset($_REQUEST['apelido']))
 {
-	if ($functions->fGetAka($_GET['apelido']))
+	if ($functions->fGetAka($_REQUEST['apelido']))
 		http_response_code(200);
 	else
 		http_response_code(500);
 }
 
-if (isset($_GET['cpf']))
+if (isset($_REQUEST['cpf']))
 {
-	if($functions->fcheckCPF($_GET['cpf']))
+	if($functions->fcheckCPF($_REQUEST['cpf']))
 		http_response_code(200);
 	else	
 		http_response_code(500);
 }
 
-if (isset($_GET['email']))
+if (isset($_REQUEST['email']))
 {
-	if (filter_var($_GET['email'], FILTER_VALIDATE_EMAIL) !== false)
+	if (filter_var($_REQUEST['email'], FILTER_VALIDATE_EMAIL) !== false)
 		http_response_code(200);
 	else
 		http_response_code(500);

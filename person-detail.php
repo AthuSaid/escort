@@ -56,7 +56,7 @@
         <!--For Plugins external css-->
         <!--<link rel="stylesheet" href="assets/css/plugins.css" />-->
         <!--Theme custom css -->
-        <link rel="stylesheet" href="<?php echo SIS_URL; ?>assets/css/style.css">
+        <link rel="stylesheet" href="<?php echo SIS_URL; ?>assets/css/style.css">        
         <!--<link rel="stylesheet" href="assets/css/colors/maron.css">-->
         <!--Theme Responsive css-->
         <link rel="stylesheet" href="<?php echo SIS_URL; ?>assets/css/responsive.css" />
@@ -143,7 +143,7 @@
 				    </div>			    
 				  </div>
             
-            	<div class="imgLandscapeModel" class="bg-mega" style="background: url('<?php echo SIS_URL.'images/persons/'.$retPerson[0]['person'].'/'.$retPerson[0]['cover']; ?>') no-repeat bottom center;">                            			
+            	<div class="imgLandscapeModel bg-mega" style="background: url(<?php echo SIS_URL.'images/persons/'.$retPerson[0]['person'].'/'.$retPerson[0]['cover'];?>) no-repeat bottom center; height:649px;">                            			
 	                <div class="container">
 	                    <div class="row">
 	                        <div class="main_home text-center">
