@@ -859,11 +859,11 @@ class functions extends queries {
 								                        <div class="main_home text-center hometext">
 								                            <div class="home_text">
 								                                <h4 class="text-white text-uppercase shadow-text">DESTAQUE '.SIS_TITULO.'</h4>
-								                                <h1 class="text-white text-uppercase shadow-text">'.$this->retRecords[0]['apelido'].'</h1>
+								                                <h1 class="text-white text-uppercase shadow-text"><a href="'.SIS_URL.'person/'.$this->retRecords[0]['person'].'/'.$this->retRecords[0]['ad'].'" class="text-white">'.$this->retRecords[0]['apelido'].'</a></h1>
 								                                <div class="separator"></div>
-								                                <h5 class=" text-uppercase text-white shadow-text">
+								                                <!--h5 class=" text-uppercase text-white shadow-text">
 								                                	<em><a href="'.SIS_URL.'person/'.$this->retRecords[0]['person'].'/'.$this->retRecords[0]['ad'].'" class="text-white">'.$this->retRecords[0]['titulo_anuncio'].'</a></em>
-								                                </h5>
+								                                </h5-->
 								                            </div>
 								                        </div>
 								                    </div><!--End off row-->
