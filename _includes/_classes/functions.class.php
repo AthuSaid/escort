@@ -1470,7 +1470,7 @@ class functions extends queries {
     			$this->retHTML .= '<div class="col-md-'.((count($this->retRecords) > 3 ? 4 : (12 / count($this->retRecords)))).'">';
     				$this->retHTML .= '<div class="teamskillbar clearfix m-top-50" data-percent="100%">
                                       	<h6 class="one"><strong>'.$this->retRecords[$x]['modalidade'].'</strong></span> 
-                                      		<span class="pull-right font-size-pull-right-'.strtolower($gender).'">'.(!empty($this->retRecords[$x]['descricao']) ? '<i class="fa fa-question-circle descr_'.$this->retRecords[$x]['modid'].'"></i>' : '').'</span>
+                                      		<span class="pull-right-mod font-size-pull-right-'.strtolower($gender).'">'.(!empty($this->retRecords[$x]['descricao']) ? '<i class="fa fa-question-circle descr_'.$this->retRecords[$x]['modid'].'"></i>' : '').'</span>
                                       	</h6>                                      	
                                       	<div class="teamskillbar-bar"></div>
                                    </div><!-- End Skill Bar -->';
@@ -1633,7 +1633,7 @@ class functions extends queries {
     			if((int) $this->retRecords[$x]['c30'] > 0) {
     				$this->complHTML .= '<div class="teamskillbar clearfix m-top-50" data-percent="100%">
                                       	<h6 class="one"><strong><span class="periodo"><i class="fa fa-clock-o"></i> 30min</span>
-                                      		<span class="pull-right font-size-pull-right-'.strtolower($gender).'">'.$currency.' '.$this->retRecords[$x]['c30'].'</span>
+                                      		<span class="pull-right-mod font-size-pull-right-'.strtolower($gender).'">'.$currency.' '.$this->retRecords[$x]['c30'].'</span>
                                       	</h6>
                                       	<div class="teamskillbar-bar"></div>
                                    </div><!-- End Skill Bar -->';
@@ -1641,7 +1641,7 @@ class functions extends queries {
     			} if((int) $this->retRecords[$x]['c1'] > 0) {
     				$this->complHTML .= '<div class="teamskillbar clearfix m-top-50" data-percent="100%">
                                       	<h6 class="one"><strong><span class="periodo"><i class="fa fa-clock-o"></i> 1h</span>
-                                      		<span class="pull-right font-size-pull-right-'.strtolower($gender).'">'.$currency.' '.$this->retRecords[$x]['c1'].'</span>
+                                      		<span class="pull-right-mod font-size-pull-right-'.strtolower($gender).'">'.$currency.' '.$this->retRecords[$x]['c1'].'</span>
                                       	</h6>
                                       	<div class="teamskillbar-bar"></div>
                                    </div><!-- End Skill Bar -->';
@@ -1649,7 +1649,7 @@ class functions extends queries {
     			} if((int) $this->retRecords[$x]['c2'] > 0) {
     				$this->complHTML .= '<div class="teamskillbar clearfix m-top-50" data-percent="100%">
                                       	<h6 class="one"><strong><span class="periodo"><i class="fa fa-clock-o"></i> 2h</span>
-                                      		<span class="pull-right font-size-pull-right-'.strtolower($gender).'">'.$currency.' '.$this->retRecords[$x]['c2'].'</span>
+                                      		<span class="pull-right-mod font-size-pull-right-'.strtolower($gender).'">'.$currency.' '.$this->retRecords[$x]['c2'].'</span>
                                       	</h6>
                                       	<div class="teamskillbar-bar"></div>
                                    </div><!-- End Skill Bar -->';
@@ -1657,7 +1657,7 @@ class functions extends queries {
     			} if(!empty($this->retRecords[$x]['c4'])) {
     				$this->complHTML .= '<div class="teamskillbar clearfix m-top-50" data-percent="100%">
                                       	<h6 class="one"><strong><span class="periodo"><i class="fa fa-clock-o"></i> 4h</span>
-                                      		<span class="pull-right font-size-pull-right-'.strtolower($gender).'">'.$currency.' '.$this->retRecords[$x]['c4'].'</span>
+                                      		<span class="pull-right-mod font-size-pull-right-'.strtolower($gender).'">'.$currency.' '.$this->retRecords[$x]['c4'].'</span>
                                       	</h6>
                                       	<div class="teamskillbar-bar"></div>
                                    </div><!-- End Skill Bar -->';
@@ -1665,7 +1665,7 @@ class functions extends queries {
     			} if((int) $this->retRecords[$x]['c8'] > 0) {
     				$this->complHTML .= '<div class="teamskillbar clearfix m-top-50" data-percent="100%">
                                       	<h6 class="one"><strong><span class="periodo"><i class="fa fa-clock-o"></i> 8h</span>
-                                      		<span class="pull-right font-size-pull-right-'.strtolower($gender).'">'.$currency.' '.$this->retRecords[$x]['c8'].'</span>
+                                      		<span class="pull-right-mod font-size-pull-right-'.strtolower($gender).'">'.$currency.' '.$this->retRecords[$x]['c8'].'</span>
                                       	</h6>
                                       	<div class="teamskillbar-bar"></div>
                                    </div><!-- End Skill Bar -->';
@@ -1673,7 +1673,7 @@ class functions extends queries {
     			} if((int) $this->retRecords[$x]['c12'] > 0) {
     				$this->complHTML .= '<div class="teamskillbar clearfix m-top-50" data-percent="100%">
                                       	<h6 class="one"><strong><span class="periodo"><i class="fa fa-moon-o"></i> Pernoite 12h</span>
-                                      		<span class="pull-right font-size-pull-right-'.strtolower($gender).'">'.$currency.' '.$this->retRecords[$x]['c12'].'</span>
+                                      		<span class="pull-right-mod font-size-pull-right-'.strtolower($gender).'">'.$currency.' '.$this->retRecords[$x]['c12'].'</span>
                                       	</h6>
                                       	<div class="teamskillbar-bar"></div>
                                    </div><!-- End Skill Bar -->';
@@ -1681,7 +1681,7 @@ class functions extends queries {
     			} if((int) $this->retRecords[$x]['viagem'] > 0) {
     				$this->complHTML .= '<div class="teamskillbar clearfix m-top-50" data-percent="100%">
                                       	<h6 class="one"><strong><span class="periodo"><i class="fa fa-plane"></i> Viagens</span>
-                                      		<span class="pull-right font-size-pull-right-'.strtolower($gender).'">'.$currency.' '.$this->retRecords[$x]['viagem'].'</span>
+                                      		<span class="pull-right-mod font-size-pull-right-'.strtolower($gender).'">'.$currency.' '.$this->retRecords[$x]['viagem'].'</span>
                                       	</h6>
                                       	<div class="teamskillbar-bar"></div>
                                    </div><!-- End Skill Bar -->';

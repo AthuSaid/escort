@@ -284,11 +284,11 @@
                                  
                                  <?php if ($retPerson[0]['fake'] != 1){ ?>
                                  	<?php if (!empty($retPerson[0]['whatsapp'])){ ?>
-                                		<h4><i class="fa fa-whatsapp"></i> <?php echo $retPerson[0]['whatsapp']; ?></h4>
+                                		<h4><i class="fa fa-whatsapp"></i> <a href="tel:<?php echo $functions->fRemoveNumFormat($retPerson[0]['whatsapp']); ?>"><?php echo $retPerson[0]['whatsapp']; ?></a></h4>
                                 	<?php } if (!empty($retPerson[0]['tel1'])){ ?>
-                                		<h4> <i class="fa fa-phone"></i> <?php echo $retPerson[0]['tel1']; ?></h4>
+                                		<h4> <i class="fa fa-phone"></i> <a href="tel:<?php echo $functions->fRemoveNumFormat($retPerson[0]['tel1']); ?>"><?php echo $retPerson[0]['tel1']; ?></a></h4>
                                 	<?php } if (!empty($retPerson[0]['tel2'])){ ?>
-                                		<h4> <i class="fa fa-phone"></i> <?php echo $retPerson[0]['tel2']; ?></h4>
+                                		<h4> <i class="fa fa-phone"></i> <a href="tel:<?php echo $functions->fRemoveNumFormat($retPerson[0]['tel2']); ?>"><?php echo $retPerson[0]['tel2']; ?></a></h4>
                                 	<?php } if (!empty($retPerson[0]['facebook'])){ ?>
                                 		<h6> <i class="fa fa-facebook"></i> <a href="<?php echo $retPerson[0]['facebook']; ?>" target="_blank">Visite meu Facebook</a></h6>
                                 	<?php } if (!empty($retPerson[0]['twitter'])){ ?>
