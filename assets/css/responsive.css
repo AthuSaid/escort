@@ -3,7 +3,6 @@ Author: Bootstrapthemes
 Author URI: http://www.xpeedstudio.com
 */
 
-
 /* Portrait tablets and medium desktops */
 @media (min-width: 992px) and (max-width: 1199px) {
     body {
@@ -69,11 +68,25 @@ Author URI: http://www.xpeedstudio.com
     .separator_left{
         margin: 20px auto;
     }
-   
-
-
 }
 
+@media (min-width: 480px) and (max-width: 655px) {
+	.blog_details_content {
+	    margin-top: -200px;
+	}
+	.blog_date {
+		display: none;
+	}
+}
+
+@media (min-width: 656px) and (max-width: 870px) {
+	.blog_details_content {
+	    margin-top: -130px;
+	}
+	.blog_date {
+		display: none;
+	}
+}
 
 @media (min-width: 480px) and (max-width: 992px) {	
 	.main-gallery .grid-item {
@@ -251,7 +264,12 @@ Author URI: http://www.xpeedstudio.com
 	    font-weight: 500;
 	    line-height: 2.5rem;
 	}
-	
+	.blog_details_content {
+	    margin-top: -110px;
+	}
+	.blog_date {
+		display: none;
+	}
 	.main_home{
 	    overflow: hidden;
 	    padding-top: 130px;    
