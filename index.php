@@ -35,8 +35,9 @@
 		<link rel="stylesheet" href="<?php echo SIS_URL; ?>assets/css/jquery.modal.css" type="text/css" media="screen" />
         <!--For Plugins external css-->
         <!--<link rel="stylesheet" href="assets/css/plugins.css" />-->
-        <!--Theme custom css -->
+        <!--Theme custom css -->       
         <link rel="stylesheet" href="<?php echo SIS_URL; ?>assets/css/style.css">
+        <link rel="stylesheet" href="<?php echo SIS_URL; ?>assets/css/banner.php">        
         <!--<link rel="stylesheet" href="assets/css/colors/maron.css">-->
         <!--Theme Responsive css-->
         <link rel="stylesheet" href="<?php echo SIS_URL; ?>assets/css/responsive.css" />

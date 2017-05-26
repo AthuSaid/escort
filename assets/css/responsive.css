@@ -14,6 +14,7 @@ Author URI: http://www.xpeedstudio.com
 	}
 }
 
+
 @media (max-width: 1000px) {
     .navbar-brand {
         height: 80px;
@@ -81,8 +82,7 @@ Author URI: http://www.xpeedstudio.com
         width: 362px;
         height: 280px;
         overflow: hidden;        
-    }
-    
+    }    
     .dash-banner-F1{
 	    background-size: 100% auto; background-position-y: 87px; height: 378px;
 	}
@@ -98,7 +98,24 @@ Author URI: http://www.xpeedstudio.com
 	.dash-banner-F5{
 	    background-size: 100% auto; background-position-y: 87px; height: 378px;
 	}
-	
+	.person-banner{
+	    background-size: 100% auto; background-position-y: 87px; height: 378px;
+	}	
+	.home{
+	    background-size: 100% auto; background-position-y: 87px; height: 378px;
+	}
+	.home_text h1{
+	    font-family: 'Raleway', sans-serif;
+	    font-size:3.286rem;
+	    font-weight: 700;
+	    line-height: 4.5rem;
+	}
+	.home_text {
+		margin-top: 8px;
+	}
+	.p-top-100 {
+		padding-top: 0px;
+	}
 	
 	.main_home{
 	    overflow: hidden;
@@ -216,6 +233,25 @@ Author URI: http://www.xpeedstudio.com
 	.dash-banner-F5{
 	    background-size: 100% auto; background-position-y: 87px; height: 236px;
 	}	
+	.person-banner{
+	    background-size: 100% auto; background-position-y: 87px; height: 236px;
+	}
+	.home{
+	    background-size: 100% auto; background-position-y: 87px; height: 236px;
+	}
+	.home_text {
+		margin-top: -16px;
+	}
+	.p-top-100 {
+		padding-top: 0px;
+	}
+	.home_text h1{
+	    font-family: 'Raleway', sans-serif;
+	    font-size:2.286rem;
+	    font-weight: 500;
+	    line-height: 2.5rem;
+	}
+	
 	.main_home{
 	    overflow: hidden;
 	    padding-top: 130px;    

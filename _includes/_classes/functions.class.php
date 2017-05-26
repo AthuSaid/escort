@@ -853,11 +853,10 @@ class functions extends queries {
 	    	
 	    			if ($this->retRecords[0]['vencimento'] > 0)
 	    			{
-		    			$this->retHTML = '<section id="hello" class="home bg-mega" style="background: url('.SIS_URL.'images/persons/'.$this->retRecords[0]['person'].'/'.$this->retRecords[0]['cover'].') no-repeat top center; height:649px;">			    					
-								             <div class="overlay"></div>		    					
+		    			$this->retHTML = '<section id="hello" class="home bg-mega">			    					
 								                <div class="container">
 								                    <div class="row">
-								                        <div class="main_home text-center">
+								                        <div class="main_home text-center hometext">
 								                            <div class="home_text">
 								                                <h4 class="text-white text-uppercase shadow-text">DESTAQUE '.SIS_TITULO.'</h4>
 								                                <h1 class="text-white text-uppercase shadow-text">'.$this->retRecords[0]['apelido'].'</h1>
