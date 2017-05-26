@@ -18,6 +18,7 @@ class queries extends mysqlconn {
 	
 	private $retHTML;
 	
+	public $retAPID;
 	
 	/**
 	* Class Constructor
@@ -495,7 +496,11 @@ class queries extends mysqlconn {
 																c4, c8, c12, viagem)
 									VALUES ('{$obj['apid']}', '{$obj['c30']}', '{$obj['c1']}', '{$obj['c2']}', 
 											'{$obj['c4']}', '{$obj['c8']}', '{$obj['c12']}', '{$obj['viagem']}') ";
-			return $this->fExecuteSql($this->sqlQueryCompl);
+			if($this->fExecuteSql($this->sqlQueryCompl))
+			{
+				$this->retAPID = $obj['apid'];
+				return true;
+			}
 				
 		}else{
 				

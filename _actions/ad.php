@@ -88,6 +88,17 @@ if($_SESSION['sPersonLogged'] && isset($_SESSION['sPersonID']) && isset($_REQUES
 			# Save new Ad if success
 			if($functions->fSaveNewAd($_REQUEST))
 			{
+				# Save Featured Model ONLY if plan is Basic for New Ad (JUST 1 TIME!!)
+				# BASIC PLAN RULES: Just allow one Ad
+				if ($_SESSION['sPersonPlanID'] == 1)
+				{
+					$functions->fInsertFeaturedModelsByPlans($functions->retAPID, 1, date('Y-m-d H:i:s'),date('Y-m-d H:i:s', strtotime('+'.SIS_DIAS_GRATIS.' day')));
+					$functions->fInsertFeaturedModelsByPlans($functions->retAPID, 2, date('Y-m-d H:i:s'),date('Y-m-d H:i:s', strtotime('+'.SIS_DIAS_GRATIS.' day')));
+					$functions->fInsertFeaturedModelsByPlans($functions->retAPID, 3, date('Y-m-d H:i:s'),date('Y-m-d H:i:s', strtotime('+'.SIS_DIAS_GRATIS.' day')));
+					$functions->fInsertFeaturedModelsByPlans($functions->retAPID, 4, date('Y-m-d H:i:s'),date('Y-m-d H:i:s', strtotime('+'.SIS_DIAS_GRATIS.' day')));
+					$functions->fInsertFeaturedModelsByPlans($functions->retAPID, 5, date('Y-m-d H:i:s'),date('Y-m-d H:i:s', strtotime('+'.SIS_DIAS_GRATIS.' day')));									
+				}
+				
 				$message = '<html><img src="'.SIS_URL.'assets/images/logos/libidinous-transp-black.png"><br><br>
 								Ol&aacute; '.$functions->fReduceName($_SESSION['sPersonUrl']).',<br><br>
 								Seu an&uacute;ncio no '.SIS_TITULO.' foi inclu&iacute;do com sucesso!<br>
