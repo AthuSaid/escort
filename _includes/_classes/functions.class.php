@@ -853,7 +853,7 @@ class functions extends queries {
 	    	
 	    			if ($this->retRecords[0]['vencimento'] > 0)
 	    			{
-		    			$this->retHTML = '<section id="hello" class="home bg-mega">			    					
+	    				$this->retHTML = '<section id="hello" class="home style-'.$this->retRecords[0]['person'].' bg-mega">			    					
 								                <div class="container">
 								                    <div class="row">
 								                        <div class="main_home text-center hometext">

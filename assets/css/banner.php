@@ -5,15 +5,18 @@ require_once $_SERVER["DOCUMENT_ROOT"]."/_includes/_config/config.ini.php";
 
 $functions = new functions();
 
-$retBanner = $functions->fQueryFeaturedModels($functions->genderPrefer, 1, 1);
+$retBanner = $functions->fQueryFeaturedModels($functions->genderPrefer, 1, 10000);
 
 if (count($retBanner) > 0)
 {
-	if ($retBanner[0]['vencimento'] > 0)
+	for ($x = 0; $x < count($retBanner); $x++)
 	{
-		echo '.home{
-					background: url('.SIS_URL.'images/persons/'.$retBanner[0]['person'].'/'.$retBanner[0]['cover'].') no-repeat top center; height:649px;
-				}';		
+		if ($retBanner[$x]['vencimento'] > 0)
+		{
+			echo '.style-'.$retBanner[$x]['person'].'{
+						background: url('.SIS_URL.'images/persons/'.$retBanner[$x]['person'].'/'.$retBanner[$x]['cover'].') no-repeat top center; height:649px;
+					}';		
+		}
 	}
 }
 ?>
