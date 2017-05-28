@@ -56,7 +56,8 @@
         <!--For Plugins external css-->
         <!--<link rel="stylesheet" href="assets/css/plugins.css" />-->
         <!--Theme custom css -->
-        <link rel="stylesheet" href="<?php echo SIS_URL; ?>assets/css/style.css">        
+        <link rel="stylesheet" href="<?php echo SIS_URL; ?>assets/css/style.css">  
+        <link rel="stylesheet" href="<?php echo SIS_URL; ?>assets/css/banner.php">      
         <!--<link rel="stylesheet" href="assets/css/colors/maron.css">-->
         <!--Theme Responsive css-->
         <link rel="stylesheet" href="<?php echo SIS_URL; ?>assets/css/responsive.css" />
@@ -143,7 +144,7 @@
 				    </div>			    
 				  </div>
             
-            	<div class="imgLandscapeModel bg-mega" style="background: url(<?php echo SIS_URL.'images/persons/'.$retPerson[0]['person'].'/'.$retPerson[0]['cover'];?>) no-repeat bottom center; height:649px;">                            			
+            	<div class="imgLandscapeModel style-<?php echo $retPerson[0]['person'].$retPerson[0]['ad']; ?> bg-mega">                            			
 	                <div class="container">
 	                    <div class="row">
 	                        <div class="main_home text-center">
@@ -152,7 +153,11 @@
                                 <h3 class="text-white text-uppercase shadow-text"><?php echo $retPerson[0]['titulo']; ?></h3>                                
                                 <ol class="breadcrumb text-uppercase">
                                     <li class="shadow-text"><a href="<?php echo SIS_URL; ?>">Home</a></li>
-                                    <li class="shadow-text"><a href="<?php echo SIS_URL; ?>dashboard">Minha Conta</a></li>
+                                    <?php if ($logged) { ?>
+                                    	<li class="shadow-text"><a href="<?php echo SIS_URL; ?>dashboard">Minha Conta</a></li>
+                                    <?php }else{ ?>
+                                    	<li class="shadow-text"><a href="<?php echo SIS_URL; ?>persons">Novas Pessoas</a></li>
+                                    <?php } ?>
                                     <li class="active shadow-text"><a href="<?php echo SIS_URL.'person/'.$retPerson[0]['person'].'/'.$retPerson[0]['ad']; ?>"><?php echo $retPerson[0]['apelido']; ?></a></li>
                                 </ol>
                                 <?php if ($logged) { ?>

@@ -1,15 +1,16 @@
 <div id="divFirstAccess" class="modal-dialog" style="display:none;">
    		<p>Thanks for clicking.  That felt good.  <a href="#" rel="modal:close">Close</a> or press ESC</p>      
-	   <div class="col-sm-6">
+	   <div class="col-sm-4">
 			<div class="form-group"> 
 	        	<label>Eu sou</label>
 	            <select class="form-control" id="myGender">
 		   			<option value="M">Homem</option>
 		   			<option value="F">Mulher</option>
+		   			<option value="T">Travesti</option>
 		   		</select>
 	   		</div>
 	   </div>
-	   <div class="col-sm-6">
+	   <div class="col-sm-4">
 			<div class="form-group"> 
 	        	<label>Estou procurando por</label>
 	            <select class="form-control" id="findGender">
@@ -19,7 +20,17 @@
 		   		</select>
 	   		</div>
 	   </div>
-	   <div class="col-sm-6">		
+	   <div class="col-sm-4">
+			<div class="form-group"> 
+	        	<label>Servi&ccedil;os</label>
+	            <select class="form-control" id="findGender">
+			   		<option value="A">Acompanhantes</option>
+			   		<option value="M" selected>Massagens</option>
+			   		<option value="T">Todos</option>
+		   		</select>
+	   		</div>
+	   </div>
+	   <div class="col-sm-12">		
 	        <div class="form-group">
 	        	<a href="#" onclick="fSetCookieData();" class="btn btn-primary f">Salvar</a>
 	        </div>

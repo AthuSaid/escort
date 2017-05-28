@@ -118,8 +118,7 @@
         <script src="<?php echo SIS_URL; ?>assets/js/jquery.easing.1.3.js"></script>
         <script src="<?php echo SIS_URL; ?>assets/js/slick.min.js"></script>
         <script src="<?php echo SIS_URL; ?>assets/js/jquery.collapse.js"></script>                
-        <script src="<?php echo SIS_URL; ?>assets/js/bootsnav.js"></script>  
-        <script src="<?php echo SIS_URL; ?>assets/js/jquery.modal.min.js"</script>     
+        <script src="<?php echo SIS_URL; ?>assets/js/bootsnav.js"></script>               
         <script src="<?php echo SIS_URL; ?>assets/js/plugins.js"></script>
         <script src="<?php echo SIS_URL; ?>assets/js/main.js"></script>
 		<script src="<?php echo SIS_URL; ?>assets/js/cookie.js"></script>

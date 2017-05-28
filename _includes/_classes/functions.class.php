@@ -609,12 +609,13 @@ class functions extends queries {
                                             	<h2>'.$this->retRecords[$x]['plano'].'</h2>		                                            	
                                             	'.$this->retRecords[$x]['descricao'];
 								if ($this->retRecords[$x]['valor'] > 0){
-									 $cobranca = ($this->retRecords[$x]['cobrancadias'] == 30 ? ' / m&ecirc;s' : ($this->retRecords[$x]['cobrancadias'] == 180 ? ' semestre' : ' trimestre'));
-		                             $this->retHTML .= '<h4><strong>R$ '.number_format($this->retRecords[$x]['valor'], 2, ",", ".").'</strong>'.$cobranca.'</h4>';
-		                             $this->retHTML .= '<p>em at&eacute; '.SIS_PARCELAS_SEM_JUROS.'x sem juros no cart&atilde;o*</p>';
+									 $cobranca = ($this->retRecords[$x]['cobrancadias'] == 30 ? ' v&aacute;lido por 1 m&ecirc;s' : ($this->retRecords[$x]['cobrancadias'] == 180 ? ' per&iacute;odo semestral' : ' per&iacute;odo trimestral'));
+		                             $this->retHTML .= '<h4><strong>R$ '.number_format($this->retRecords[$x]['valor'], 2, ",", ".").'</strong>*</h4>';
+		                             $this->retHTML .= '<h6>'.$cobranca.'</h6>';
+		                             $this->retHTML .= '<p>* at&eacute; '.SIS_PARCELAS_SEM_JUROS.'x sem juros no cart&atilde;o</p>';
 								}else{ 
 									$this->retHTML .= '<h3><strong>'.SIS_DIAS_GRATIS.' dias gr&aacute;tis*</strong></h3>';
-                            		$this->retHTML .= '<p>* Renovar para Premium ou Advanced!</p>';
+                            		$this->retHTML .= '<p>* Upgrade ap&oacute;s expira&ccedil;&atilde;o</p>';
 								}
 							
 								$this->retHTML .= '<a '.$disableBtn.' data-nomplan="'.$this->retRecords[$x]['plano'].'" data-valplan="'.$this->retRecords[$x]['valor'].'" data-register="'.$this->retRecords[$x]['plaid'].'">'.$upgradeOrSign.'</a>';
@@ -853,7 +854,7 @@ class functions extends queries {
 	    	
 	    			if ($this->retRecords[0]['vencimento'] > 0)
 	    			{
-	    				$this->retHTML = '<section id="hello" class="home style-'.$this->retRecords[0]['person'].' bg-mega">			    					
+	    				$this->retHTML = '<section id="hello" class="home style-'.$this->retRecords[0]['person'].$this->retRecords[0]['ad'].' bg-mega">			    					
 								                <div class="container">
 								                    <div class="row">
 								                        <div class="main_home text-center hometext">

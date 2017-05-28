@@ -102,7 +102,7 @@
                     <div class="row">
                         <div class="main_home text-center">
                             <div class="about_text">
-                                <h1 class="text-white text-uppercase"><?php echo ($_SESSION['sPersonLogged'] ? "Meu Cadastro" : "Cadastre-se");?></h1>
+                                <h1 class="text-white text-uppercase text-shadow"><?php echo ($_SESSION['sPersonLogged'] ? "Meu Cadastro" : "Cadastre-se");?></h1>
                                 <ol class="breadcrumb">
                                     <li><a href="<?php echo SIS_URL; ?>">Home</a></li>
                                     <li><a href="<?php echo SIS_URL; ?>dashboard">Minha Conta</a></li>

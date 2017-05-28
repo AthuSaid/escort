@@ -113,8 +113,14 @@ Author URI: http://www.xpeedstudio.com
 	}
 	.person-banner{
 	    background-size: 100% auto; background-position-y: 87px; height: 378px;
+	}
+	.cad-banner{
+	    background-size: 100% auto; background-position-y: 87px; height: 378px;
 	}	
 	.home{
+	    background-size: 100% auto; background-position-y: 87px; height: 378px;
+	}
+	.imgLandscapeModel{
 	    background-size: 100% auto; background-position-y: 87px; height: 378px;
 	}
 	.home_text h1{
@@ -249,7 +255,13 @@ Author URI: http://www.xpeedstudio.com
 	.person-banner{
 	    background-size: 100% auto; background-position-y: 87px; height: 236px;
 	}
+	.cad-banner{
+	    background-size: 100% auto; background-position-y: 87px; height: 236px;
+	}
 	.home{
+	    background-size: 100% auto; background-position-y: 87px; height: 236px;
+	}
+	.imgLandscapeModel{
 	    background-size: 100% auto; background-position-y: 87px; height: 236px;
 	}
 	.home_text {

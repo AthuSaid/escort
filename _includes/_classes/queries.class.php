@@ -745,7 +745,15 @@ class queries extends mysqlconn {
 							     AND pf.local = 1 
 							     AND pf.tipo = 1 
 							     AND pf.principal = 'S'
-							     ORDER BY pf.fotid DESC LIMIT 1), 0) AS thumb
+							     ORDER BY pf.fotid DESC LIMIT 1), 0) AS thumb,
+							IFNULL((SELECT pf.imagemurl AS thumb 
+							     FROM pessoas_fotos pf 
+							     WHERE pf.apid = ap.apid 
+							     AND pf.ativo = 1 
+							     AND pf.local = 4 
+							     AND pf.tipo = 1 
+							     AND pf.principal = 'S'
+							     ORDER BY pf.fotid DESC LIMIT 1), 0) AS cover     
 					    	FROM anuncios_pessoas ap
 					    	INNER JOIN pessoas p ON p.pesid = ap.pesid					    	
 					    	WHERE ap.ativo = 1
