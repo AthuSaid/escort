@@ -2,6 +2,7 @@ var psSenderHash;
 var cardToken; 
 var nomplan;
 var valplan; 
+var monthplan;
 var plaid;
 
 function resetPaymentForm() {
@@ -21,11 +22,12 @@ $('.getplan').on('click', function(){
 	plaid = $(this).data("register");
 	nomplan = $(this).data("nomplan");
 	valplan = $(this).data("valplan");
+	monthplan = $(this).data("monthplan");
 	$('.payment-methods').removeClass('hidden');
 	if (plaid > 1)
 	{		
 		$('.nomplan').html('Plano ' + nomplan);
-		$('.valplan').html('<strong>R$ ' + valplan + ' por m&ecirc;s</strong>');
+		$('.valplan').html('<strong>R$ ' + valplan + ' v&aacute;lido por ' + monthplan + ' ' + (monthplan == 1 ? 'm&ecirc;s' : 'meses') + '</strong>');
 		$('.listplans').addClass('hidden');
 		$("#loading").fadeOut(500);
 		

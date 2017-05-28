@@ -1,4 +1,6 @@
 <?php
+	header("Access-Control-Allow-Origin: *");
+
     session_start();
         
     require_once $_SERVER["DOCUMENT_ROOT"]."/_includes/_config/config.ini.php";
@@ -136,7 +138,7 @@
                         <p>A partir de agora, voc&ecirc; est&aacute; assinando o seguinte plano:</p>
                         <h3 class="nomplan">PlanoX</h3>
                         <h4 class="valplan">ValorX</h4>
-                        <p>Caso deseje alterar o plano antes de contrat&aacute-lo ou a forma de pagamento atual, <a href="<?php echo SIS_URL; ?>payment">clique aqui</a>!</p>
+                        <p>Caso deseje alterar o plano antes de contrat&aacute-lo ou a forma de pagamento atual, <a href="<?php echo SIS_URL; ?>payment"><strong>clique aqui</strong></a>!</p>
                     	<p class="m-bottom-40 m-top-30">Selecione a Forma de Pagamento desejada:</p>
                     		
                          <div class="col-md-6">

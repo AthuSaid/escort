@@ -609,16 +609,17 @@ class functions extends queries {
                                             	<h2>'.$this->retRecords[$x]['plano'].'</h2>		                                            	
                                             	'.$this->retRecords[$x]['descricao'];
 								if ($this->retRecords[$x]['valor'] > 0){
-									 $cobranca = ($this->retRecords[$x]['cobrancadias'] == 30 ? ' v&aacute;lido por 1 m&ecirc;s' : ($this->retRecords[$x]['cobrancadias'] == 180 ? ' per&iacute;odo semestral' : ' per&iacute;odo trimestral'));
+									 $cobranca = ($this->retRecords[$x]['cobrancadias'] == 30 ? ' v&aacute;lido por <strong>1</strong> m&ecirc;s' : ($this->retRecords[$x]['cobrancadias'] == 180 ? ' v&aacute;lido por <strong>6</strong> meses' : ' v&aacute;lido por <strong>3</strong> meses'));
 		                             $this->retHTML .= '<h4><strong>R$ '.number_format($this->retRecords[$x]['valor'], 2, ",", ".").'</strong>*</h4>';
 		                             $this->retHTML .= '<h6>'.$cobranca.'</h6>';
 		                             $this->retHTML .= '<p>* at&eacute; '.SIS_PARCELAS_SEM_JUROS.'x sem juros no cart&atilde;o</p>';
 								}else{ 
-									$this->retHTML .= '<h3><strong>'.SIS_DIAS_GRATIS.' dias gr&aacute;tis*</strong></h3>';
-                            		$this->retHTML .= '<p>* Upgrade ap&oacute;s expira&ccedil;&atilde;o</p>';
+									$this->retHTML .= '<h4><strong>'.SIS_DIAS_GRATIS.' dias gr&aacute;tis*</strong></h4>';
+									$this->retHTML .= '<h6>&nbsp;</h6>';
+                            		$this->retHTML .= '<p>* upgrade ap&oacute;s expira&ccedil;&atilde;o</p>';
 								}
 							
-								$this->retHTML .= '<a '.$disableBtn.' data-nomplan="'.$this->retRecords[$x]['plano'].'" data-valplan="'.$this->retRecords[$x]['valor'].'" data-register="'.$this->retRecords[$x]['plaid'].'">'.$upgradeOrSign.'</a>';
+								$this->retHTML .= '<a '.$disableBtn.' data-nomplan="'.$this->retRecords[$x]['plano'].'" data-monthplan="'.($this->retRecords[$x]['cobrancadias'] / 30).'" data-valplan="'.$this->retRecords[$x]['valor'].'" data-register="'.$this->retRecords[$x]['plaid'].'">'.$upgradeOrSign.'</a>';
                             
                             
               $this->retHTML .= '</blockquote>
