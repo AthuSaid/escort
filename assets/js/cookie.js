@@ -7,7 +7,8 @@ function fSetCookieData() {
     var expires = "expires="+ d.toUTCString();
     var mygender = $("#myGender").val();
     var findgender = $("#findGender").val();
-    var cvalue = mygender + "_" + findgender;
+    var services = $("#services").val();
+    var cvalue = mygender + "_" + findgender + "_" + services;
     document.cookie = "cUserDefinedData=" + cvalue + ";" + expires + ";path=/";
     location.href = 'index.php';
 }
@@ -37,7 +38,7 @@ function fSetCookieAge() {
 		if ((d.getFullYear() - year) < 18)
 		{
 			alert('Proibido para menores de 18 anos!');
-			location.href = 'http://www.google.com';
+			location.href = 'about:blank';
 		}else{
 		    d.setTime(d.getTime() + (24*60*60*1000));
 		    var expires = "expires="+ d.toUTCString();

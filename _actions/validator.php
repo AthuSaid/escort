@@ -18,7 +18,10 @@ if (isset($_REQUEST['apelido']))
 if (isset($_REQUEST['cpf']))
 {
 	if($functions->fcheckCPF($_REQUEST['cpf']))
-		http_response_code(200);
+		if ($functions->fGetCPF($_REQUEST['cpf']))
+			http_response_code(200);
+		else
+			http_response_code(500);
 	else	
 		http_response_code(500);
 }

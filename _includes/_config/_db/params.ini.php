@@ -22,7 +22,7 @@ define("SIS_PORTA", "3306");
 /* Usuario de Conexao ao banco */
 define("SIS_USUARIO", "root");
 /* Senha de Conexao ao banco */
-define("SIS_SENHA", ""); 
+define("SIS_SENHA", "mysql1981"); 
 /* Banco de dados do cliente */   
 define("SIS_BANCO", "escort");
 /* Tempo de uso de Sessao (em segundos) */

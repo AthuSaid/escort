@@ -96,8 +96,7 @@
 
 
             <!--Home Sections-->
-            <section id="hello" class="cad-banner bg-mega">
-                <div class="overlay"></div>
+            <section id="hello" class="cad-banner bg-mega">               
                 <div class="container">
                     <div class="row">
                         <div class="main_home text-center">
@@ -180,7 +179,22 @@
 	                                         </div>  
                                          <?php } ?>  
                                             
-                                            
+                                         <hr />   
+                                         <h4>Especialidades de Atendimento</h4> 
+                                         <div class="row">  
+                                           <div class="col-sm-12">                                              
+                                                <div class="form-group">
+                                                    <label><i class="fa fa-signing"></i> Informe sua Especialidade *</label>
+                                                    <select id="especialidade" name="especialidade" data-error="Por favor, informe sua Especialidade." required class="form-control">
+													  <option value="" selected>Selecione</option>													  
+													  <option value="A" <?php echo ($retPerson[0]['especialidade'] == 'A' ? 'selected' : ''); ?>>Servi&ccedil;os de Acompanhante</option>
+													  <option value="M" <?php echo ($retPerson[0]['especialidade'] == 'M' ? 'selected' : ''); ?>>Massagens Terap&ecirc;uticas</option>
+													  <option value="T" <?php echo ($retPerson[0]['especialidade'] == 'T' ? 'selected' : ''); ?>>Todas as Especialidades Acima</option>													   
+													</select>
+													<div class="help-block with-errors"></div>
+                                                </div>
+                                            </div>
+                                         </div>      
                                          
                                          <hr />   
                                          <h4>Suas Caracter&iacute;sticas F&iacute;sicas</h4> 
@@ -362,7 +376,7 @@
                                             <div class="col-sm-3">                                              
                                                 <div class="form-group">
                                                     <label><i class="fa fa-question-circle doccpf"></i> CPF *</label>
-                                                    <input type="text" name="cpf" id="cpf" data-remote="../_actions/validator.php" data-error="Por favor, informe seu CPF corretamente!" required <?php echo $disabled; ?> value="<?php echo $retPerson[0]['cpf']; ?>">                                               
+                                                    <input type="text" name="cpf" id="cpf" data-remote="../_actions/validator.php" data-error="CPF incorreto ou j&aacute; cadastrado!" required <?php echo $disabled; ?> value="<?php echo $retPerson[0]['cpf']; ?>">                                               
 	                                                <div class="help-block with-errors"></div>
                                                 </div>
                                             </div>
@@ -440,8 +454,8 @@
         <script src="<?php echo SIS_URL; ?>assets/js/jquery.easing.1.3.js"></script>
         <script src="<?php echo SIS_URL; ?>assets/js/slick.min.js"></script>
         <script src="<?php echo SIS_URL; ?>assets/js/jquery.collapse.js"></script>
-        <script src="<?php echo SIS_URL; ?>assets/js/jquery.modal.min.js"</script>
         <script src="<?php echo SIS_URL; ?>assets/js/bootsnav.js"></script>
+        <script src="<?php echo SIS_URL; ?>assets/js/jquery.modal.min.js"</script>
         <script src="<?php echo SIS_URL; ?>assets/js/masonry.min.js"></script>
         <script src="<?php echo SIS_URL; ?>assets/js/plugins.js"></script>
         <script src="<?php echo SIS_URL; ?>assets/js/select2.full.min.js"></script>

@@ -20,6 +20,8 @@ class functions extends queries {
 	
 	public $genderPrefer = null;
 	
+	public $servicePrefer = null;
+	
 	public $cookieLatitude;
 	
 	public $cookieLongitude;
@@ -39,7 +41,7 @@ class functions extends queries {
 		
 		if (isset($_COOKIE['cUserDefinedData']))
 		{
-			list($this->myGender, $this->genderPrefer) = explode("_", $_COOKIE['cUserDefinedData']);		
+			list($this->myGender, $this->genderPrefer, $this->servicePrefer) = explode("_", $_COOKIE['cUserDefinedData']);		
 		}
 		
 		if (isset($_COOKIE['cUserDefinedLocation']))
@@ -600,7 +602,7 @@ class functions extends queries {
 				}elseif ($plaid == $this->retRecords[$x]['plaid'] && $this->retRecords[$x]['plaid'] > 1)
 				{
 					$upgradeOrSign = 'Renovar meu Plano Atual <i class="fa fa-star-half-empty"></i>';
-					$disableBtn = 'href="'.$link.'" class="btn btn-primary m-top-10 '.$getplan.'"';
+					$disableBtn = 'href="'.$link.'" class="btn btn-warning m-top-10 '.$getplan.'"';
 				}
 				
 				
@@ -666,7 +668,7 @@ class functions extends queries {
     	{
     		case 1:
 
-    			$this->retRecords = $this->fQueryFeaturedModels($this->genderPrefer, 5, 6);
+    			$this->retRecords = $this->fQueryFeaturedModels($this->genderPrefer, $this->servicePrefer, 5, 6);
     			
     			if (count($this->retRecords) > 0)
     			{
@@ -725,7 +727,7 @@ class functions extends queries {
     		
     		case 2:
     			
-    			$this->retRecords = $this->fQueryGalleryModels($this->genderPrefer);
+    			$this->retRecords = $this->fQueryGalleryModels($this->genderPrefer, $this->servicePrefer);
     			 
     			if (count($this->retRecords) > 0)
     			{
@@ -787,6 +789,7 @@ class functions extends queries {
     
     /**
      * Create user testimonials in site home
+     * @deprecated Soon
      * @return string
      */
     public function fCreateUserTestimonials()
@@ -845,7 +848,7 @@ class functions extends queries {
      */
     public function fCreateFeaturedModels($feature = 0, $limit = 1)
     {
-    	$this->retRecords = $this->fQueryFeaturedModels($this->genderPrefer, $feature, $limit);
+    	$this->retRecords = $this->fQueryFeaturedModels($this->genderPrefer, $this->servicePrefer, $feature, $limit);
     	
     	if (count($this->retRecords) > 0)
     	{
@@ -1178,6 +1181,17 @@ class functions extends queries {
     public function fGetAka($aka)
     {
     	return $this->fQueryPersonAka($this->fEscapeString($aka));
+    }
+    
+
+    /**
+     * Get Person CPF Result if Exists
+     * @param unknown $cpf
+     * @return boolean
+     */
+    public function fGetCPF($cpf)
+    {
+    	return $this->fQueryPersonCPF($this->fEscapeString($cpf));
     }
     
     

@@ -132,8 +132,9 @@ if ($_POST['method'] != 'free') //Only paid plans - Invoke PagSeguro Payment Gat
 		$credentials = PagSeguroConfig::getAccountCredentials();
 	
 		$return = $directPaymentRequest->register($credentials);
-	
+		
 		require_once $_SERVER["DOCUMENT_ROOT"]."/_includes/_classes/PHPMailerAutoload.php";
+		
 		spl_autoload_register(function ($class_name) {
 			require_once $_SERVER["DOCUMENT_ROOT"]."/_includes/_classes/".$class_name.".class.php";
 		});
@@ -158,12 +159,14 @@ if ($_POST['method'] != 'free') //Only paid plans - Invoke PagSeguro Payment Gat
 				$message = '<html><img src="'.SIS_URL.'assets/images/logos/libidinous-transp-black.png"><br><br>
 						Ol&aacute; '.$functions->fReduceName($_SESSION['sPersonUrl']).',<br><br>
 						Seu Plano '.$retPlan[0]['plano'].' no '.SIS_TITULO.' foi inclu&iacute;do com sucesso!<br>
+						O mesmo estar&aacute; dispon&iacute;vel ap&oacute;s a aprova&ccedil;&atilde;o do pagamento<br>
 							<strong>Plano '.$retPlan[0]['plano'].'</strong> no valor de 
-							<strong>R$ '.number_format($return->getGrossAmount(), 2, ",", ".").'</strong> com vencimento em 
+							<strong>R$ '.number_format($return->getGrossAmount(), 2, ",", ".").'</strong> com validade at&eacute;  
 							<strong>'.date('d/m/Y', strtotime("+".$retPlan[0]['cobrancadias']." day")).'</strong><br>
 						Com este plano voc&ecirc; poder&aacute; incluir '.($retPlan[0]['anuncios'] == 999 ? 'quantos an&uacute;ncios quiser' : 'at&eacute; '.$retPlan[0]['anuncios'].' an&uacute;ncios').' no site, <br>
 						bem como '.($retPlan[0]['fotos'] == 999 ? 'fotos ilimitadas' : 'at&eacute; '.$retPlan[0]['fotos'].' fotos').' e 
 								 '.($retPlan[0]['videos'] == 999 ? 'v&iacute;deos ilimitados' : 'at&eacute; '.$retPlan[0]['videos'].' v&iacute;deos').'! <br>
+						'.($paymentMethod == "BOLETO" ? '<a href="'.$return->getPaymentLink().'">Clique aqui para gerar seu boleto!</a><br>' : '').'
 						Caso deseje acessar sua conta, clique no link abaixo:<br><br>
 						<a href="'.SIS_URL.'signin/dashboard">'.SIS_URL.'signin/dashboard</a><br><br>
 						Atenciosamente,<br>
@@ -171,7 +174,7 @@ if ($_POST['method'] != 'free') //Only paid plans - Invoke PagSeguro Payment Gat
 						<strong>Este email foi enviado automaticamente, favor n&atilde;o responder!</strong></html>
 					';
 			
-				$arrEmail = array('aka' => $_SESSION['sPersonUrl'],
+				$arrEmail = array('aka' => $_SESSION['sPersonAka'],
 								  'email' => $_SESSION['sPersonEmail'],
 								  'subject' => SIS_TITULO.' - Plano '.$retPlan[0]['plano'].' Contratado!',
 								  'message' => $message);
@@ -224,7 +227,7 @@ if ($_POST['method'] != 'free') //Only paid plans - Invoke PagSeguro Payment Gat
 						<strong>Este email foi enviado automaticamente, favor n&atilde;o responder!</strong></html>
 					';
 			
-		$arrEmail = array('aka' => $_SESSION['sPersonUrl'],
+		$arrEmail = array('aka' => $_SESSION['sPersonAka'],
 						  'email' => $_SESSION['sPersonEmail'],
 						  'subject' => SIS_TITULO.' - Plano Basic por '.SIS_DIAS_GRATIS.' Dias',
 						  'message' => $message);

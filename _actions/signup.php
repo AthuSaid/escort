@@ -19,17 +19,28 @@ if($_SESSION['sPersonLogged'] && isset($_SESSION['sPersonID']))
 			
 	}else{
 		
-		# Update person documentation file if success
-		if ($FILES = $functions->fUploadFiles($_FILES, "../images/persons/".$_REQUEST['url']."/"))
+		# Update person documentation file if true
+		if ($_FILES)
 		{
-			# Update Person if success
-			if($functions->fUpdateCurrentPerson($_REQUEST, $FILES))		
-				$retJson = json_encode(array("ret" => true, "msg" => null, "url" => "dashboard"));
-			else	
-				$retJson = json_encode(array("ret" => false, "msg" => 'Erro ao atualizar seu cadastro!'));	
+			if ($FILES = $functions->fUploadFiles($_FILES, "../images/persons/".$_REQUEST['url']."/"))
+			{
+				# Update Person if upload success
+				if($functions->fUpdateCurrentPerson($_REQUEST, $FILES))		
+					$retJson = json_encode(array("ret" => true, "msg" => null, "url" => "dashboard"));
+				else	
+					$retJson = json_encode(array("ret" => false, "msg" => 'Erro ao atualizar seu cadastro!'));	
+			}else{
+				
+				$retJson = json_encode(array("ret" => false, "msg" => $functions->funcMsg));
+			}
+			
 		}else{
 			
-			$retJson = json_encode(array("ret" => false, "msg" => $functions->funcMsg));
+			# Update Person if success
+			if($functions->fUpdateCurrentPerson($_REQUEST, $FILES))
+				$retJson = json_encode(array("ret" => true, "msg" => null, "url" => "dashboard"));
+			else
+				$retJson = json_encode(array("ret" => false, "msg" => 'Erro ao atualizar seu cadastro!'));	
 		}
 	}
 	

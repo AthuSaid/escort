@@ -204,7 +204,7 @@ $(".btn-boleto").click(function(e) {
         dataType : "json",
         cache: false,
         success: function(data){            	
-        	alert(data.msg);
+        	alert('Um boleto para pagamento foi encaminhando para seu E-mail!');
         	if (data.ret == 1)   
         		location.href = $urlProj + "dashboard";
         	else

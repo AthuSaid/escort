@@ -5,7 +5,7 @@ require_once $_SERVER["DOCUMENT_ROOT"]."/_includes/_config/config.ini.php";
 
 $functions = new functions();
 
-$retBanner = $functions->fQueryGalleryModels($functions->genderPrefer);
+$retBanner = $functions->fQueryGalleryModels($functions->genderPrefer, $functions->servicePrefer);
 
 if (count($retBanner) > 0)
 {

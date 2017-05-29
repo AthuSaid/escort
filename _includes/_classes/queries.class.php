@@ -130,7 +130,7 @@ class queries extends mysqlconn {
 		$this->sqlQuery = "INSERT INTO pessoas (nome, apelido, url, email, senha, 
 												 sexo, genero, etnia, 
 												 olhos, cabelos, peso, altura, 
-												 busto, cintura, quadril, pcm,
+												 busto, cintura, quadril, pcm, especialidade,
 												 whatsapp, tel1, tel2,
 												 facebook, twitter, googleplus, 
 												 rg, cpf, nascimento, naturalidade,
@@ -138,7 +138,7 @@ class queries extends mysqlconn {
 										 VALUES ('".$obj['nome']."', '".$obj['apelido']."', '".$obj['url']."', '".$obj['email']."', '".md5($obj['senha'])."', 
 										 	     '".$obj['sexo']."', '".$obj['genero']."', '".$obj['etnia']."', 
 										 	     '".$obj['olhos']."', '".$obj['cabelos']."', '".$obj['peso']."', '".$obj['altura']."',  
-										 		 '".$obj['busto']."', '".$obj['cintura']."', '".$obj['quadril']."', '".$obj['pcm']."', 
+										 		 '".$obj['busto']."', '".$obj['cintura']."', '".$obj['quadril']."', '".$obj['pcm']."', '".$obj['especialidade']."', 
 										 		 '".$obj['whatsapp']."', '".$obj['tel1']."', '".$obj['tel2']."',
 										 		 '".$obj['facebook']."', '".$obj['twitter']."', '".$obj['googleplus']."',
 										 		 '".$obj['rg']."', '".$obj['cpf']."', '".$obj['nascimento']."', '".$obj['naturalidade']."',
@@ -187,6 +187,7 @@ class queries extends mysqlconn {
 									cintura = '".$obj['cintura']."', 
 									quadril = '".$obj['quadril']."', 
 									pcm = '".$obj['pcm']."',
+									especialidade = '".$obj['especialidade']."',
 									whatsapp = '".$obj['whatsapp']."', 
 									tel1 = '".$obj['tel1']."', 
 									tel2 = '".$obj['tel2']."',
@@ -645,8 +646,10 @@ class queries extends mysqlconn {
      * @param unknown $feature
      * @param unknown $limit
      */
-    public function fQueryFeaturedModels($gender, $feature, $limit){
-    	$this->sqlQueryCompl = (!empty($gender) ? "AND p.sexo = '{$gender}'" : "");
+    public function fQueryFeaturedModels($gender, $service, $feature, $limit){
+    	$this->sqlQueryCompl = null;
+    	$this->sqlQueryCompl .= (!empty($gender) ? "AND p.sexo = '{$gender}'" : "");
+    	$this->sqlQueryCompl .= (!empty($service) ? "AND p.especialidade = '{$service}'" : "");
     	$this->sqlQuery = "SELECT		    				
 		    				p.apelido,
 		    				p.sexo,
@@ -716,8 +719,10 @@ class queries extends mysqlconn {
      * Query Gallery Models
      * @param unknown $gender
      */
-    public function fQueryGalleryModels($gender){
-    	$this->sqlQueryCompl = (!empty($gender) ? "AND p.sexo = '{$gender}'" : "");
+    public function fQueryGalleryModels($gender, $service){
+    	$this->sqlQueryCompl = null;
+    	$this->sqlQueryCompl .= (!empty($gender) ? "AND p.sexo = '{$gender}'" : "");
+    	$this->sqlQueryCompl .= (!empty($service) ? "AND p.especialidade = '{$service}'" : "");
     	$this->sqlQuery = "SELECT
     							ap.url AS ad,
     							p.url AS person,
@@ -981,6 +986,24 @@ class queries extends mysqlconn {
 					    		p.apelido
 					    	FROM pessoas p
 					    	WHERE p.apelido = '{$aka}'";
+    	$this->fExecuteSql($this->sqlQuery);
+    	$this->retRecords = $this->fShowRecords();
+    	return (count($this->retRecords) == 0 ? true : false);
+    }
+    
+    
+    /**
+     * Get Query Person CPF
+     *
+     * @author    Daniel Triboni
+     * @return	 boolean
+     */
+    public function fQueryPersonCPF($cpf){
+    	$this->sqlQueryCompl = (isset($_SESSION['sPersonID']) ? " AND p.pesid <> {$_SESSION['sPersonID']}" : "");
+    	$this->sqlQuery = "SELECT
+					    		p.cpf
+					    	FROM pessoas p
+					    	WHERE p.cpf = '{$cpf}' {$this->sqlQueryCompl}";
     	$this->fExecuteSql($this->sqlQuery);
     	$this->retRecords = $this->fShowRecords();
     	return (count($this->retRecords) == 0 ? true : false);

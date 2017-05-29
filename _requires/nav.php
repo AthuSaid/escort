@@ -4,7 +4,7 @@
 			<div class="form-group"> 
 	        	<label>Eu sou</label>
 	            <select class="form-control" id="myGender">
-		   			<option value="M">Homem</option>
+		   			<option value="M" selected>Homem</option>
 		   			<option value="F">Mulher</option>
 		   			<option value="T">Travesti</option>
 		   		</select>
@@ -23,10 +23,10 @@
 	   <div class="col-sm-4">
 			<div class="form-group"> 
 	        	<label>Servi&ccedil;os</label>
-	            <select class="form-control" id="findGender">
+	            <select class="form-control" id="services">
 			   		<option value="A">Acompanhantes</option>
-			   		<option value="M" selected>Massagens</option>
-			   		<option value="T">Todos</option>
+			   		<option value="M">Massagens</option>
+			   		<option value="T" selected>Todos</option>
 		   		</select>
 	   		</div>
 	   </div>
