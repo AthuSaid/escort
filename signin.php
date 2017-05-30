@@ -128,7 +128,7 @@
 		                                                <div class="form-group">
 		                                                    <label>E-mail *</label>                                                    
 		                                                    <input type="hidden" id="page" name="page" value="<?php echo $_GET['page'];?>">
-		                                                    <input type="text" tabindex="1" id="eml" name="eml" data-error="Por favor, informe seu Email de Acesso!" required class="form-control frm-login eml" placeholder="Por favor, informe seu Email de Acesso!">
+		                                                    <input type="email" tabindex="1" id="eml" name="eml" data-error="Por favor, informe seu Email de Acesso!" required class="form-control frm-login eml" placeholder="Por favor, informe seu Email de Acesso!">
 		                                                	<div class="help-block with-errors login"></div>
 		                                                </div> 
 		                                            </div>
@@ -142,8 +142,8 @@
 		                                                <button type="button" class="btn btn-warning hidden cancel">Cancelar <i class="fa fa-lock"></i></button> 
 	                                            	</div>                                               
 	                                            	<div class="col-sm-12">                                                 
-		                                                <button type="submit" class="btn btn-primary m-top-30 m-bottom-70 signin">Entrar <i class="fa fa-sign-in"></i></button>
-		                                                <button type="button" class="btn btn-warning m-top-30 m-bottom-70 remember">Esqueci a Senha <i class="fa fa-lock"></i></button>
+		                                                <button type="submit" class="btn btn-primary m-top-30 m-bottom-70 signin">OK <i class="fa fa-sign-in"></i></button>
+		                                                <button type="button" class="btn btn-warning m-top-30 m-bottom-70 remember">Lembrar Senha <i class="fa fa-lock"></i></button>
 	                                                </div>
                                                 </form>                                            
                                             </div> 
@@ -161,7 +161,7 @@
 		                                            <div class="col-sm-12">                                             	                                                                                          
 		                                                <div class="form-group">
 		                                                    <label><i class="fa fa-question-circle"></i> E-mail *</label>                                                    
-		                                                    <input type="text" tabindex="4" id="n-eml" name="n-eml" data-error="Por favor, informe um E-mail v&aacute;lido!" required class="form-control frm-n-eml" placeholder="Por favor, informe um Email V&aacute;lido!">
+		                                                    <input type="email" tabindex="4" id="n-eml" name="n-eml" data-error="Por favor, informe um E-mail v&aacute;lido!" required class="form-control frm-n-eml" placeholder="Por favor, informe um Email V&aacute;lido!">
 		                                                	<div class="help-block with-errors n-eml"></div>
 		                                                </div> 
 		                                            </div>

@@ -221,7 +221,8 @@ if ($_POST['method'] != 'free') //Only paid plans - Invoke PagSeguro Payment Gat
 						Ol&aacute; '.$functions->fReduceName($_SESSION['sPersonUrl']).',<br><br>
 						Seu Plano Basic de '.SIS_DIAS_GRATIS.' dias gr&aacute;tis no '.SIS_TITULO.' foi criado com sucesso!<br>
 						Com este plano voc&ecirc; poder&aacute; incluir at&eacute; 1 (um) an&uacute;ncio no site <br>
-						cujo mesmo estar&aacute; online, se aprovado, por no m&aacute;ximo '.SIS_DIAS_GRATIS.' dias corridos! <br><br>
+						cujo mesmo estar&aacute; online, se aprovado, por no m&aacute;ximo '.SIS_DIAS_GRATIS.' dias corridos. <br>
+						Desfrute do que h&aacute; de melhor em '.SIS_TITULO.'!<br><br>
 						Atenciosamente,<br>
 						Equipe '.SIS_TITULO.'.<br><br>
 						<strong>Este email foi enviado automaticamente, favor n&atilde;o responder!</strong></html>

@@ -34,6 +34,7 @@ if (!$functions->fGetEmail($_REQUEST['email']))
 		$retJson = json_encode(array("ret" => true, "msg" => null, "url" => null));
 		
 	}else{
+		
 		$retJson = json_encode(array("ret" => false, "msg" => 'Falha ao enviar o email. Por favor, tente novamente mais tarde!', "url" => null));
 	}
 	

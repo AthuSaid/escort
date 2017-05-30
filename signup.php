@@ -180,7 +180,7 @@
                                          <?php } ?>  
                                             
                                          <hr />   
-                                         <h4>Especialidades de Atendimento</h4> 
+                                         <h4>Minhas Especialidades</h4> 
                                          <div class="row">  
                                            <div class="col-sm-12">                                              
                                                 <div class="form-group">

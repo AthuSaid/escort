@@ -180,19 +180,9 @@
                                                 <button type="submit" class="btn btn-primary">ENVIAR <i class="fa fa-send"></i></button>
                                             </div>
                                         </div>
-
                                     </div>
-
                                 </form>
                             </div>
-
-                            <div class="col-md-6">
-                                <div class="contact_img">
-                                    <img src="assets/images/contact-img.png" alt="" />
-                                </div>
-                            </div>
-
-
                         </div>
                     </div><!--End off row -->
                 </div><!--End off container -->

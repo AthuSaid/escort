@@ -89,14 +89,13 @@ if($_SESSION['sPersonLogged'] && isset($_SESSION['sPersonID']) && isset($_REQUES
 			if($functions->fSaveNewAd($_REQUEST))
 			{
 				# Save Featured Model ONLY if plan is Basic for New Ad (JUST 1 TIME!!)
-				# BASIC PLAN RULES: Just allow one Ad
+				# BASIC PLAN RULES: Just allow one Ad and if it's approved
 				if ($_SESSION['sPersonPlanID'] == 1)
 				{
-					$functions->fInsertFeaturedModelsByPlans($functions->retAPID, 1, date('Y-m-d H:i:s'),date('Y-m-d H:i:s', strtotime('+'.SIS_DIAS_GRATIS.' day')));
-					$functions->fInsertFeaturedModelsByPlans($functions->retAPID, 2, date('Y-m-d H:i:s'),date('Y-m-d H:i:s', strtotime('+'.SIS_DIAS_GRATIS.' day')));
-					$functions->fInsertFeaturedModelsByPlans($functions->retAPID, 3, date('Y-m-d H:i:s'),date('Y-m-d H:i:s', strtotime('+'.SIS_DIAS_GRATIS.' day')));
-					$functions->fInsertFeaturedModelsByPlans($functions->retAPID, 4, date('Y-m-d H:i:s'),date('Y-m-d H:i:s', strtotime('+'.SIS_DIAS_GRATIS.' day')));
-					$functions->fInsertFeaturedModelsByPlans($functions->retAPID, 5, date('Y-m-d H:i:s'),date('Y-m-d H:i:s', strtotime('+'.SIS_DIAS_GRATIS.' day')));									
+					$dateFMP = date('Y-m-d H:i:s');
+					
+					for ($fmp = 1; $fmp < 6; $fmp++) #Featured Models from 1 to 5
+						$functions->fInsertFeaturedModelsByPlans($functions->retAPID, $fmp, $dateFMP, date('Y-m-d H:i:s', strtotime('+'.SIS_DIAS_GRATIS.' day')));
 				}
 				
 				$message = '<html><img src="'.SIS_URL.'assets/images/logos/libidinous-transp-black.png"><br><br>
