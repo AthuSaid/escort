@@ -71,6 +71,30 @@ class queries extends mysqlconn {
 	
 	
 	/**
+	 * Query to global search
+	 * @param string $criteria
+	 */
+	public function fQueryGlobalSearch($criteria) {
+		$this->sqlQuery = "SELECT
+								*
+							FROM pessoas p
+							INNER JOIN anuncios_pessoas ap ON ap.pesid = p.pesid 							
+							INNER JOIN modalidades_pessoas mp ON mp.apid = ap.apid
+							INNER JOIN modalidades m ON m.modid = mp.modid
+							WHERE 
+							(
+								MATCH(p.nome,p.apelido) AGAINST('{$criteria}') OR
+								MATCH(m.modalidade) AGAINST('{$criteria}')
+							)
+							GROUP BY p.nome
+							ORDER BY p.nome ASC";
+		$this->fExecuteSql($this->sqlQuery);
+		$this->retRecords = $this->fShowRecords();
+		return $this->retRecords;
+	}
+	
+	
+	/**
 	 * Query Plans in Payment Page
 	 * @return array
 	 */

@@ -171,6 +171,27 @@ jQuery(document).ready(function ($) {
             cache: false        
         });
     });
+    
+    
+    $('.search-field').keydown(function(e){
+    	if (e.keyCode == 13){
+	    	var searchValue = $('.search-field').val();
+	    	$.ajax({
+	            url: $urlProj + "_actions/search.php",
+	            type: 'POST',	
+	            data: {criteria: searchValue},
+	            dataType: "html",
+	            success: function (data) {
+	            	var json = $.parseJSON(data);
+	            	if (json.ret == true){            		
+	            		location.href = $urlProj + "search";
+	            	}
+	            },
+	            cache: false        
+	        });
+    	}
+    });
+    
 
 });
 

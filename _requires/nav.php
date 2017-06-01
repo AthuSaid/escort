@@ -107,10 +107,29 @@
 
 <nav class="navbar navbar-default navbar-fixed white no-background bootsnav text-uppercase">
 
+				<!-- Start Top Search -->
+                <div class="top-search">
+                    <div class="container">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                            <input type="text" class="form-control search-field" placeholder="Pesquise por Acompanhantes, Massagistas ou Modalidades">
+                            <span class="input-group-addon close-search"><i class="fa fa-times"></i></span>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Top Search -->
+
                 <div class="container">    
                     <!-- Start Atribute Navigation -->
                     <div class="attr-nav">
                         <ul>
+                        
+	                        <li class="search">
+                                <a href="#">
+                                    <i class="fa fa-search"></i>                                                                        
+                                </a>
+	                         </li>       
+                        
                             <?php if (!isset($_SESSION['sPersonLogged'])) { ?>
                             
 	                            <li class="dropdown">

@@ -560,6 +560,28 @@ class functions extends queries {
 	
 	
 	/**
+	 * Libidinous Global Search
+	 * @param string $criteria
+	 */
+	public function fGlobalSearch($criteria)
+	{
+		$this->retRecords = $this->fQueryGlobalSearch($criteria);
+		
+		$this->retHTML = null;
+		
+		if (count($this->retRecords) > 0)
+		{
+			for ($x = 0; $x < count($this->retRecords); $x++)
+			{
+				$this->retHTML .= '';
+			}
+		}
+		
+		return array('counter' => count($this->retRecords), 'html' => $this->retHTML);
+	}
+	
+	
+	/**
 	 * Get all site plans
 	 * @param integer $type
 	 * @param integer $plaid
