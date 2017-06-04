@@ -76,7 +76,51 @@ class queries extends mysqlconn {
 	 */
 	public function fQueryGlobalSearch($criteria) {
 		$this->sqlQuery = "SELECT
-								*
+								p.apelido,
+			    				p.sexo,
+			    				p.genero,
+			    				p.whatsapp,
+			    				p.tel1,
+			    				p.tel2,		    				
+			    				p.facebook,
+			    				p.twitter,
+			    				p.googleplus,
+			    				p.nascimento,
+			    				p.url AS person,
+			    				ap.url AS ad,
+			    				ap.titulo AS titulo_anuncio,
+			    				IFNULL((SELECT pfc.imagemurl AS imagemurl 
+								     FROM pessoas_fotos pfc 
+								     WHERE pfc.apid = ap.apid 
+								     AND pfc.ativo = 1 
+								     AND pfc.local = 1 
+								     AND pfc.tipo = 1 
+								     AND pfc.principal = 'S'
+								     ORDER BY pfc.fotid DESC LIMIT 1), '../no-cover.jpg') AS thumb,		    				
+			    				ap.descricao AS descricao_pessoa,
+			    				(SELECT COUNT(1) 
+				    				 FROM pessoas_fotos pfc
+				    				 WHERE pfc.apid = ap.apid
+				    				 AND pfc.ativo = 1
+				    				 AND pfc.tipo = 1) AS count_fotos,
+				    			0 AS count_videos,	 
+			    				IFNULL((SELECT pfc.imagemurl AS cover 
+								     FROM pessoas_fotos pfc 
+								     WHERE pfc.apid = ap.apid 
+								     AND pfc.ativo = 1 
+								     AND pfc.local = 4 
+								     AND pfc.tipo = 1 
+								     AND pfc.principal = 'S'
+								     ORDER BY pfc.fotid DESC LIMIT 1), '../no-cover.jpg') AS cover,
+			    				(SELECT 
+									DATEDIFF(pp2.vencimento, now()) 
+								 FROM planos_pagamentos pp2
+								 INNER JOIN planos_pessoas pp ON pp.ppid = pp2.ppid								 
+								 WHERE pp2.ppid = pp.ppid
+								 AND pp.pesid = p.pesid
+								 AND pp2.pago = 1 
+								 ORDER BY pp2.pgid DESC LIMIT 1) AS vencimento,
+			    				NULL AS localizacao
 							FROM pessoas p
 							INNER JOIN anuncios_pessoas ap ON ap.pesid = p.pesid 							
 							INNER JOIN modalidades_pessoas mp ON mp.apid = ap.apid

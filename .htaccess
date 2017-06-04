@@ -34,6 +34,8 @@ RewriteRule ^ad/([A-Za-z0-9_\-]+)/([A-Za-z0-9_\-]+)$ ad.php?person=$1&ad=$2 [NC,
 
 RewriteRule ^persons$ persons.php
 
+RewriteRule ^search$ search.php
+
 RewriteRule ^person/([A-Za-z0-9_\-]+)/([A-Za-z0-9_\-]+)$ person-detail.php?person=$1&ad=$2 [NC,L]
 
 RewriteRule ^verify/(.*)$ verify.php?hash=$1 [B]

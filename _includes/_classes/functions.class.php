@@ -570,14 +570,61 @@ class functions extends queries {
 		$this->retHTML = null;
 		
 		if (count($this->retRecords) > 0)
-		{
-			for ($x = 0; $x < count($this->retRecords); $x++)
-			{
-				$this->retHTML .= '';
-			}
-		}
+    	{
+    				$this->retHTML = '<section id="gallery" class="gallery margin-top-120 bg-white">
+							                <!-- Portfolio container-->
+							                <div class="container">
+							                    <div class="row">
+							                        <div class="main-gallery main-model roomy-80">
+			    										<div class="col-md-12">
+							                                <div class="head_title text-left sm-text-center wow fadeInDown">
+							                                    <h3>Busca por \''.$criteria.'\'</h3>
+							                                    <h5><em>Pessoas encontradas: '.count($this->retRecords).'</em></h5>				                                    
+							                                </div>
+							                            </div>
+							                            <div class="col-md-12 m-bottom-60">
+							                                <div class="filters-button-group text-right sm-text-center">
+							                                    <button class="button is-checked" data-filter="*"><strong>Ver todos</strong></button>
+							                                    <button class="button" data-filter=".mars"><i class="fa fa-mars"></i> Marte</button>
+							                                    <button class="button" data-filter=".venus"><i class="fa fa-venus"></i> Venus</button>
+							                                    <button class="button" data-filter=".dbm"><i class="fa fa-mars-double"></i> Duplo Marte</button>
+							                                    <button class="button" data-filter=".dbv"><i class="fa fa-venus-double"></i> Duplo Venus</button>
+			    												<button class="button" data-filter=".mercury"><i class="fa fa-mercury"></i> Mercurio</button>
+							                                </div>
+							                            </div>							
+							                            <div style="clear: both;"></div>							
+							                            <div class="grid models text-center">';
+    				
+					    				for ($x = 0; $x < count($this->retRecords); $x++)
+					    				{      
+					    					if ($this->retRecords[$x]['vencimento'] > 0)
+					    					{
+												  $this->retHTML .= '<div class="grid-item model-item transition metal '.$this->retRecords[$x]['genero'].'">
+												                        <div class="model_img">
+																	  		<a href="'.SIS_URL.'person/'.$this->retRecords[$x]['person'].'/'.$this->retRecords[$x]['ad'].'">
+												                            	<div class="imgPhotoVideoCounterRight"><i class="fa fa-camera"></i> '.$this->retRecords[$x]['count_fotos'].' <i class="fa fa-video-camera"></i> '.$this->retRecords[$x]['count_videos'].'</div>
+																	  			<img src="'.SIS_URL.'images/persons/'.$this->retRecords[$x]['person'].'/'.$this->retRecords[$x]['thumb'].'" alt="'.$this->retRecords[$x]['apelido'].'" />												                            
+													                            <div class="model_caption">
+													                            	<h5 class="text-white">'.$this->retRecords[$x]['apelido'].'</h5>
+													                        	</div>
+												                            </a>
+												                    	</div>
+												                	</div>';
+					    					}
+					    				}	               
+														                                							
+							          $this->retHTML .= '<div style="clear: both;"></div>							
+							                        </div>
+							                    </div>
+							                </div><!-- Portfolio container end -->
+							            </section><!-- End off portfolio section -->';
+							          			
+    	}
+    	
+    	
+    	$_SESSION['sSearchResults'] = $this->retHTML;
 		
-		return array('counter' => count($this->retRecords), 'html' => $this->retHTML);
+		return true;
 	}
 	
 	
