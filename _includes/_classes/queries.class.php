@@ -126,10 +126,16 @@ class queries extends mysqlconn {
 							INNER JOIN modalidades_pessoas mp ON mp.apid = ap.apid
 							INNER JOIN modalidades m ON m.modid = mp.modid
 							WHERE 
-							(
-								MATCH(p.nome,p.apelido) AGAINST('{$criteria}') OR
-								MATCH(m.modalidade) AGAINST('{$criteria}')
-							)
+								ap.ativo = 1
+						    	AND p.ativo = 1
+						    	AND ap.aprovado = 1
+						    	AND p.aprovado = 1 
+						    	AND p.removido = 0 
+								AND 
+								(
+									MATCH(p.nome,p.apelido) AGAINST('{$criteria}') OR
+									MATCH(m.modalidade) AGAINST('{$criteria}')
+								)
 							GROUP BY p.nome
 							ORDER BY p.nome ASC";
 		$this->fExecuteSql($this->sqlQuery);
