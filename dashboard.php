@@ -144,17 +144,23 @@
                                         
                                         <?php if ($retPerson[0]['aprovado'] > 0){
                                         	    if($_SESSION['sPersonPlanID'] == 0){ ?>
-                                            <h6>Para dar prosseguimento a inclus&atilde;o de seus an&uacute;ncios, 
-	                                            voc&ecirc; deve aderir a algum dos planos dispon&iacute;veis em nosso site!<br>
-	                                            <br>Clique no bot&atilde;o <strong>CONTRATAR UM PLANO AGORA</strong> para assinar um plano que melhor atenda a sua necessidade!</h6>
-										<?php }elseif ($_SESSION['sPersonPlanID'] != 0 && $_SESSION['sPersonPlanExpires'] <= 5 && $_SESSION['sPersonPlanPaid'] > 0){ ?>
-											<h4><i class="fa fa-warning"></i> Seu <strong>Plano <?php echo $_SESSION['sPersonPlanName']; ?></strong> <?php echo $functions->fPlanExpires($_SESSION['sPersonPlanExpires']); ?>!</h4><br>  
-	                                            <h6>Voc&ecirc; deve renovar para algum dos planos dispon&iacute;veis para que seus an&uacute;ncios e fotos continuem dispon&iacute;veis no site e nos mecanismos de busca!<br>
-	                                            <br>Clique no bot&atilde;o <strong>RENOVAR PLANO</strong> para renovar sua assinatura!</h6>
-										<?php }elseif ($_SESSION['sPersonPlanID'] > 1 && $_SESSION['sPersonPlanPaid'] < 1){ ?>
-											<h4><i class="fa fa-warning"></i> Seu <strong>Plano <?php echo $_SESSION['sPersonPlanName']; ?></strong> foi contratado com sucesso por&eacute;m ainda est&aacute; aguardando a comprova&ccedil;&atilde;o do pagamento pela Institui&ccedil;&atilde;o Financeira!</h4><br>  
-	                                            <h6>Voc&ecirc; s&oacute; poder&aacute; incluir an&uacute;ncios ap&oacute;s o retorno desta comprova&ccedil;&atilde;o!<br>
-	                                            <br>Fique tranquil<?php echo $functions->fReference($retPerson[0]['sexo']);?>! A validade do plano contar&aacute; a partir da data da comprova&ccedil;&atilde;o do pagamento!</h6>
+                                        	    
+	                                            <h6>Para dar prosseguimento a inclus&atilde;o de seus an&uacute;ncios, 
+		                                            voc&ecirc; deve aderir a algum dos planos dispon&iacute;veis em nosso site!<br>
+		                                            <br>Clique no bot&atilde;o <strong>CONTRATAR UM PLANO AGORA</strong> para assinar um plano que melhor atenda a sua necessidade!</h6>
+		                                            
+											<?php }elseif ($_SESSION['sPersonPlanID'] != 0 && $_SESSION['sPersonPlanExpires'] <= 5/* && $_SESSION['sPersonPlanPaid'] > 0*/){ ?>
+											
+												<h4><i class="fa fa-warning"></i> Seu <strong>Plano <?php echo $_SESSION['sPersonPlanName']; ?></strong> <?php echo $functions->fPlanExpires($_SESSION['sPersonPlanExpires']); ?>!</h4><br>  
+		                                            <h6>Voc&ecirc; deve renovar para algum dos planos dispon&iacute;veis para que seus an&uacute;ncios e fotos continuem dispon&iacute;veis no site e nos mecanismos de busca!<br>
+		                                            <br>Clique no bot&atilde;o <strong>RENOVAR PLANO</strong> para renovar sua assinatura!</h6>
+		                                            
+											<?php }elseif ($_SESSION['sPersonPlanID'] > 1 && $_SESSION['sPersonPlanPaid'] < 1){ ?>
+											
+												<h4><i class="fa fa-warning"></i> Seu <strong>Plano <?php echo $_SESSION['sPersonPlanName']; ?></strong> foi contratado com sucesso por&eacute;m ainda est&aacute; aguardando a comprova&ccedil;&atilde;o do pagamento pela Institui&ccedil;&atilde;o Financeira!</h4><br>  
+		                                            <h6>Voc&ecirc; s&oacute; poder&aacute; incluir an&uacute;ncios ap&oacute;s o retorno desta comprova&ccedil;&atilde;o!<br>
+		                                            <br>Fique tranquil<?php echo $functions->fReference($retPerson[0]['sexo']);?>! A validade do plano contar&aacute; a partir da data da comprova&ccedil;&atilde;o do pagamento!</h6>
+		                                            
 										<?php }} ?>
 										
                                             <blockquote class="m-top-30 m-l-30">
