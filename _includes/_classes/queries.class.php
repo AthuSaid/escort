@@ -980,11 +980,11 @@ class queries extends mysqlconn {
 					    		p.*,
 					    		DATE_FORMAT(p.nascimento, '%d/%m/%Y') AS nascimento,					    		
 					    		CASE WHEN p.aprovado = 1 THEN
-					    			'<i class=\"fa fa-check\"></i> PERFIL APROVADO COM SUCESSO!'
+					    			'<i class=\"fa fa-check\"></i> PERFIL APROVADO COM SUCESSO!<br>A PARTIR DE AGORA VOC&Ecirc; J&Aacute; PODE INCLUIR SEUS AN&Uacute;NCIOS!'
 					    		WHEN p.aprovado = 2 THEN
 					    			'<i class=\"fa fa-remove\"></i> PERFIL REPROVADO!'
 					    		ELSE
-					    			'<i class=\"fa fa-warning\"></i> SEU PERFIL EST&Aacute; EM FASE DE APROVA&Ccedil;&Atilde;O!'
+					    			'<i class=\"fa fa-warning\"></i> SEU PERFIL EST&Aacute; EM FASE DE APROVA&Ccedil;&Atilde;O!<br>VOC&Ecirc PODER&Aacute; CADASTRAR SEUS AN&Uacute;NCIOS AP&Oacute;S O PERFIL FOR APROVADO'
 					    		END AS status,
 					    		CASE WHEN p.aprovado = 2 THEN
 					    			p.mensagem

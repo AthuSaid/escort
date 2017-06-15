@@ -27,7 +27,7 @@ $('.getplan').on('click', function(){
 	if (plaid > 1)
 	{		
 		$('.nomplan').html('Plano ' + nomplan);
-		$('.valplan').html('<strong>R$ ' + valplan.toFixed(2) + ' v&aacute;lido por ' + monthplan + ' ' + (monthplan == 1 ? 'm&ecirc;s' : 'meses') + '</strong>');
+		$('.valplan').html('<strong>R$ ' + parseFloat(valplan).toFixed(2) + ' v&aacute;lido por ' + monthplan + ' ' + (monthplan == 1 ? 'm&ecirc;s' : 'meses') + '</strong>');
 		$('.listplans').addClass('hidden');
 		$("#loading").fadeOut(500);
 		
