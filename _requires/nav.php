@@ -91,7 +91,7 @@
 	        	<label>Ano *</label>
 	            <select class="form-control" id="year">
 	            	<option value="">Selecione</option>
-			   		<?php for ($a = (date("Y")-80); $a <= (date("Y")-5); $a++){ ?>
+			   		<?php for ($a = (date("Y")-80); $a <= (date("Y")-18); $a++){ ?>
 			   			<option value="<?php echo $a; ?>"><?php echo $a; ?></option>
 			   		<?php }?>
 		   		</select>

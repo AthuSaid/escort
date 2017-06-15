@@ -48,7 +48,8 @@ class queries extends mysqlconn {
 							FROM pessoas p
 							WHERE p.lido = 0
 							AND p.pesid = {$_SESSION['sPersonID']}
-							AND p.aprovado > 0	
+							AND p.aprovado = 1
+							AND p.removido = 0 
 						UNION 
 							SELECT
 								CONCAT('Seu An&uacute;ncio ', ap.titulo) as titulo,
@@ -62,7 +63,8 @@ class queries extends mysqlconn {
 							INNER JOIN pessoas p ON p.pesid = ap.pesid
 							WHERE ap.lido = 0
 							AND ap.pesid = {$_SESSION['sPersonID']}
-							AND ap.aprovado > 0";
+							AND ap.aprovado = 1
+							AND ap.removido = 0";
 		
 		$this->fExecuteSql($this->sqlQuery);
 		$this->retRecords = $this->fShowRecords();
@@ -131,6 +133,7 @@ class queries extends mysqlconn {
 						    	AND ap.aprovado = 1
 						    	AND p.aprovado = 1 
 						    	AND p.removido = 0 
+						    	AND ap.removido = 0 
 								AND 
 								(
 									MATCH(p.nome,p.apelido) AGAINST('{$criteria}') OR
@@ -173,7 +176,7 @@ class queries extends mysqlconn {
 							(SELECT COUNT(1) FROM pessoas p WHERE p.ativo = 1 AND p.aprovado = 1 AND p.removido = 0) AS pc,
 							(SELECT COUNT(1) FROM pessoas p WHERE p.logon = 1 AND p.removido = 0) AS mo,
 							(SELECT COUNT(1) FROM pessoas_fotos pf WHERE pf.ativo = 1) AS pr,
-							(SELECT COUNT(1) FROM anuncios_pessoas ap WHERE ap.ativo = 1 AND ap.aprovado = 1) AS ac";	
+							(SELECT COUNT(1) FROM anuncios_pessoas ap WHERE ap.ativo = 1 AND ap.aprovado = 1 AND ap.removido = 0) AS ac";	
 		$this->fExecuteSql($this->sqlQuery);
 		$this->retRecords = $this->fShowRecords();
 		return $this->retRecords;
@@ -452,48 +455,11 @@ class queries extends mysqlconn {
 	 * @return	 boolean
 	 */
 	public function fRemoveAd($apid){
-		$this->sqlQuery = "DELETE FROM destaque_pessoas WHERE apid = ".$apid;
-		if($this->fExecuteSql($this->sqlQuery))
-		{
-			$this->sqlQuery = "DELETE FROM pessoas_fotos WHERE apid = ".$apid;
-			if($this->fExecuteSql($this->sqlQuery))
-			{
-				$this->sqlQuery = "DELETE FROM pessoas_cache WHERE apid = ".$apid;
-				if($this->fExecuteSql($this->sqlQuery))
-				{
-					$this->sqlQuery = "DELETE FROM modalidades_pessoas WHERE apid = ".$apid;
-					if($this->fExecuteSql($this->sqlQuery))
-					{
-						$this->sqlQuery = "DELETE FROM locais_pessoas WHERE apid = ".$apid;
-						if($this->fExecuteSql($this->sqlQuery))
-						{
-							$this->sqlQuery = "DELETE FROM anuncios_pessoas WHERE apid = ".$apid;
-							return $this->fExecuteSql($this->sqlQuery);
-							
-						}else{
-							
-							return false;
-						}
-							
-					}else{
-							
-						return false;
-					}
-						
-				}else{
-			
-					return false;
-				}
-					
-			}else{
-					
-				return false;
-			}
-			
-		}else{
-			
-			return false;			
-		}		
+		
+		//$this->sqlQuery = "DELETE FROM anuncios_pessoas WHERE apid = ".$apid;
+		//return $this->fExecuteSql($this->sqlQuery);	
+		$this->sqlQuery = "UPDATE anuncios_pessoas SET removido = 1 WHERE apid = ".$apid;
+		return $this->fExecuteSql($this->sqlQuery);
 	}
 	
 	
@@ -777,7 +743,8 @@ class queries extends mysqlconn {
 		    			AND ap.aprovado = 1 
 		    			AND p.aprovado = 1 
 		    			AND p.ativo = 1
-		    			AND p.removido = 0 
+		    			AND p.removido = 0
+		    			AND ap.removido = 0 
 		    			{$this->sqlQueryCompl}		    			
 		    			AND dp.destaque = {$feature}    					
 		    			AND NOW() BETWEEN dp.inicio AND dp.final
@@ -840,6 +807,7 @@ class queries extends mysqlconn {
 					    	AND ap.aprovado = 1
 					    	AND p.aprovado = 1 
 					    	AND p.removido = 0 
+					    	AND ap.removido = 0 
 					    	AND EXISTS ((SELECT pfc.fotid
 										     FROM pessoas_fotos pfc 
 										     WHERE pfc.apid = ap.apid 
@@ -886,7 +854,7 @@ class queries extends mysqlconn {
 						    	ORDER BY pf.fotid DESC LIMIT 1), '../no-portrait.jpg') AS thumb    	
 					    	FROM anuncios_pessoas ap
 					    	INNER JOIN pessoas p ON p.pesid = ap.pesid
-					    	WHERE p.pesid = {$pesid} AND p.removido = 0 
+					    	WHERE p.pesid = {$pesid} AND p.removido = 0 AND ap.removido = 0 
     						ORDER BY ap.visitascount DESC, ap.aprovado DESC, ap.cadastro DESC";
     	$this->fExecuteSql($this->sqlQuery);
     	$this->retRecords = $this->fShowRecords();
@@ -989,7 +957,9 @@ class queries extends mysqlconn {
 							FROM anuncios_pessoas ap
 							INNER JOIN pessoas p ON p.pesid = ap.pesid							
 							WHERE ap.ativo = 1
-							AND p.ativo = 1  			    						    		
+							AND p.ativo = 1  
+							AND ap.removido = 0 
+							AND p.removido = 0 
 							{$this->sqlQueryCompl}							
 							AND ap.url = '{$ad}'
 							AND p.url = '{$person}'";

@@ -27,7 +27,7 @@ $('.getplan').on('click', function(){
 	if (plaid > 1)
 	{		
 		$('.nomplan').html('Plano ' + nomplan);
-		$('.valplan').html('<strong>R$ ' + valplan + ' v&aacute;lido por ' + monthplan + ' ' + (monthplan == 1 ? 'm&ecirc;s' : 'meses') + '</strong>');
+		$('.valplan').html('<strong>R$ ' + valplan.toFixed(2) + ' v&aacute;lido por ' + monthplan + ' ' + (monthplan == 1 ? 'm&ecirc;s' : 'meses') + '</strong>');
 		$('.listplans').addClass('hidden');
 		$("#loading").fadeOut(500);
 		
@@ -103,7 +103,7 @@ $(".btn-pay").click(function(e) {
         						        			    	var installments = $(".installments");
         						        			    	$.each(response.installments[param.brand], function() {
         						        			    		var valueParc = this.installmentAmount;
-        						        			    		installments.append($("<option />").val(this.quantity + '|' + this.installmentAmount).text(this.quantity + 'x - R$ ' + valueParc));
+        						        			    		installments.append($("<option />").val(this.quantity + '|' + this.installmentAmount).text(this.quantity + 'x - R$ ' + valueParc.toFixed(2)));
         						        			    	});         						        			    	
         						        			    },
         						        			    error: function(response) {

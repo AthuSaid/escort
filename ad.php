@@ -5,14 +5,17 @@
     
     $functions = new functions();  
     
+    # check if logged to Ads CRUD
     if ($_SESSION['sPersonLogged'])
     {
+    	# check if person logged is the same of session logged
     	if (isset($_GET['person']) && isset($_GET['ad']) && $_SESSION['sPersonUrl'] == $_GET['person'])
     	{    	
     		$retAd = $functions->fEditPersonAd($_GET['person'], $_GET['ad']);
     	
     		$countAds = $functions->fGetCountDashboardAds($_SESSION['sPersonID']);
     		
+    		# check if number of ad's has reached the maximun or plan was expired
     		if (count($retAd) == 0 && ($countAds >= $_SESSION['sPersonMaxAds'] || $_SESSION['sPersonPlanExpires'] < 0 || $_SESSION['sPersonPlanPaid'] < 1))
     		{
     			header('Location: '.SIS_URL.'dashboard');
@@ -133,13 +136,16 @@
 										</h4>	
 										<h6>	
 											<p>An&uacute;ncio restrito apenas para maiores de <strong>18 ANOS</strong>, respeitando as seguintes imposi&ccedil;&otilde;es:</p>											
-											<p><strong>a.</strong> Todas as informa&ccedil;&otilde;es contidas no(s) seu(s) an&uacute;ncio(s) devem serem VERDADEIRAS bem como sua identidade e o prop&oacute;sito do mesmo.</p>
-											<p><strong>b.</strong> S&oacute; &eacute; permitido imagens de semi-nudez, onde a regi&atilde;o genital DEVE estar completamente coberta.</p> 
-											<p><strong>c.</strong> &Eacute; expressamente <strong>PROIBIDO</strong> inserir contendo sexo expl&iacute;cito em seu(s) an&uacute;ncio(s)! As imagens devem conter somente a divulga&ccedil;&atilde;o da(o)(s) acompanhante(s), exibindo seu(s) f&iacute;sico(s), cobrindo a regi&atilde;o genital. Em caso de d&uacute;vidas, contate nosso apoio no email <?php echo SIS_EMAIL;?>.</p> 
-											<p><strong>d.</strong> Ao adicionar seu an&uacute;ncio, voc&ecirc; estar&aacute; concordando com nossos <a href="<?php echo SIS_URL; ?>privacy" target="_blank">Termos de Uso</a>.</p> 
-											<p><strong>e.</strong> Marcando a op&ccedil;&atilde;o <strong>'ESTOU DE ACORDO! QUERO PUBLICAR MEU AN&Uacute;NCIO'</strong> abaixo, voc&ecirc; concorda no fato de que o <?php echo SIS_TITULO; ?> n&atilde;o tem uso, participa&ccedil;&atilde;o ou co-participa&ccedil;&atilde;o no(s) seu(s) an&uacute;ncio(s) publicado(s) no site, e tamb&eacute;m, voc&ecirc; concorda que o site <?php echo SIS_TITULO; ?> tem o livre direito de apagar o(s) an&uacute;ncio(s) e banir sua conta de usu&aacute;rio, caso venha a infringir os Termos de Uso.</p>
-											<p><strong>f.</strong> Todos os an&uacute;ncios inseridos no <?php echo SIS_TITULO; ?> s&atilde;o analisados antes de serem publicados pela nossa equipe e, caso n&atilde;o estejam de acordo com os Termos de Uso, ser&atilde;o automaticamente removidos, podendo acarretar no banimento da conta do usu&aacute;rio publicador.</p> 
-											<p><strong>g.</strong> O site <?php echo SIS_TITULO; ?> tem o direito de enviar toda e qualquer informa&ccedil;&atilde;o (E-mail, Telefone, IP e documentos) para as autoridades respons&aacute;veis, em caso de investiga&ccedil;&atilde;o, decis&atilde;o judicial, ou no caso de voc&ecirc; violar os Termos de Uso do <?php echo SIS_TITULO; ?>.</p>
+											<p><strong>a.</strong> Todas as informa&ccedil;&otilde;es contidas no(s) seu(s) an&uacute;ncio(s) devem serem <strong>VERDADEIRAS</strong> bem como sua identidade e o prop&oacute;sito do mesmo.</p>
+											<p><strong>b.</strong> &Eacute; expressamente <strong>PROIBIDO</strong> inserir conte&uacute;do de sexo expl&iacute;cito em seu(s) an&uacute;ncio(s)! As imagens e v&iacute;deos devem conterem somente a divulga&ccedil;&atilde;o da(o)(s) acompanhante(s), exibindo seu(s) f&iacute;sico(s). Em caso de d&uacute;vidas, contate nosso apoio no email <?php echo SIS_EMAIL;?>.</p> 
+											<p><strong>c.</strong> Ao adicionar seu an&uacute;ncio, voc&ecirc; estar&aacute; concordando com nossos <a href="<?php echo SIS_URL; ?>privacy" target="_blank">Termos de Uso</a>.</p> 
+											<p><strong>d.</strong> Marcando a op&ccedil;&atilde;o <strong>'ESTOU DE ACORDO! QUERO PUBLICAR MEU AN&Uacute;NCIO'</strong> abaixo, voc&ecirc; concorda no fato de que o <?php echo SIS_TITULO; ?> n&atilde;o tem uso, participa&ccedil;&atilde;o ou co-participa&ccedil;&atilde;o no(s) seu(s) an&uacute;ncio(s) publicado(s) no site, e tamb&eacute;m, voc&ecirc; concorda que o site <?php echo SIS_TITULO; ?> tem o livre direito de apagar o(s) an&uacute;ncio(s) e banir sua conta de usu&aacute;rio, caso venha a infringir os Termos de Uso.</p>
+											<p><strong>e.</strong> Todos os an&uacute;ncios inseridos no <?php echo SIS_TITULO; ?> s&atilde;o analisados antes de serem publicados pela nossa equipe e, caso n&atilde;o estejam de acordo com os Termos de Uso, ser&atilde;o automaticamente removidos, podendo acarretar no banimento da conta do usu&aacute;rio publicador.</p> 
+											<p><strong>f.</strong> O site <?php echo SIS_TITULO; ?> tem o direito de enviar toda e qualquer informa&ccedil;&atilde;o (E-mail, Telefone, IP e documentos) para as autoridades respons&aacute;veis, em caso de investiga&ccedil;&atilde;o, decis&atilde;o judicial, ou no caso de voc&ecirc; violar os Termos de Uso do <?php echo SIS_TITULO; ?>.</p>
+											<p><strong>g.</strong> Marcando a op&ccedil;&atilde;o <strong>'ESTOU DE ACORDO! QUERO PUBLICAR MEU AN&Uacute;NCIO'</strong>, voc&ecirc; AUTORIZA o uso de sua imagem e/ou voz e/ou v&iacute;deo e/ou dados
+																	biogr&aacute;ficos em todo e qualquer material entre fotos, documentos e outros meios de
+																	comunica&ccedil;&atilde;o, para serem utilizados no <?php echo SIS_TITULO?>, por meio de seus an&uacute;ncios, sejam esses destinados &agrave; divulga&ccedil;&atilde;o ao p&uacute;blico adulto e/ou apenas para
+																	uso interno para avalia&ccedil;&atilde;o de autenticidade, desde que n&atilde;o haja desvirtuamento da sua finalidade. </p>
                                          </h6>
                                          <div class="row"> 
                                            <div class="col-sm-12">                                                                                          

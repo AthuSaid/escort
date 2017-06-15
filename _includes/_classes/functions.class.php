@@ -644,6 +644,7 @@ class functions extends queries {
 		if (count($this->retRecords) > 0)
 		{
 			$this->retHTML = null;
+			$showDiscount = false;
 
 			for ($x = 0; $x < count($this->retRecords); $x++)
 			{
@@ -651,27 +652,32 @@ class functions extends queries {
 				if ($plaid == 0 || $type == 2)
 				{
 					$upgradeOrSign = 'Assinar <i class="fa fa-cart-plus"></i>';
-					$disableBtn = 'href="'.$link.'" class="btn btn-primary m-top-10 '.$getplan.'"';
+					$disableBtn = 'href="'.$link.'" class="btn btn-warning m-top-10 '.$getplan.'"';
+					$showDiscount = false;
 					
 				}elseif ($plaid != $this->retRecords[$x]['plaid'] && $this->retRecords[$x]['plaid'] > 1)
 				{
 					$upgradeOrSign = 'Alterar para '.$this->retRecords[$x]['plano'].' <i class="fa fa-cart-plus"></i>';
 					$disableBtn = 'href="'.$link.'" class="btn btn-primary m-top-10 '.$getplan.'"';
+					$showDiscount = false;
 					
 				}elseif ($plaid != $this->retRecords[$x]['plaid'] && $this->retRecords[$x]['plaid'] < 2)
 				{
-					$upgradeOrSign = 'Plano N&atilde;o Permitido <i class="fa fa-times-circle"></i>';
+					$upgradeOrSign = 'Plano j&aacute; utilizado <i class="fa fa-times-circle"></i>';
 					$disableBtn = 'href="'.$link.'" disabled class="btn btn-primary m-top-10"';
+					$showDiscount = false;
 					
 				}elseif ($plaid == $this->retRecords[$x]['plaid'] && $this->retRecords[$x]['plaid'] < 2)
 				{
 					$upgradeOrSign = 'N&atilde;o Permitido <i class="fa fa-times-circle"></i>';
 					$disableBtn = 'href="'.$link.'" disabled class="btn btn-primary m-top-10"';
+					$showDiscount = false;
 					
 				}elseif ($plaid == $this->retRecords[$x]['plaid'] && $this->retRecords[$x]['plaid'] > 1)
 				{
 					$upgradeOrSign = 'Renovar meu Plano Atual <i class="fa fa-star-half-empty"></i>';
 					$disableBtn = 'href="'.$link.'" class="btn btn-warning m-top-10 '.$getplan.'"';
+					$showDiscount = true;
 				}
 				
 				
@@ -679,21 +685,35 @@ class functions extends queries {
                                             <blockquote class="m-top-30 m-l-30">
                                             	<h2>'.$this->retRecords[$x]['plano'].'</h2>		                                            	
                                             	'.$this->retRecords[$x]['descricao'];
-								if ($this->retRecords[$x]['valor'] > 0){
+								if ($this->retRecords[$x]['valor'] > 0)
+								{
 									 $cobranca = ($this->retRecords[$x]['cobrancadias'] == 30 ? ' v&aacute;lido por <strong>1</strong> m&ecirc;s' : ($this->retRecords[$x]['cobrancadias'] == 180 ? ' v&aacute;lido por <strong>6</strong> meses' : ' v&aacute;lido por <strong>3</strong> meses'));
-		                             $this->retHTML .= '<h4><strong>R$ '.number_format($this->retRecords[$x]['valor'], 2, ",", ".").'</strong>*</h4>';
-		                             $this->retHTML .= '<h6>'.$cobranca.'</h6>';
+		                             if ($showDiscount)
+		                             {
+		                             	$valorPlano = round($this->retRecords[$x]['valor'] - (($this->retRecords[$x]['valor'] * $this->retRecords[$x]['descontorenovacao']) / 100)) - 0.1;
+		                             	$this->retHTML .= '<h4 style="height:25px;"><strike>R$ '.number_format($this->retRecords[$x]['valor'], 2, ",", ".").'</strike></h4>';
+		                             	$this->retHTML .= '<h3 style="height:35px;"><strong>R$ '.number_format($valorPlano, 2, ",", ".").'</strong>*</h3>';
+		                             	
+		                             }else{	
+		                             	
+		                             	$valorPlano = $this->retRecords[$x]['valor'];
+									 	$this->retHTML .= '<h2 style="height:70px;"><strong>R$ '.number_format($valorPlano, 2, ",", ".").'</strong>*</h2>';
+		                             }
+		                             
+									 $this->retHTML .= '<h6>'.$cobranca.'</h6>';
 		                             $this->retHTML .= '<p>* at&eacute; '.SIS_PARCELAS_SEM_JUROS.'x sem juros no cart&atilde;o</p>';
+		                             
 								}else{ 
-									$this->retHTML .= '<h4><strong>'.SIS_DIAS_GRATIS.' dias gr&aacute;tis*</strong></h4>';
+									
+									$this->retHTML .= '<h4 style="height:70px;"><strong>'.SIS_DIAS_GRATIS.' dias gr&aacute;tis*</strong></h4>';
 									$this->retHTML .= '<h6>&nbsp;</h6>';
                             		$this->retHTML .= '<p>* upgrade ap&oacute;s expira&ccedil;&atilde;o</p>';
 								}
 							
-								$this->retHTML .= '<a '.$disableBtn.' data-nomplan="'.$this->retRecords[$x]['plano'].'" data-monthplan="'.($this->retRecords[$x]['cobrancadias'] / 30).'" data-valplan="'.$this->retRecords[$x]['valor'].'" data-register="'.$this->retRecords[$x]['plaid'].'">'.$upgradeOrSign.'</a>';
+								$this->retHTML .= '<a '.$disableBtn.' data-nomplan="'.$this->retRecords[$x]['plano'].'" data-monthplan="'.($this->retRecords[$x]['cobrancadias'] / 30).'" data-valplan="'.$valorPlano.'" data-register="'.$this->retRecords[$x]['plaid'].'">'.$upgradeOrSign.'</a>';
                             
                             
-              $this->retHTML .= '</blockquote>
+              $this->retHTML .= '</blockquote><hr/>
 							</div>';
 				
 			}				

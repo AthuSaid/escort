@@ -179,11 +179,11 @@
 												<?php } ?>
 												<a href="<?php echo SIS_URL; ?>remove" style="float: right; margin-top:40px;">Remover Conta</a>																																					
 												
-                                            <p class="m-top-30"><strong><i class="fa fa-question-circle"></i> ATEN&Ccedil;&Atilde;O <?php echo strtoupper($functions->fReduceName($retPerson[0]['apelido']));?>:</strong> Todos os dados de todos os perfis no <?php echo SIS_TITULO;?>, assim como os an&uacute;ncios e fotos 
+                                            <p class="m-top-30"><strong style="color: red"><i class="fa fa-warning"></i> ATEN&Ccedil;&Atilde;O <?php echo strtoupper($functions->fReduceName($retPerson[0]['apelido']));?>:</strong><strong> Todos os perfis contidos no <?php echo SIS_TITULO;?>, assim como os an&uacute;ncios e fotos, 
                                               passam por um processo de verifica&ccedil;&atilde;o de autenticidade e 
                                               controle de preven&ccedil;&atilde;o de pr&aacute;ticas criminosas, como pedofilia, agenciamento e 
                                               aliciamento de menores de 18 anos. Todos os dados s&atilde;o mantidos em sigilo, 
-                                              e ser&atilde;o disponibilizados a &oacute;rg&atilde;os superiores, quando solicitado!</p>
+                                              e ser&atilde;o disponibilizados a &oacute;rg&atilde;os superiores, quando solicitado!</strong></p>
 
                                         </div>
 

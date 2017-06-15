@@ -138,12 +138,12 @@
 		                                                    <input type="password" tabindex="2" id="pwd" name="pwd" data-error="Por favor, informe sua Senha!" required class="form-control frm-login" placeholder="Por favor, informe sua Senha!">
 		                                                	<div class="help-block with-errors"></div>
 		                                                </div>
-		                                                <button type="button" class="btn btn-primary hidden resetpwd">Lembrar Senha <i class="fa fa-lock"></i></button>
-		                                                <button type="button" class="btn btn-warning hidden cancel">Cancelar <i class="fa fa-lock"></i></button> 
+		                                                <button type="button" class="btn btn-primary hidden m-top-30 m-bottom-70 resetpwd">Nova Senha <i class="fa fa-lock"></i></button>
+		                                                <button type="button" class="btn btn-warning hidden m-top-30 m-bottom-70 cancel">Voltar</button> 
 	                                            	</div>                                               
 	                                            	<div class="col-sm-12">                                                 
 		                                                <button type="submit" class="btn btn-primary m-top-30 m-bottom-70 signin">OK <i class="fa fa-sign-in"></i></button>
-		                                                <button type="button" class="btn btn-warning m-top-30 m-bottom-70 remember">Lembrar Senha <i class="fa fa-lock"></i></button>
+		                                                <button type="button" class="btn btn-warning m-top-30 m-bottom-70 remember">Nova Senha <i class="fa fa-lock"></i></button>
 	                                                </div>
                                                 </form>                                            
                                             </div> 
@@ -217,7 +217,7 @@
 	        	$(this).addClass('hidden');	        	
 	        	$('.resetpwd').removeClass('hidden');
 	        	$('.cancel').removeClass('hidden');
-	        	$('.apls').html('<i class="fa fa-unlock"></i> Lembrar Senha');
+	        	$('.apls').html('<i class="fa fa-unlock"></i> Nova Senha');
 	        });
 	        $('.cancel').on('click', function(){
 	        	$('.passw').removeClass('hidden');

@@ -851,12 +851,12 @@ textarea::-ms-input-placeholder{
 }
 #loading-center-absolute {
     position: absolute;
-    left: 50%;
+    left: 52%;
     top: 50%;
     height: 50px;
     width: 150px;
     margin-top: -25px;
-    margin-left: -75px;
+    margin-left: -50px;
 }
 .object{
     width: 4px;
