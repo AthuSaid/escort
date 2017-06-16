@@ -1,5 +1,6 @@
 <div id="divFirstAccess" class="modal-dialog" style="display:none;">
-   		<p>Thanks for clicking.  That felt good.  <a href="#" rel="modal:close">Close</a> or press ESC</p>      
+   		<p>Selecione o que deseja encontrar no <?php echo SIS_TITULO; ?>:  
+   		<!--a href="#" rel="modal:close">Close</a> or press ESC</p-->      
 	   <div class="col-sm-4">
 			<div class="form-group"> 
 	        	<label>Eu sou</label>
@@ -49,11 +50,12 @@
                              </div>
                              <div class="col-sm-10">                               
                                 <div class="text-left service_left_text">
+                                <br>
                                 <h4 class="main-color black"><strong>ATEN&Ccedil;&Atilde;O</strong> Conte&uacute;do Adulto!</h4>
                             	<p>Antes de prosseguir sua visita ao <?php echo SIS_TITULO?>, voc&ecirc; deve aceitar os seguintes termos:</p>
 									<p><strong>a.</strong> Comprovar que possui mais de 18 anos.</p>									
 									<p><strong>b.</strong> Compreender que haver&aacute; nudez expl&iacute;cita neste site, que &eacute; destinado exclusivamente para adultos.									
-									<p><strong>c.</strong> Todo conte&uacute;do n&atilde;o ir&aacute; causar problema, constrangimento ou inc&ocirc;modos a voc&ecirc;.									
+									<p><strong>c.</strong> Todo conte&uacute;do n&atilde;o ir&aacute; causar problema, constrangimento ou inc&ocirc;modo a voc&ecirc;.									
 									<p><strong>d.</strong> Confirmando sua idade abaixo, voc&ecirc; CONCORDA que os propriet&aacute;rios e fundadores do <?php echo SIS_TITULO?>, bem como os provedores de Internet, n&atilde;o se encarregam da responsabilidade sobre os conte&uacute;dos publicados e o uso dos mesmos.									
 								<p>Para mais informa&ccedil;&atilde;oes, por favor leia nossos <a href="<?php echo SIS_URL?>privacy" target="_blank">Termos de Uso</a>.</p>
                         	</div>

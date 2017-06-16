@@ -167,7 +167,10 @@
                                                 <h5>
                                                     <em><?php echo $retPerson[0]['status']; ?></em>                                                    
                                                 </h5>
-                                                <p style="color:red"><?php echo $retPerson[0]['mensagem']; ?></p>
+                                                <?php 
+                                                if ($_SESSION['sPersonPlanID'] != 0 && $_SESSION['sPersonPlanExpires'] > 5){
+                                                	echo $retPerson[0]['mensagem'];
+                                                } ?>
                                             </blockquote>
 												
 

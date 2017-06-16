@@ -929,6 +929,7 @@ Dim mbEditFlag As Boolean
 Dim mbAddNewFlag As Boolean
 Dim mbDataChanged As Boolean
 Public pesID As Integer
+Public findPES As String
 Option Explicit
 Private Declare Function URLDownloadToFile Lib "urlmon" Alias "URLDownloadToFileA" (ByVal pCaller As Long, ByVal szURL As String, ByVal szFileName As String, ByVal dwReserved As Long, ByVal lpfnCB As Long) As Long
 
@@ -976,6 +977,8 @@ Private Sub Form_Load()
 
   If pesID > 0 Then
     flagSql = "pesid = " & pesID
+  ElseIf findPES <> "" Then
+    flagSql = "(pesid = '" & findPES & "' OR cpf = '" & findPES & "' OR email = '" & findPES & "' OR url = '" & findPES & "')"
   Else
     flagSql = "aprovado = 0"
   End If
@@ -1006,6 +1009,11 @@ Private Sub Form_Load()
   changeImage txtFields(10).Text, txtFields(2).Text, txtFields(11).Text
 
   mbDataChanged = False
+  
+  If adoPrimaryRS.RecordCount = 0 And findPES <> "" Then
+    MsgBox "Nenhum anunciante encontrado com estes termos de pesquisa!", vbInformation
+  End If
+  
 End Sub
 
 Private Sub Form_KeyDown(KeyCode As Integer, Shift As Integer)
@@ -1163,6 +1171,7 @@ Private Sub SetButtons(bVal As Boolean)
 End Sub
 
 Function changeImage(pes As String, doc As String, cpr As String)
+'MsgBox GetSetting(App.Title, "CFGSYS", "CFGSITE") & pes & "/" & cpr
  On Local Error Resume Next
     Dim strDocSaveAs As String
     Dim strCprSaveAs As String

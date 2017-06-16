@@ -20,6 +20,40 @@ Begin VB.Form frmAlertas
    MaxButton       =   0   'False
    ScaleHeight     =   4530
    ScaleWidth      =   9525
+   Begin VB.CommandButton cmdProcurarAnuncio 
+      Caption         =   "Procurar Anúncio"
+      BeginProperty Font 
+         Name            =   "Tahoma"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   375
+      Left            =   7080
+      TabIndex        =   23
+      Top             =   3360
+      Width           =   1995
+   End
+   Begin VB.CommandButton cmdProcurarPerfil 
+      Caption         =   "Procurar Perfil"
+      BeginProperty Font 
+         Name            =   "Tahoma"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   375
+      Left            =   4800
+      TabIndex        =   22
+      Top             =   3360
+      Width           =   1995
+   End
    Begin VB.PictureBox Picture1 
       BackColor       =   &H00FFFFFF&
       BorderStyle     =   0  'None
@@ -139,10 +173,10 @@ Begin VB.Form frmAlertas
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   7200
+      Left            =   7080
       TabIndex        =   5
       Top             =   2880
-      Width           =   1755
+      Width           =   1995
    End
    Begin VB.CommandButton cmdPerfis 
       Caption         =   "Ver Perfis"
@@ -157,10 +191,39 @@ Begin VB.Form frmAlertas
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   4920
+      Left            =   4800
       TabIndex        =   3
       Top             =   2880
-      Width           =   1755
+      Width           =   1995
+   End
+   Begin VB.Label lblReceita 
+      AutoSize        =   -1  'True
+      Caption         =   "R$ 0,00"
+      DataField       =   "receita"
+      BeginProperty DataFormat 
+         Type            =   1
+         Format          =   """R$"" #.##0,00"
+         HaveTrueFalseNull=   0
+         FirstDayOfWeek  =   0
+         FirstWeekOfYear =   0
+         LCID            =   1046
+         SubFormatType   =   2
+      EndProperty
+      BeginProperty Font 
+         Name            =   "Tahoma"
+         Size            =   14.25
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   &H00004000&
+      Height          =   345
+      Left            =   2400
+      TabIndex        =   7
+      Top             =   3920
+      Width           =   1110
    End
    Begin VB.Label Label1 
       Alignment       =   1  'Right Justify
@@ -205,16 +268,16 @@ Begin VB.Form frmAlertas
       EndProperty
       ForeColor       =   &H000000C0&
       Height          =   345
-      Left            =   3100
+      Left            =   2400
       TabIndex        =   17
-      Top             =   3960
+      Top             =   3440
       Width           =   1110
    End
    Begin VB.Label lblLabels 
       Caption         =   "Aguardando Pgto.:"
       BeginProperty Font 
          Name            =   "Tahoma"
-         Size            =   12
+         Size            =   9.75
          Charset         =   0
          Weight          =   700
          Underline       =   0   'False
@@ -225,8 +288,8 @@ Begin VB.Form frmAlertas
       Index           =   6
       Left            =   360
       TabIndex        =   16
-      Top             =   3960
-      Width           =   2415
+      Top             =   3480
+      Width           =   2055
    End
    Begin VB.Label lblNumMidia 
       BackStyle       =   0  'Transparent
@@ -373,7 +436,7 @@ Begin VB.Form frmAlertas
       Caption         =   "Receita Mês:"
       BeginProperty Font 
          Name            =   "Tahoma"
-         Size            =   12
+         Size            =   9.75
          Charset         =   0
          Weight          =   700
          Underline       =   0   'False
@@ -384,8 +447,8 @@ Begin VB.Form frmAlertas
       Index           =   2
       Left            =   360
       TabIndex        =   9
-      Top             =   3480
-      Width           =   2655
+      Top             =   3960
+      Width           =   2175
    End
    Begin VB.Label lblPerfis 
       Alignment       =   2  'Center
@@ -416,35 +479,6 @@ Begin VB.Form frmAlertas
       TabIndex        =   0
       Top             =   1680
       Width           =   2175
-   End
-   Begin VB.Label lblReceita 
-      AutoSize        =   -1  'True
-      Caption         =   "R$ 0,00"
-      DataField       =   "receita"
-      BeginProperty DataFormat 
-         Type            =   1
-         Format          =   """R$"" #.##0,00"
-         HaveTrueFalseNull=   0
-         FirstDayOfWeek  =   0
-         FirstWeekOfYear =   0
-         LCID            =   1046
-         SubFormatType   =   2
-      EndProperty
-      BeginProperty Font 
-         Name            =   "Tahoma"
-         Size            =   14.25
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      ForeColor       =   &H00004000&
-      Height          =   345
-      Left            =   3100
-      TabIndex        =   7
-      Top             =   3480
-      Width           =   1110
    End
    Begin VB.Label lblAnuncios 
       Alignment       =   2  'Center
@@ -547,6 +581,24 @@ Private Sub cmdPerfis_Click()
     frmPerfis.Show
 End Sub
 
+Private Sub cmdProcurarAnuncio_Click()
+    Dim findAdID As String
+    findAdID = InputBox("Informe o ID, Título ou a URL do Anúncio para abrir:", "Procurar Anúncio")
+    With frmAnuncios
+        .findAD = findAdID
+        .Show vbModal, Me
+    End With
+End Sub
+
+Private Sub cmdProcurarPerfil_Click()
+    Dim findPesID As String
+    findPesID = InputBox("Informe o ID, CPF, Apelido ou Email do Anunciante para abrir:", "Procurar Perfil")
+    With frmPerfis
+        .findPES = findPesID
+        .Show vbModal, Me
+    End With
+End Sub
+
 Private Sub Form_Load()
 On Local Error GoTo ErrDB
 Dim db As Connection
@@ -562,7 +614,7 @@ Dim db As Connection
   adoPrimaryRS.Open "SELECT " & _
                     "(SELECT COUNT(1) FROM pessoas WHERE aprovado = 0) AS perfis, " & _
                     "(SELECT COUNT(1) FROM pessoas WHERE aprovado = 1) AS numperfis, " & _
-                    "(SELECT COUNT(1) FROM pessoas_fotos pf WHERE pf.ativo = 1) AS nummidia, " & _
+                    "(SELECT COUNT(1) FROM pessoas_fotos pf WHERE pf.ativo = 1 AND pf.tipo = 1) AS nummidia, " & _
                     "(SELECT SUM(pp.vloriginal) FROM planos_pagamentos pp WHERE pp.pago = 1 AND pp.psid IS NOT NULL AND DATEDIFF(pp.vencimento, now()) > 0) AS receita," & _
                     "(SELECT SUM(pp.vloriginal) FROM planos_pagamentos pp WHERE pp.pago = 0 AND pp.psid IS NOT NULL) AS aguardando," & _
                     "(SELECT COUNT(1) FROM anuncios_pessoas WHERE aprovado = 1) AS numanuncios, " & _

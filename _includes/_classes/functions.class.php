@@ -427,7 +427,7 @@ class functions extends queries {
              $novo_texto = trim(substr($texto, 0, $limite))."...";
           }else{
              $ultimo_espaco = strrpos(substr($texto, 0, $limite), " ");
-             $novo_texto = trim(substr($texto, 0, $ultimo_espaco))." ... <a href='".$url."'><strong>mais detalhes</strong></a>";
+             $novo_texto = trim(substr($texto, 0, $ultimo_espaco))." ... <a href='".$url."'><strong>MAIS SOBRE MIM</strong></a>";
           }
        }
        return $novo_texto;

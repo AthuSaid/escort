@@ -175,7 +175,7 @@ class queries extends mysqlconn {
 		$this->sqlQuery = "SELECT 
 							(SELECT COUNT(1) FROM pessoas p WHERE p.ativo = 1 AND p.aprovado = 1 AND p.removido = 0) AS pc,
 							(SELECT COUNT(1) FROM pessoas p WHERE p.logon = 1 AND p.removido = 0) AS mo,
-							(SELECT COUNT(1) FROM pessoas_fotos pf WHERE pf.ativo = 1) AS pr,
+							(SELECT COUNT(1) FROM pessoas_fotos pf WHERE pf.ativo = 1 AND pf.tipo = 1) AS pr,
 							(SELECT COUNT(1) FROM anuncios_pessoas ap WHERE ap.ativo = 1 AND ap.aprovado = 1 AND ap.removido = 0) AS ac";	
 		$this->fExecuteSql($this->sqlQuery);
 		$this->retRecords = $this->fShowRecords();
@@ -825,6 +825,40 @@ class queries extends mysqlconn {
     
     
     /**
+     * Query Cover Models
+     * @param unknown $gender
+     */
+    public function fQueryCoverModels($gender, $service){
+    	$this->sqlQueryCompl = null;
+    	$this->sqlQueryCompl .= (!empty($gender) ? "AND p.sexo = '{$gender}'" : "");
+    	$this->sqlQueryCompl .= (!empty($service) ? "AND p.especialidade = '{$service}'" : "");
+    	$this->sqlQuery = "SELECT
+					    	ap.url AS ad,
+					    	p.url AS person,					    	
+					    	IFNULL((SELECT pf.imagemurl AS thumb
+						    	FROM pessoas_fotos pf
+						    	WHERE pf.apid = ap.apid
+						    	AND pf.ativo = 1
+						    	AND pf.local = 4
+						    	AND pf.tipo = 1
+						    	AND pf.principal = 'S'
+					    	ORDER BY pf.fotid DESC LIMIT 1), 0) AS cover
+					    	FROM anuncios_pessoas ap
+					    	INNER JOIN pessoas p ON p.pesid = ap.pesid
+					    	WHERE ap.ativo = 1
+					    	AND p.ativo = 1
+					    	AND p.aprovado = 1
+					    	AND p.removido = 0					    	
+					    	{$this->sqlQueryCompl}
+					    	GROUP BY ad, person
+					    	ORDER BY rand()";
+    	$this->fExecuteSql($this->sqlQuery);
+    	$this->retRecords = $this->fShowRecords();
+    	return $this->retRecords;
+    }
+    
+    
+    /**
      * Get Query All Person Ads
      *
      * @author    Daniel Triboni
@@ -980,16 +1014,18 @@ class queries extends mysqlconn {
 					    		p.*,
 					    		DATE_FORMAT(p.nascimento, '%d/%m/%Y') AS nascimento,					    		
 					    		CASE WHEN p.aprovado = 1 THEN
-					    			'<i class=\"fa fa-check\"></i> PERFIL APROVADO COM SUCESSO!<br>A PARTIR DE AGORA VOC&Ecirc; J&Aacute; PODE INCLUIR SEUS AN&Uacute;NCIOS!'
+					    			'<i class=\"fa fa-check\"></i> PERFIL APROVADO COM SUCESSO!'
 					    		WHEN p.aprovado = 2 THEN
 					    			'<i class=\"fa fa-remove\"></i> PERFIL REPROVADO!'
 					    		ELSE
-					    			'<i class=\"fa fa-warning\"></i> SEU PERFIL EST&Aacute; EM FASE DE APROVA&Ccedil;&Atilde;O!<br>VOC&Ecirc PODER&Aacute; CADASTRAR SEUS AN&Uacute;NCIOS AP&Oacute;S O PERFIL FOR APROVADO'
+					    			'<i class=\"fa fa-warning\"></i> SEU PERFIL EST&Aacute; EM APROVA&Ccedil;&Atilde;O!'
 					    		END AS status,
 					    		CASE WHEN p.aprovado = 2 THEN
-					    			p.mensagem
-					    		ELSE
-					    			''
+					    				CONCAT('<p style=\"color:red\">', p.mensagem, '</p>') 
+									WHEN p.aprovado = 1 THEN
+					    				'<p style=\"color:green\">A partir de agora voc&ecirc; j&aacute; pode incluir seus an&uacute;ncios.</p>'
+									WHEN p.aprovado = 0 THEN
+					    				'<p style=\"color:green\">Voc&ecirc poder&aacute; incluir seus an&uacute;ncios ap&oacute;s o perfil for aprovado.</p>'					    		
 					    		END AS mensagem					    		
 					    	FROM pessoas p    	
 					    	WHERE p.url = '{$person}'";

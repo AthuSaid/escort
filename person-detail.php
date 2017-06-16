@@ -57,7 +57,7 @@
         <!--<link rel="stylesheet" href="assets/css/plugins.css" />-->
         <!--Theme custom css -->
         <link rel="stylesheet" href="<?php echo SIS_URL; ?>assets/css/style.css">  
-        <link rel="stylesheet" href="<?php echo SIS_URL; ?>assets/css/banner.php">      
+        <link rel="stylesheet" href="<?php echo SIS_URL; ?>assets/css/cover.php">      
         <!--<link rel="stylesheet" href="assets/css/colors/maron.css">-->
         <!--Theme Responsive css-->
         <link rel="stylesheet" href="<?php echo SIS_URL; ?>assets/css/responsive.css" />
@@ -416,7 +416,7 @@
                             
                             
                                 <!-- PERSON GALLERY ########################################### -->
-           						<?php echo $functions->fGetPersonPhotos($retPerson[0]['apid'], $retPerson[0]['url'], count($countPhotos), count($countVideos)); ?>
+           						<?php echo $functions->fGetPersonPhotos($retPerson[0]['apid'], $retPerson[0]['url'], $countPhotos, $countVideos); ?>
 
 
                             </div>

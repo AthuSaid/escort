@@ -399,6 +399,15 @@ Begin VB.Form frmAnuncios
       Top             =   1560
       Width           =   495
    End
+   Begin VB.TextBox txtFields 
+      DataField       =   "pesid"
+      Height          =   285
+      Index           =   9
+      Left            =   600
+      TabIndex        =   49
+      Top             =   1560
+      Width           =   1095
+   End
    Begin VB.Label lblLabels 
       Caption         =   "Modalidades && Cachê:"
       BeginProperty Font 
@@ -833,6 +842,7 @@ Dim mbEditFlag As Boolean
 Dim mbAddNewFlag As Boolean
 Dim mbDataChanged As Boolean
 Dim db As Connection
+Public findAD As String
 Option Explicit
 Private Declare Function URLDownloadToFile Lib "urlmon" Alias "URLDownloadToFileA" (ByVal pCaller As Long, ByVal szURL As String, ByVal szFileName As String, ByVal dwReserved As Long, ByVal lpfnCB As Long) As Long
 
@@ -860,7 +870,7 @@ Private Sub cmdPerfil_Click()
 End Sub
 
 Private Sub Form_Load()
-  
+  Dim flagSql As String
   Dim oText As TextBox
   
   Set db = New Connection
@@ -872,11 +882,18 @@ Private Sub Form_Load()
           "database=" & GetSetting(App.Title, "CFGSYS", "CFGDATA") & ";"
 
   Set adoPrimaryRS = New Recordset
+  
+  If findAD <> "" Then
+    flagSql = "(ap.apid = '" & findAD & "' OR ap.titulo = '" & findAD & "' OR ap.url = '" & findAD & "')"
+  Else
+    flagSql = "ap.aprovado = 0"
+  End If
+  
   adoPrimaryRS.Open "SELECT " & _
                         "ap.*, " & _
                         "CASE WHEN ap.aprovado = 0 THEN 'AGUARDANDO' WHEN ap.aprovado = 1 THEN 'APROVADO' WHEN ap.aprovado = 2 THEN 'REPROVADO' END AS status_aprovado " & _
                      "FROM anuncios_pessoas ap " & _
-                     "WHERE ap.aprovado = 0 ORDER BY ap.cadastro ASC ", db, adOpenStatic, adLockOptimistic
+                     "WHERE " & flagSql & " ORDER BY ap.cadastro ASC ", db, adOpenStatic, adLockOptimistic
 
   For Each oText In Me.txtFields
     Set oText.DataSource = adoPrimaryRS
