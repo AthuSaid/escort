@@ -98,6 +98,9 @@ Author URI: http://www.xpeedstudio.com
     .work_separator2 {
     	display:none;
     }
+    ol {
+		display: none;
+	}
 }
 
 @media (min-width: 656px) and (max-width: 870px) {
@@ -269,7 +272,9 @@ Author URI: http://www.xpeedstudio.com
         height: 280px;
         overflow: hidden;
     }
-    
+    .model_text {
+    	margin-top: -20px;
+    }
     .dash-banner-F1{
 	    background-size: 100% auto; background-position-y: 87px; height: 236px;
 	}

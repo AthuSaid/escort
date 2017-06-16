@@ -2084,7 +2084,7 @@ Blog Details Page
 
 .divChangeMediasLandscape{
 	z-index:2;
-	position:relative;
+	position:absolute;
 	height:23px;
 	display:block;	
 	text-align: center;
@@ -2093,14 +2093,16 @@ Blog Details Page
 	cursor: pointer; 
 	font-size: 18px;	
 	padding-right:5px;
-	padding-left:5px;
+	padding-left:5px;	
+	margin-top: 92px;
+	margin-left: 5px;
 	max-width: 160px;
 	background-color:rgba(0,0,0,0.35); 
 }
 
 .centerLand {
     margin: auto;
-    width: 50%;       
+    width: 50%;   
 }
 
 
