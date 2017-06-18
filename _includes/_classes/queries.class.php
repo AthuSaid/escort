@@ -689,7 +689,7 @@ class queries extends mysqlconn {
     public function fQueryFeaturedModels($gender, $service, $feature, $limit){
     	$this->sqlQueryCompl = null;
     	$this->sqlQueryCompl .= (!empty($gender) ? "AND p.sexo = '{$gender}'" : "");
-    	$this->sqlQueryCompl .= (!empty($service) ? "AND p.especialidade = '{$service}'" : "");
+    	$this->sqlQueryCompl .= (!empty($service) && $service != "T" ? "AND p.especialidade = '{$service}'" : "");
     	$this->sqlQuery = "SELECT		    				
 		    				p.apelido,
 		    				p.sexo,
@@ -763,7 +763,7 @@ class queries extends mysqlconn {
     public function fQueryGalleryModels($gender, $service){
     	$this->sqlQueryCompl = null;
     	$this->sqlQueryCompl .= (!empty($gender) ? "AND p.sexo = '{$gender}'" : "");
-    	$this->sqlQueryCompl .= (!empty($service) ? "AND p.especialidade = '{$service}'" : "");
+    	$this->sqlQueryCompl .= (!empty($service) && $service != "T" ? "AND p.especialidade = '{$service}'" : "");
     	$this->sqlQuery = "SELECT
     							ap.url AS ad,
     							p.url AS person,
@@ -828,10 +828,8 @@ class queries extends mysqlconn {
      * Query Cover Models
      * @param unknown $gender
      */
-    public function fQueryCoverModels($gender, $service){
+    public function fQueryCoverModels(){
     	$this->sqlQueryCompl = null;
-    	$this->sqlQueryCompl .= (!empty($gender) ? "AND p.sexo = '{$gender}'" : "");
-    	$this->sqlQueryCompl .= (!empty($service) ? "AND p.especialidade = '{$service}'" : "");
     	$this->sqlQuery = "SELECT
 					    	ap.url AS ad,
 					    	p.url AS person,					    	

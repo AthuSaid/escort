@@ -1171,18 +1171,20 @@ Private Sub SetButtons(bVal As Boolean)
 End Sub
 
 Function changeImage(pes As String, doc As String, cpr As String)
-'MsgBox GetSetting(App.Title, "CFGSYS", "CFGSITE") & pes & "/" & cpr
- On Local Error Resume Next
+'Debug.Print GetSetting(App.Title, "CFGSYS", "CFGSITE") & pes & "/" & cpr
+ On Local Error GoTo error
     Dim strDocSaveAs As String
     Dim strCprSaveAs As String
     Dim lonReturn1 As Long
     Dim lonReturn2 As Long
-    strDocSaveAs = App.Path & "\documento-atual.jpeg"
-    strCprSaveAs = App.Path & "\comprovacao-atual.jpeg"
+    strDocSaveAs = App.Path & "\documento-atual1.jpeg"
+    strCprSaveAs = App.Path & "\comprovacao-atual1.jpeg"
     lonReturn1 = URLDownloadToFile(0, GetSetting(App.Title, "CFGSYS", "CFGSITE") & pes & "/" & doc, strDocSaveAs, 0, 0)
     lonReturn2 = URLDownloadToFile(0, GetSetting(App.Title, "CFGSYS", "CFGSITE") & pes & "/" & cpr, strCprSaveAs, 0, 0)
     Set Documento.Picture = LoadPicture(strDocSaveAs)
     Set Comprovacao.Picture = LoadPicture(strCprSaveAs)
+error:
+    Debug.Print Err.Description & lonReturn1
 End Function
 
 Private Sub lblAprovado_Change()

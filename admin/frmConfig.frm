@@ -2,7 +2,7 @@ VERSION 5.00
 Begin VB.Form frmConfig 
    BorderStyle     =   3  'Fixed Dialog
    Caption         =   "Configurações Banco de Dados MySQL"
-   ClientHeight    =   2535
+   ClientHeight    =   3015
    ClientLeft      =   45
    ClientTop       =   390
    ClientWidth     =   5895
@@ -11,7 +11,7 @@ Begin VB.Form frmConfig
    MaxButton       =   0   'False
    MinButton       =   0   'False
    Moveable        =   0   'False
-   ScaleHeight     =   2535
+   ScaleHeight     =   3015
    ScaleWidth      =   5895
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
@@ -118,6 +118,25 @@ Begin VB.Form frmConfig
       Left            =   1080
       TabIndex        =   0
       Top             =   120
+      Width           =   3375
+   End
+   Begin VB.Label lblLabels 
+      Caption         =   "Atenção: A URL do site deve ser somente o protocolo HTTP"
+      BeginProperty Font 
+         Name            =   "Tahoma"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   &H000000FF&
+      Height          =   495
+      Index           =   5
+      Left            =   1080
+      TabIndex        =   11
+      Top             =   2400
       Width           =   3375
    End
    Begin VB.Label lblLabels 

@@ -757,7 +757,7 @@ class functions extends queries {
     	{
     		case 1:
 
-    			$this->retRecords = $this->fQueryFeaturedModels($this->genderPrefer, $this->servicePrefer, 5, 6);
+    			$this->retRecords = $this->fQueryFeaturedModels($this->genderPrefer, $this->servicePrefer, 5, 10);
     			
     			if (count($this->retRecords) > 0)
     			{
@@ -794,7 +794,7 @@ class functions extends queries {
 				 												  			<div class="imgPhotoVideoCounterRight"><i class="fa fa-camera"></i> '.$this->retRecords[$x]['count_fotos'].' <i class="fa fa-video-camera"></i> '.$this->retRecords[$x]['count_videos'].'</div>
 																	  		<a href="'.SIS_URL.'person/'.$this->retRecords[$x]['person'].'/'.$this->retRecords[$x]['ad'].'">
 												                            	<img src="'.SIS_URL.'images/persons/'.$this->retRecords[$x]['person'].'/'.$this->retRecords[$x]['imagemurl'].'" alt="'.$this->retRecords[$x]['apelido'].'" />												                            
-													                            <div class="model_caption">
+													                            <div class="model_caption model_caption2">
 													                            	<h5 class="text-white">'.$this->retRecords[$x]['apelido'].'</h5>
 													                        	</div>
 												                            </a>
@@ -1048,7 +1048,7 @@ class functions extends queries {
 	    							$direction = ($x % 2 != 0 ? "left" : "right");
 	    							$w_s = ($x % 2 != 0 ? 2 : 1);
 	    						
-					    			$this->retHTML .= '<div class="col-md-7 '.($x == 0 ? 'col-md-offset-5' : '').' col-sm-12 col-xs-12">
+					    			$this->retHTML .= '<div class="col-md-7 '.($x % 2 == 0 ? 'col-md-offset-5' : '').' col-sm-12 col-xs-12">
 						                                <div class="work_item">
 						                                    <div class="row">
 						                                        <div class="col-md-7 col-sm-12 col-xs-12 text-'.$direction.' pull-'.$direction.' sm-text-center">					    					
@@ -1062,7 +1062,7 @@ class functions extends queries {
 						                                                <h4>'.$this->retRecords[$x]['apelido'].'</h4>
 						                                                <h6>'.$this->fGetGenderPerson($this->retRecords[$x]['sexo']).' - '.$this->fGetAge($this->retRecords[$x]['nascimento']).'</h6>
 						                                                <div class="work_separator'.$w_s.'"></div>
-						                                                <p class="m-top-40 sm-m-top-10">'.$this->fLimitWords($this->retRecords[$x]['descricao_pessoa'], 250, false, SIS_URL.'person/'.$this->retRecords[0]['person'].'/'.$this->retRecords[0]['ad']).'</p>
+						                                                <p class="m-top-40 sm-m-top-10">'.$this->fLimitWords($this->retRecords[$x]['descricao_pessoa'], 230, false, SIS_URL.'person/'.$this->retRecords[$x]['person'].'/'.$this->retRecords[$x]['ad']).'</p>
 						                                            </div>
 						                                        </div>
 						                                    </div>

@@ -100,24 +100,24 @@
                 <div class="container">
                     <div class="row">
                         <div class="main_action text-center">
-                            <!--div class="col-md-4">
+                            <div class="col-md-4">
                                 <div class="action_item">
-                                    <i class="fa fa-map-marker"></i>
-                                    <h4 class="text-uppercase m-top-20">Address</h4>
-                                    <p>7th floor - Palace Building - 221B Walk of Fame - <br /> London - UK</p>
+                                    <i class="fa fa-globe"></i>
+                                    <h4 class="text-uppercase m-top-20">atendimento online</h4>
+                                    <p>de segunda-feira &agrave; s&aacute;bado<br>das 9H &agrave;s 18H</p>
                                 </div>
-                            </div-->
+                            </div>
                             <div class="col-md-4">
                                 <div class="action_item">
                                     <i class="fa fa-phone"></i>
-                                    <h4 class="text-uppercase m-top-20">contato</h4>
+                                    <h4 class="text-uppercase m-top-20">sugest&otilde;es e elogios</h4>
                                     <p>(+55) 11 - 94309-8777</p>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="action_item">
                                     <i class="fa fa-envelope-o"></i>
-                                    <h4 class="text-uppercase m-top-20">email</h4>
+                                    <h4 class="text-uppercase m-top-20">d&uacute;vidas e reclama&ccedil;&otilde;es</h4>
                                     <p><?php echo SIS_EMAIL; ?></p>
                                 </div>
                             </div>
@@ -133,10 +133,10 @@
                 <div class="container">                
                   <hr />   
                   <h4>@ Entre em Contato</h4>
-                  <h5><i>Suas informa&ccedil;&otilde;es ser&atilde;o respondidas em no m&aacute;ximo 2 dias!</i></h5>
+                  <h5><i>Suas informa&ccedil;&otilde;es ser&atilde;o respondidas o mais r&aacute;pido poss&iacute;vel!</i></h5>
                     <div class="row">
                         <div class="main_contact p-top-60">
-                            <div class="col-md-6 sm-m-top-30">
+                            <div class="col-md-12 sm-m-top-30">
                                 <form method="post" role="form" name="form-contact" id="form-contact" data-toggle="validator">
                                     <div class="row">
                                         <div class="col-sm-6">

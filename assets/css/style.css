@@ -1413,7 +1413,10 @@ Models Section style
     position: relative;
     overflow: hidden;
 }
-.model_img:hover .model_caption{
+.model_img:hover .model_caption {
+    bottom:0;
+}
+.model_caption2 {
     bottom:0;
 }
 .model_img img{
@@ -1435,7 +1438,15 @@ Models Section style
     transition: all 0.6s;
 }
 .model_caption h5{
-    padding: 15px;
+    padding: 10px;
+}
+.model_caption2{
+    bottom:-55px;
+    transition: all 0.6s;
+}
+.model_caption2 h5{
+    padding: 20px;
+    margin-bottom: 15px;
 }
 
 .meet_team{
@@ -2009,7 +2020,7 @@ Blog Details Page
 .imgPhotoVideoCounterLeft{
 	z-index:2;
 	position:absolute;
-	height:23px;
+	height:19px;
 	display:block;
 	/* top: -31px; */
 	top: 2px;
@@ -2019,7 +2030,7 @@ Blog Details Page
 	font-family: sans-serif;
 	color: #fff;
 	font-weight: bold;
-	font-size: 18px;
+	font-size: 14px;
 	background-color:rgba(0,0,0,0.35); 
 	padding-right:5px;
 	padding-left:5px;
@@ -2028,7 +2039,7 @@ Blog Details Page
 .imgPhotoVideoCounterRight{
 	z-index:2;
 	position:absolute;
-	height:23px;
+	height:19px;
 	display:block;
 	/* top: -31px; */
 	top: 0px;
@@ -2038,7 +2049,7 @@ Blog Details Page
 	font-family: sans-serif;
 	color: #fff;
 	font-weight: bold;
-	font-size: 18px;
+	font-size: 14px;
 	background-color:rgba(0,0,0,0.35); 
 	padding-right:5px;
 	padding-left:5px;

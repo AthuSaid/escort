@@ -256,10 +256,12 @@
                                         	<p>Etnia:</p>                                        
                                             <p>Olhos:</p>
                                             <p>Cabelos:</p>
-                                            <p>Idade:</p>                                            
-                                            <p>Peso:</p>
-                                            <p>Altura:</p>                                            
-                                            <?php if ($retPerson[0]['sexo'] == 'F') {?>
+                                            <p>Idade:</p>
+                                            <?php if($retPerson[0]['peso'] != ''){ ?>                                            
+                                            	<p>Peso:</p>
+                                            <?php }if($retPerson[0]['altura'] != ''){ ?>
+                                            	<p>Altura:</p>                                            
+                                            <?php } if ($retPerson[0]['sexo'] == 'F') {?>
                                             	<?php if ($retPerson[0]['busto'] != '' || $retPerson[0]['cintura'] != '' || $retPerson[0]['quadril'] != '') {?>
                                             		<p>Medidas:</p>
                                             	<?php } ?>
@@ -275,9 +277,11 @@
                                             <p><strong><?php echo $retPerson[0]['olhos']; ?></strong></p>
                                             <p><strong><?php echo $retPerson[0]['cabelos']; ?></strong></p>
                                             <p><strong><?php echo $functions->fGetAge($retPerson[0]['nascimento']); ?></strong></p>
-                                            <p><strong><?php echo $retPerson[0]['peso']; ?> kg</strong></p>
-                                            <p><strong><?php echo $retPerson[0]['altura']; ?> m</strong></p>
-                                            <?php if ($retPerson[0]['sexo'] == 'F') {?>                                            	
+                                            <?php if($retPerson[0]['peso'] != ''){ ?>
+                                            	<p><strong><?php echo $retPerson[0]['peso']; ?> kg</strong></p>
+                                            <?php }if($retPerson[0]['altura'] != ''){ ?>
+                                            	<p><strong><?php echo $retPerson[0]['altura']; ?> m</strong></p>
+                                            <?php } if ($retPerson[0]['sexo'] == 'F') {?>                                            	
                                             	<p><strong><?php echo ($retPerson[0]['busto'] != '' ? 'Busto: '.$retPerson[0]['busto'] : '').($retPerson[0]['cintura'] != '' ? ' Cintura: '.$retPerson[0]['cintura'] : '').($retPerson[0]['quadril'] != '' ? ' Quadril: '.$retPerson[0]['quadril'] : ''); ?></strong></p>
                                             <?php }else{ ?>	
                                             	<p><strong><?php echo $retPerson[0]['pcm']; ?> cm</strong></p>

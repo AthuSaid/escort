@@ -17,7 +17,7 @@
 	            <select class="form-control" id="findGender">
 			   		<option value="M">Homem</option>
 			   		<option value="F" selected>Mulher</option>
-			   		<option value="A">Ambos</option>
+			   		<option value="T">Travesti</option>
 		   		</select>
 	   		</div>
 	   </div>
