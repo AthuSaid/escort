@@ -123,11 +123,12 @@ class queries extends mysqlconn {
 								 AND pp.pesid = p.pesid
 								 AND pp2.pago = 1 
 								 ORDER BY pp2.pgid DESC LIMIT 1) AS vencimento,
-			    				NULL AS localizacao
+			    				 NULL AS localizacao
 							FROM pessoas p
 							INNER JOIN anuncios_pessoas ap ON ap.pesid = p.pesid 							
 							INNER JOIN modalidades_pessoas mp ON mp.apid = ap.apid
 							INNER JOIN modalidades m ON m.modid = mp.modid
+							INNER JOIN locais_pessoas lp ON lp.apid = ap.apid 
 							WHERE 
 								ap.ativo = 1
 						    	AND p.ativo = 1
@@ -139,7 +140,8 @@ class queries extends mysqlconn {
 								AND 
 								(
 									MATCH(p.nome,p.apelido) AGAINST('{$criteria}') OR
-									MATCH(m.modalidade) AGAINST('{$criteria}')
+									MATCH(m.modalidade) AGAINST('{$criteria}') OR
+									MATCH(lp.endereco) AGAINST('{$criteria}')
 								)
 
 							GROUP BY p.nome
