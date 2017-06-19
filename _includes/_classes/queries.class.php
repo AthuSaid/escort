@@ -1023,7 +1023,7 @@ class queries extends mysqlconn {
 									WHEN p.aprovado = 1 THEN
 					    				'<p style=\"color:green\">A partir de agora voc&ecirc; j&aacute; pode incluir seus an&uacute;ncios.</p>'
 									WHEN p.aprovado = 0 THEN
-					    				'<p style=\"color:green\">Voc&ecirc poder&aacute; incluir seus an&uacute;ncios ap&oacute;s o perfil for aprovado.</p>'					    		
+					    				'<p style=\"color:#c88300\">Voc&ecirc poder&aacute; incluir seus an&uacute;ncios ap&oacute;s o perfil for aprovado.</p>'					    		
 					    		END AS mensagem					    		
 					    	FROM pessoas p    	
 					    	WHERE p.url = '{$person}'";
