@@ -143,7 +143,7 @@ class queries extends mysqlconn {
 								)
 
 							GROUP BY p.nome
-							ORDER BY p.nome ASC
+							ORDER BY ap.visitascount DESC, p.nome ASC
 							LIMIT {$paging}, 10";
 		$this->fExecuteSql($this->sqlQuery);
 		$this->retRecords = $this->fShowRecords();
@@ -821,7 +821,7 @@ class queries extends mysqlconn {
 										     AND pfc.principal = 'S')) 
     						{$this->sqlQueryCompl}
     						GROUP BY ad, person, apelido, genero    						
-					    	ORDER BY rand()
+					    	ORDER BY ap.visitascount DESC, p.person ASC
 							LIMIT {$paging}, 10";
     	$this->fExecuteSql($this->sqlQuery);
     	$this->retRecords = $this->fShowRecords();
