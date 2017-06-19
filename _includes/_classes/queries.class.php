@@ -75,8 +75,9 @@ class queries extends mysqlconn {
 	/**
 	 * Query to global search
 	 * @param string $criteria
+	 * @param integer $paging
 	 */
-	public function fQueryGlobalSearch($criteria) {
+	public function fQueryGlobalSearch($criteria, $paging = 0) {
 		$this->sqlQuery = "SELECT
 								p.apelido,
 			    				p.sexo,
@@ -134,13 +135,16 @@ class queries extends mysqlconn {
 						    	AND p.aprovado = 1 
 						    	AND p.removido = 0 
 						    	AND ap.removido = 0 
+
 								AND 
 								(
 									MATCH(p.nome,p.apelido) AGAINST('{$criteria}') OR
 									MATCH(m.modalidade) AGAINST('{$criteria}')
 								)
+
 							GROUP BY p.nome
-							ORDER BY p.nome ASC";
+							ORDER BY p.nome ASC
+							LIMIT {$paging}, 10";
 		$this->fExecuteSql($this->sqlQuery);
 		$this->retRecords = $this->fShowRecords();
 		return $this->retRecords;
@@ -760,7 +764,7 @@ class queries extends mysqlconn {
      * Query Gallery Models
      * @param unknown $gender
      */
-    public function fQueryGalleryModels($gender, $service){
+    public function fQueryGalleryModels($gender, $service, $paging = 0){
     	$this->sqlQueryCompl = null;
     	$this->sqlQueryCompl .= (!empty($gender) ? "AND p.sexo = '{$gender}'" : "");
     	$this->sqlQueryCompl .= (!empty($service) && $service != "T" ? "AND p.especialidade = '{$service}'" : "");
@@ -817,7 +821,8 @@ class queries extends mysqlconn {
 										     AND pfc.principal = 'S')) 
     						{$this->sqlQueryCompl}
     						GROUP BY ad, person, apelido, genero    						
-					    	ORDER BY rand()";
+					    	ORDER BY rand()
+							LIMIT {$paging}, 10";
     	$this->fExecuteSql($this->sqlQuery);
     	$this->retRecords = $this->fShowRecords();
     	return $this->retRecords;

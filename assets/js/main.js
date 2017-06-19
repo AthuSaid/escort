@@ -256,10 +256,14 @@ function setItemValue(title, descr, hash) {
 }
 
 // =========================================
-//  Portfolio Isotop
+//  Portfolio Isotop with Infinity Scroll
 // =========================================   
 
 $(function () {
+	
+	// Initialize Infinity Scroll
+	var win = $(window);
+	
     // Initialize Isotope
     var $notes = $(".grid").isotope({
         itemSelector: ".grid-item"
@@ -282,4 +286,24 @@ $(function () {
         });
 
     });
+    
+    win.scroll(function() {
+		// End of the document reached?    	
+		if ($(document).height() - win.height() == win.scrollTop()) {
+			$("#loading").fadeIn(500);
+			$.ajax({
+				url: $urlProj + '_actions/paging.php',
+				dataType: 'html',
+				success: function( html ) {
+					var $container = $(".infinity");
+					var $elem = $(html);
+					$container.append( $elem ).isotope( 'appended', $elem );			
+		            setTimeout(function () {
+		            	$("#loading").fadeOut(500);
+		            }, 500);
+				}
+			});			
+		}
+	});
 });
+

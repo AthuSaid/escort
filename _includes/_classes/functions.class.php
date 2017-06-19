@@ -565,7 +565,11 @@ class functions extends queries {
 	 */
 	public function fGlobalSearch($criteria)
 	{
-		$this->retRecords = $this->fQueryGlobalSearch($criteria);
+		$_SESSION['sSearchPagingCount'] = 0;
+		
+		$_SESSION['sSearchPagingType'] = "search";
+		
+		$this->retRecords = $this->fQueryGlobalSearch($criteria, 0);
 		
 		$this->retHTML = null;
 		
@@ -593,7 +597,7 @@ class functions extends queries {
 							                                </div>
 							                            </div>							
 							                            <div style="clear: both;"></div>							
-							                            <div class="grid models text-center">';
+							                            <div class="grid infinity models text-center">';
     				
 					    				for ($x = 0; $x < count($this->retRecords); $x++)
 					    				{      
@@ -618,13 +622,93 @@ class functions extends queries {
 							                    </div>
 							                </div><!-- Portfolio container end -->
 							            </section><!-- End off portfolio section -->';
-							          			
-    	}
-    	
-    	
-    	$_SESSION['sSearchResults'] = $this->retHTML;
+		
+	          $_SESSION['sSearchCriteria'] = $criteria;
+	          $_SESSION['sSearchResults'] = $this->retHTML;
+	          $_SESSION['sSearchPagingCount'] += 11;
+    	}    	    	
 		
 		return true;
+	}
+	
+	
+	/**
+	 * Libidinous Paging Process
+	 * @param string $pagingType
+	 */
+	public function fProcessPaging($pagingType)
+	{
+		if (!isset($_SESSION['sSearchPagingCount']))
+			$_SESSION['sSearchPagingCount'] = 0;
+		
+		switch ($pagingType)
+		{
+			case "persons":
+				
+				$this->retRecords = $this->fQueryGalleryModels($this->genderPrefer, $this->servicePrefer, $_SESSION['sSearchPagingCount']);
+				
+				$this->retHTML = null;
+				
+				if (count($this->retRecords) > 0)
+				{
+					for ($x = 0; $x < count($this->retRecords); $x++)
+					{
+						if ($this->retRecords[$x]['vencimento'] > 0)
+						{
+							$this->retHTML .= '<div class="grid-item model-item transition metal '.$this->retRecords[$x]['genero'].'">
+							                        <div class="model_img">
+												  		<a href="'.SIS_URL.'person/'.$this->retRecords[$x]['person'].'/'.$this->retRecords[$x]['ad'].'">
+							                            	<div class="imgPhotoVideoCounterRight"><i class="fa fa-camera"></i> '.$this->retRecords[$x]['count_fotos'].' <i class="fa fa-video-camera"></i> '.$this->retRecords[$x]['count_videos'].'</div>
+												  			<img src="'.SIS_URL.'images/persons/'.$this->retRecords[$x]['person'].'/'.$this->retRecords[$x]['thumb'].'" alt="'.$this->retRecords[$x]['apelido'].'" />
+								                            <div class="model_caption">
+								                            	<h5 class="text-white">'.$this->retRecords[$x]['apelido'].'</h5>
+								                        	</div>
+							                            </a>
+							                    	</div>
+							                	</div>';
+						}
+					}
+					
+					$_SESSION['sSearchPagingCount'] += 10;
+					
+					return $this->retHTML;
+				}					
+				
+			break;
+			
+			case "search":				
+					
+				$this->retRecords = $this->fQueryGlobalSearch($_SESSION['sSearchCriteria'], $_SESSION['sSearchPagingCount']);
+				
+				$this->retHTML = null;
+				
+				if (count($this->retRecords) > 0)
+				{								
+					for ($x = 0; $x < count($this->retRecords); $x++)
+					{
+						if ($this->retRecords[$x]['vencimento'] > 0)
+						{
+							$this->retHTML .= '<div class="grid-item model-item transition metal '.$this->retRecords[$x]['genero'].'">
+							                        <div class="model_img">
+												  		<a href="'.SIS_URL.'person/'.$this->retRecords[$x]['person'].'/'.$this->retRecords[$x]['ad'].'">
+							                            	<div class="imgPhotoVideoCounterRight"><i class="fa fa-camera"></i> '.$this->retRecords[$x]['count_fotos'].' <i class="fa fa-video-camera"></i> '.$this->retRecords[$x]['count_videos'].'</div>
+												  			<img src="'.SIS_URL.'images/persons/'.$this->retRecords[$x]['person'].'/'.$this->retRecords[$x]['thumb'].'" alt="'.$this->retRecords[$x]['apelido'].'" />
+								                            <div class="model_caption">
+								                            	<h5 class="text-white">'.$this->retRecords[$x]['apelido'].'</h5>
+								                        	</div>
+							                            </a>
+							                    	</div>
+							                	</div>';
+						}
+					}
+					
+					$_SESSION['sSearchPagingCount'] += 10;
+					
+					return $this->retHTML;
+				}
+			
+			break;	
+		}
 	}
 	
 	
@@ -808,7 +892,7 @@ class functions extends queries {
 							                    </div>
 							                </div><!-- Portfolio container end -->
 							            </section><!-- End off portfolio section -->';
-							          
+							          					
 					return $this->retHTML;
     			}
     			
@@ -816,7 +900,11 @@ class functions extends queries {
     		
     		case 2:
     			
-    			$this->retRecords = $this->fQueryGalleryModels($this->genderPrefer, $this->servicePrefer);
+    			$_SESSION['sSearchPagingCount'] = 0;
+    			
+    			$_SESSION['sSearchPagingType'] = "persons";
+    			
+    			$this->retRecords = $this->fQueryGalleryModels($this->genderPrefer, $this->servicePrefer, 0);
     			 
     			if (count($this->retRecords) > 0)
     			{
@@ -842,7 +930,7 @@ class functions extends queries {
 							                                </div>
 							                            </div>							
 							                            <div style="clear: both;"></div>							
-							                            <div class="grid models text-center">';
+							                            <div class="grid infinity models text-center">';
     				
 					    				for ($x = 0; $x < count($this->retRecords); $x++)
 					    				{      
@@ -861,13 +949,15 @@ class functions extends queries {
 												                	</div>';
 					    					}
 					    				}	               
-														                                							
-							          $this->retHTML .= '<div style="clear: both;"></div>							
+																    				
+					    			 $this->retHTML .= '<div style="clear: both;"></div>							
 							                        </div>
 							                    </div>
 							                </div><!-- Portfolio container end -->
 							            </section><!-- End off portfolio section -->';
-							          
+					
+					$_SESSION['sSearchPagingCount'] += 11;
+					    			 
 					return $this->retHTML;
     			}
     			
