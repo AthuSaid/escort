@@ -2,10 +2,10 @@ VERSION 5.00
 Begin VB.Form frmAnuncios 
    BorderStyle     =   3  'Fixed Dialog
    Caption         =   "Aprovação de Anúncios"
-   ClientHeight    =   7440
+   ClientHeight    =   8985
    ClientLeft      =   45
    ClientTop       =   390
-   ClientWidth     =   10215
+   ClientWidth     =   10950
    BeginProperty Font 
       Name            =   "Tahoma"
       Size            =   9.75
@@ -19,143 +19,646 @@ Begin VB.Form frmAnuncios
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   7440
-   ScaleWidth      =   10215
+   ScaleHeight     =   8985
+   ScaleWidth      =   10950
    StartUpPosition =   2  'CenterScreen
-   Begin VB.TextBox txtModalidadesCache 
-      DataField       =   "pessoasatendimento"
-      BeginProperty Font 
-         Name            =   "Courier New"
-         Size            =   9
-         Charset         =   0
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      Height          =   645
+   Begin VB.Frame frmForm 
+      Enabled         =   0   'False
+      Height          =   8295
       Left            =   240
-      MultiLine       =   -1  'True
-      ScrollBars      =   2  'Vertical
-      TabIndex        =   48
-      Top             =   3600
-      Width           =   9735
-   End
-   Begin VB.CommandButton cmdPerfil 
-      Caption         =   "..."
-      BeginProperty Font 
-         Name            =   "Tahoma"
-         Size            =   9.75
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      Height          =   255
-      Left            =   5760
-      TabIndex        =   46
-      Top             =   360
-      Width           =   375
-   End
-   Begin VB.TextBox txtFields 
-      DataField       =   "titulo"
-      Height          =   285
-      Index           =   0
-      Left            =   240
-      TabIndex        =   0
-      Top             =   1560
-      Width           =   4935
-   End
-   Begin VB.TextBox txtRecords 
-      DataField       =   "urlpes"
-      Height          =   285
-      Index           =   8
-      Left            =   1920
-      TabIndex        =   44
-      Top             =   1560
-      Width           =   495
-   End
-   Begin VB.TextBox txtFields 
-      DataField       =   "apid"
-      Height          =   285
-      Index           =   7
-      Left            =   1320
-      TabIndex        =   43
-      Top             =   1560
-      Width           =   495
-   End
-   Begin VB.ListBox galeria 
-      BeginProperty Font 
-         Name            =   "Tahoma"
-         Size            =   12
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      ForeColor       =   &H8000000D&
-      Height          =   915
-      Left            =   240
-      TabIndex        =   42
-      Top             =   6000
-      Width           =   9735
-   End
-   Begin VB.ComboBox Combo1 
-      BeginProperty Font 
-         Name            =   "Tahoma"
-         Size            =   9.75
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      Height          =   360
-      ItemData        =   "frmAnuncios.frx":000C
-      Left            =   240
-      List            =   "frmAnuncios.frx":0019
-      Style           =   2  'Dropdown List
-      TabIndex        =   35
-      Top             =   5280
-      Width           =   2775
-   End
-   Begin VB.TextBox txtFields 
-      DataField       =   "mensagem"
-      BeginProperty Font 
-         Name            =   "Courier New"
-         Size            =   6.75
-         Charset         =   0
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      Height          =   360
-      Index           =   12
-      Left            =   4440
-      MultiLine       =   -1  'True
-      TabIndex        =   34
-      Top             =   5280
-      Width           =   3615
-   End
-   Begin VB.CommandButton cmdReprov 
-      Caption         =   "Reprovação"
-      BeginProperty Font 
-         Name            =   "Tahoma"
-         Size            =   8.25
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      Height          =   350
-      Left            =   3000
-      TabIndex        =   33
-      Top             =   5280
-      Width           =   1335
+      TabIndex        =   9
+      Top             =   120
+      Width           =   10455
+      Begin VB.ComboBox Combo1 
+         BeginProperty Font 
+            Name            =   "Tahoma"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
+         ItemData        =   "frmAnuncios.frx":000C
+         Left            =   360
+         List            =   "frmAnuncios.frx":0019
+         Style           =   2  'Dropdown List
+         TabIndex        =   16
+         Top             =   5520
+         Width           =   2775
+      End
+      Begin VB.TextBox txtFields 
+         DataField       =   "titulo"
+         Height          =   285
+         Index           =   0
+         Left            =   360
+         TabIndex        =   12
+         Top             =   1800
+         Width           =   4935
+      End
+      Begin VB.TextBox txtFields 
+         DataField       =   "pesid"
+         Height          =   285
+         Index           =   9
+         Left            =   720
+         TabIndex        =   26
+         Top             =   1800
+         Width           =   1095
+      End
+      Begin VB.TextBox txtRecords 
+         DataField       =   "pesid"
+         Height          =   285
+         Index           =   9
+         Left            =   3840
+         TabIndex        =   25
+         Top             =   1800
+         Width           =   495
+      End
+      Begin VB.TextBox txtFields 
+         DataField       =   "aprovado"
+         Height          =   285
+         Index           =   6
+         Left            =   1800
+         TabIndex        =   24
+         Top             =   5520
+         Width           =   375
+      End
+      Begin VB.TextBox txtFields 
+         DataField       =   "descricao"
+         BeginProperty Font 
+            Name            =   "Courier New"
+            Size            =   9
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   1095
+         Index           =   1
+         Left            =   360
+         MultiLine       =   -1  'True
+         ScrollBars      =   2  'Vertical
+         TabIndex        =   23
+         Top             =   2400
+         Width           =   9735
+      End
+      Begin VB.TextBox txtFields 
+         DataField       =   "url"
+         Height          =   285
+         Index           =   2
+         Left            =   5400
+         TabIndex        =   22
+         Top             =   1800
+         Width           =   4695
+      End
+      Begin VB.TextBox txtFields 
+         DataField       =   "pessoasatendimento"
+         Height          =   285
+         Index           =   3
+         Left            =   360
+         TabIndex        =   21
+         Top             =   4800
+         Width           =   3735
+      End
+      Begin VB.TextBox txtFields 
+         DataField       =   "idiomas"
+         Height          =   285
+         Index           =   4
+         Left            =   4200
+         TabIndex        =   20
+         Top             =   4800
+         Width           =   2895
+      End
+      Begin VB.TextBox txtFields 
+         DataField       =   "visitascount"
+         Height          =   285
+         Index           =   5
+         Left            =   7200
+         TabIndex        =   19
+         Top             =   4800
+         Width           =   2895
+      End
+      Begin VB.CommandButton cmdReprov 
+         Caption         =   "Reprovação"
+         BeginProperty Font 
+            Name            =   "Tahoma"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   350
+         Left            =   3120
+         TabIndex        =   18
+         Top             =   5520
+         Width           =   1335
+      End
+      Begin VB.TextBox txtFields 
+         DataField       =   "mensagem"
+         BeginProperty Font 
+            Name            =   "Courier New"
+            Size            =   6.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
+         Index           =   12
+         Left            =   4560
+         MultiLine       =   -1  'True
+         TabIndex        =   17
+         Top             =   5520
+         Width           =   3615
+      End
+      Begin VB.ListBox galeria 
+         BeginProperty Font 
+            Name            =   "Tahoma"
+            Size            =   12
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H8000000D&
+         Height          =   1770
+         Left            =   360
+         TabIndex        =   15
+         Top             =   6240
+         Width           =   9735
+      End
+      Begin VB.TextBox txtFields 
+         DataField       =   "apid"
+         Height          =   285
+         Index           =   7
+         Left            =   1440
+         TabIndex        =   14
+         Top             =   1800
+         Width           =   495
+      End
+      Begin VB.TextBox txtRecords 
+         DataField       =   "urlpes"
+         Height          =   285
+         Index           =   8
+         Left            =   2040
+         TabIndex        =   13
+         Top             =   1800
+         Width           =   495
+      End
+      Begin VB.CommandButton cmdPerfil 
+         Caption         =   "..."
+         BeginProperty Font 
+            Name            =   "Tahoma"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   255
+         Left            =   5880
+         TabIndex        =   11
+         Top             =   600
+         Width           =   375
+      End
+      Begin VB.TextBox txtModalidadesCache 
+         DataField       =   "pessoasatendimento"
+         BeginProperty Font 
+            Name            =   "Courier New"
+            Size            =   9
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   645
+         Left            =   360
+         MultiLine       =   -1  'True
+         ScrollBars      =   2  'Vertical
+         TabIndex        =   10
+         Top             =   3840
+         Width           =   9735
+      End
+      Begin VB.Label lblLabels 
+         Caption         =   "Título:"
+         BeginProperty Font 
+            Name            =   "Tahoma"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   255
+         Index           =   0
+         Left            =   360
+         TabIndex        =   50
+         Top             =   1560
+         Width           =   1935
+      End
+      Begin VB.Label lblLabels 
+         Caption         =   "Descrição:"
+         BeginProperty Font 
+            Name            =   "Tahoma"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   255
+         Index           =   1
+         Left            =   360
+         TabIndex        =   49
+         Top             =   2160
+         Width           =   1935
+      End
+      Begin VB.Label lblLabels 
+         Caption         =   "URL Amigável:"
+         BeginProperty Font 
+            Name            =   "Tahoma"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   255
+         Index           =   2
+         Left            =   5400
+         TabIndex        =   48
+         Top             =   1560
+         Width           =   1935
+      End
+      Begin VB.Label lblLabels 
+         Caption         =   "Pessoas que Atende:"
+         BeginProperty Font 
+            Name            =   "Tahoma"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   255
+         Index           =   3
+         Left            =   360
+         TabIndex        =   47
+         Top             =   4560
+         Width           =   2775
+      End
+      Begin VB.Label lblLabels 
+         Caption         =   "Idiomas:"
+         BeginProperty Font 
+            Name            =   "Tahoma"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   255
+         Index           =   4
+         Left            =   4200
+         TabIndex        =   46
+         Top             =   4560
+         Width           =   2775
+      End
+      Begin VB.Label lblLabels 
+         Caption         =   "Anunciante:"
+         BeginProperty Font 
+            Name            =   "Tahoma"
+            Size            =   11.25
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   255
+         Index           =   5
+         Left            =   360
+         TabIndex        =   45
+         Top             =   360
+         Width           =   1455
+      End
+      Begin VB.Label lblRecords 
+         BackStyle       =   0  'Transparent
+         Caption         =   "TESTE"
+         DataField       =   "nome"
+         BeginProperty Font 
+            Name            =   "Tahoma"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H00000040&
+         Height          =   255
+         Index           =   1
+         Left            =   375
+         TabIndex        =   44
+         Top             =   840
+         Width           =   5895
+      End
+      Begin VB.Label lblLabels 
+         Caption         =   "Nº Visitas:"
+         BeginProperty Font 
+            Name            =   "Tahoma"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   255
+         Index           =   6
+         Left            =   7200
+         TabIndex        =   43
+         Top             =   4560
+         Width           =   2775
+      End
+      Begin VB.Label lblLabels 
+         Caption         =   "Telefones de Contato:"
+         BeginProperty Font 
+            Name            =   "Tahoma"
+            Size            =   11.25
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   255
+         Index           =   7
+         Left            =   6480
+         TabIndex        =   42
+         Top             =   360
+         Width           =   2175
+      End
+      Begin VB.Label lblRecords 
+         Caption         =   "TESTE"
+         DataField       =   "whatsapp"
+         ForeColor       =   &H00000000&
+         Height          =   255
+         Index           =   2
+         Left            =   7920
+         TabIndex        =   41
+         Top             =   600
+         Width           =   2175
+      End
+      Begin VB.Label lblRecords 
+         Caption         =   "TESTE"
+         DataField       =   "tel1"
+         ForeColor       =   &H00000000&
+         Height          =   255
+         Index           =   3
+         Left            =   7920
+         TabIndex        =   40
+         Top             =   840
+         Width           =   2175
+      End
+      Begin VB.Label lblRecords 
+         Caption         =   "TESTE"
+         DataField       =   "tel2"
+         ForeColor       =   &H00000000&
+         Height          =   255
+         Index           =   4
+         Left            =   7920
+         TabIndex        =   39
+         Top             =   1080
+         Width           =   2175
+      End
+      Begin VB.Label lblLabels 
+         Caption         =   "WhatsApp:"
+         BeginProperty Font 
+            Name            =   "Tahoma"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   255
+         Index           =   8
+         Left            =   6480
+         TabIndex        =   38
+         Top             =   600
+         Width           =   1095
+      End
+      Begin VB.Label lblLabels 
+         Caption         =   "Telefone 1:"
+         BeginProperty Font 
+            Name            =   "Tahoma"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   255
+         Index           =   9
+         Left            =   6480
+         TabIndex        =   37
+         Top             =   840
+         Width           =   1095
+      End
+      Begin VB.Label lblLabels 
+         Caption         =   "Telefone 2:"
+         BeginProperty Font 
+            Name            =   "Tahoma"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   255
+         Index           =   10
+         Left            =   6480
+         TabIndex        =   36
+         Top             =   1080
+         Width           =   1215
+      End
+      Begin VB.Label lblLabels 
+         Caption         =   "E-mail:"
+         BeginProperty Font 
+            Name            =   "Tahoma"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   255
+         Index           =   11
+         Left            =   360
+         TabIndex        =   35
+         Top             =   1080
+         Width           =   735
+      End
+      Begin VB.Label lblRecords 
+         Caption         =   "TESTE"
+         DataField       =   "email"
+         ForeColor       =   &H00000000&
+         Height          =   255
+         Index           =   5
+         Left            =   1080
+         TabIndex        =   34
+         Top             =   1080
+         Width           =   5175
+      End
+      Begin VB.Label lblLabels 
+         Caption         =   "Motivo Reprovação:"
+         BeginProperty Font 
+            Name            =   "Tahoma"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   255
+         Index           =   12
+         Left            =   4560
+         TabIndex        =   33
+         Top             =   5280
+         Width           =   2415
+      End
+      Begin VB.Label lblLabels 
+         Caption         =   "Alterar Status:"
+         BeginProperty Font 
+            Name            =   "Tahoma"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   255
+         Index           =   13
+         Left            =   360
+         TabIndex        =   32
+         Top             =   5280
+         Width           =   1935
+      End
+      Begin VB.Label lblAprovado 
+         Caption         =   "AGUARDANDO"
+         DataField       =   "status_aprovado"
+         BeginProperty Font 
+            Name            =   "Tahoma"
+            Size            =   12
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H00000080&
+         Height          =   255
+         Left            =   8280
+         TabIndex        =   31
+         Top             =   5520
+         Width           =   1935
+      End
+      Begin VB.Label lblLabels 
+         Caption         =   "Status do Anúncio:"
+         BeginProperty Font 
+            Name            =   "Tahoma"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   255
+         Index           =   14
+         Left            =   8280
+         TabIndex        =   30
+         Top             =   5280
+         Width           =   1935
+      End
+      Begin VB.Label lblRecords 
+         BackStyle       =   0  'Transparent
+         Caption         =   "TESTE"
+         DataField       =   "apelido"
+         BeginProperty Font 
+            Name            =   "Tahoma"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H8000000D&
+         Height          =   255
+         Index           =   0
+         Left            =   360
+         TabIndex        =   29
+         Top             =   600
+         Width           =   4815
+      End
+      Begin VB.Label lblLabels 
+         BackStyle       =   0  'Transparent
+         Caption         =   "Galeria de Fotos do Anúncio (clique no item para visualizar a imagem):"
+         BeginProperty Font 
+            Name            =   "Tahoma"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   255
+         Index           =   17
+         Left            =   360
+         TabIndex        =   28
+         Top             =   6000
+         Width           =   8895
+      End
+      Begin VB.Label lblLabels 
+         Caption         =   "Modalidades && Cachê:"
+         BeginProperty Font 
+            Name            =   "Tahoma"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   255
+         Index           =   15
+         Left            =   360
+         TabIndex        =   27
+         Top             =   3600
+         Width           =   2775
+      End
    End
    Begin VB.PictureBox picButtons 
       Align           =   2  'Align Bottom
@@ -174,10 +677,27 @@ Begin VB.Form frmAnuncios
       Height          =   420
       Left            =   0
       ScaleHeight     =   420
-      ScaleWidth      =   10215
-      TabIndex        =   24
-      Top             =   7020
-      Width           =   10215
+      ScaleWidth      =   10950
+      TabIndex        =   0
+      Top             =   8565
+      Width           =   10950
+      Begin VB.CommandButton cmdRemove 
+         Caption         =   "&REMOVER ANÚNCIO"
+         BeginProperty Font 
+            Name            =   "Tahoma"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   300
+         Left            =   5280
+         TabIndex        =   51
+         Top             =   0
+         Width           =   2295
+      End
       Begin VB.CommandButton cmdEdit 
          Caption         =   "&Atualizar Dados"
          BeginProperty Font 
@@ -190,8 +710,8 @@ Begin VB.Form frmAnuncios
             Strikethrough   =   0   'False
          EndProperty
          Height          =   300
-         Left            =   6960
-         TabIndex        =   32
+         Left            =   7680
+         TabIndex        =   8
          Top             =   0
          Width           =   1815
       End
@@ -207,8 +727,8 @@ Begin VB.Form frmAnuncios
             Strikethrough   =   0   'False
          EndProperty
          Height          =   300
-         Left            =   8880
-         TabIndex        =   31
+         Left            =   9600
+         TabIndex        =   7
          Top             =   0
          Width           =   1095
       End
@@ -224,8 +744,8 @@ Begin VB.Form frmAnuncios
             Strikethrough   =   0   'False
          EndProperty
          Height          =   300
-         Left            =   6960
-         TabIndex        =   30
+         Left            =   7680
+         TabIndex        =   6
          Top             =   0
          Visible         =   0   'False
          Width           =   1815
@@ -242,8 +762,8 @@ Begin VB.Form frmAnuncios
             Strikethrough   =   0   'False
          EndProperty
          Height          =   300
-         Left            =   8880
-         TabIndex        =   29
+         Left            =   9600
+         TabIndex        =   5
          Top             =   0
          Visible         =   0   'False
          Width           =   1095
@@ -262,7 +782,7 @@ Begin VB.Form frmAnuncios
          Left            =   1320
          Picture         =   "frmAnuncios.frx":0062
          Style           =   1  'Graphical
-         TabIndex        =   28
+         TabIndex        =   4
          Top             =   0
          UseMaskColor    =   -1  'True
          Width           =   345
@@ -281,7 +801,7 @@ Begin VB.Form frmAnuncios
          Left            =   960
          Picture         =   "frmAnuncios.frx":03A4
          Style           =   1  'Graphical
-         TabIndex        =   27
+         TabIndex        =   3
          Top             =   0
          UseMaskColor    =   -1  'True
          Width           =   345
@@ -300,7 +820,7 @@ Begin VB.Form frmAnuncios
          Left            =   600
          Picture         =   "frmAnuncios.frx":06E6
          Style           =   1  'Graphical
-         TabIndex        =   26
+         TabIndex        =   2
          Top             =   0
          UseMaskColor    =   -1  'True
          Width           =   345
@@ -319,506 +839,11 @@ Begin VB.Form frmAnuncios
          Left            =   240
          Picture         =   "frmAnuncios.frx":0A28
          Style           =   1  'Graphical
-         TabIndex        =   25
+         TabIndex        =   1
          Top             =   0
          UseMaskColor    =   -1  'True
          Width           =   345
       End
-   End
-   Begin VB.TextBox txtFields 
-      DataField       =   "visitascount"
-      Height          =   285
-      Index           =   5
-      Left            =   7080
-      TabIndex        =   13
-      Top             =   4560
-      Width           =   2895
-   End
-   Begin VB.TextBox txtFields 
-      DataField       =   "idiomas"
-      Height          =   285
-      Index           =   4
-      Left            =   4080
-      TabIndex        =   8
-      Top             =   4560
-      Width           =   2895
-   End
-   Begin VB.TextBox txtFields 
-      DataField       =   "pessoasatendimento"
-      Height          =   285
-      Index           =   3
-      Left            =   240
-      TabIndex        =   6
-      Top             =   4560
-      Width           =   3735
-   End
-   Begin VB.TextBox txtFields 
-      DataField       =   "url"
-      Height          =   285
-      Index           =   2
-      Left            =   5280
-      TabIndex        =   4
-      Top             =   1560
-      Width           =   4695
-   End
-   Begin VB.TextBox txtFields 
-      DataField       =   "descricao"
-      BeginProperty Font 
-         Name            =   "Courier New"
-         Size            =   9
-         Charset         =   0
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      Height          =   1095
-      Index           =   1
-      Left            =   240
-      MultiLine       =   -1  'True
-      ScrollBars      =   2  'Vertical
-      TabIndex        =   1
-      Top             =   2160
-      Width           =   9735
-   End
-   Begin VB.TextBox txtFields 
-      DataField       =   "aprovado"
-      Height          =   285
-      Index           =   6
-      Left            =   1680
-      TabIndex        =   40
-      Top             =   5280
-      Width           =   375
-   End
-   Begin VB.TextBox txtRecords 
-      DataField       =   "pesid"
-      Height          =   285
-      Index           =   9
-      Left            =   3720
-      TabIndex        =   45
-      Top             =   1560
-      Width           =   495
-   End
-   Begin VB.TextBox txtFields 
-      DataField       =   "pesid"
-      Height          =   285
-      Index           =   9
-      Left            =   600
-      TabIndex        =   49
-      Top             =   1560
-      Width           =   1095
-   End
-   Begin VB.Label lblLabels 
-      Caption         =   "Modalidades && Cachê:"
-      BeginProperty Font 
-         Name            =   "Tahoma"
-         Size            =   9.75
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      Height          =   255
-      Index           =   15
-      Left            =   240
-      TabIndex        =   47
-      Top             =   3360
-      Width           =   2775
-   End
-   Begin VB.Label lblLabels 
-      BackStyle       =   0  'Transparent
-      Caption         =   "Galeria de Fotos do Anúncio (clique no item para visualizar a imagem):"
-      BeginProperty Font 
-         Name            =   "Tahoma"
-         Size            =   9.75
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      Height          =   255
-      Index           =   17
-      Left            =   240
-      TabIndex        =   41
-      Top             =   5760
-      Width           =   8895
-   End
-   Begin VB.Label lblRecords 
-      BackStyle       =   0  'Transparent
-      Caption         =   "TESTE"
-      DataField       =   "apelido"
-      BeginProperty Font 
-         Name            =   "Tahoma"
-         Size            =   9.75
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      ForeColor       =   &H8000000D&
-      Height          =   255
-      Index           =   0
-      Left            =   240
-      TabIndex        =   10
-      Top             =   360
-      Width           =   4815
-   End
-   Begin VB.Label lblLabels 
-      Caption         =   "Status do Anúncio:"
-      BeginProperty Font 
-         Name            =   "Tahoma"
-         Size            =   9.75
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      Height          =   255
-      Index           =   14
-      Left            =   8160
-      TabIndex        =   39
-      Top             =   5040
-      Width           =   1935
-   End
-   Begin VB.Label lblAprovado 
-      Caption         =   "AGUARDANDO"
-      DataField       =   "status_aprovado"
-      BeginProperty Font 
-         Name            =   "Tahoma"
-         Size            =   12
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      ForeColor       =   &H00000080&
-      Height          =   255
-      Left            =   8160
-      TabIndex        =   38
-      Top             =   5280
-      Width           =   1935
-   End
-   Begin VB.Label lblLabels 
-      Caption         =   "Alterar Status:"
-      BeginProperty Font 
-         Name            =   "Tahoma"
-         Size            =   9.75
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      Height          =   255
-      Index           =   13
-      Left            =   240
-      TabIndex        =   37
-      Top             =   5040
-      Width           =   1935
-   End
-   Begin VB.Label lblLabels 
-      Caption         =   "Motivo Reprovação:"
-      BeginProperty Font 
-         Name            =   "Tahoma"
-         Size            =   9.75
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      Height          =   255
-      Index           =   12
-      Left            =   4440
-      TabIndex        =   36
-      Top             =   5040
-      Width           =   2415
-   End
-   Begin VB.Label lblRecords 
-      Caption         =   "TESTE"
-      DataField       =   "email"
-      ForeColor       =   &H00000000&
-      Height          =   255
-      Index           =   5
-      Left            =   960
-      TabIndex        =   23
-      Top             =   840
-      Width           =   5175
-   End
-   Begin VB.Label lblLabels 
-      Caption         =   "E-mail:"
-      BeginProperty Font 
-         Name            =   "Tahoma"
-         Size            =   9.75
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      Height          =   255
-      Index           =   11
-      Left            =   240
-      TabIndex        =   22
-      Top             =   840
-      Width           =   735
-   End
-   Begin VB.Label lblLabels 
-      Caption         =   "Telefone 2:"
-      BeginProperty Font 
-         Name            =   "Tahoma"
-         Size            =   9.75
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      Height          =   255
-      Index           =   10
-      Left            =   6360
-      TabIndex        =   21
-      Top             =   840
-      Width           =   1215
-   End
-   Begin VB.Label lblLabels 
-      Caption         =   "Telefone 1:"
-      BeginProperty Font 
-         Name            =   "Tahoma"
-         Size            =   9.75
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      Height          =   255
-      Index           =   9
-      Left            =   6360
-      TabIndex        =   20
-      Top             =   600
-      Width           =   1095
-   End
-   Begin VB.Label lblLabels 
-      Caption         =   "WhatsApp:"
-      BeginProperty Font 
-         Name            =   "Tahoma"
-         Size            =   9.75
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      Height          =   255
-      Index           =   8
-      Left            =   6360
-      TabIndex        =   19
-      Top             =   360
-      Width           =   1095
-   End
-   Begin VB.Label lblRecords 
-      Caption         =   "TESTE"
-      DataField       =   "tel2"
-      ForeColor       =   &H00000000&
-      Height          =   255
-      Index           =   4
-      Left            =   7800
-      TabIndex        =   18
-      Top             =   840
-      Width           =   2175
-   End
-   Begin VB.Label lblRecords 
-      Caption         =   "TESTE"
-      DataField       =   "tel1"
-      ForeColor       =   &H00000000&
-      Height          =   255
-      Index           =   3
-      Left            =   7800
-      TabIndex        =   17
-      Top             =   600
-      Width           =   2175
-   End
-   Begin VB.Label lblRecords 
-      Caption         =   "TESTE"
-      DataField       =   "whatsapp"
-      ForeColor       =   &H00000000&
-      Height          =   255
-      Index           =   2
-      Left            =   7800
-      TabIndex        =   16
-      Top             =   360
-      Width           =   2175
-   End
-   Begin VB.Label lblLabels 
-      Caption         =   "Telefones de Contato:"
-      BeginProperty Font 
-         Name            =   "Tahoma"
-         Size            =   11.25
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      Height          =   255
-      Index           =   7
-      Left            =   6360
-      TabIndex        =   15
-      Top             =   120
-      Width           =   2175
-   End
-   Begin VB.Label lblLabels 
-      Caption         =   "Nº Visitas:"
-      BeginProperty Font 
-         Name            =   "Tahoma"
-         Size            =   9.75
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      Height          =   255
-      Index           =   6
-      Left            =   7080
-      TabIndex        =   14
-      Top             =   4320
-      Width           =   2775
-   End
-   Begin VB.Label lblRecords 
-      BackStyle       =   0  'Transparent
-      Caption         =   "TESTE"
-      DataField       =   "nome"
-      BeginProperty Font 
-         Name            =   "Tahoma"
-         Size            =   9.75
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      ForeColor       =   &H00000040&
-      Height          =   255
-      Index           =   1
-      Left            =   255
-      TabIndex        =   12
-      Top             =   600
-      Width           =   5895
-   End
-   Begin VB.Label lblLabels 
-      Caption         =   "Anunciante:"
-      BeginProperty Font 
-         Name            =   "Tahoma"
-         Size            =   11.25
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      Height          =   255
-      Index           =   5
-      Left            =   240
-      TabIndex        =   11
-      Top             =   120
-      Width           =   1455
-   End
-   Begin VB.Label lblLabels 
-      Caption         =   "Idiomas:"
-      BeginProperty Font 
-         Name            =   "Tahoma"
-         Size            =   9.75
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      Height          =   255
-      Index           =   4
-      Left            =   4080
-      TabIndex        =   9
-      Top             =   4320
-      Width           =   2775
-   End
-   Begin VB.Label lblLabels 
-      Caption         =   "Pessoas que Atende:"
-      BeginProperty Font 
-         Name            =   "Tahoma"
-         Size            =   9.75
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      Height          =   255
-      Index           =   3
-      Left            =   240
-      TabIndex        =   7
-      Top             =   4320
-      Width           =   2775
-   End
-   Begin VB.Label lblLabels 
-      Caption         =   "URL Amigável:"
-      BeginProperty Font 
-         Name            =   "Tahoma"
-         Size            =   9.75
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      Height          =   255
-      Index           =   2
-      Left            =   5280
-      TabIndex        =   5
-      Top             =   1320
-      Width           =   1935
-   End
-   Begin VB.Label lblLabels 
-      Caption         =   "Descrição:"
-      BeginProperty Font 
-         Name            =   "Tahoma"
-         Size            =   9.75
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      Height          =   255
-      Index           =   1
-      Left            =   240
-      TabIndex        =   3
-      Top             =   1920
-      Width           =   1935
-   End
-   Begin VB.Label lblLabels 
-      Caption         =   "Título:"
-      BeginProperty Font 
-         Name            =   "Tahoma"
-         Size            =   9.75
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      Height          =   255
-      Index           =   0
-      Left            =   240
-      TabIndex        =   2
-      Top             =   1320
-      Width           =   1935
    End
 End
 Attribute VB_Name = "frmAnuncios"
@@ -872,6 +897,7 @@ End Sub
 Private Sub Form_Load()
   Dim flagSql As String
   Dim oText As TextBox
+  Dim oLabel As Label
   
   Set db = New Connection
   db.CursorLocation = adUseClient
@@ -897,6 +923,11 @@ Private Sub Form_Load()
 
   For Each oText In Me.txtFields
     Set oText.DataSource = adoPrimaryRS
+    oText.Enabled = False
+  Next
+  
+  For Each oLabel In Me.lblLabels
+    oLabel.Enabled = False
   Next
   
   Set lblAprovado.DataSource = adoPrimaryRS
@@ -904,6 +935,14 @@ Private Sub Form_Load()
   updatePerson
   updateGallery
   updateModalitiesCaches
+
+    If lblAprovado.Caption = "APROVADO" Then
+      cmdEdit.Enabled = False
+    End If
+    If GetSetting(App.Title, "CFGSYS", "PROFILE") = "operator" Then
+      cmdRemove.Enabled = False
+    End If
+
 
   mbDataChanged = False
 End Sub
@@ -1012,7 +1051,16 @@ RefreshErr:
 End Sub
 
 Private Sub cmdEdit_Click()
+  Dim oText As TextBox
+  Dim oLabel As Label
   On Error GoTo EditErr
+  frmForm.Enabled = True
+  For Each oText In Me.txtFields
+    oText.Enabled = True
+  Next
+  For Each oLabel In Me.lblLabels
+    oLabel.Enabled = True
+  Next
   mbEditFlag = True
   SetButtons False
   Exit Sub
@@ -1050,6 +1098,7 @@ Private Sub cmdUpdate_Click()
   mbDataChanged = False
   cmdFirst_Click
   MsgBox "Anúncio alterado com sucesso!", , App.Title
+  Unload Me
   Exit Sub
 UpdateErr:
   MsgBox Err.Description

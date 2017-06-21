@@ -2,9 +2,9 @@ VERSION 5.00
 Begin VB.Form frmAlertas 
    BorderStyle     =   1  'Fixed Single
    Caption         =   "Libidinous - Gerenciamento de Aprovações - Perfis e Anúncios"
-   ClientHeight    =   4530
+   ClientHeight    =   4995
    ClientLeft      =   10605
-   ClientTop       =   6135
+   ClientTop       =   5715
    ClientWidth     =   9525
    BeginProperty Font 
       Name            =   "Tahoma"
@@ -18,7 +18,7 @@ Begin VB.Form frmAlertas
    Icon            =   "frmAlertas.frx":0000
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
-   ScaleHeight     =   4530
+   ScaleHeight     =   4995
    ScaleWidth      =   9525
    Begin VB.CommandButton cmdProcurarAnuncio 
       Caption         =   "Procurar Anúncio"
@@ -34,7 +34,7 @@ Begin VB.Form frmAlertas
       Height          =   375
       Left            =   7080
       TabIndex        =   23
-      Top             =   3360
+      Top             =   3480
       Width           =   1995
    End
    Begin VB.CommandButton cmdProcurarPerfil 
@@ -51,7 +51,7 @@ Begin VB.Form frmAlertas
       Height          =   375
       Left            =   4800
       TabIndex        =   22
-      Top             =   3360
+      Top             =   3480
       Width           =   1995
    End
    Begin VB.PictureBox Picture1 
@@ -84,7 +84,7 @@ Begin VB.Form frmAlertas
       Begin VB.Label Label1 
          Alignment       =   1  'Right Justify
          BackStyle       =   0  'Transparent
-         Caption         =   "Versão: 1.1"
+         Caption         =   "Versão: 1.2"
          BeginProperty Font 
             Name            =   "Tahoma"
             Size            =   6.75
@@ -161,7 +161,7 @@ Begin VB.Form frmAlertas
       Top             =   2160
    End
    Begin VB.CommandButton cmdAnuncios 
-      Caption         =   "Ver Anúncios"
+      Caption         =   "Ativar Anúncios"
       Enabled         =   0   'False
       BeginProperty Font 
          Name            =   "Tahoma"
@@ -179,7 +179,7 @@ Begin VB.Form frmAlertas
       Width           =   1995
    End
    Begin VB.CommandButton cmdPerfis 
-      Caption         =   "Ver Perfis"
+      Caption         =   "Ativar Perfis"
       Enabled         =   0   'False
       BeginProperty Font 
          Name            =   "Tahoma"
@@ -195,6 +195,144 @@ Begin VB.Form frmAlertas
       TabIndex        =   3
       Top             =   2880
       Width           =   1995
+   End
+   Begin VB.Label lblUltra 
+      Alignment       =   2  'Center
+      AutoSize        =   -1  'True
+      Caption         =   "000"
+      DataField       =   "ultra"
+      BeginProperty DataFormat 
+         Type            =   1
+         Format          =   "0000"
+         HaveTrueFalseNull=   0
+         FirstDayOfWeek  =   0
+         FirstWeekOfYear =   0
+         LCID            =   1046
+         SubFormatType   =   0
+      EndProperty
+      BeginProperty Font 
+         Name            =   "Tahoma"
+         Size            =   14.25
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   &H8000000D&
+      Height          =   345
+      Left            =   3720
+      TabIndex        =   28
+      Top             =   3600
+      Width           =   780
+   End
+   Begin VB.Label lblAdvanced 
+      Alignment       =   2  'Center
+      AutoSize        =   -1  'True
+      Caption         =   "000"
+      DataField       =   "advanced"
+      BeginProperty DataFormat 
+         Type            =   1
+         Format          =   "0000"
+         HaveTrueFalseNull=   0
+         FirstDayOfWeek  =   0
+         FirstWeekOfYear =   0
+         LCID            =   1046
+         SubFormatType   =   0
+      EndProperty
+      BeginProperty Font 
+         Name            =   "Tahoma"
+         Size            =   14.25
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   &H8000000D&
+      Height          =   345
+      Left            =   2400
+      TabIndex        =   27
+      Top             =   3600
+      Width           =   1020
+   End
+   Begin VB.Label lblPremium 
+      Alignment       =   2  'Center
+      AutoSize        =   -1  'True
+      Caption         =   "000"
+      DataField       =   "premium"
+      BeginProperty DataFormat 
+         Type            =   1
+         Format          =   "0000"
+         HaveTrueFalseNull=   0
+         FirstDayOfWeek  =   0
+         FirstWeekOfYear =   0
+         LCID            =   1046
+         SubFormatType   =   0
+      EndProperty
+      BeginProperty Font 
+         Name            =   "Tahoma"
+         Size            =   14.25
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   &H8000000D&
+      Height          =   345
+      Left            =   1200
+      TabIndex        =   26
+      Top             =   3600
+      Width           =   1020
+   End
+   Begin VB.Label lblBasic 
+      Alignment       =   2  'Center
+      AutoSize        =   -1  'True
+      Caption         =   "000"
+      DataField       =   "basic"
+      BeginProperty DataFormat 
+         Type            =   1
+         Format          =   "0000"
+         HaveTrueFalseNull=   0
+         FirstDayOfWeek  =   0
+         FirstWeekOfYear =   0
+         LCID            =   1046
+         SubFormatType   =   0
+      EndProperty
+      BeginProperty Font 
+         Name            =   "Tahoma"
+         Size            =   14.25
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   &H8000000D&
+      Height          =   345
+      Left            =   240
+      TabIndex        =   25
+      Top             =   3600
+      Width           =   900
+   End
+   Begin VB.Label lblLabels 
+      Caption         =   "BASIC:    PREMIUM:   ADVANCED:    ULTRA:"
+      BeginProperty Font 
+         Name            =   "Tahoma"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   255
+      Index           =   7
+      Left            =   360
+      TabIndex        =   24
+      Top             =   3360
+      Width           =   4335
    End
    Begin VB.Label lblReceita 
       AutoSize        =   -1  'True
@@ -220,13 +358,13 @@ Begin VB.Form frmAlertas
       EndProperty
       ForeColor       =   &H00004000&
       Height          =   345
-      Left            =   2400
+      Left            =   2520
       TabIndex        =   7
-      Top             =   3920
+      Top             =   4320
       Width           =   1110
    End
    Begin VB.Label Label1 
-      Alignment       =   1  'Right Justify
+      Alignment       =   2  'Center
       Caption         =   "Copyright © 2017 - Libidinous Todos os Direitos Reservados "
       BeginProperty Font 
          Name            =   "Tahoma"
@@ -237,12 +375,12 @@ Begin VB.Form frmAlertas
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Height          =   495
+      Height          =   255
       Index           =   0
-      Left            =   7440
+      Left            =   0
       TabIndex        =   18
-      Top             =   4080
-      Width           =   1935
+      Top             =   4800
+      Width           =   9495
    End
    Begin VB.Label lblAguardando 
       AutoSize        =   -1  'True
@@ -268,9 +406,9 @@ Begin VB.Form frmAlertas
       EndProperty
       ForeColor       =   &H000000C0&
       Height          =   345
-      Left            =   2400
+      Left            =   360
       TabIndex        =   17
-      Top             =   3440
+      Top             =   4320
       Width           =   1110
    End
    Begin VB.Label lblLabels 
@@ -288,7 +426,7 @@ Begin VB.Form frmAlertas
       Index           =   6
       Left            =   360
       TabIndex        =   16
-      Top             =   3480
+      Top             =   4080
       Width           =   2055
    End
    Begin VB.Label lblNumMidia 
@@ -379,7 +517,7 @@ Begin VB.Form frmAlertas
       Width           =   1695
    End
    Begin VB.Label lblLabels 
-      Caption         =   "Nº Fotos && Vídeos:"
+      Caption         =   "Fotos && Vídeos:"
       BeginProperty Font 
          Name            =   "Tahoma"
          Size            =   9.75
@@ -397,7 +535,7 @@ Begin VB.Form frmAlertas
       Width           =   1935
    End
    Begin VB.Label lblLabels 
-      Caption         =   "Nº Anúncios:"
+      Caption         =   "Anúncios Ativos:"
       BeginProperty Font 
          Name            =   "Tahoma"
          Size            =   9.75
@@ -412,10 +550,10 @@ Begin VB.Form frmAlertas
       Left            =   2640
       TabIndex        =   11
       Top             =   1560
-      Width           =   1575
+      Width           =   1695
    End
    Begin VB.Label lblLabels 
-      Caption         =   "Nº Perfis:"
+      Caption         =   " Perfis Ativos:"
       BeginProperty Font 
          Name            =   "Tahoma"
          Size            =   9.75
@@ -430,7 +568,7 @@ Begin VB.Form frmAlertas
       Left            =   360
       TabIndex        =   10
       Top             =   1560
-      Width           =   1575
+      Width           =   1695
    End
    Begin VB.Label lblLabels 
       Caption         =   "Receita Mês:"
@@ -445,9 +583,9 @@ Begin VB.Form frmAlertas
       EndProperty
       Height          =   375
       Index           =   2
-      Left            =   360
+      Left            =   2520
       TabIndex        =   9
-      Top             =   3960
+      Top             =   4080
       Width           =   2175
    End
    Begin VB.Label lblPerfis 
@@ -584,19 +722,23 @@ End Sub
 Private Sub cmdProcurarAnuncio_Click()
     Dim findAdID As String
     findAdID = InputBox("Informe o ID, Título ou a URL do Anúncio para abrir:", "Procurar Anúncio")
-    With frmAnuncios
-        .findAD = findAdID
-        .Show vbModal, Me
-    End With
+    If findAdID <> Empty Then
+        With frmAnuncios
+            .findAD = findAdID
+            .Show vbModal, Me
+        End With
+    End If
 End Sub
 
 Private Sub cmdProcurarPerfil_Click()
     Dim findPesID As String
     findPesID = InputBox("Informe o ID, CPF, Apelido ou Email do Anunciante para abrir:", "Procurar Perfil")
-    With frmPerfis
-        .findPES = findPesID
-        .Show vbModal, Me
-    End With
+    If findPesID <> Empty Then
+        With frmPerfis
+            .findPES = findPesID
+            .Show vbModal, Me
+        End With
+    End If
 End Sub
 
 Private Sub Form_Load()
@@ -614,9 +756,13 @@ Dim db As Connection
   adoPrimaryRS.Open "SELECT " & _
                     "(SELECT COUNT(1) FROM pessoas WHERE aprovado = 0) AS perfis, " & _
                     "(SELECT COUNT(1) FROM pessoas WHERE aprovado = 1) AS numperfis, " & _
+                    "(SELECT COUNT(1) FROM planos_pessoas pp WHERE pp.plaid = 1) AS basic, " & _
+                    "(SELECT COUNT(1) FROM planos_pessoas pp WHERE pp.plaid = 2) AS premium, " & _
+                    "(SELECT COUNT(1) FROM planos_pessoas pp WHERE pp.plaid = 3) AS advanced, " & _
+                    "(SELECT COUNT(1) FROM planos_pessoas pp WHERE pp.plaid = 4) AS ultra, " & _
                     "(SELECT COUNT(1) FROM pessoas_fotos pf WHERE pf.ativo = 1 AND pf.tipo = 1) AS nummidia, " & _
-                    "(SELECT SUM(pp.vloriginal) FROM planos_pagamentos pp WHERE pp.pago = 1 AND pp.psid IS NOT NULL AND DATEDIFF(pp.vencimento, now()) > 0) AS receita," & _
-                    "(SELECT SUM(pp.vloriginal) FROM planos_pagamentos pp WHERE pp.pago = 0 AND pp.psid IS NOT NULL) AS aguardando," & _
+                    "(SELECT IFNULL(SUM(pp.vloriginal),0) FROM planos_pagamentos pp WHERE pp.pago = 1 AND pp.psid IS NOT NULL AND DATEDIFF(pp.vencimento, now()) > 0) AS receita," & _
+                    "(SELECT IFNULL(SUM(pp.vloriginal),0) FROM planos_pagamentos pp WHERE pp.pago = 0 AND pp.psid IS NOT NULL) AS aguardando," & _
                     "(SELECT COUNT(1) FROM anuncios_pessoas WHERE aprovado = 1) AS numanuncios, " & _
                     "(SELECT COUNT(1) FROM anuncios_pessoas WHERE aprovado = 0) AS anuncios", db, adOpenStatic, adLockOptimistic
 
@@ -627,6 +773,10 @@ Dim db As Connection
   Set lblNumMidia.DataSource = adoPrimaryRS
   Set lblReceita.DataSource = adoPrimaryRS
   Set lblAguardando.DataSource = adoPrimaryRS
+  Set lblBasic.DataSource = adoPrimaryRS
+  Set lblPremium.DataSource = adoPrimaryRS
+  Set lblAdvanced.DataSource = adoPrimaryRS
+  Set lblUltra.DataSource = adoPrimaryRS
   mbDataChanged = False
   
   lblLabels(2).Caption = "Receita " & UCase(Format(Now, "mmm")) & "/" & Format(Now, "yyyy") & ":"
@@ -636,7 +786,7 @@ Dim db As Connection
     cmdConfig.Visible = False
   End If
   
-  SetWindowPos hwnd, HWND_TOPMOST, 0, 0, 0, 0, TOPMOST_FLAGS
+  'SetWindowPos hwnd, HWND_TOPMOST, 0, 0, 0, 0, TOPMOST_FLAGS
 ErrDB:
   If Err.Description <> Empty Then
     If GetSetting(App.Title, "CFGSYS", "PROFILE") = "admin" Then
@@ -670,9 +820,9 @@ End Sub
 
 Private Sub lblPerfis_Change()
     If lblPerfis.Caption <> "000" Then
+        Me.WindowState = 0
         lblPerfis.ForeColor = &HC0&
         cmdPerfis.Enabled = True
-      
         Beep
     Else
         lblPerfis.ForeColor = &H8000000D
