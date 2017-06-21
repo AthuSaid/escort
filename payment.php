@@ -1,9 +1,9 @@
 <?php
 	header("Access-Control-Allow-Origin: *");
 
-    session_start();
-        
-    require_once $_SERVER["DOCUMENT_ROOT"]."/_includes/_config/config.ini.php";
+	require_once $_SERVER["DOCUMENT_ROOT"]."/_includes/_config/config.ini.php";
+	
+	session_start2();
     
     $functions = new functions();  
      

@@ -1,5 +1,4 @@
 <?php
-session_start();
 
 error_reporting(0);
 
@@ -7,7 +6,9 @@ set_time_limit(0);
 
 date_default_timezone_set('America/Sao_Paulo');
 
-include_once $_SERVER['DOCUMENT_ROOT']."/_includes/_config/config.ini.php";
+require_once $_SERVER["DOCUMENT_ROOT"]."/_includes/_config/config.ini.php";
+
+session_start2();
 
 $functions = new functions();
 
