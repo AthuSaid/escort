@@ -20,6 +20,23 @@ Begin VB.Form frmAlertas
    MaxButton       =   0   'False
    ScaleHeight     =   4995
    ScaleWidth      =   9525
+   Begin VB.CommandButton cmdRptPerfis 
+      Caption         =   "Impressão de Relatórios"
+      BeginProperty Font 
+         Name            =   "Tahoma"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   375
+      Left            =   4800
+      TabIndex        =   29
+      Top             =   4080
+      Width           =   4275
+   End
    Begin VB.CommandButton cmdProcurarAnuncio 
       Caption         =   "Procurar Anúncio"
       BeginProperty Font 
@@ -741,6 +758,10 @@ Private Sub cmdProcurarPerfil_Click()
     End If
 End Sub
 
+Private Sub cmdRptPerfis_Click()
+    frmImpressao.Show vbModal, Me
+End Sub
+
 Private Sub Form_Load()
 On Local Error GoTo ErrDB
 Dim db As Connection
@@ -754,8 +775,8 @@ Dim db As Connection
 
   Set adoPrimaryRS = New Recordset
   adoPrimaryRS.Open "SELECT " & _
-                    "(SELECT COUNT(1) FROM pessoas WHERE aprovado = 0) AS perfis, " & _
-                    "(SELECT COUNT(1) FROM pessoas WHERE aprovado = 1) AS numperfis, " & _
+                    "(SELECT COUNT(1) FROM pessoas WHERE aprovado = 0 AND removido = 0) AS perfis, " & _
+                    "(SELECT COUNT(1) FROM pessoas WHERE aprovado = 1 AND removido = 0) AS numperfis, " & _
                     "(SELECT COUNT(1) FROM planos_pessoas pp WHERE pp.plaid = 1) AS basic, " & _
                     "(SELECT COUNT(1) FROM planos_pessoas pp WHERE pp.plaid = 2) AS premium, " & _
                     "(SELECT COUNT(1) FROM planos_pessoas pp WHERE pp.plaid = 3) AS advanced, " & _
@@ -763,8 +784,8 @@ Dim db As Connection
                     "(SELECT COUNT(1) FROM pessoas_fotos pf WHERE pf.ativo = 1 AND pf.tipo = 1) AS nummidia, " & _
                     "(SELECT IFNULL(SUM(pp.vloriginal),0) FROM planos_pagamentos pp WHERE pp.pago = 1 AND pp.psid IS NOT NULL AND DATEDIFF(pp.vencimento, now()) > 0) AS receita," & _
                     "(SELECT IFNULL(SUM(pp.vloriginal),0) FROM planos_pagamentos pp WHERE pp.pago = 0 AND pp.psid IS NOT NULL) AS aguardando," & _
-                    "(SELECT COUNT(1) FROM anuncios_pessoas WHERE aprovado = 1) AS numanuncios, " & _
-                    "(SELECT COUNT(1) FROM anuncios_pessoas WHERE aprovado = 0) AS anuncios", db, adOpenStatic, adLockOptimistic
+                    "(SELECT COUNT(1) FROM anuncios_pessoas WHERE aprovado = 1 AND removido = 0) AS numanuncios, " & _
+                    "(SELECT COUNT(1) FROM anuncios_pessoas WHERE aprovado = 0 AND removido = 0) AS anuncios", db, adOpenStatic, adLockOptimistic
 
   Set lblPerfis.DataSource = adoPrimaryRS
   Set lblNumPerfis.DataSource = adoPrimaryRS
