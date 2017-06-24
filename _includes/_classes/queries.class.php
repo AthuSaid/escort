@@ -146,7 +146,7 @@ class queries extends mysqlconn {
 
 							GROUP BY p.nome
 							ORDER BY ap.visitascount DESC, p.nome ASC
-							LIMIT {$paging}, 10";
+							LIMIT {$paging}, ".SIS_PAGINACAO;
 		$this->fExecuteSql($this->sqlQuery);
 		$this->retRecords = $this->fShowRecords();
 		return $this->retRecords;
@@ -766,7 +766,7 @@ class queries extends mysqlconn {
      * Query Gallery Models
      * @param unknown $gender
      */
-    public function fQueryGalleryModels($gender, $service, $paging = 0){
+    public function fQueryGalleryModels($gender, $service, $paging = 0, $limit = true){
     	$this->sqlQueryCompl = null;
     	$this->sqlQueryCompl .= (!empty($gender) ? "AND p.sexo = '{$gender}'" : "");
     	$this->sqlQueryCompl .= (!empty($service) && $service != "T" ? "AND p.especialidade = '{$service}'" : "");
@@ -823,8 +823,9 @@ class queries extends mysqlconn {
 										     AND pfc.principal = 'S')) 
     						{$this->sqlQueryCompl}
     						GROUP BY ad, person, apelido, genero    						
-					    	ORDER BY ap.visitascount DESC, p.person ASC
-							LIMIT {$paging}, 10";
+					    	ORDER BY ap.visitascount DESC, person ASC ";
+    						if ($limit)
+								$this->sqlQuery.= "LIMIT {$paging}, ".SIS_PAGINACAO;
     	$this->fExecuteSql($this->sqlQuery);
     	$this->retRecords = $this->fShowRecords();
     	return $this->retRecords;

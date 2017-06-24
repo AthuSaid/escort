@@ -625,7 +625,7 @@ class functions extends queries {
 		
 	          $_SESSION['sSearchCriteria'] = $criteria;
 	          $_SESSION['sSearchResults'] = $this->retHTML;
-	          $_SESSION['sSearchPagingCount'] += 11;
+	          $_SESSION['sSearchPagingCount'] += 5;
     	}    	    	
 		
 		return true;
@@ -669,7 +669,7 @@ class functions extends queries {
 						}
 					}
 					
-					$_SESSION['sSearchPagingCount'] += 10;
+					$_SESSION['sSearchPagingCount'] += 5;
 					
 					return $this->retHTML;
 				}					
@@ -702,7 +702,7 @@ class functions extends queries {
 						}
 					}
 					
-					$_SESSION['sSearchPagingCount'] += 10;
+					$_SESSION['sSearchPagingCount'] += 5;
 					
 					return $this->retHTML;
 				}
@@ -956,7 +956,7 @@ class functions extends queries {
 							                </div><!-- Portfolio container end -->
 							            </section><!-- End off portfolio section -->';
 					
-					$_SESSION['sSearchPagingCount'] += 11;
+					$_SESSION['sSearchPagingCount'] += 6;
 					    			 
 					return $this->retHTML;
     			}

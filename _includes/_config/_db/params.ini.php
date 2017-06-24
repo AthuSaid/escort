@@ -24,13 +24,13 @@ define("SIS_PORTA", "3306");
 /* Usuario de Conexao ao banco */
 define("SIS_USUARIO", "root");
 /* Senha de Conexao ao banco */
-define("SIS_SENHA", "mysql1981"); 
+define("SIS_SENHA", ""); 
 /* Banco de dados do cliente */   
 define("SIS_BANCO", "escort");
 /* Tempo de uso de Sessao (em segundos) */
 define("SIS_TEMPO", 7200);
 /* Registros por Pagina */		
-define("SIS_PAGINACAO", 20); 
+define("SIS_PAGINACAO", 5); 
 /* Dias gratis do Plano Gratuito */
 define ("SIS_DIAS_GRATIS", 30);
 
