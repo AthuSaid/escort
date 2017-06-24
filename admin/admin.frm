@@ -957,8 +957,17 @@ Dim mbAddNewFlag As Boolean
 Dim mbDataChanged As Boolean
 Public pesID As Integer
 Public findPES As String
+Dim db As Connection
 Option Explicit
 Private Declare Function URLDownloadToFile Lib "urlmon" Alias "URLDownloadToFileA" (ByVal pCaller As Long, ByVal szURL As String, ByVal szFileName As String, ByVal dwReserved As Long, ByVal lpfnCB As Long) As Long
+
+Private Sub cmdRemove_Click()
+    If MsgBox("Deseja remover este perfil permanentemente?", vbYesNo + vbQuestion) = vbYes Then
+        db.Execute "UPDATE pessoas SET removido = 1 WHERE pesid = " & txtFields(1).Text
+        MsgBox "Perfil removido com sucesso!"
+        Unload Me
+    End If
+End Sub
 
 Private Sub cmdReprov_Click()
     With frmMotivo
@@ -991,7 +1000,6 @@ Private Sub Documento_Click()
 End Sub
 
 Private Sub Form_Load()
-  Dim db As Connection
   Dim flagSql As String
   Set db = New Connection
   
