@@ -141,7 +141,17 @@ class queries extends mysqlconn {
 								(
 									MATCH(p.nome,p.apelido) AGAINST('{$criteria}') OR
 									MATCH(m.modalidade) AGAINST('{$criteria}') OR
-									MATCH(lp.endereco) AGAINST('{$criteria}')
+									MATCH(lp.endereco) AGAINST('{$criteria}') OR
+									(SELECT GROUP_CONCAT(pf.titulo) AS items 
+									 FROM pessoas_fotos pf 
+									 WHERE pf.apid = ap.apid
+									 AND pf.titulo <> ''
+									 GROUP BY pf.apid) LIKE '{$criteria}%' OR
+									(SELECT GROUP_CONCAT(pf.descricao) AS descr 
+									 FROM pessoas_fotos pf 
+									 WHERE pf.apid = ap.apid
+									 AND pf.descricao <> ''
+									 GROUP BY pf.apid) LIKE '{$criteria}%' 
 								)
 
 							GROUP BY p.nome
@@ -305,11 +315,17 @@ class queries extends mysqlconn {
 	public function fSaveNewAd($obj){
 	
 		$this->sqlQuery = "INSERT INTO anuncios_pessoas (titulo, descricao, ativo, url, 
+														 diahoraatendimentoutil,
+														 diahoraatendimentfds,
+														 atendimento24H, 
 														 pessoasatendimento, idiomas, 
-														 moeda, locaisatendimento, localproprio, pesid)
+														 moeda, localproprio, pesid)
 							VALUES ('".$obj['titulo']."', '".$obj['descricao']."', 1, '".$obj['url']."',
+									'".$obj['diautil1']."-".$obj['diautil2']."-".$obj['horautil1']."-".$obj['horautil2']."',
+									'".$obj['diafds1']."-".$obj['diafds2']."-".$obj['horafds1']."-".$obj['horafds2']."'
+									'".$obj['atendimento24H']."',
 									'".join(", ", $obj['pessoasatendimento'])."', '".join(", ", $obj['idiomas'])."', 
-									'".$obj['moeda']."', '".$obj['locaisatendimento']."', '".$obj['localproprio']."', {$_SESSION['sPersonID']})";
+									'".$obj['moeda']."', '".$obj['localproprio']."', {$_SESSION['sPersonID']})";
 	
 		if($this->fExecuteSql($this->sqlQuery))
 		{
@@ -424,10 +440,12 @@ class queries extends mysqlconn {
 									ativo = ".(is_null($obj['ativo']) ? 0 : 1).",
 									url = '".$obj['url']."',
 									pessoasatendimento = '".join(", ", $obj['pessoasatendimento'])."',
+									diahoraatendimentoutil = '".$obj['diautil1']."-".$obj['diautil2']."-".$obj['horautil1']."-".$obj['horautil2']."',
+									diahoraatendimentofds = '".$obj['diafds1']."-".$obj['diafds2']."-".$obj['horafds1']."-".$obj['horafds2']."',
+									atendimento24H = '".$obj['atendimento24H']."',
 									idiomas = '".join(", ", $obj['idiomas'])."',
 									moeda = '".$obj['moeda']."',
-									localproprio = '".$obj['localproprio']."',
-									locaisatendimento = '".$obj['locaisatendimento']."'
+									localproprio = '".$obj['localproprio']."'
 							WHERE apid = ".$obj['apid'];
 	
 		if($this->fExecuteSql($this->sqlQuery))
@@ -470,7 +488,7 @@ class queries extends mysqlconn {
 	
 	
 	/**
-	 * Save Ad Locations
+	 * Save Optional Ad Locations
 	 *
 	 * @author    Daniel Triboni
 	 * @param	 object $_REQUEST
@@ -481,17 +499,24 @@ class queries extends mysqlconn {
 		$this->sqlQuery = "DELETE FROM locais_pessoas WHERE apid = ".$obj['apid'];
 		if($this->fExecuteSql($this->sqlQuery))
 		{
-			$this->sqlQueryCompl = "INSERT INTO locais_pessoas (apid, local, endereco, latitude, longitude, ativo) VALUES ";
-			
-			foreach ($obj['localidades'] as $localidades)
+			if (count($obj['localidades']) > 0)
 			{
-				$location = explode("|", $localidades);
+				$this->sqlQueryCompl = "INSERT INTO locais_pessoas (apid, local, endereco, latitude, longitude, ativo) VALUES ";
 				
-				$this->sqlQueryCompl .= "({$obj['apid']}, '{$location[0]}', '{$location[1]}', '{$location[2]}', '{$location[3]}', 1), ";
-			}	
+				foreach ($obj['localidades'] as $localidades)
+				{
+					$location = explode("|", $localidades);
+					
+					$this->sqlQueryCompl .= "({$obj['apid']}, '{$location[0]}', '{$location[1]}, {$obj['autocomplete']}', '{$location[2]}', '{$location[3]}', 1), ";
+				}	
+				
+				return $this->fExecuteSql(substr($this->sqlQueryCompl, 0, strlen($this->sqlQueryCompl)-2));
+				
+			}else{
+				
+				return true;
+			}
 			
-			return $this->fExecuteSql(substr($this->sqlQueryCompl, 0, strlen($this->sqlQueryCompl)-2));
-				
 		}else{
 				
 			return false;
@@ -741,7 +766,12 @@ class queries extends mysqlconn {
 							 AND pp.pesid = p.pesid
 							 AND pp2.pago = 1 
 							 ORDER BY pp2.pgid DESC LIMIT 1) AS vencimento,
-		    				NULL AS localizacao
+		    				(SELECT 
+								GROUP_CONCAT(lp.endereco) AS endereco 
+							 FROM locais_pessoas lp							 								 
+							 WHERE lp.apid = ap.apid
+							 AND lp.ativo = 1 
+							 ORDER BY endereco DESC LIMIT 1) AS localizacao
 		    			FROM destaque_pessoas dp
 		    			INNER JOIN anuncios_pessoas ap ON ap.apid = dp.apid		    			
 		    			INNER JOIN pessoas p ON p.pesid = ap.pesid
@@ -1343,7 +1373,7 @@ class queries extends mysqlconn {
 				    	AND m.ativo = 1				    					    
 				    	AND mp.apid = {$apid}
 				    	GROUP BY m.modalidade
-				    	ORDER BY 1 ASC";
+				    	ORDER BY m.ordem ASC";
     	$this->fExecuteSql($this->sqlQuery);
     	$this->retRecords = $this->fShowRecords();
     	return $this->retRecords;

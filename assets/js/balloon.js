@@ -34,7 +34,7 @@ $('.docanex1').balloon({
   html: true, 
   position: 'top right',
   //contents: '<img src="' + $urlProj +'assets/img/loading.png" alt="Aguarde..." height="20">',
-  contents: 'Anexe um documento com foto para<br>identificação e aprovação do seu cadastro.<br>Ex: RG ou CNH.<br><br><strong><i class="fa fa-warning"></i> ALERTA DE PRIVACIDADE:</strong><br>Seus documentos e sua identidade não serão divulgados no site<br>nem em veículos de comunicação na internet!'
+  contents: 'Anexe um documento com foto para<br>identificação e aprovação do seu cadastro.<br>Ex: RG ou CNH.<br><br><strong><i class="fa fa-warning"></i> ALERTA DE PRIVACIDADE:</strong><br>Seus documentos e sua identidade não serão divulgados no site<br>nem em veículos de comunicação na internet!<br><br> Veja exemplo abaixo de como enviar seu documento:<br><img src="assets/img/rg.jpg" width="230px" >&nbsp;<img src="assets/img/CNH.jpg" width="230px" >'
   //url: $urlProj + 'jquery.tile.js/js/jquery.tile.js'
 });
 
@@ -57,7 +57,7 @@ $('.natura').balloon({
 $('.docanex2').balloon({
   html: true, 
   position: 'top right',
-  contents: '<strong><i class="fa fa-warning"></i> COMPROVAÇÃO DA IDENTIDADE:</strong><br>Envie uma foto sua seguindo a instrução abaixo:<br><br>1. Seu rosto deve estar nítido e sem nenhum objeto ocultando a face;<br>2. Segure um cartaz contendo o texto <strong>EU SOU LIBIDINOUS</strong>;<br><br>Este procedimento será definitivo para aprovação do seu cadastro<br>e comprovação de sua identidade no site.<br><br> Veja exemplo abaixo de como enviar a foto:<br>... imagem certa e imagem errada'
+  contents: '<strong><i class="fa fa-warning"></i> COMPROVAÇÃO DA IDENTIDADE:</strong><br>Envie uma foto sua seguindo a instrução abaixo:<br><br>1. Seu rosto deve estar nítido e sem nenhum objeto ocultando a face;<br>2. Segure um cartaz contendo o texto <strong>#EU SOU LIBIDINOUS</strong>;<br><br>Este procedimento será definitivo para aprovação do seu cadastro<br>e comprovação de sua identidade no site.<br><br> Veja exemplo abaixo de como enviar a foto:<br><img src="assets/img/girl-holding-paper.jpg" height="200px" >&nbsp;<img src="assets/img/girl-holding-paper2.jpg" height="200px" >'
 });
 
 $('.title').balloon({

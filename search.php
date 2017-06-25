@@ -121,6 +121,7 @@
         <script src="<?php echo SIS_URL; ?>assets/js/bootsnav.js"></script>               
         <script src="<?php echo SIS_URL; ?>assets/js/plugins.js"></script>
         <script src="<?php echo SIS_URL; ?>assets/js/main.js"></script>
+        <script src="<?php echo SIS_URL; ?>assets/js/pagins.js"></script>
 		<script src="<?php echo SIS_URL; ?>assets/js/cookie.js"></script>
 		<script src="<?php echo SIS_URL; ?>assets/js/validator.js"></script>       
     </body>

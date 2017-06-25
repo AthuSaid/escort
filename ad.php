@@ -216,8 +216,8 @@
                                             <hr/>
                                             <div class="col-sm-12">                                              
                                                 <div class="form-group">
-                                                    <label><i class="fa fa-map-marker"></i> Selecione os Locais onde geralmente costuma atender *</label>
-                                                    <select id="localidades" name="localidades[]" data-error="Por favor, selecione ao menos uma localidade!" required class="form-control localidade" multiple="multiple">
+                                                    <label><i class="fa fa-map-marker"></i> Selecione os Locais onde geralmente costuma atender </label>
+                                                    <select id="localidades" name="localidades[]" class="form-control localidade" multiple="multiple">
                                                     	<?php echo $functions->fCreateComboLocations($retAd[0]['apid']); ?>														  
 													</select>
 													<div class="help-block with-errors"></div>
@@ -257,6 +257,124 @@
 											    </div>
                                                               
                                          </div>
+                                         
+                                         <hr />   
+                                         <h4><i class="fa fa-question-circle atend"></i> Dias e Hor&aacute;rios de Atendimento</h4>                                                                            
+                                         	<div class="row">
+                                         		<div class="col-sm-2">                                                                                          
+	                                                <div class="form-group">
+	                                                    <label><i class="fa fa-calendar-o"></i> Dias &Uacute;teis De </label>
+	                                                    
+	                                                    <?php $diaHoraAtendimentoUtil = explode("-", $retAd[0]['diahoraatendimentoutil']);
+	                                                    	  $diaHoraAtendimentoFds = explode("-", $retAd[0]['diahoraatendimentofds']);?>
+	                                                    
+	                                                    
+														<select id="diautil1" name="diautil1" class="form-control">
+														  <option value="0" <?php echo ('0' == $diaHoraAtendimentoUtil[0] ? 'selected' : ''); ?>>Selecione</option>
+														  <option value="2" <?php echo ('2' == $diaHoraAtendimentoUtil[0] ? 'selected' : ''); ?>>Segunda</option>
+														  <option value="3" <?php echo ('3' == $diaHoraAtendimentoUtil[0] ? 'selected' : ''); ?>>Ter&ccedil;a</option>
+														  <option value="4" <?php echo ('4' == $diaHoraAtendimentoUtil[0] ? 'selected' : ''); ?>>Quarta</option>
+														  <option value="5" <?php echo ('5' == $diaHoraAtendimentoUtil[0] ? 'selected' : ''); ?>>Quinta</option>
+														  <option value="6" <?php echo ('6' == $diaHoraAtendimentoUtil[0] ? 'selected' : ''); ?>>Sexta</option>
+														</select>
+													
+													</div>
+												</div>
+												<div class="col-sm-2">                                                                                          
+	                                                <div class="form-group">
+	                                                    <label><i class="fa fa-calendar-o"></i> Dias &Uacute;teis At&eacute; </label>															
+														<select id="diautil2" name="diautil2" class="form-control">
+														  <option value="0" <?php echo ('0' == $diaHoraAtendimentoUtil[1] ? 'selected' : ''); ?>>Selecione</option>
+														  <option value="2" <?php echo ('2' == $diaHoraAtendimentoUtil[1] ? 'selected' : ''); ?>>Segunda</option>
+														  <option value="3" <?php echo ('3' == $diaHoraAtendimentoUtil[1] ? 'selected' : ''); ?>>Ter&ccedil;a</option>
+														  <option value="4" <?php echo ('4' == $diaHoraAtendimentoUtil[1] ? 'selected' : ''); ?>>Quarta</option>
+														  <option value="5" <?php echo ('5' == $diaHoraAtendimentoUtil[1] ? 'selected' : ''); ?>>Quinta</option>
+														  <option value="6" <?php echo ('6' == $diaHoraAtendimentoUtil[1] ? 'selected' : ''); ?>>Sexta</option>
+														</select>
+														<div class="help-block with-errors"></div>
+	                                             	</div> 
+	                                             </div>
+	                                             <div class="col-sm-2">                                                                                          
+	                                                <div class="form-group">
+	                                                    <label><i class="fa fa-clock-o"></i> Hor&aacute;rio In&iacute;cio </label>															
+														<select id="horautil1" name="horautil1" class="form-control">
+															<option value="99" <?php echo ('99' == $diaHoraAtendimentoUtil[2] || $diaHoraAtendimentoUtil[2] == '' ? 'selected' : ''); ?>>Selecione</option>
+														  <?php for ($h1 = 0; $h1 < 24; $h1++){ ?>
+														  	<option value="<?php echo $h1; ?>" <?php echo ($h1 == $diaHoraAtendimentoUtil[2] ? 'selected' : ''); ?>><?php echo $h1; ?>:00</option>													   
+														  <?php } ?>												  
+														</select>
+														<div class="help-block with-errors"></div>
+	                                             	</div> 
+	                                             </div>
+	                                             <div class="col-sm-2">                                                                                          
+	                                                <div class="form-group">
+	                                                    <label><i class="fa fa-clock-o"></i> Hor&aacute;rio Final </label>															
+														<select id="horautil2" name="horautil2" class="form-control">
+															<option value="99" <?php echo ('99' == $diaHoraAtendimentoUtil[3] || $diaHoraAtendimentoUtil[3] == '' ? 'selected' : ''); ?>>Selecione</option>
+														  <?php for ($h2 = 0; $h2 < 24; $h2++){ ?>
+														  	<option value="<?php echo $h2; ?>" <?php echo ($h2 == $diaHoraAtendimentoUtil[3] ? 'selected' : ''); ?>><?php echo $h2; ?>:00</option>													   
+														  <?php } ?>												  
+														</select>
+														<div class="help-block with-errors"></div>
+	                                             	</div> 
+	                                             </div>	                                              
+                                         </div>
+                                         <div class="row">
+                                         		<div class="col-sm-2">                                                                                          
+	                                                <div class="form-group">
+	                                                    <label><i class="fa fa-calendar-o"></i> Fim de Semana De </label>	                                                   
+														<select id="diafds1" name="diafds1" class="form-control">
+														  <option value="0" <?php echo ('0' == $diaHoraAtendimentoFds[0] ? 'selected' : ''); ?>>Selecione</option>
+														  <option value="1" <?php echo ('1' == $diaHoraAtendimentoFds[0] ? 'selected' : ''); ?>>Domingo</option>													   
+														  <option value="7" <?php echo ('7' == $diaHoraAtendimentoFds[0] ? 'selected' : ''); ?>>S&aacute;bado</option>													  
+														</select>
+													
+													</div>
+												</div>
+												<div class="col-sm-2">                                                                                          
+	                                                <div class="form-group">
+	                                                    <label><i class="fa fa-calendar-o"></i> Fim de Semana At&eacute; </label>															
+														<select id="diafds2" name="diafds2" class="form-control">
+														  <option value="0" <?php echo ('0' == $diaHoraAtendimentoFds[1] ? 'selected' : ''); ?>>Selecione</option>
+														  <option value="1" <?php echo ('1' == $diaHoraAtendimentoFds[1] ? 'selected' : ''); ?>>Domingo</option>													   
+														  <option value="7" <?php echo ('7' == $diaHoraAtendimentoFds[1] ? 'selected' : ''); ?>>S&aacute;bado</option>													  
+														</select>
+														<div class="help-block with-errors"></div>
+	                                             	</div> 
+	                                             </div>
+	                                             <div class="col-sm-2">                                                                                          
+	                                                <div class="form-group">
+	                                                    <label><i class="fa fa-clock-o"></i> Hor&aacute;rio In&iacute;cio </label>															
+														<select id="horafds1" name="horafds1" class="form-control">
+															<option value="99" <?php echo ($diaHoraAtendimentoFds[2] == '99' || $diaHoraAtendimentoFds[2] == '' ? 'selected' : ''); ?>>Selecione</option>
+														  <?php for ($h3 = 0; $h3 < 24; $h3++){ ?>
+														  	<option value="<?php echo $h3; ?>" <?php echo ($diaHoraAtendimentoFds[2] == $h3 ? 'selected' : ''); ?>><?php echo $h3; ?>:00</option>													   
+														  <?php } ?>												  
+														</select>
+														
+														<div class="help-block with-errors"></div>
+	                                             	</div> 
+	                                             </div>
+	                                             <div class="col-sm-2">                                                                                          
+	                                                <div class="form-group">
+	                                                    <label><i class="fa fa-clock-o"></i> Hor&aacute;rio Final </label>															
+														<select id="horafds2" name="horafds2" class="form-control">
+															<option value="99" <?php echo ($diaHoraAtendimentoFds[3] == '99' || $diaHoraAtendimentoFds[3] == '' ? 'selected' : ''); ?>>Selecione</option>
+														  <?php for ($h4 = 0; $h4 < 24; $h4++){ ?>
+														  	<option value="<?php echo $h4; ?>" <?php echo ($h4 == $diaHoraAtendimentoFds[3] ? 'selected' : ''); ?>><?php echo $h4; ?>:00</option>													   
+														  <?php } ?>												  
+														</select>
+														<div class="help-block with-errors"></div>
+	                                             	</div> 
+	                                             </div>	                                              
+                                         </div>
+                                         <div class="row"> 
+                                           <div class="col-sm-12">                                                                                          
+                                                <div class="form-group">
+                                                    <input type="checkbox" id="atendimento24H" name="atendimento24H" value="1" <?php echo ($retAd[0]['atendimento24H'] == 1 ? 'checked' : ''); ?>> <strong>MARQUE SE O ATENDIMENTO FOR 24 HORAS</strong>                                                    
+                                                </div> 
+                                            </div>
+                                         </div> 
                                          
                                          <hr />                                                                               
                                          <div class="row">

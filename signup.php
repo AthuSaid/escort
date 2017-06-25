@@ -310,7 +310,12 @@
 	                                                    <input type="text" id="quadril" name="quadril" class="form-control num3" value="<?php echo $retPerson[0]['quadril']; ?>">
 	                                                </div> 
 	                                            </div> 
-	                                            
+	                                            <div class="col-sm-1">                                                                                          
+	                                                <div class="form-group">
+	                                                    <label>Dote </label>                                                    
+	                                                    <input type="text" <?php echo ($retPerson[0]['sexo'] == 'F' ? 'disabled="disabled"' : ''); ?> id="pcm" name="pcm" class="form-control pcm" value="<?php echo $retPerson[0]['pcm']; ?>">
+	                                                </div> 
+	                                            </div>
 	             								  
                                            </div>
                                           
@@ -345,19 +350,19 @@
 	                                            <div class="col-sm-4">                                                                                          
 	                                                <div class="form-group">
 	                                                    <label><i class="fa fa-facebook"></i> Perfil Facebook (Opcional)</label>                                                    
-	                                                    <input type="text" id="facebook" name="facebook" class="form-control" placeholder="https://www.facebook.com/<?php echo ($retPerson[0]['apelido'] != '' ? $retPerson[0]['apelido'] : $_SESSION['sPersonPreAka']); ?>" value="<?php echo $retPerson[0]['facebook']; ?>">
+	                                                    <input type="text" id="facebook" name="facebook" class="form-control" placeholder="Exemplo: https://www.facebook.com/<?php echo ($retPerson[0]['url'] != '' ? $retPerson[0]['url'] : $functions->fFormatTitle4Url($_SESSION['sPersonPreAka'])); ?>" value="<?php echo $retPerson[0]['facebook']; ?>">
 	                                                </div> 
 	                                            </div>
 	                                            <div class="col-sm-4">                                              
 	                                                <div class="form-group">
 	                                                    <label><i class="fa fa-twitter"></i> Perfil Twitter (Opcional)</label>
-	                                                    <input type="text" id="twitter" name="twitter" placeholder="https://www.twitter.com/<?php echo ($retPerson[0]['apelido'] != '' ? $retPerson[0]['apelido'] : $_SESSION['sPersonPreAka']); ?>" class="form-control required" value="<?php echo $retPerson[0]['twitter']; ?>">
+	                                                    <input type="text" id="twitter" name="twitter" placeholder="Exemplo: https://www.twitter.com/<?php echo ($retPerson[0]['url'] != '' ? $retPerson[0]['url'] : $functions->fFormatTitle4Url($_SESSION['sPersonPreAka'])); ?>" class="form-control required" value="<?php echo $retPerson[0]['twitter']; ?>">
 	                                                </div>
 	                                            </div>
 	                                            <div class="col-sm-4">                                                 
 	                                                <div class="form-group">
 	                                                    <label><i class="fa fa-instagram"></i> Perfil Instagram (Opcional)</label>
-	                                                    <input type="text" id="googleplus" name="googleplus" placeholder="https://www.instagram.com/<?php echo ($retPerson[0]['apelido'] != '' ? $retPerson[0]['apelido'] : $_SESSION['sPersonPreAka']); ?>" class="form-control required" value="<?php echo $retPerson[0]['googleplus']; ?>">
+	                                                    <input type="text" id="googleplus" name="googleplus" placeholder="Exemplo: https://www.instagram.com/<?php echo ($retPerson[0]['url'] != '' ? $retPerson[0]['url'] : $functions->fFormatTitle4Url($_SESSION['sPersonPreAka'])); ?>" class="form-control required" value="<?php echo $retPerson[0]['googleplus']; ?>">
 	                                                </div>
 	                                            </div>    
                                             </div>
@@ -489,6 +494,7 @@
 				$('#nascimento').mask('00/00/0000', options);
 				$('.tel').mask('(00) 00000-0000');
 				$('.num3').mask('000');
+				$('.pcm').mask('00');
 				$('.altura').mask('0,00');
 				$('#cpf').mask('000.000.000-00');
 				
@@ -505,13 +511,14 @@
 				$('.sexo').on('change', function(){
 					$(".genero option[value='mercury']").remove();
 					if($(this).val() == 'M'){
-						
+						$('.pcm').attr('disabled', false);
 						$(".genero option[value='dbv']").remove();
 						$(".genero").append('<option value="" selected>Selecione</option>');
 						$(".genero").append('<option value="mars">H&eacute;terossexual</option>');
 						$(".genero").append('<option value="dbm">Homossexual</option>');
 						$(".genero").append('<option value="mercury">Bissexual</option>');
 					}else if($(this).val() == 'F'){
+						$('.pcm').attr('disabled', true);
 						$(".genero option[value='mars']").remove();
 						$(".genero option[value='dbm']").remove();
 						$(".genero").append('<option value="" selected>Selecione</option>');
@@ -519,6 +526,7 @@
 						$(".genero").append('<option value="dbv">Homossexual</option>');
 						$(".genero").append('<option value="mercury">Bissexual</option>');						
 					}else if($(this).val() == 'T'){
+						$('.pcm').attr('disabled', false);
 						$(".genero option[value='mars']").remove();
 						$(".genero option[value='dbm']").remove();
 						$(".genero option[value='dbv']").remove();

@@ -262,7 +262,8 @@ function setItemValue(title, descr, hash) {
 $(function () {
 	
 	// Initialize Infinity Scroll
-	var win = $(window);
+	//var win = $(window);
+	//var scrollEnd = false;
 	
     // Initialize Isotope
     var $notes = $(".grid").isotope({
@@ -286,24 +287,24 @@ $(function () {
         });
 
     });
-    
-    win.scroll(function() {
-		// End of the document reached?    	
-		if ($(document).height() - win.height() == win.scrollTop()) {
-			$("#loading").fadeIn(500);
-			$.ajax({
-				url: $urlProj + '_actions/paging.php',
-				dataType: 'html',
-				success: function( html ) {
-					var $container = $(".infinity");
-					var $elem = $(html);
-					$container.append( $elem ).isotope( 'appended', $elem );			
-		            setTimeout(function () {
-		            	$("#loading").fadeOut(500);
-		            }, 500);
-				}
-			});			
-		}
-	});
+        
+     
+    $(".search-field").autocomplete({
+      source: function(request, response){
+        $.ajax({
+          url: $urlProj + "_actions/autocomplete.php",
+          dataType: "jsonp",
+          data: {
+        	  term: request.term
+          },
+          success: function(data) {
+        	  response(data);
+          }
+        });
+      },
+      minLength: 3,
+      select: function(event, ui) {
+    	  console.log( "Selected: " + ui.item.value + " aka " + ui.item.id );
+      }
+    });          
 });
-

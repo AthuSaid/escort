@@ -27,7 +27,7 @@
     <head>
         <meta charset="utf-8">
         <title><?php echo SIS_TITULO; ?> - <?php echo $retPerson[0]['apelido']; ?></title>
-        <meta name="description" content="<?php echo SIS_DESCRICAO; ?>">
+        <meta name="description" content="<?php echo SIS_TITULO; ?> - <?php echo $retPerson[0]['apelido']; ?> - <?php echo ucwords(strip_tags($retPerson[0]['titulo'])); ?> - <?php echo str_replace("\n", "", $functions->fStripTagsContent($retPerson[0]['descricao'])); ?>">
         <meta name="robots" content="index,follow" />
 		<meta name="googlebot" content="index,follow" />
 		<meta name="google" content="translate" />
@@ -330,13 +330,16 @@
                                 	 
                                 	<hr /> 
                                 	
-                                	<?php if (!empty($retPerson[0]['diahoraatendimentoutil'])){ ?>                                	
-                                		<h6><strong><?php echo $retPerson[0]['diahoraatendimentoutil']; ?></strong></h6>
+                                	<?php if ($retPerson[0]['atendimento24H'] == 1){ ?>
+                                			<h6><strong>ATENDIMENTO 24 HORAS!</strong></h6>
+                                	<?php }else{ ?>
+	                                	<?php if ($retPerson[0]['diahoraatendimentoutil'] != '0-0-99-99'){ ?>                                	
+	                                		<h6><strong><?php echo $functions->fFormatDayHourWork($retPerson[0]['diahoraatendimentoutil'], true); ?></strong></h6>
+	                                	<?php } ?>
+	                                	<?php if ($retPerson[0]['diahoraatendimentofds'] != '0-0-99-99'){ ?>
+	                                		<h6><strong><?php echo $functions->fFormatDayHourWork($retPerson[0]['diahoraatendimentofds'], false); ?></strong></h6>
+	                                	<?php } ?>
                                 	<?php } ?>
-                                	<?php if (!empty($retPerson[0]['diahoraatendimentofds'])){ ?>
-                                		<h6><strong><?php echo $retPerson[0]['diahoraatendimentofds']; ?></strong></h6>
-                                	<?php } ?>
-                                	
                                 	<h5><em>Ao entrar em contato comigo, diga que foi atrav&eacute;s do site <?php echo SIS_TITULO; ?></em></h5>                                	
                                 	
                                 <hr />

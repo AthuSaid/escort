@@ -563,6 +563,16 @@ class functions extends queries {
 	 * Libidinous Global Search
 	 * @param string $criteria
 	 */
+	public function fAutocompleteSearch($criteria)
+	{
+		return 'teste';
+	}
+	
+	
+	/**
+	 * Libidinous Global Search
+	 * @param string $criteria
+	 */
 	public function fGlobalSearch($criteria)
 	{
 		$_SESSION['sSearchPagingCount'] = 0;
@@ -789,8 +799,8 @@ class functions extends queries {
 		                             
 								}else{ 
 									
-									$this->retHTML .= '<h4 style="height:70px;"><strong>'.SIS_DIAS_GRATIS.' dias gr&aacute;tis*</strong></h4>';
-									$this->retHTML .= '<h6>&nbsp;</h6>';
+									$this->retHTML .= '<h1 style="height:45px;"><strong>'.SIS_DIAS_GRATIS.' dias</strong></h1>';
+									$this->retHTML .= '<h4 style="height:40px;">totalmente gr&aacute;tis*</h4>';
                             		$this->retHTML .= '<p>* upgrade ap&oacute;s expira&ccedil;&atilde;o</p>';
 								}
 							
@@ -1108,6 +1118,7 @@ class functions extends queries {
 						                                     		
 						                            </div>
 						                            <div class="col-md-6">
+											          <a href="'.SIS_URL.'person/'.$this->retRecords[0]['person'].'/'.$this->retRecords[0]['ad'].'">
 						                                <div class="feature_photo wow fadeIn sm-m-top-40">
 						                                    <div class="photo_border"><div class="imgPhotoVideoCounterLeft"><i class="fa fa-camera"></i> '.$this->retRecords[0]['count_fotos'].' <i class="fa fa-video-camera"></i> '.$this->retRecords[0]['count_videos'].'</div></div>
 											                											                                        		
@@ -1115,6 +1126,7 @@ class functions extends queries {
 						                                        <img src="'.SIS_URL.'images/persons/'.$this->retRecords[0]['person'].'/'.$this->retRecords[0]['imagemurl'].'" alt="'.$this->retRecords[0]['apelido'].'" />
 						                                    </div>
 						                                </div>
+						                              </a>          		
 						                            </div>
 						                        </div>
 						                    </div><!--End off row-->
@@ -1137,6 +1149,7 @@ class functions extends queries {
 	    					{
 	    							$direction = ($x % 2 != 0 ? "left" : "right");
 	    							$w_s = ($x % 2 != 0 ? 2 : 1);
+	    							$localizacao = explode(",", $this->retRecords[$x]['localizacao']);
 	    						
 					    			$this->retHTML .= '<div class="col-md-7 '.($x % 2 == 0 ? 'col-md-offset-5' : '').' col-sm-12 col-xs-12">
 						                                <div class="work_item">
@@ -1151,6 +1164,7 @@ class functions extends queries {
 						                                            <div class="work_item_details m-top-80 sm-m-top-20">
 						                                                <h4>'.$this->retRecords[$x]['apelido'].'</h4>
 						                                                <h6>'.$this->fGetGenderPerson($this->retRecords[$x]['sexo']).' - '.$this->fGetAge($this->retRecords[$x]['nascimento']).'</h6>
+						                                                <h6>'.$localizacao[count($localizacao)-2].'</h6>
 						                                                <div class="work_separator'.$w_s.'"></div>
 						                                                <p class="m-top-40 sm-m-top-10">'.$this->fLimitWords($this->retRecords[$x]['descricao_pessoa'], 230, false, SIS_URL.'person/'.$this->retRecords[$x]['person'].'/'.$this->retRecords[$x]['ad']).'</p>
 						                                            </div>
@@ -1958,6 +1972,70 @@ class functions extends queries {
     		return $x[0].'h';
     	else
     		return $min.'min';
+    }
+    
+    
+    /**
+     * Format Work Days with Hours
+     * @param string $dayhourwork
+     * @param boolean $bday Business Day
+     */
+    public function fFormatDayHourWork($dayhourwork, $bday = true)
+    {
+    	$dayhour = explode("-", $dayhourwork);
+    	
+    	if ($bday)
+    	{
+    		if ($dayhour[0] > 0 && $dayhour[1] > 0)
+    			$strDHW = "De ".$this->fFormatWeekdays($dayhour[0])." &agrave; ".$this->fFormatWeekdays($dayhour[1]);
+    		elseif ($dayhour[0] > 0 && $dayhour[1] == '0')
+    			$strDHW = $this->fFormatWeekdays($dayhour[0])."s feiras";
+    		elseif ($dayhour[0] == '0' && $dayhour[1] == '0')
+    			$strDHW = "De segunda &agrave; sexta";
+    		else 
+    			$strDHW = $this->fFormatWeekdays($dayhour[1])."s feiras";
+    		
+    		if ($dayhour[2] != '99' && $dayhour[3] != '99')
+    			$strDHW .= ", das ".$dayhour[2]."h &agrave;s ".$dayhour[3]."h";
+    		elseif ($dayhour[2] != '99' && $dayhour[3] == '99')
+    			$strDHW .= ", a partir das ".$dayhour[2]."h";
+    		elseif ($dayhour[2] == '99' && $dayhour[3] == '99')
+    			$strDHW .= ", a qualquer hora!";
+    		else
+    			$strDHW .= ", a partir das ".$dayhour[3]."h";
+    	}else{
+    		
+    		if ($dayhour[0] > 0 && $dayhour[1] > 0)
+    			$strDHW = $this->fFormatWeekdays($dayhour[0])."s e ".$this->fFormatWeekdays($dayhour[1])."s";
+    		elseif ($dayhour[0] > 0 && $dayhour[1] == '0')
+    			$strDHW = "Aos ".$this->fFormatWeekdays($dayhour[0])."s";
+    		elseif ($dayhour[0] == '0' && $dayhour[1] == '0')
+    			$strDHW = "Aos finais de semana";
+    		else
+    			$strDHW = "Aos ".$this->fFormatWeekdays($dayhour[1])."s";
+    		
+    		if ($dayhour[2] != '99' && $dayhour[3] != '99')
+    			$strDHW .= ", das ".$dayhour[2]."h &agrave;s ".$dayhour[3]."h";
+    		elseif ($dayhour[2] != '99' && $dayhour[3] == '99')
+    			$strDHW .= ", a partir das ".$dayhour[2]."h";
+    		elseif ($dayhour[2] == '99' && $dayhour[3] == '99')
+    			$strDHW .= ", a qualquer hora!";
+    		else
+    			$strDHW .= ", a partir das ".$dayhour[3]."h";
+    	}
+    	
+    	return $strDHW;
+    }
+    
+    
+    /**
+     * Format week days
+     * @param integer $day
+     */
+    private function fFormatWeekdays($day)
+    {
+    	$arrWeek = array(1 => "Domingo", 2 => "Segunda", 3 => "Ter&ccedil;a", 4 => "Quarta", 5 => "Quinta", 6 => "Sexta", 7 => "S&aacute;bado");
+    	return $arrWeek[$day];
     }
     
     
