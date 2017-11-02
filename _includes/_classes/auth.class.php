@@ -56,8 +56,9 @@ class auth extends functions {
                 $_SESSION['sUserName'] = $ret[0]['nome'];                
                 $_SESSION['sUserEmail'] = $ret[0]['email'];
                 $_SESSION['sUserProfile'] = $ret[0]['perfil'];
-                $_SESSION['sUserLastLogon'] = $ret[0]['dtultimoacesso'];
+                $_SESSION['sUserLastLogon'] = $ret[0]['dtultimoacesso'];                
                 $_SESSION['sUserSessionTime'] = time();
+                setcookie('cUserNickname', $ret[0]['nickname'], time()+9800, "/");
                 return 2;
 			}else{
                 return 1;
@@ -146,6 +147,7 @@ class auth extends functions {
 				$_SESSION['sPersonMaxPhotos'] = $ret[0]['numfotos'];
 				$_SESSION['sPersonMaxVideos'] = $ret[0]['numvideos'];
 				$_SESSION['sPersonSessionTime'] = time();
+				setcookie('cUserNickname', 'Triboni', time()+9800, "/");
 				return true;
 				
 			}else{

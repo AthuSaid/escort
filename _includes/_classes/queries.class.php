@@ -106,7 +106,11 @@ class queries extends mysqlconn {
 				    				 WHERE pfc.apid = ap.apid
 				    				 AND pfc.ativo = 1
 				    				 AND pfc.tipo = 1) AS count_fotos,
-				    			0 AS count_videos,	 
+				    			(SELECT COUNT(1) 
+				    				 FROM pessoas_fotos pfc
+				    				 WHERE pfc.apid = ap.apid
+				    				 AND pfc.ativo = 1
+				    				 AND pfc.tipo = 2 AND pfc.local = 3) AS count_videos,	 
 			    				IFNULL((SELECT pfc.imagemurl AS cover 
 								     FROM pessoas_fotos pfc 
 								     WHERE pfc.apid = ap.apid 
@@ -180,6 +184,23 @@ class queries extends mysqlconn {
 		$this->fExecuteSql($this->sqlQuery);
 		$this->retRecords = $this->fShowRecords();
 		return $this->retRecords;
+	}
+	
+	
+	/**
+	 * Save Chat Conversations
+	 *
+	 * @author    Daniel Triboni
+	 * @param	 object $_REQUEST
+	 * @return	 boolean
+	 */
+	public function fSaveChat($msg, $room){
+	
+		$this->sqlQuery = "INSERT INTO chats (pesid, lido, jsonmessage) VALUES ({$room}, 0, '".$msg."')";
+	
+		//$this->fExecuteSql($this->sqlQuery);
+	
+		return true;
 	}
 	
 	
@@ -750,7 +771,11 @@ class queries extends mysqlconn {
 			    				 WHERE pfc.apid = ap.apid
 			    				 AND pfc.ativo = 1
 			    				 AND pfc.tipo = 1) AS count_fotos,
-			    			0 AS count_videos,	 
+			    			(SELECT COUNT(1) 
+				    				 FROM pessoas_fotos pfc
+				    				 WHERE pfc.apid = ap.apid
+				    				 AND pfc.ativo = 1
+				    				 AND pfc.tipo = 2 AND pfc.local = 3) AS count_videos,	 
 		    				IFNULL((SELECT pfc.imagemurl AS cover 
 							     FROM pessoas_fotos pfc 
 							     WHERE pfc.apid = ap.apid 
@@ -812,7 +837,11 @@ class queries extends mysqlconn {
 			    				 WHERE pfc.apid = ap.apid
 			    				 AND pfc.ativo = 1
 			    				 AND pfc.tipo = 1) AS count_fotos,
-			    			 0 AS count_videos,
+			    			 (SELECT COUNT(1) 
+			    				 FROM pessoas_fotos pfc
+			    				 WHERE pfc.apid = ap.apid
+			    				 AND pfc.ativo = 1
+			    				 AND pfc.tipo = 2 AND pfc.local = 3) AS count_videos,
     						(SELECT 
 									DATEDIFF(pp2.vencimento, now()) 
 								 FROM planos_pagamentos pp2

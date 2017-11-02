@@ -19,7 +19,7 @@ if ($retAC = $functions->fQueryGlobalSearch($_REQUEST['term'], -1))
 		{
 			if ($retAC[$x]['vencimento'] > 0)
 			{
-				$myArray[$x] = array("id" => $x, "label" => $retAC[$x]['apelido'], "value" => 'person/'.$retAC[$x]['person'].'/'.$retAC[$x]['ad']);
+				$myArray[$x] = array("id" => $x, "label" => $retAC[$x]['apelido'].', '.strtolower($functions->fGetGenderPerson($retAC[$x]['sexo'])).', '.$functions->fGetAge($retAC[$x]['nascimento']).' - '.($retAC[$x]['whatsapp'] != '' ? $retAC[$x]['whatsapp'] : $retAC[$x]['tel1']), "value" => 'person/'.$retAC[$x]['person'].'/'.$retAC[$x]['ad']);
 			}
 		}
 		

@@ -1,0 +1,30 @@
+@CHARSET "ISO-8859-1";
+.chat_wrapper {
+	width: 100%;
+	height:auto;
+	margin-right: auto;
+	margin-left: auto;	
+	font: 14px 'lucida grande',tahoma,verdana,arial,sans-serif;
+}
+.chat_wrapper .message_box {
+	height:400px;
+	overflow: auto;
+	padding: 10px 10px 20px 10px;
+	border: 1px solid #ccc;
+}
+.chat_wrapper  input{
+	//padding: 2px 2px 2px 2px;
+}
+.system_msg{color: #fff; padding: 7px 7px 7px 7px; margin-bottom: 6px; font-weight: bold; background-color: #ccc; border: 1px solid #ccc; border-radius: 15px 30px 30px 5px;}
+.system_error{color: #fff; padding: 7px 7px 7px 7px; margin-bottom: 6px; font-weight: bold; background-color: #ff6a6a; border: 1px solid #ff6a6a; border-radius: 30px 15px 5px 30px;}
+.user_date{font-size:10px; color: #fff; font-style: italic;}
+.user_name{font-weight:bold;}
+.user_message_m{color: #fff; padding: 7px 7px 7px 7px; margin-bottom: 6px; font-weight: bold; background-color: #88B6E0; border: 1px solid #88B6E0; border-radius: 15px 30px 30px 5px;}
+.user_message_f{color: #fff; padding: 7px 7px 7px 7px; margin-bottom: 6px; font-weight: bold; background-color: #ff0080; border: 1px solid #ff0080; border-radius: 15px 30px 30px 5px;}
+
+@media only screen and (max-width: 720px) {
+   /* For mobile phones: */
+   .chat_wrapper {
+       width: 95%;
+	height: 40%;
+}

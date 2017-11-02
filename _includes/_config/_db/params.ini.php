@@ -10,9 +10,9 @@ define("SIS_TITULO", "Libidinous");
 /* Descricao Meta Description */
 define("SIS_DESCRICAO", utf8_encode(SIS_TITULO." | Anúncios GRÁTIS. Acompanhantes, escort, escorts, ficha rosa, acompanhantes e massagem, massagens, encontros casuais, VIP, massagem nuru, massagem lingam, massagem tailandesa, massagem relaxante, podolatria, massagem tântrica, massagem prostática, sexo oral, sexo anal, sexo vaginal, sexo grupal, swing, streptease, e muito mais. "));
 /* URL do Proprietario - Configurar de acordo com a URL amigavel utilizada */
-define("SIS_URL", "https://escort.local:443/");
+define("SIS_URL", "http://escort.local/");
 /* Cookie secure mode */
-define("SIS_SECURE", true);
+define("SIS_SECURE", false);
 /* Email de Interacao */
 define("SIS_EMAIL", "atendimento@url.com.br");
 /* Idioma do Proprietario */
