@@ -125,7 +125,10 @@
 	cursor: pointer;
 	/* support: IE10, see #8844 */
 	list-style-image: url("data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7");
+	font-family: 'Montserrat', sans-serif;
+    color:#1a1a1a;
 }
+
 .ui-menu .ui-menu-item-wrapper {
 	position: relative;
 	padding: 3px 1em 3px .4em;
@@ -140,6 +143,9 @@
 .ui-menu .ui-state-focus,
 .ui-menu .ui-state-active {
 	margin: -1px;
+	background: none !important;
+	background-color: blue !important;
+	border: none !important;
 }
 
 /* icon support */

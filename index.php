@@ -247,12 +247,13 @@
         <!-- JS includes -->  
         <script>var $urlProj = '<?php echo SIS_URL; ?>';</script>      
         <script src="<?php echo SIS_URL; ?>assets/js/vendor/jquery-1.11.2.min.js"></script>
-        <script src="<?php echo SIS_URL; ?>assets/js/jquery.ui.js"</script>
+        
         <script src="<?php echo SIS_URL; ?>assets/js/vendor/bootstrap.min.js"></script>        
         <script src="<?php echo SIS_URL; ?>assets/js/isotope.min.js"></script>
         <script src="<?php echo SIS_URL; ?>assets/js/jquery.magnific-popup.js"></script>
         <script src="<?php echo SIS_URL; ?>assets/js/jquery.easing.1.3.js"></script>
         <script src="<?php echo SIS_URL; ?>assets/js/slick.min.js"></script>
+        <script src="<?php echo SIS_URL; ?>assets/js/jquery.ui.js"</script>
         <script src="<?php echo SIS_URL; ?>assets/js/jquery.collapse.js"></script>        
         <script src="<?php echo SIS_URL; ?>assets/js/bootsnav.js"></script>
         <script src="<?php echo SIS_URL; ?>assets/js/jquery.modal.min.js"</script>        

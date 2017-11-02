@@ -290,21 +290,12 @@ $(function () {
         
      
     $(".search-field").autocomplete({
-      source: function(request, response){
-        $.ajax({
-          url: $urlProj + "_actions/autocomplete.php",
-          dataType: "jsonp",
-          data: {
-        	  term: request.term
-          },
-          success: function(data) {
-        	  response(data);
-          }
-        });
-      },
-      minLength: 3,
-      select: function(event, ui) {
-    	  console.log( "Selected: " + ui.item.value + " aka " + ui.item.id );
-      }
+    	source: $urlProj + "_actions/autocomplete.php",    	
+        minLength: 3,
+        select: function(event, ui) {
+        	console.log(ui);
+        	console.log( "Selected: " + ui.item.value + " aka " + ui.item.id );         		
+	        location.href = $urlProj + ui.item.value;	            
+        }
     });          
 });

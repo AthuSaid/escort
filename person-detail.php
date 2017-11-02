@@ -62,6 +62,7 @@
         <!--Theme Responsive css-->
         <link rel="stylesheet" href="<?php echo SIS_URL; ?>assets/css/responsive.css" />
         <script src="<?php echo SIS_URL; ?>assets/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+        <link rel="stylesheet" href="<?php echo SIS_URL; ?>assets/css/jquery.ui.css" type="text/css" media="screen" />
     </head>
 
     <body data-spy="scroll" data-target=".navbar-collapse">
@@ -412,7 +413,7 @@
 
 
             <!-- TESTEMUNHAS DE USUARIOS QUE JA CONHECERAM A PESSOA ################### -->
-            <?php //echo $functions->fCreateUserTestimonials($retPerson[0]['pesid']); ?>
+            <?php echo $functions->fCreateUserTestimonials($retPerson[0]['pesid']); ?>
 
 
             <!--Gallery Section-->
@@ -466,6 +467,7 @@
         <script src="<?php echo SIS_URL; ?>assets/js/jquery.magnific-popup.js"></script>
         <script src="<?php echo SIS_URL; ?>assets/js/jquery.easing.1.3.js"></script>
         <script src="<?php echo SIS_URL; ?>assets/js/slick.min.js"></script>
+        <script src="<?php echo SIS_URL; ?>assets/js/jquery.ui.js"</script>
         <script src="<?php echo SIS_URL; ?>assets/js/jquery.collapse.js"></script>        
         <script src="<?php echo SIS_URL; ?>assets/js/bootsnav.js"></script>
 	    <script src="<?php echo SIS_URL; ?>assets/js/plugins.js"></script>	    		
@@ -479,10 +481,11 @@
         <script src="<?php echo SIS_URL; ?>assets/js/form.js"></script>        
         <script src="<?php echo SIS_URL; ?>assets/js/cropper.js"></script>
         <script src="<?php echo SIS_URL; ?>assets/js/croppermain.js"></script> 
-        <!--script type="text/javascript" src="<?php echo SIS_URL; ?>assets/webcam/webcam.poster.js"></script-->      
-        <script type="text/javascript" src="<?php echo SIS_URL; ?>assets/webcam/webcam.gallery.js"></script>
-        <script type="text/javascript" src="<?php echo SIS_URL; ?>assets/js/recorder.js"></script>
-        
+        <?php if ($logged) { ?>
+	        <!--script type="text/javascript" src="<?php echo SIS_URL; ?>assets/webcam/webcam.poster.js"></script-->      
+	        <script type="text/javascript" src="<?php echo SIS_URL; ?>assets/webcam/webcam.gallery.js"></script>
+	        <script type="text/javascript" src="<?php echo SIS_URL; ?>assets/js/recorder.js"></script>
+        <?php } ?>
         <script type="text/javascript">
         	<?php echo $functions->fGetPersonModalitiesBalloonTip($retPerson[0]['apid'], $retPerson[0]['sexo']); ?>            
 		</script>         

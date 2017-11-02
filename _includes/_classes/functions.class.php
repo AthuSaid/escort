@@ -983,7 +983,7 @@ class functions extends queries {
      */
     public function fCreateUserTestimonials()
     {
-    	$this->retRecords = $this->fQueryFeaturedModels(5, 6);
+    	$this->retRecords = $this->fQueryFeaturedModels('M', 'T', 5, 6);
     	
     	if (count($this->retRecords) > 0)
     	{

@@ -61,6 +61,7 @@
         <!--Theme Responsive css-->
         <link rel="stylesheet" href="<?php echo SIS_URL; ?>assets/css/responsive.css" />
         <script src="<?php echo SIS_URL; ?>assets/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+        <link rel="stylesheet" href="<?php echo SIS_URL; ?>assets/css/jquery.ui.css" type="text/css" media="screen" />
     </head>
 
     <body data-spy="scroll" data-target=".navbar-collapse">
@@ -238,6 +239,7 @@
         <script src="<?php echo SIS_URL; ?>assets/js/jquery.magnific-popup.js"></script>
         <script src="<?php echo SIS_URL; ?>assets/js/jquery.easing.1.3.js"></script>
         <script src="<?php echo SIS_URL; ?>assets/js/slick.min.js"></script>
+        <script src="<?php echo SIS_URL; ?>assets/js/jquery.ui.js"</script>
         <script src="<?php echo SIS_URL; ?>assets/js/jquery.collapse.js"></script>
         <script src="<?php echo SIS_URL; ?>assets/js/bootsnav.js"></script>
         <script src="<?php echo SIS_URL; ?>assets/js/plugins.js"></script>

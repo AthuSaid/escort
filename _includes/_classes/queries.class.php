@@ -38,10 +38,10 @@ class queries extends mysqlconn {
 	public function fQueryNotificationNavMenu(){
 	
 		$this->sqlQuery = "SELECT
-								CONCAT('Seu Perfil ', p.apelido) as titulo,
+								CONCAT('Seu perfil ', p.apelido) as titulo,
 								'dashboard' as url,
 								CASE WHEN (p.aprovado = 1) THEN
-						    		'foi aprovado com Sucesso!'
+						    		'foi aprovado com sucesso!'
 						    	WHEN (p.aprovado = 2) THEN
 						    		'<strong>foi reprovado!</strong>'						    	
 						    	END AS aprovado
@@ -52,10 +52,10 @@ class queries extends mysqlconn {
 							AND p.removido = 0 
 						UNION 
 							SELECT
-								CONCAT('Seu An&uacute;ncio ', ap.titulo) as titulo,
+								CONCAT('Seu an&uacute;ncio ', ap.titulo) as titulo,
 								CONCAT('person/', p.url, '/', ap.url) as url,
 								CASE WHEN (ap.aprovado = 1) THEN
-						    		'foi publicado com Sucesso!'
+						    		'foi publicado com sucesso!'
 						    	WHEN (ap.aprovado = 2) THEN
 						    		'<strong>foi reprovado!</strong>'						    	
 						    	END AS aprovado
@@ -155,8 +155,9 @@ class queries extends mysqlconn {
 								)
 
 							GROUP BY p.nome
-							ORDER BY ap.visitascount DESC, p.nome ASC
-							LIMIT {$paging}, ".SIS_PAGINACAO;
+							ORDER BY ap.visitascount DESC, p.nome ASC ";
+							if ($paging != -1)
+								$this->sqlQuery .= "LIMIT {$paging}, ".SIS_PAGINACAO;
 		$this->fExecuteSql($this->sqlQuery);
 		$this->retRecords = $this->fShowRecords();
 		return $this->retRecords;
