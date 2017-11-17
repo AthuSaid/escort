@@ -7,7 +7,7 @@
 	            <select class="form-control" id="myGender">
 		   			<option value="M" selected>Homem</option>
 		   			<option value="F">Mulher</option>
-		   			<option value="T">Travesti</option>
+		   			<option value="T">Transex</option>
 		   		</select>
 	   		</div>
 	   </div>
@@ -17,7 +17,7 @@
 	            <select class="form-control" id="findGender">
 			   		<option value="M">Homem</option>
 			   		<option value="F" selected>Mulher</option>
-			   		<option value="T">Travesti</option>
+			   		<option value="T">Transex</option>
 		   		</select>
 	   		</div>
 	   </div>
@@ -114,7 +114,10 @@
                     <div class="container">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-search"></i></span>
-                            <input type="text" class="form-control search-field" placeholder="Pesquise por Acompanhantes, Massagistas ou Modalidades">
+                            <?php $arrPlaceholder = array(1 => "Pesquise por Acompanhantes, Massagistas Localiza&ccedil;&atilde;o ou Modalidades",
+                            							  2 => "Digite 'Perto de mim' e encontre a pessoa desejada!",
+                            							  3 => "Procure por 'Pessoas online' e descubra!"); ?>
+                            <input type="text" class="form-control search-field" placeholder="<?php echo $arrPlaceholder[rand(1,3)]; ?>">
                             <span class="input-group-addon close-search"><i class="fa fa-times"></i></span>
                         </div>
                     </div>
@@ -126,15 +129,30 @@
                     <div class="attr-nav">
                         <ul>
                         
-	                        <li class="search">
+	                        <li class="search shadow-text">
                                 <a href="#">
                                     <i class="fa fa-search"></i>                                                                        
                                 </a>
-	                         </li>       
+	                         </li>     
+	                         
+	                         <?php if (!isset($_SESSION['sPersonLogged'])) {  
+	                         	       if (!isset($_SESSION['sUserLogged'])) { ?>
+		                         <li class="dropdown shadow-text" title="Login Usuario">
+		                            <a href="<?php echo SIS_URL."user-signin"; ?>">
+		                                <i class="fa fa-user"></i>                                                                        
+		                            </a> 
+		                        </li> 
+	                        <?php }else{ ?> 
+	                        	<li class="dropdown shadow-text">
+                            		<a href="<?php echo SIS_URL;?>signout" title="Sair">
+	                                    <i class="fa fa-sign-out"></i>                                                                        
+	                             	</a>
+	                            </li>
+	                        <?php }} ?>   
                         
                             <?php if (!isset($_SESSION['sPersonLogged'])) { ?>
                             
-	                            <li class="dropdown">
+	                            <!--li class="dropdown">
 	                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" >
 	                                    <i class="fa fa-sign-in"></i>                                                                        
 	                                </a>
@@ -166,18 +184,18 @@
 			                                    </li>                                    
 		                            		</form>
 		                                </ul>
-	                            </li>  
+	                            </li-->  
 	                                                      
                             <?php } else { ?>
                                                         	
-	                            <li class="dropdown">
+	                            <li class="dropdown shadow-text">
 	                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" >
 	                                    <i class="fa fa-comment"></i>
 	                                    <span class="badge counter-notify"></span>
 	                                </a>
-	                                <ul class="dropdown-menu cart-list text-capitalize notify-html"></ul>
+	                                <ul class="dropdown-menu cart-list text-capitalize notify-html shadow-text"></ul>
 	                            </li>
-	                            <li class="dropdown">
+	                            <li class="dropdown shadow-text">
                             		<a href="<?php echo SIS_URL;?>signout" title="Sair">
 	                                    <i class="fa fa-sign-out"></i>                                                                        
 	                             	</a>
@@ -203,10 +221,10 @@
 
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="navbar-menu">
-                        <ul class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
+                        <ul class="nav navbar-nav navbar-right shadow-text" data-in="fadeInDown" data-out="fadeOutUp">
                             <li><a href="<?php echo SIS_URL; ?>"><?php echo SIS_TITULO; ?></a></li> 
 							<li><a href="<?php echo (!isset($_SESSION['sPersonLogged']) ? SIS_URL."signin/dashboard" : SIS_URL."dashboard"); ?>">anuncie-se!</a></li> 							                   
-                            <li><a href="<?php echo SIS_URL; ?>persons">novas pessoas</a></li> 							
+                            <li><a href="<?php echo SIS_URL; ?>persons">acompanhantes</a></li> 							
                             <li><a href="<?php echo (!isset($_SESSION['sPersonLogged']) ? SIS_URL."plans" : SIS_URL."payment"); ?>">planos</a></li>                                    
                             <li><a href="<?php echo SIS_URL; ?>contact">contato</a></li>                    
                         </ul>

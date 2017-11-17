@@ -7,7 +7,11 @@ $functions = new functions();
 
 $_REQUEST = $functions->fSanitizeRequest($_POST);
 
-if ($functions->fGlobalSearch($_REQUEST['criteria']))
+$_SESSION['sSearchCriteria'] = $_REQUEST['criteria'];
+
+$_SESSION['sSearchResults'] = '';
+
+if ($functions->fGlobalSearch($_SESSION['sSearchCriteria']))
 {			
 	$retJson = json_encode(array("ret" => true));
 

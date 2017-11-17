@@ -105,7 +105,7 @@
                                 <ol class="breadcrumb">
                                     <li><a href="<?php echo SIS_URL; ?>">Home</a></li>
                                     <li><a href="<?php echo SIS_URL; ?>dashboard">Minha Conta</a></li>
-                                    <li class="active"><a href="<?php echo SIS_URL; ?><?php echo ($_SESSION['sPersonLogged'] ? "profile" : "signup");?>">Meu Cadastro</a></li>
+                                    <li class="active"><a href="<?php echo SIS_URL; ?><?php echo ($_SESSION['sPersonLogged'] ? "dashboard" : "signup");?>">Meu Cadastro</a></li>
                                 </ol>
                             </div>
                         </div>
@@ -487,8 +487,8 @@
 					    var date = val.split("/");
 					    var currYear = <?php echo date("Y"); ?>;
 					    if (((currYear - date[2]) < 18) || date[1] > 12 || date[0] > 31 || (date[0] > 29 && date[1] == 2))	
-					    	$('.nascimento').val('');
-				    		$('.nascimento').attr('placeholder', 'Proibido para menores de 18 anos!');	    
+					    	$('#nascimento').val('');
+				    		$('#nascimento').attr('placeholder', 'Proibido para menores de 18 anos!');	    
 					  }
 					};
 				$('#nascimento').mask('00/00/0000', options);

@@ -5,8 +5,11 @@
     
     $auth = new auth();      
     
-    $auth->fLogoutPerson();
-    		
+    if (isset($_SESSION['sPersonID'])) 
+    	$auth->fLogoutPerson();
+    else
+    	$auth->fLogoutUser();
+    
     header('Location: '.SIS_URL.'home');
     exit;           
 ?>

@@ -2,8 +2,14 @@
 
 require_once $_SERVER["DOCUMENT_ROOT"]."/_includes/_config/config.ini.php";
 
-$chat = new chat();
+session_start2();
 
-$chat->fTerminateProcess();
+$query = new queries();
+
+$query->fStopChat($_SESSION['sPersonID']);
+
+$retJson = json_encode(array("ret" => true));
+
+echo $retJson;
 
 ?>

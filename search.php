@@ -33,6 +33,7 @@
         <link rel="stylesheet" href="<?php echo SIS_URL; ?>assets/css/magnific-popup.css">
         <link rel="stylesheet" href="<?php echo SIS_URL; ?>assets/css/bootsnav.css">
 		<link rel="stylesheet" href="<?php echo SIS_URL; ?>assets/css/jquery.modal.css" type="text/css" media="screen" />
+        <link rel="stylesheet" href="<?php echo SIS_URL; ?>assets/css/jquery.ui.css" type="text/css" media="screen" />
         <!--For Plugins external css-->
         <!--<link rel="stylesheet" href="assets/css/plugins.css" />-->
         <!--Theme custom css -->
@@ -117,6 +118,7 @@
         <script src="<?php echo SIS_URL; ?>assets/js/jquery.magnific-popup.js"></script>
         <script src="<?php echo SIS_URL; ?>assets/js/jquery.easing.1.3.js"></script>
         <script src="<?php echo SIS_URL; ?>assets/js/slick.min.js"></script>
+        <script src="<?php echo SIS_URL; ?>assets/js/jquery.ui.js"</script>
         <script src="<?php echo SIS_URL; ?>assets/js/jquery.collapse.js"></script>                
         <script src="<?php echo SIS_URL; ?>assets/js/bootsnav.js"></script>               
         <script src="<?php echo SIS_URL; ?>assets/js/plugins.js"></script>

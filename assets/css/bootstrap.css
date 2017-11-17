@@ -1145,6 +1145,10 @@ img {
   max-width: 85px;
   border-radius: 10%;
 }
+.img-circle2 {
+  max-width: 65px;
+  border-radius: 7%;
+}
 hr {
   margin-top: 20px;
   margin-bottom: 20px;

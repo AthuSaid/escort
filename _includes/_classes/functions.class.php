@@ -41,7 +41,14 @@ class functions extends queries {
 		
 		if (isset($_COOKIE['cUserDefinedData']))
 		{
-			list($this->myGender, $this->genderPrefer, $this->servicePrefer) = explode("_", $_COOKIE['cUserDefinedData']);		
+			list($this->myGender, $this->genderPrefer, $this->servicePrefer) = explode("_", $_COOKIE['cUserDefinedData']);
+			
+		}else{
+			
+			if($_SERVER['SCRIPT_NAME'] != '/index.php'){
+				header('Location: '.SIS_URL.'home');
+				exit;
+			}			
 		}
 		
 		if (isset($_COOKIE['cUserDefinedLocation']))
@@ -119,7 +126,7 @@ class functions extends queries {
 				$newRequest['titulo'] = $this->fEscapeString($request[$obj]);
 			}elseif ($obj == 'nascimento')
 				$newRequest['nascimento'] = $this->fInvertDateUSA($this->fEscapeString($request[$obj]));
-			elseif ($obj == 'modalidades' || $obj == 'pessoasatendimento' || $obj == 'idiomas' || $obj == 'localidades')
+			elseif ($obj == 'modalidades' || $obj == 'modalidades-adic' || $obj == 'pessoasatendimento' || $obj == 'idiomas' || $obj == 'localidades')
 				$newRequest[$obj] = $request[$obj];			
 			else 
 				$newRequest[$obj] = $this->fEscapeString($request[$obj]);
@@ -427,7 +434,7 @@ class functions extends queries {
              $novo_texto = trim(substr($texto, 0, $limite))."...";
           }else{
              $ultimo_espaco = strrpos(substr($texto, 0, $limite), " ");
-             $novo_texto = trim(substr($texto, 0, $ultimo_espaco))." ... <a href='".$url."'><strong>MAIS SOBRE MIM</strong></a>";
+             $novo_texto = trim(substr($texto, 0, $ultimo_espaco))." ... <br><br><a href='".$url."'><strong>MAIS SOBRE MIM</strong></a>";
           }
        }
        return $novo_texto;
@@ -462,9 +469,9 @@ class functions extends queries {
 	 * @param string $invert
 	 */
 	public function fStripTagsContent($text, $tags = '', $invert = FALSE) {
-		$text = preg_replace('|https?://www\.[a-z\.0-9]+|i', '', $text);
-		$text = preg_replace('|www\.[a-z\.0-9]+|i', '', $text);		
-		$text = str_replace(range(0, 9), null, $text);
+		$text = preg_replace('|https?://www\.[a-z\.A-Z]+|i', '', $text);
+		$text = preg_replace('|www\.[a-z\.A-Z]+|i', '', $text);		
+		//$text = str_replace(range(0, 9), null, $text);
 		$text = preg_replace('/\d+$/', null, $text);
 		
 		preg_match_all('/<(.+?)[\s]*\/?[\s]*>/si', trim($tags), $tags);
@@ -616,10 +623,14 @@ class functions extends queries {
 												  $this->retHTML .= '<div class="grid-item model-item transition metal '.$this->retRecords[$x]['genero'].'">
 												                        <div class="model_img">
 																	  		<a href="'.SIS_URL.'person/'.$this->retRecords[$x]['person'].'/'.$this->retRecords[$x]['ad'].'">
-												                            	<div class="imgPhotoVideoCounterRight"><i class="fa fa-camera"></i> '.$this->retRecords[$x]['count_fotos'].' <i class="fa fa-video-camera"></i> '.$this->retRecords[$x]['count_videos'].'</div>
+												                            	<div class="imgPhotoVideoCounterRight"><i class="fa fa-camera"></i> '.$this->retRecords[$x]['count_fotos'].' <i class="fa fa-video-camera"></i> '.$this->retRecords[$x]['count_videos'].'</div>';
+											                                    if ($this->retRecords[$x]['ppv_online'] == 1){	
+											                                		$this->retHTML.= '<div class="imgChatLeft"><i class="fa fa-comment"></i></div>';
+											                                    }
+											                                    $this->retHTML.= '
 																	  			<img src="'.SIS_URL.'images/persons/'.$this->retRecords[$x]['person'].'/'.$this->retRecords[$x]['thumb'].'" alt="'.$this->retRecords[$x]['apelido'].'" />												                            
-													                            <div class="model_caption">
-													                            	<h5 class="text-white">'.$this->retRecords[$x]['apelido'].'</h5>
+													                            <div class="model_caption model_caption2">
+													                            	<h6 class="text-white">'.$this->retRecords[$x]['apelido'].'</h6>
 													                        	</div>
 												                            </a>
 												                    	</div>
@@ -651,11 +662,14 @@ class functions extends queries {
 		if (!isset($_SESSION['sSearchPagingCount']))
 			$_SESSION['sSearchPagingCount'] = 0;
 		
+		if (!isset($_SESSION['sSearchPagingMode']))
+			$_SESSION['sSearchPagingMode'] = null;
+		
 		switch ($pagingType)
 		{
 			case "persons":
 				
-				$this->retRecords = $this->fQueryGalleryModels($this->genderPrefer, $this->servicePrefer, $_SESSION['sSearchPagingCount']);
+				$this->retRecords = $this->fQueryGalleryModels($this->genderPrefer, $this->servicePrefer, $_SESSION['sSearchPagingCount'], true, $_SESSION['sSearchPagingMode']);
 				
 				$this->retHTML = null;
 				
@@ -666,12 +680,16 @@ class functions extends queries {
 						if ($this->retRecords[$x]['vencimento'] > 0)
 						{
 							$this->retHTML .= '<div class="grid-item model-item transition metal '.$this->retRecords[$x]['genero'].'">
-							                        <div class="model_img">
+							                        <div class="model_img3">
 												  		<a href="'.SIS_URL.'person/'.$this->retRecords[$x]['person'].'/'.$this->retRecords[$x]['ad'].'">
-							                            	<div class="imgPhotoVideoCounterRight"><i class="fa fa-camera"></i> '.$this->retRecords[$x]['count_fotos'].' <i class="fa fa-video-camera"></i> '.$this->retRecords[$x]['count_videos'].'</div>
+							                            	<div class="imgPhotoVideoCounterRight"><i class="fa fa-camera"></i> '.$this->retRecords[$x]['count_fotos'].' <i class="fa fa-video-camera"></i> '.$this->retRecords[$x]['count_videos'].'</div>';
+						                                    if ($this->retRecords[$x]['ppv_online'] == 1){	
+						                                		$this->retHTML.= '<div class="imgChatLeft"><i class="fa fa-comment"></i></div>';
+						                                    }
+						                                    $this->retHTML.= '
 												  			<img src="'.SIS_URL.'images/persons/'.$this->retRecords[$x]['person'].'/'.$this->retRecords[$x]['thumb'].'" alt="'.$this->retRecords[$x]['apelido'].'" />
-								                            <div class="model_caption">
-								                            	<h5 class="text-white">'.$this->retRecords[$x]['apelido'].'</h5>
+								                            <div class="model_caption3">
+								                            	<h6 class="text-white">'.$this->retRecords[$x]['apelido'].'</h6>
 								                        	</div>
 							                            </a>
 							                    	</div>
@@ -701,10 +719,14 @@ class functions extends queries {
 							$this->retHTML .= '<div class="grid-item model-item transition metal '.$this->retRecords[$x]['genero'].'">
 							                        <div class="model_img">
 												  		<a href="'.SIS_URL.'person/'.$this->retRecords[$x]['person'].'/'.$this->retRecords[$x]['ad'].'">
-							                            	<div class="imgPhotoVideoCounterRight"><i class="fa fa-camera"></i> '.$this->retRecords[$x]['count_fotos'].' <i class="fa fa-video-camera"></i> '.$this->retRecords[$x]['count_videos'].'</div>
+							                            	<div class="imgPhotoVideoCounterRight"><i class="fa fa-camera"></i> '.$this->retRecords[$x]['count_fotos'].' <i class="fa fa-video-camera"></i> '.$this->retRecords[$x]['count_videos'].'</div>';
+						                                    if ($this->retRecords[$x]['ppv_online'] == 1){	
+						                                		$this->retHTML.= '<div class="imgChatLeft"><i class="fa fa-comment"></i></div>';
+						                                    }
+						                                    $this->retHTML.= '
 												  			<img src="'.SIS_URL.'images/persons/'.$this->retRecords[$x]['person'].'/'.$this->retRecords[$x]['thumb'].'" alt="'.$this->retRecords[$x]['apelido'].'" />
 								                            <div class="model_caption">
-								                            	<h5 class="text-white">'.$this->retRecords[$x]['apelido'].'</h5>
+								                            	<h6 class="text-white">'.$this->retRecords[$x]['apelido'].'</h6>
 								                        	</div>
 							                            </a>
 							                    	</div>
@@ -845,7 +867,7 @@ class functions extends queries {
     * Create gallery images dinamically
     * @param number $type
     */
-    public function fCreateGallery($type = 1)
+    public function fCreateGallery($type = 1, $arg = null)
     {
     	switch ($type)
     	{
@@ -885,11 +907,15 @@ class functions extends queries {
 					    					{
 												  $this->retHTML .= '<div class="grid-item model-item transition metal '.$this->retRecords[$x]['genero'].'">
 												                        <div class="model_img">
-				 												  			<div class="imgPhotoVideoCounterRight"><i class="fa fa-camera"></i> '.$this->retRecords[$x]['count_fotos'].' <i class="fa fa-video-camera"></i> '.$this->retRecords[$x]['count_videos'].'</div>
+				 												  			<div class="imgPhotoVideoCounterRight"><i class="fa fa-camera"></i> '.$this->retRecords[$x]['count_fotos'].' <i class="fa fa-video-camera"></i> '.$this->retRecords[$x]['count_videos'].'</div>';
+										                                    if ($this->retRecords[$x]['ppv_online'] == 1){	
+										                                		$this->retHTML.= '<div class="imgChatLeft"><i class="fa fa-comment"></i></div>';
+										                                    }
+										                                    $this->retHTML.= '
 																	  		<a href="'.SIS_URL.'person/'.$this->retRecords[$x]['person'].'/'.$this->retRecords[$x]['ad'].'">
 												                            	<img src="'.SIS_URL.'images/persons/'.$this->retRecords[$x]['person'].'/'.$this->retRecords[$x]['imagemurl'].'" alt="'.$this->retRecords[$x]['apelido'].'" />												                            
 													                            <div class="model_caption model_caption2">
-													                            	<h5 class="text-white">'.$this->retRecords[$x]['apelido'].'</h5>
+													                            	<h6 class="text-white">'.$this->retRecords[$x]['apelido'].'</h6>
 													                        	</div>
 												                            </a>
 												                    	</div>
@@ -914,7 +940,9 @@ class functions extends queries {
     			
     			$_SESSION['sSearchPagingType'] = "persons";
     			
-    			$this->retRecords = $this->fQueryGalleryModels($this->genderPrefer, $this->servicePrefer, 0);
+    			$_SESSION['sSearchPagingMode'] = $arg;
+    			
+    			$this->retRecords = $this->fQueryGalleryModels($this->genderPrefer, $this->servicePrefer, 0, true, $arg);
     			 
     			if (count($this->retRecords) > 0)
     			{
@@ -925,7 +953,7 @@ class functions extends queries {
 							                        <div class="main-gallery main-model roomy-80">
 			    										<div class="col-md-12">
 							                                <div class="head_title text-left sm-text-center wow fadeInDown">
-							                                    <h3>Galeria '.SIS_TITULO.'</h3>
+							                                    <h3>Galeria '.SIS_TITULO.' '.$arg.'</h3>
 							                                    <h5><em>Somente os melhores profissionais voc&ecirc; encontra por aqui. Descubra-os agora!</em></h5>				                                    
 							                                </div>
 							                            </div>
@@ -947,12 +975,16 @@ class functions extends queries {
 					    					if ($this->retRecords[$x]['vencimento'] > 0)
 					    					{
 												  $this->retHTML .= '<div class="grid-item model-item transition metal '.$this->retRecords[$x]['genero'].'">
-												                        <div class="model_img">
+												                        <div class="model_img3">
 																	  		<a href="'.SIS_URL.'person/'.$this->retRecords[$x]['person'].'/'.$this->retRecords[$x]['ad'].'">
-												                            	<div class="imgPhotoVideoCounterRight"><i class="fa fa-camera"></i> '.$this->retRecords[$x]['count_fotos'].' <i class="fa fa-video-camera"></i> '.$this->retRecords[$x]['count_videos'].'</div>
+												                            	<div class="imgPhotoVideoCounterRight"><i class="fa fa-camera"></i> '.$this->retRecords[$x]['count_fotos'].' <i class="fa fa-video-camera"></i> '.$this->retRecords[$x]['count_videos'].'</div>';
+											                                    if ($this->retRecords[$x]['ppv_online'] == 1){	
+											                                		$this->retHTML.= '<div class="imgChatLeft"><i class="fa fa-comment"></i></div>';
+											                                    }
+											                                    $this->retHTML.= '
 																	  			<img src="'.SIS_URL.'images/persons/'.$this->retRecords[$x]['person'].'/'.$this->retRecords[$x]['thumb'].'" alt="'.$this->retRecords[$x]['apelido'].'" />												                            
-													                            <div class="model_caption">
-													                            	<h5 class="text-white">'.$this->retRecords[$x]['apelido'].'</h5>
+													                            <div class="model_caption3">
+													                            	<h6 class="text-white">'.$this->retRecords[$x]['apelido'].'</h6>
 													                        	</div>
 												                            </a>
 												                    	</div>
@@ -969,6 +1001,22 @@ class functions extends queries {
 					$_SESSION['sSearchPagingCount'] += 6;
 					    			 
 					return $this->retHTML;
+					
+    			}else{
+    				
+    				return '<div class="container">
+							   <div class="row">
+							        <div class="main-gallery main-model roomy-80">
+			    						<div class="col-md-12">
+    										<div class="head_title text-left sm-text-center wow fadeInDown">
+							                    <h3>Galeria '.SIS_TITULO.' '.$arg.'</h3>
+							                	<h5><em>Nenhum resultado encontrado. Tente reformular sua pesquisa!</em></h5>				                                    
+							                </div>
+							                <div class="col-md-12 m-bottom-60"></div>
+    									</div>
+    								</div>
+    							</div>
+    						</div>';
     			}
     			
     		break;	
@@ -977,34 +1025,56 @@ class functions extends queries {
     
     
     /**
-     * Create user testimonials in site home
-     * @deprecated Soon
+     * Create user testimonials in site home and/or person details
+     * @param integer $pesid
      * @return string
      */
-    public function fCreateUserTestimonials()
+    public function fCreateUserTestimonials($pesid = null)
     {
-    	$this->retRecords = $this->fQueryFeaturedModels('M', 'T', 5, 6);
+    	$this->retRecords = $this->fQueryUsersTestimonials($pesid);
     	
     	if (count($this->retRecords) > 0)
     	{
 	    	$this->retHTML = '<section id="testimonial" class="testimonial fix roomy-100">
 				                <div class="container">
 				                    <div class="row">
+	    								<div class="col-md-12 m-bottom-40">
+			                                <div class="head_title text-left sm-text-center wow fadeInDown">
+			                                    <h3>Depoimentos</h3>
+			                                    <h5><em>Confira abaixo o que '.($pesid != null ? 'meus clientes falam sobre mim:' : 'falam sobre '.SIS_TITULO).'</em></h5>			                                    
+			                                </div>
+			                            </div>
 				                        <div class="main_testimonial text-center">			
 				                            <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
 				                                <div class="carousel-inner" role="listbox">';
 	    	
 			    	for ($x = 0; $x < count($this->retRecords); $x++)
 			    	{                                  	
-    						$this->retHTML .= '<div class="item active testimonial_item">
+    						$this->retHTML .= '<div class="item '.($x == 0 ? 'active' : '').' testimonial_item">
 			                                        <div class="col-sm-10 col-sm-offset-1">
 			                                            <div class="test_authour">
-			                                                <img class="img-circle" src="'.SIS_URL.'images/users/'.$this->retRecords[$x]['avatar'].'" alt="" />
-			                                                <h6 class="m-top-20">'.$this->retRecords[$x]['apelido'].'</h6>
-			                                                <h5><em>'.$this->retRecords[$x]['descricao_pessoa'].'</em> </h5>
+			                                                <img class="img-circle" src="'.SIS_URL.'images/users/'.$this->retRecords[$x]['apelido'].'/'.$this->retRecords[$x]['avatar'].'" alt="" />
+			                                                <h6 class="m-top-20">'.$this->retRecords[$x]['apelido'].'<br><small><i>'.$this->retRecords[$x]['dtcad'].'</i></small></h6>
+			                                                <h5><em>'.$this->retRecords[$x]['titulo'].'</em> </h5>
 			                                            </div>
-			                                            <p class=" m-top-40">'.$this->retRecords[$x]['comentario'].'</p>
-			                                        </div>
+			                                            <h6>'.$this->retRecords[$x]['descricao'].'</h6>';
+    									if($this->retRecords[$x]['replica'] != '')
+    									{
+			                         		$this->retHTML .= '<p><i><i class="fa fa-comment"></i>" '.$this->retRecords[$x]['replica'].'"</i></p>
+			                         						   <h6><small>Avalia&ccedil;&atilde;o de '.$this->retRecords[$x]['apelido'].' dada por '.$this->retRecords[$x]['apelidopessoa'].'</small><br>';			                         				
+								                         		
+			                         							$arrAvaliacaoM = array(1 => "Iniciante", 2 => "Mediano", 3 => "Fogoso", 4 => "Insaci&aacute;vel", 5 => "Profissional");
+								                         		
+			                         							$arrAvaliacaoF = array(1 => "Iniciante", 2 => "Mediana", 3 => "Fogosa", 4 => "Insaci&aacute;vel", 5 => "Profissional");
+								                         		
+								                         		for ($y = 0; $y < $this->retRecords[$x]['avaliacao']; $y++)
+								                         		{
+								                         			$myScore = ($this->retRecords[$x]['sexo'] == 'M' ? $arrAvaliacaoM[$this->retRecords[$x]['avaliacao']] : $arrAvaliacaoF[$this->retRecords[$x]['avaliacao']]);
+								                         			$this->retHTML .= '<img src="'.SIS_URL.'assets/images/stars/star-on-'.$this->retRecords[$x]['sexo'].'.png" title="Score Libidinous: '.$myScore.'">&nbsp;';
+								                         		}				   	
+			                         		$this->retHTML .= '</h6>';
+    									}
+			                       $this->retHTML .= '</div>
 			                                    </div>';
 		    		}                               
 			
@@ -1020,10 +1090,22 @@ class functions extends queries {
 		                                    <span class="sr-only">Next</span>
 		                                </a>			
 		                            </div>
-		                        </div>
-		                    </div><!--End off row-->
+		                        </div>';
+		             
+		             if (isset($_SESSION['sUserLogged']))
+		             {
+		             	$this->retHTML .= '<div class="col-md-12">
+				             				<div align="center">
+						     					<a href="'.SIS_URL.'testimonial/'.$this->retRecords[0]['url'].'" class="btn btn-warning">Escreva para '.$this->retRecords[0]['apelidopessoa'].' <i class="fa fa-comment"></i></a>	
+				                        	</div>
+						     			</div>';
+		             }
+		             
+		                    $this->retHTML .= '</div><!--End off row-->
 		                </div><!--End off container -->
 		            </section> <!--End off Testimonial section -->';
+		             
+				     
 		             
 		     return $this->retHTML;
     	}    	    	
@@ -1120,7 +1202,12 @@ class functions extends queries {
 						                            <div class="col-md-6">
 											          <a href="'.SIS_URL.'person/'.$this->retRecords[0]['person'].'/'.$this->retRecords[0]['ad'].'">
 						                                <div class="feature_photo wow fadeIn sm-m-top-40">
-						                                    <div class="photo_border"><div class="imgPhotoVideoCounterLeft"><i class="fa fa-camera"></i> '.$this->retRecords[0]['count_fotos'].' <i class="fa fa-video-camera"></i> '.$this->retRecords[0]['count_videos'].'</div></div>
+						                                    <div class="photo_border">
+											          			<div class="imgPhotoVideoCounterLeft"><i class="fa fa-camera"></i> '.$this->retRecords[0]['count_fotos'].' <i class="fa fa-video-camera"></i> '.$this->retRecords[0]['count_videos'].'</div>';
+						                                    if ($this->retRecords[0]['ppv_online'] == 1){	
+						                                		$this->retHTML.= '<div class="imgChatRightPad"><i class="fa fa-comment"></i></div>';
+						                                    }
+						                                    $this->retHTML.= '</div>
 											                											                                        		
 						                                    <div class="feature_img">
 						                                        <img src="'.SIS_URL.'images/persons/'.$this->retRecords[0]['person'].'/'.$this->retRecords[0]['imagemurl'].'" alt="'.$this->retRecords[0]['apelido'].'" />
@@ -1149,14 +1236,18 @@ class functions extends queries {
 	    					{
 	    							$direction = ($x % 2 != 0 ? "left" : "right");
 	    							$w_s = ($x % 2 != 0 ? 2 : 1);
-	    							$localizacao = explode(",", $this->retRecords[$x]['localizacao']);
+	    							$localizacao = /*explode(",", */$this->retRecords[$x]['naturalidade'];//);
 	    						
 					    			$this->retHTML .= '<div class="col-md-7 '.($x % 2 == 0 ? 'col-md-offset-5' : '').' col-sm-12 col-xs-12">
 						                                <div class="work_item">
 						                                    <div class="row">
 						                                        <div class="col-md-7 col-sm-12 col-xs-12 text-'.$direction.' pull-'.$direction.' sm-text-center">					    					
 						                                            <div class="work_item_img">
-												    					<div class="imgPhotoVideoCounterRightPad"><i class="fa fa-camera"></i> '.$this->retRecords[$x]['count_fotos'].' <i class="fa fa-video-camera"></i> '.$this->retRecords[$x]['count_videos'].'</div>
+												    					<div class="imgPhotoVideoCounterRightPad"><i class="fa fa-camera"></i> '.$this->retRecords[$x]['count_fotos'].' <i class="fa fa-video-camera"></i> '.$this->retRecords[$x]['count_videos'].'</div>';
+						                                    if ($this->retRecords[$x]['ppv_online'] == 1){	
+						                                		$this->retHTML.= '<div class="imgChatLeftPad"><i class="fa fa-comment"></i></div>';
+						                                    }
+						                                    $this->retHTML.= '
 						                                                <img src="'.SIS_URL.'images/persons/'.$this->retRecords[$x]['person'].'/'.$this->retRecords[$x]['imagemurl'].'" alt="'.$this->retRecords[$x]['apelido'].'" />
 						                                            </div>
 						                                        </div>
@@ -1164,7 +1255,7 @@ class functions extends queries {
 						                                            <div class="work_item_details m-top-80 sm-m-top-20">
 						                                                <h4>'.$this->retRecords[$x]['apelido'].'</h4>
 						                                                <h6>'.$this->fGetGenderPerson($this->retRecords[$x]['sexo']).' - '.$this->fGetAge($this->retRecords[$x]['nascimento']).'</h6>
-						                                                <h6>'.$localizacao[count($localizacao)-2].'</h6>
+						                                                <h6>Nasci em '.$localizacao.'</h6>
 						                                                <div class="work_separator'.$w_s.'"></div>
 						                                                <p class="m-top-40 sm-m-top-10">'.$this->fLimitWords($this->retRecords[$x]['descricao_pessoa'], 230, false, SIS_URL.'person/'.$this->retRecords[$x]['person'].'/'.$this->retRecords[$x]['ad']).'</p>
 						                                            </div>
@@ -1202,10 +1293,14 @@ class functions extends queries {
 				                                <div class="model_item m-top-30 transition metal ">
 				            						<a href="'.SIS_URL.'person/'.$this->retRecords[$x]['person'].'/'.$this->retRecords[$x]['ad'].'" class="text-white m-top-40">
 					                                    <div class="model_img">
-				            								<div class="imgPhotoVideoCounterRight"><i class="fa fa-camera"></i> '.$this->retRecords[$x]['count_fotos'].' <i class="fa fa-video-camera"></i> '.$this->retRecords[$x]['count_videos'].'</div>
+				            								<div class="imgPhotoVideoCounterRight"><i class="fa fa-camera"></i> '.$this->retRecords[$x]['count_fotos'].' <i class="fa fa-video-camera"></i> '.$this->retRecords[$x]['count_videos'].'</div>';
+						                                    if ($this->retRecords[$x]['ppv_online'] == 1){	
+						                                		$this->retHTML.= '<div class="imgChatLeft"><i class="fa fa-comment"></i></div>';
+						                                    }
+						                                    $this->retHTML.= '
 					                                        <img src="'.SIS_URL.'images/persons/'.$this->retRecords[$x]['person'].'/'.$this->retRecords[$x]['imagemurl'].'" alt="'.$this->retRecords[$x]['apelido'].'" />
 					                                        <div class="model_caption">
-					                                            <h5 class="text-white">'.$this->retRecords[$x]['apelido'].'</h5>				                                    
+					                                            <h6 class="text-white">'.$this->retRecords[$x]['apelido'].'</h6>				                                    
 					                                        </div>
 					                                    </div>
 				                                    </a>
@@ -1382,6 +1477,17 @@ class functions extends queries {
     	return $this->fQueryPersonAka($this->fEscapeString($aka));
     }
     
+    
+    /**
+     * Get User AKA Result if Exists
+     * @param unknown $aka
+     * @return boolean
+     */
+    public function fGetUserAka($aka)
+    {
+    	return $this->fQueryUserAka($this->fEscapeString($aka));
+    }
+    
 
     /**
      * Get Person CPF Result if Exists
@@ -1419,6 +1525,50 @@ class functions extends queries {
     
     
     /**
+     * Get User Email Result if Exists
+     * @param unknown $email
+     * @return boolean
+     */
+    public function fGetUserEmail($email)
+    {
+    	return $this->fQueryUserEmail($this->fEscapeString($email));
+    }
+    
+    
+    /**
+     * Save User to Person Testimonial
+     * @param object $obj
+     * @return boolean
+     */
+    public function fAddTestimonial($obj)
+    {
+    	return $this->fQueryAddTestimonial($obj);
+    }
+    
+    
+    /**
+     * Update Person Testimonial
+     * @param object $obj
+     * @return boolean
+     */
+    public function fUpdateTestimonial($obj)
+    {
+    	return $this->fQueryUpdateTestimonial($obj);
+    }
+    
+    
+    /**
+     * Remove Testimonial Logically
+     * @param unknown $tesid
+     * @return boolean
+     */
+    public function fRemoveTestimonial($tesid)
+    {
+    	return $this->fQueryRemoveTestimonial($this->fEscapeString($tesid));
+    }
+    
+    
+    /**
      * Remove Person Logically
      * @param unknown $pesid
      * @return boolean
@@ -1426,6 +1576,17 @@ class functions extends queries {
     public function fRemovePerson($pesid)
     {
     	return $this->fQueryRemovePerson($this->fEscapeString($pesid));
+    }
+    
+    
+    /**
+     * Remove User Logically
+     * @param unknown $pesid
+     * @return boolean
+     */
+    public function fRemoveUser($usuid)
+    {
+    	return $this->fQueryRemoveUser($this->fEscapeString($usuid));
     }
     
     
@@ -1459,6 +1620,17 @@ class functions extends queries {
     public function fGetPersonRegister($person)
     {
     	return $this->fQueryPersonRegister($this->fFormatTitle4Url($this->fEscapeString($person)));
+    }
+    
+    
+    /**
+     * Get User Register in Signup Page
+     * @param unknown $person
+     * @return array
+     */
+    public function fGetUserRegister($user)
+    {
+    	return $this->fQueryUserRegister($this->fEscapeString($user));
     }
     
     
@@ -1674,7 +1846,7 @@ class functions extends queries {
      */
     public function fGetPersonModalities($apid, $gender)
     {
-    	$this->retRecords = $this->fQueryCurrentPersonModalities($apid);
+    	$this->retRecords = $this->fQueryCurrentPersonModalities($apid, false);
     
     	if (count($this->retRecords) > 0)
     	{
@@ -1693,6 +1865,32 @@ class functions extends queries {
     		}
 
     		return $this->retHTML;
+    	}
+    }
+    
+    
+    /**
+     * Get Additional Person Modalities in Person Page
+     * @param unknown $type
+     * @param unknown $pesid
+     * @param unknown $gender
+     */
+    public function fGetAdditionalPersonModalities($apid)
+    {
+    	$this->retRecords = $this->fQueryCurrentPersonModalities($apid, true);
+    
+    	if (count($this->retRecords) > 0)
+    	{
+    		$this->retHTML = null;
+    
+    		for ($x = 0; $x < count($this->retRecords); $x++)
+    		{
+    			$comma = ($x == (count($this->retRecords) - 2) ? " e " : ", ");
+    			
+    			$this->retHTML .= $this->retRecords[$x]['modalidade_adic'].$comma;
+    		}
+    
+    		return substr($this->retHTML, 0, strlen($this->retHTML)-2);
     	}
     }
     
@@ -1778,7 +1976,7 @@ class functions extends queries {
     
     		for ($x = 0; $x < count($this->retRecords); $x++)
     		{
-    			$adUrl = SIS_URL.'person/'.$this->retRecords[$x]['person'].'/'.$this->retRecords[$x]['ad'];
+    			$adUrl = SIS_URL.'person/'.$this->retRecords[$x]['person'].'/'.$this->retRecords[$x]['ad'];    			    			    			    		
     			
     			$this->retHTML .= '<div class="row item-'.$this->retRecords[$x]['apid'].'">
                                         <div class="comment_item">
@@ -1791,7 +1989,7 @@ class functions extends queries {
                                                 <div class="comments_top_tex">
                                                     <div class="row">
                                                         <div class="col-sm-6 pull-left dets">
-                                                            <h5 class="text-uppercase">'.$this->retRecords[$x]['titulo'].' ('.$this->retRecords[$x]['visitascount'].' visualiza&ccedil;&otilde;es)</h5>
+                                                            <h5 class="text-uppercase">'.$this->retRecords[$x]['titulo'].'<h6>('.$this->retRecords[$x]['visitascount'].' visualiza&ccedil;&otilde;es)</h6></h5>
                                                             <small><em>'.$this->retRecords[$x]['publicacao'].'</em></small>
                                                         </div>
                                                         <div class="col-sm-3 pull-right actions">                                                        	
@@ -1827,6 +2025,151 @@ class functions extends queries {
     
     
     /**
+     * Get Person Testimonials to approve
+     * @param unknown $type
+     * @param unknown $pesid
+     * @param unknown $gender
+     */
+    public function fGetPersonTestimonialsToApprove($pesid)
+    {
+    	$this->retRecords = $this->fQueryUsersTestimonialsToApprove($pesid);
+    
+    	if (count($this->retRecords) > 0)
+    	{
+    		$this->retHTML = null;
+    
+    		for ($x = 0; $x < count($this->retRecords); $x++)
+    		{
+    			$this->retHTML .= '<div class="row item-'.$this->retRecords[$x]['tesid'].'">
+                                         	<div class="col-sm-12">
+                                                <div class="comments_top_tex">
+                                                    <div class="row">
+                                                        <div class="col-sm-11 pull-left dets">
+                                                            <h5 class="text-uppercase">'.$this->retRecords[$x]['titulo'].'</h5>
+                                                            <small><em><strong>De '.$this->retRecords[$x]['apelido'].'</strong> - '.$this->retRecords[$x]['dtcad'].'</em></small>
+                                                        </div>
+                                                        <div class="col-sm-3 pull-right actions">                                                                                                                        
+                                                            <a href="javascript:void(0);" class="add-test" data-register="'.$this->retRecords[$x]['tesid'].'"><i class="fa fa-check"></i> Aprovar Depoimento</a> | 
+                                                            <a href="javascript:void(0);" class="remove-test" data-register="'.$this->retRecords[$x]['tesid'].'"><i class="fa fa-trash"></i> Excluir Depoimento</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <article class="comments_bottom_text margin-top-10">
+                                                    <p>'.$this->fLimitWords($this->retRecords[$x]['descricao'], 350, false).'</p>
+                                                </article>                                                
+	                                           <div class="form-group hidden txt-test-'.$this->retRecords[$x]['tesid'].'">
+                                                   <hr />
+	                                               <label>Descreva uma r&eacute;plica ao depoimento que recebeu (opcional)</label>
+	                                               <textarea id="replica-'.$this->retRecords[$x]['tesid'].'" name="replica[]" data-minlength="10" class="form-control" rows="3"></textarea>	                                                    
+	                                           </div>	                                                                                                		
+                                            </div>
+                                            <div class="col-sm-12 hidden btn-test-'.$this->retRecords[$x]['tesid'].'">  
+                                            	<a href="javascript:void(0);" class="btn btn-warning m-top-30 cancel-test" data-register="'.$this->retRecords[$x]['tesid'].'">Cancelar <i class="fa fa-remove"></i></a>                                              
+                                                <button type="button" class="btn btn-primary m-top-30 save-test" data-register="'.$this->retRecords[$x]['tesid'].'">Publicar no perfil <i class="fa fa-check"></i></button>                                                
+                                            </div>    		
+                                 </div>';
+    		}
+    
+    	}else{
+    
+    		$this->retHTML = '<div class="row item-'.$this->retRecords[$x]['tesid'].'">
+                                        <div class="comment_item">
+                                            <div class="col-sm-12">
+    											Voc&ecirc; ainda n&atilde;o recebeu nenhum depoimento para aprovar!
+    										</div>
+    									</div>
+    							</div>';
+    
+    	}
+    	 
+    	return $this->retHTML.'<hr />';
+    }
+    
+    
+    /**
+     * Get User Testimonials in User Page
+     * @param integer $usuid
+     */
+    public function fGetUserTestimonials($usuid)
+    {
+    	$this->retRecords = $this->fQueryAllUserTestimonials($usuid);
+    
+    	if (count($this->retRecords) > 0)
+    	{
+    		$this->retHTML = null;
+    
+    		for ($x = 0; $x < count($this->retRecords); $x++)
+    		{
+    			$adUrl = SIS_URL.'person/'.$this->retRecords[$x]['person'].'/'.$this->retRecords[$x]['ad'];
+    			 
+    			$this->retHTML .= '<div class="row item-'.$this->retRecords[$x]['tesid'].'">
+                                        <div class="comment_item">
+                                            <div class="col-sm-2">
+                                                <div class="blog_comments_img">
+							                        <img class="img-circle2" src="'.SIS_URL.'images/users/'.$this->retRecords[$x]['apelido'].'/'.$this->retRecords[$x]['avatar'].'" alt="">                            
+							    					<i class="fa fa-heart"></i>
+							                        <img class="img-circle2" src="'.SIS_URL.'images/persons/'.$this->retRecords[$x]['person'].'/'.$this->retRecords[$x]['thumb'].'" alt="">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <div class="comments_top_tex">
+                                                    <div class="row">
+                                                        <div class="col-sm-11 pull-left dets">
+                                                            <h5 class="text-uppercase">'.$this->retRecords[$x]['titulo'].'</h5>
+                                                            <small><em><strong>Para '.$this->retRecords[$x]['apelidopessoa'].'</strong> - '.$this->retRecords[$x]['publicacao'].'</em></small>
+                                                        </div>
+                                                        <div class="col-sm-3 pull-right actions">                                                            
+                                                            <a href="'.$adUrl.'"><i class="fa fa-eye"></i> Visualizar Perfil</a> |
+                                                            <a href="javascript:void(0);" class="remove-test" data-register="'.$this->retRecords[$x]['tesid'].'"><i class="fa fa-trash"></i> Excluir Depoimento</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <article class="comments_bottom_text margin-top-10">
+                                                    <p>'.$this->fLimitWords($this->retRecords[$x]['descricao'], 350, false, $adUrl).'</p>';
+                                                    		if($this->retRecords[$x]['replica'] != '')
+					    									{
+								                         		$this->retHTML .= '<p><i> <i class="fa fa-comment"></i>" '.$this->retRecords[$x]['replica'].'"</i></p>
+								                         						   <h6><small>Sua nota dada por '.$this->retRecords[$x]['apelidopessoa'].'</small><br>';			                         				
+													                         		
+								                         							$arrAvaliacaoM = array(1 => "Iniciante", 2 => "Mediano", 3 => "Fogoso", 4 => "Insaci&aacute;vel", 5 => "Profissional");
+													                         		
+								                         							$arrAvaliacaoF = array(1 => "Iniciante", 2 => "Mediana", 3 => "Fogosa", 4 => "Insaci&aacute;vel", 5 => "Profissional");
+													                         		
+													                         		for ($y = 0; $y < $this->retRecords[$x]['avaliacao']; $y++)
+													                         		{
+													                         			$myScore = ($this->retRecords[$x]['sexo'] == 'M' ? $arrAvaliacaoM[$this->retRecords[$x]['avaliacao']] : $arrAvaliacaoF[$this->retRecords[$x]['avaliacao']]);
+													                         			$this->retHTML .= '<img src="'.SIS_URL.'assets/images/stars/star-on-'.$this->retRecords[$x]['sexo'].'.png" title="Score Libidinous: '.$myScore.'">&nbsp;';
+													                         		}				   	
+								                         		$this->retHTML .= '</h6>';
+					    									}
+					    									if($this->retRecords[$x]['aprovado'] == 0)
+					    									{
+					    										$this->retHTML .= '<h6><small><strong>Seu depoimento est&aacute; em avalia&ccedil;&atilde;o por '.$this->retRecords[$x]['apelidopessoa'].'! Aguarde sua aprova&ccedil;&atilde;o.</strong></small></h6>';
+					    									}
+                                                $this->retHTML .= '</article>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr class="item-'.$this->retRecords[$x]['tesid'].'"/>';
+    		}
+    
+    	}else{
+    
+    		$this->retHTML = '<div class="row item-'.$this->retRecords[$x]['tesid'].'">
+                                        <div class="comment_item">
+                                            <div class="col-sm-12">
+    											Voc&ecirc; ainda n&atilde;o tem nenhum depoimento cadastrado!
+    										</div>
+    									</div>
+    							</div>';
+    
+    	}
+    	 
+    	return $this->retHTML;
+    }
+    
+    
+    /**
      * Get Person Modalities And Service Prices in Person Page
      * @param unknown $type
      * @param unknown $pesid
@@ -1844,61 +2187,69 @@ class functions extends queries {
     
     		for ($x = 0; $x < count($this->retRecords); $x++)
     		{
+    			$star = ((int) $this->retRecords[$x]['taxadd'] > 0 ? "*" : "");
     			
     			if((int) $this->retRecords[$x]['c30'] > 0) {
     				$this->complHTML .= '<div class="teamskillbar clearfix m-top-50" data-percent="100%">
-                                      	<h6 class="one"><strong><span class="periodo"><i class="fa fa-clock-o"></i> 30min</span>
-                                      		<span class="pull-right-mod font-size-pull-right-'.strtolower($gender).'">'.$currency.' '.$this->retRecords[$x]['c30'].'</span>
+                                      	<h6 class="one"><strong><span class="periodo"><i class="fa fa-clock-o"></i> 30min</span></strong>
+                                      		<span class="pull-right-mod font-size-pull-right-'.strtolower($gender).'">'.$currency.' '.$this->retRecords[$x]['c30'].$star.'</span>
                                       	</h6>
                                       	<div class="teamskillbar-bar"></div>
                                    </div><!-- End Skill Bar -->';
     				$pullUp++;
     			} if((int) $this->retRecords[$x]['c1'] > 0) {
     				$this->complHTML .= '<div class="teamskillbar clearfix m-top-50" data-percent="100%">
-                                      	<h6 class="one"><strong><span class="periodo"><i class="fa fa-clock-o"></i> 1h</span>
-                                      		<span class="pull-right-mod font-size-pull-right-'.strtolower($gender).'">'.$currency.' '.$this->retRecords[$x]['c1'].'</span>
+                                      	<h6 class="one"><strong><span class="periodo"><i class="fa fa-clock-o"></i> 1h</span></strong>
+                                      		<span class="pull-right-mod font-size-pull-right-'.strtolower($gender).'">'.$currency.' '.$this->retRecords[$x]['c1'].$star.'</span>
                                       	</h6>
                                       	<div class="teamskillbar-bar"></div>
                                    </div><!-- End Skill Bar -->';
     				$pullUp++;
     			} if((int) $this->retRecords[$x]['c2'] > 0) {
     				$this->complHTML .= '<div class="teamskillbar clearfix m-top-50" data-percent="100%">
-                                      	<h6 class="one"><strong><span class="periodo"><i class="fa fa-clock-o"></i> 2h</span>
-                                      		<span class="pull-right-mod font-size-pull-right-'.strtolower($gender).'">'.$currency.' '.$this->retRecords[$x]['c2'].'</span>
+                                      	<h6 class="one"><strong><span class="periodo"><i class="fa fa-clock-o"></i> 2h</span></strong>
+                                      		<span class="pull-right-mod font-size-pull-right-'.strtolower($gender).'">'.$currency.' '.$this->retRecords[$x]['c2'].$star.'</span>
                                       	</h6>
                                       	<div class="teamskillbar-bar"></div>
                                    </div><!-- End Skill Bar -->';
     				$pullUp++;
     			} if(!empty($this->retRecords[$x]['c4'])) {
     				$this->complHTML .= '<div class="teamskillbar clearfix m-top-50" data-percent="100%">
-                                      	<h6 class="one"><strong><span class="periodo"><i class="fa fa-clock-o"></i> 4h</span>
-                                      		<span class="pull-right-mod font-size-pull-right-'.strtolower($gender).'">'.$currency.' '.$this->retRecords[$x]['c4'].'</span>
+                                      	<h6 class="one"><strong><span class="periodo"><i class="fa fa-clock-o"></i> 4h</span></strong>
+                                      		<span class="pull-right-mod font-size-pull-right-'.strtolower($gender).'">'.$currency.' '.$this->retRecords[$x]['c4'].$star.'</span>
                                       	</h6>
                                       	<div class="teamskillbar-bar"></div>
                                    </div><!-- End Skill Bar -->';
     				$pullUp++;
     			} if((int) $this->retRecords[$x]['c8'] > 0) {
     				$this->complHTML .= '<div class="teamskillbar clearfix m-top-50" data-percent="100%">
-                                      	<h6 class="one"><strong><span class="periodo"><i class="fa fa-clock-o"></i> 8h</span>
-                                      		<span class="pull-right-mod font-size-pull-right-'.strtolower($gender).'">'.$currency.' '.$this->retRecords[$x]['c8'].'</span>
+                                      	<h6 class="one"><strong><span class="periodo"><i class="fa fa-clock-o"></i> 8h</span></strong>
+                                      		<span class="pull-right-mod font-size-pull-right-'.strtolower($gender).'">'.$currency.' '.$this->retRecords[$x]['c8'].$star.'</span>
                                       	</h6>
                                       	<div class="teamskillbar-bar"></div>
                                    </div><!-- End Skill Bar -->';
     				$pullUp++;
     			} if((int) $this->retRecords[$x]['c12'] > 0) {
     				$this->complHTML .= '<div class="teamskillbar clearfix m-top-50" data-percent="100%">
-                                      	<h6 class="one"><strong><span class="periodo"><i class="fa fa-moon-o"></i> Pernoite 12h</span>
-                                      		<span class="pull-right-mod font-size-pull-right-'.strtolower($gender).'">'.$currency.' '.$this->retRecords[$x]['c12'].'</span>
+                                      	<h6 class="one"><strong><span class="periodo"><i class="fa fa-moon-o"></i> Pernoite 12h</span></strong>
+                                      		<span class="pull-right-mod font-size-pull-right-'.strtolower($gender).'">'.$currency.' '.$this->retRecords[$x]['c12'].$star.'</span>
                                       	</h6>
                                       	<div class="teamskillbar-bar"></div>
                                    </div><!-- End Skill Bar -->';
     				$pullUp++;
     			} if((int) $this->retRecords[$x]['viagem'] > 0) {
     				$this->complHTML .= '<div class="teamskillbar clearfix m-top-50" data-percent="100%">
-                                      	<h6 class="one"><strong><span class="periodo"><i class="fa fa-plane"></i> Viagens</span>
-                                      		<span class="pull-right-mod font-size-pull-right-'.strtolower($gender).'">'.$currency.' '.$this->retRecords[$x]['viagem'].'</span>
+                                      	<h6 class="one"><strong><span class="periodo"><i class="fa fa-plane"></i> Viagens</span></strong>
+                                      		<span class="pull-right-mod font-size-pull-right-'.strtolower($gender).'">'.$currency.' '.$this->retRecords[$x]['viagem'].$star.'</span>
                                       	</h6>
                                       	<div class="teamskillbar-bar"></div>
+                                   </div><!-- End Skill Bar -->';
+    				$pullUp++;
+    			} if((int) $this->retRecords[$x]['taxadd'] > 0) {
+    				$this->complHTML .= '<div class="clearfix" data-percent="100%">
+	                                      	<h6 class="one"><small>
+	    										<i class="fa fa-star"></i> Adicional de '.$currency.' '.$this->retRecords[$x]['taxadd'].' nas modalidades '.$this->fGetAdditionalPersonModalities($apid).' </small>
+	                                      	</h6>                                      	
                                    </div><!-- End Skill Bar -->';
     				$pullUp++;
     			}
@@ -1929,7 +2280,7 @@ class functions extends queries {
      * @param unknown $person
      * @return array
      */
-    public function fCreateComboModalities($arrModalities = null)
+    public function fCreateComboModalities($arrModalities)
     {
     	return $this->fQueryComboModalities($arrModalities);
     }
@@ -1940,9 +2291,9 @@ class functions extends queries {
      * @param unknown $person
      * @return array
      */
-    public function fPersonModalities($apid)
+    public function fPersonModalities($apid, $adic = false)
     {
-    	return $this->fQueryPersonModalities($this->fEscapeString($apid));
+    	return $this->fQueryPersonModalities($this->fEscapeString($apid), $adic);
     }
     
     

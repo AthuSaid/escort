@@ -4,10 +4,10 @@
 	height:auto;
 	margin-right: auto;
 	margin-left: auto;	
-	font: 14px 'lucida grande',tahoma,verdana,arial,sans-serif;
+	font: 11px 'lucida grande',tahoma,verdana,arial,sans-serif;
 }
 .chat_wrapper .message_box {
-	height:400px;
+	height:160px;
 	overflow: auto;
 	padding: 10px 10px 20px 10px;
 	border: 1px solid #ccc;
@@ -21,6 +21,7 @@
 .user_name{font-weight:bold;}
 .user_message_m{color: #fff; padding: 7px 7px 7px 7px; margin-bottom: 6px; font-weight: bold; background-color: #88B6E0; border: 1px solid #88B6E0; border-radius: 15px 30px 30px 5px;}
 .user_message_f{color: #fff; padding: 7px 7px 7px 7px; margin-bottom: 6px; font-weight: bold; background-color: #ff0080; border: 1px solid #ff0080; border-radius: 15px 30px 30px 5px;}
+.user_message_t{color: #fff; padding: 7px 7px 7px 7px; margin-bottom: 6px; font-weight: bold; background-color: #008000; border: 1px solid #008000; border-radius: 15px 30px 30px 5px;}
 
 @media only screen and (max-width: 720px) {
    /* For mobile phones: */

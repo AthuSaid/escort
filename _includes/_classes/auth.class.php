@@ -35,36 +35,41 @@ class auth extends functions {
 	public function fAuthenticateUser($strEmail, $strPass){
 		if(!(empty($strEmail)) && (!empty($strPass))){
 			$sql = "SELECT 
-						u.*
+						u.*,
+						CASE WHEN u.dtultimoacesso IS NOT NULL THEN
+			    			DATE_FORMAT(u.dtultimoacesso, '&Uacute;ltimo acesso feito em %d/%m/%Y &agrave;s %H:%i') 
+			    		ELSE
+			    			'Este &eacute; o seu primeiro acesso!'
+			    		END AS ultimoacesso
 					FROM 
 						usuarios u
 					WHERE 
 						u.ativo = 1						
 					AND	u.email = '".$this->fEscapeString($strEmail)."' 
-					AND u.senha = '".base64_encode(md5($strPass))."'";            
+					AND u.senha = '".md5($strPass)."'";            
 			$this->fExecuteSql($sql);	
 			if ($this->fNumRows() > 0){
 				$ret = $this->fShowRecords();  
 				$sql = "UPDATE usuarios SET
-							logon = 1,
-							onlinechat = 0,
+							logon = 1,							
 							dtultimoacesso = now()							 
-						WHERE usuid = ".$ret[0]['id'];            
+						WHERE usuid = ".$ret[0]['usuid'];            
 				$this->fExecuteSql($sql);  
 				$_SESSION['sUserLogged'] = true;
 				$_SESSION['sUserID'] = $ret[0]['usuid'];						
                 $_SESSION['sUserName'] = $ret[0]['nome'];                
-                $_SESSION['sUserEmail'] = $ret[0]['email'];
-                $_SESSION['sUserProfile'] = $ret[0]['perfil'];
-                $_SESSION['sUserLastLogon'] = $ret[0]['dtultimoacesso'];                
+                $_SESSION['sUserEmail'] = $ret[0]['email'];   
+                $_SESSION['sUserAka'] = $ret[0]['apelido'];
+                $_SESSION['sUserLastLogon'] = $ret[0]['ultimoacesso'];                
                 $_SESSION['sUserSessionTime'] = time();
-                setcookie('cUserNickname', $ret[0]['nickname'], time()+9800, "/");
-                return 2;
+                setcookie('cUserNickname', $ret[0]['apelido'], time()+9800, "/");
+                setcookie('cGender', $ret[0]['sexo'], time()+9800, "/");
+                return true;
 			}else{
-                return 1;
+                return false;
             }	
 		}else{
-		   return 0;
+		   return false;
 		} 
 	}
 	
@@ -147,7 +152,8 @@ class auth extends functions {
 				$_SESSION['sPersonMaxPhotos'] = $ret[0]['numfotos'];
 				$_SESSION['sPersonMaxVideos'] = $ret[0]['numvideos'];
 				$_SESSION['sPersonSessionTime'] = time();
-				setcookie('cUserNickname', 'Triboni', time()+9800, "/");
+				setcookie('cUserNickname', $ret[0]['apelido'], time()+9800, "/");
+				setcookie('cGender', $ret[0]['sexo'], time()+9800, "/");
 				return true;
 				
 			}else{
@@ -173,16 +179,18 @@ class auth extends functions {
 		$sql = "UPDATE usuarios SET
 					logon = 0,											
 					onlinechat = 0 
-				WHERE usuid = ".$_SESSION['sUserID'];            
-		$this->fExecuteSql($sql);  
+				WHERE usuid = ".$_SESSION['sUserID'];
+		if (isset($_SESSION['sUserID']))
+			$this->fExecuteSql($sql);  
 		unset($_SESSION);		
 		unset($_REQUEST);
+		setcookie('cUserNickname', null, time()+9800, "/");
         session_destroy();       
 	}
 	
 	
 	/**
-	 * Logoff Person
+	 * Logoff Person and User
 	 *
 	 * @author    Daniel Triboni
 	 * 
@@ -193,9 +201,11 @@ class auth extends functions {
 					logon = 0,
 					ppv_online = 0
 				WHERE pesid = ".$_SESSION['sPersonID'];
-		$this->fExecuteSql($sql);
+		if (isset($_SESSION['sPersonID']))
+			$this->fExecuteSql($sql);
 		unset($_SESSION);
-		unset($_REQUEST);
+		unset($_REQUEST);		
+		setcookie('cPersonNickname', null, time()+9800, "/");
 		session_destroy();
 	}
 	

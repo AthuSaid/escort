@@ -48,7 +48,7 @@
         <link rel="stylesheet" href="<?php echo SIS_URL; ?>assets/css/bootsnav.css">        
 		<link rel="stylesheet" href="<?php echo SIS_URL; ?>assets/css/croppic.css">        	
         <link rel="stylesheet" href="<?php echo SIS_URL; ?>assets/css/main.css">        
-        
+        <link rel="stylesheet" href="<?php echo SIS_URL; ?>assets/css/chat.css"> 
         <link rel="stylesheet" href="<?php echo SIS_URL; ?>assets/css/cropper.css">
 		<link rel="stylesheet" href="<?php echo SIS_URL; ?>assets/css/croppermain.css">
 		<link rel="stylesheet" href="<?php echo SIS_URL; ?>assets/css/recorder.css">
@@ -154,7 +154,7 @@
 	                        <div class="main_home text-center">	                        
 	                            <div class="model_text">	                            
                                 <h1 class="text-white text-uppercase shadow-text"><?php echo $retPerson[0]['apelido']; ?></h1>
-                                <h3 class="text-white shadow-text"><?php echo $retPerson[0]['titulo']; ?></h3>                                
+                                <h3 class="text-white shadow-text"><i>"<?php echo $retPerson[0]['titulo']; ?>"</i></h3>                                
                                 <ol class="breadcrumb text-uppercase">
                                     <li class="shadow-text"><a href="<?php echo SIS_URL; ?>">Home</a></li>
                                     <?php if ($logged) { ?>
@@ -243,7 +243,8 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="m_details_content m-bottom-40">
-                                    <h2><?php echo $retPerson[0]['apelido']; ?></h2>
+                                    <h2><?php echo $retPerson[0]['apelido']; ?></h2>                                                                        
+						            <h6><div id="star-detalhe"></div></h6>                                    
                                     <h6>Nasci em <?php echo $retPerson[0]['naturalidade']; ?></h6>
                                     <h5>Meu perfil foi visitado <strong><?php echo $retPerson[0]['visitascount']; ?></strong> vezes</h5>                                    
                                     <hr/>
@@ -253,11 +254,12 @@
                                     <div class="row">                                    
                                         <div class="col-md-4 text-left2">    
                                         	<p>Eu sou:</p>
+                                        	<p>Idade:</p>
                                         	<p>Atendo:</p>
                                         	<p>Etnia:</p>                                        
                                             <p>Olhos:</p>
                                             <p>Cabelos:</p>
-                                            <p>Idade:</p>
+                                            
                                             <?php if($retPerson[0]['peso'] != ''){ ?>                                            
                                             	<p>Peso:</p>
                                             <?php }if($retPerson[0]['altura'] != ''){ ?>
@@ -273,11 +275,11 @@
                                         </div>
                                         <div class="col-md-5 text-left2">                                            
                                             <p><strong><?php echo $functions->fGetGenderPerson($retPerson[0]['sexo']); ?></strong></p>
+                                            <p><strong><?php echo $functions->fGetAge($retPerson[0]['nascimento']); ?></strong></p>
                                             <p><strong><?php echo $retPerson[0]['pessoasatendimento']; ?></strong></p>
                                             <p><strong><?php echo $retPerson[0]['etnia']; ?></strong></p>
                                             <p><strong><?php echo $retPerson[0]['olhos']; ?></strong></p>
-                                            <p><strong><?php echo $retPerson[0]['cabelos']; ?></strong></p>
-                                            <p><strong><?php echo $functions->fGetAge($retPerson[0]['nascimento']); ?></strong></p>
+                                            <p><strong><?php echo $retPerson[0]['cabelos']; ?></strong></p>                                            
                                             <?php if($retPerson[0]['peso'] != ''){ ?>
                                             	<p><strong><?php echo $retPerson[0]['peso']; ?> kg</strong></p>
                                             <?php }if($retPerson[0]['altura'] != ''){ ?>
@@ -316,20 +318,21 @@
                                 		<h6> <i class="fa fa-instagram"></i> <a href="<?php echo $retPerson[0]['googleplus']; ?>" target="_blank"><?php echo ucwords($retPerson[0]['apelido']); ?></a></h6>
                                 <?php }} ?>
                                 	
-                                	<?php /* ###### DESATIVADO ATE O FATURAMENTO FAZER VALER A PENA INVESTIR!! #####
-                                	if ($retPerson[0]['ppv'] == 1){ ?>
+                                	
+                                	<?php  ###### DESATIVADO ATE O FATURAMENTO FAZER VALER A PENA INVESTIR!! #####
+                                	/*if ($retPerson[0]['ppv'] == 1){ ?>
                                 		<h4>
                                 		
 	                                		<?php if ($retPerson[0]['ppv_online'] != 1){ ?>
-	                                			<i class="fa fa-video-camera"></i> PPV Offline
+	                                			<i class="fa fa-video-camera"></i> V&iacute;deo Offline
 	                                		<?php }else{ ?>	 
-	                                			<a href="#" target="_blank" class="btn btn-ppv-<?php echo strtolower($retPerson[0]['sexo']); ?> text-uppercase"><i class="fa fa-video-camera"></i> PPV Online!</a>
+	                                			<a href="#" target="_blank" class="btn btn-ppv-<?php echo strtolower($retPerson[0]['sexo']); ?> text-uppercase"><i class="fa fa-video-camera"></i> V&iacute;deo ao vivo!</a>
 	                                		<?php } ?>
 	                                			
                                			</h4>
-                                	<?php }*/ ?>
+                                	<?php }*/ ?>                                	                                
                                 	 
-                                	<hr /> 
+                                	 
                                 	
                                 	<?php if ($retPerson[0]['atendimento24H'] == 1){ ?>
                                 			<h6><strong>ATENDIMENTO 24 HORAS!</strong></h6>
@@ -345,14 +348,76 @@
                                 	
                                 <hr />
                             </div>
-
+                            
+                            <?php if ($retPerson[0]['ppv_online'] == 1){
+                            		if (isset($_COOKIE['cUserNickname'])){ ?>
+	                            <hr/>
+	                            
+	                            <div class="col-md-6">
+		                            	<form method="post" role="form" name="form-chat" id="form-chat" data-toggle="validator">
+	                                       	<h4><?php if($_SESSION['sUserLogged'] != true){?>Converse com seus clientes<?php }else{?>Chat com <?php echo $functions->fReduceName($retPerson[0]['apelido']); } ?></h4>
+				                            	<div class="row">
+	                                         		<div class="col-sm-12">                                                                                          
+		                                                <div class="form-group">
+		                                                	<div class="chat_wrapper">
+		                                                    	<div class="message_box" id="message_box"></div>
+		                                                    	<div class="help-block typing"></div>
+		                                                    </div>
+		                                                </div> 
+		                                            </div>
+		                                            <?php // if (isset($_COOKIE['cUserNickname'])){ ?>				                               
+			                                       <div class="col-sm-12">                                                                                          
+		                                                <div class="form-group">
+		                                                	<input type="hidden" name="room" id="room" value="<?php echo $retPerson[0]['pesid']; ?>">					                                                	 
+	                                                    	<?php if ($_SESSION['sUserLogged'] == true){?>
+	                                                    		<input type="checkbox" name="private" id="private" value="1"> <strong>Conversar reservadamente com <?php echo $functions->fReduceName($retPerson[0]['apelido']); ?>!</strong>
+	                                                    	<?php } ?>
+	                                                </div> 
+	                                            </div>
+	                                            	<?php //} ?>	                                                                                 	                                           
+	                                            <div class="col-sm-12">
+	                                                <div class="form-group">
+	                                                    <label><i class="fa fa-send"></i> Digite a sua Mensagem *</label>
+	                                                    <textarea id="message" maxlength="180" name="message" data-error="Por favor, informe a Mensagem!" required class="form-control" rows="2"></textarea>
+		                                                    <div class="help-block with-errors"></div>
+		                                                </div>	                                                
+		                                            </div>
+		                                            <div class="col-sm-12">  
+		                                            	<button type="button" id="send-btn" class="btn btn-primary m-top-30">Enviar <i class="fa fa-send"></i></button> 
+		                                            	<?php if ($_SESSION['sUserLogged'] == true){?>
+		                                            		<a href="<?php echo SIS_URL; ?>dashboard" class="btn btn-warning m-top-30">Sair do Chat <i class="fa fa-remove"></i></a>                                              
+		                                                <?php }elseif ($_SESSION['sPersonLogged'] == true){ ?>  
+		                        							<a class="btn btn-warning m-top-30 stop-chat">Sair do Chat <i class="fa fa-remove"></i></a>
+		                                                <?php } ?>                                             
+		                                            </div>  	                                               
+	                                         </div>                                                                                                                                                                   
+	                                  </form>
+		                        </div><!-- End off col-chat -->
+							<?php }else{ ?>
+							
+									<h6>
+                                		<i class="fa fa-comment"></i> <strong>Voc&ecirc; deve estar logado para participar do chat!</strong>
+                                		<br>
+                                		<a href="<?php echo SIS_URL; ?>user-signin" class="btn btn-warning m-top-30">Entrar <i class="fa fa-user"></i></a>	
+                               		</h6>
+							
+							<?php }}else{
+									if ($_SESSION['sPersonLogged'] == true && $_SESSION['sPersonID'] == $retPerson[0]['pesid']){ ?>
+									
+									<h6>
+                                		<i class="fa fa-comment"></i> <strong>Seu chat est&aacute; inativo no momento!</strong>
+                                		<br>
+                                		<a class="btn btn-warning m-top-30 start-chat">Ativar Chat <i class="fa fa-send"></i></a>	
+                               		</h6>
+                               		
+							<?php }} ?>
 
 							<div class="col-md-12">
                                 <div class="skill_bar m-top-40">    
                                     <div class="row">
                                          <div class="col-md-12 m-bottom-40">
 			                                <div class="head_title text-left sm-text-center wow fadeInDown">
-			                                    <h3><?php echo ucwords(strip_tags($retPerson[0]['titulo'])); ?></h3>
+			                                    <h3><?php echo ucwords(strip_tags($retPerson[0]['titulo'])); ?></h3>			                                    
 			                                    <h5 class="overflw22"><em><?php echo nl2br($functions->fStripTagsContent($retPerson[0]['descricao'])); ?></em></h5>			                                    
 			                                </div>
 			                            </div>			                            
@@ -461,7 +526,13 @@
         </script>
         <script src="<?php echo SIS_URL; ?>assets/js/vendor/jquery-1.11.2.min.js"></script>
         <script type="text/javascript" src="<?php echo SIS_URL; ?>assets/webcam/jquery.webcam.as3.js"></script>
-                
+         <?php if ($retPerson[0]['ppv_online'] == 1 && (isset($_COOKIE['cUserNickname']))){ ?>
+         	<script>var $chatGender = '<?php echo $_COOKIE['cGender'];?>';</script>
+	        <script>var $personChatPort = '<?php echo $retPerson[0]['pesid']; ?>';</script>
+	        <script>var $userChatNickname = '<?php echo $_COOKIE['cUserNickname']; ?>';</script>
+	        <script>var $personChatNickname = '<?php echo $retPerson[0]['apelido']; ?>';</script> 
+	        <script src="<?php echo SIS_URL; ?>assets/js/chat.js"></script>
+        <?php } ?>        
         <script src="<?php echo SIS_URL; ?>assets/js/vendor/bootstrap.min.js"></script>
         <script src="<?php echo SIS_URL; ?>assets/js/isotope.min.js"></script>
         <script src="<?php echo SIS_URL; ?>assets/js/jquery.magnific-popup.js"></script>
@@ -480,7 +551,8 @@
         <script src="<?php echo SIS_URL; ?>assets/js/validator.js"></script>
         <script src="<?php echo SIS_URL; ?>assets/js/form.js"></script>        
         <script src="<?php echo SIS_URL; ?>assets/js/cropper.js"></script>
-        <script src="<?php echo SIS_URL; ?>assets/js/croppermain.js"></script> 
+        <script src="<?php echo SIS_URL; ?>assets/js/croppermain.js"></script>       
+        <script src="<?php echo SIS_URL; ?>assets/js/jquery.raty.min.js"></script>
         <?php if ($logged) { ?>
 	        <!--script type="text/javascript" src="<?php echo SIS_URL; ?>assets/webcam/webcam.poster.js"></script-->      
 	        <script type="text/javascript" src="<?php echo SIS_URL; ?>assets/webcam/webcam.gallery.js"></script>
@@ -489,7 +561,20 @@
         <script type="text/javascript">
         	<?php echo $functions->fGetPersonModalitiesBalloonTip($retPerson[0]['apid'], $retPerson[0]['sexo']); ?>            
 		</script>         
-                
+        <script>
+                jQuery().ready(function($){
+                    $.fn.raty.defaults.path = '<?php echo SIS_URL;?>assets/images/stars/';
+                    $('#star-detalhe').raty({
+                      half     : true,
+                      starHalf : 'star-half-big-<?php echo $retPerson[0]['sexo'];?>.png',
+                      starOff  : 'star-off-big-<?php echo $retPerson[0]['sexo'];?>.png',
+                      starOn   : 'star-on-big-<?php echo $retPerson[0]['sexo'];?>.png',
+                      readOnly: true, 
+                      score: <?php echo ($retPerson[0]['sumscore'] / $retPerson[0]['average']); ?>,
+                      width: 200
+                    });
+                });
+        </script>        
 	    <?php echo $functions->fGetPersonLocations($retPerson, 1); ?>      
 	    
 	    <!-- UPDATE VISIT COUNT ################################### -->

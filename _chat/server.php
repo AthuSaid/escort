@@ -82,14 +82,14 @@ while (true) {
 			$line = chop($line);
 			if (substr($line, 0, 3) == 'GET')
 				$myPort = explode("/", substr(str_replace('HTTP/1.1', '', $line), 4));
-				print_r($myPort);
+				//print_r($myPort);
 		}
 		
 		perform_handshaking($header, $socket_new, $host, $port); //perform websocket handshake
 		
 		socket_getpeername($socket_new, $ip); //get ip address of connected socket
 		
-		$jsonMessage = json_encode(array('type'=>'system', 'message'=> $userLoggedChat.' entrou no PPV!'));
+		$jsonMessage = json_encode(array('type'=>'system', 'message'=> $userLoggedChat.' entrou no chat!'));
 		
 		$response = mask($jsonMessage); //prepare json data
 		send_message($response); //notify all users about new connection
@@ -111,6 +111,7 @@ while (true) {
 			$user_name = $tst_msg->name; //sender name
 			$user_message = $tst_msg->message; //message text
 			$user_room = $tst_msg->room; //Room ID
+			$gender = $tst_msg->gender; //gender sender
 			$privated_chat = $tst_msg->privated; //Privated Chat
 			
 			//prepare data to be sent to client
@@ -121,6 +122,7 @@ while (true) {
 												'privated' 	=> $privated_chat,
 												'dated'		=> date('d/m/Y H:i:s'),
 												'name'		=> $user_name,
+												'gender'    => $gender,
 												'message'	=> null));
 				
 				
@@ -130,24 +132,27 @@ while (true) {
 												'privated' => $privated_chat,
 												'dated'	=> date('d/m/Y H:i:s'),
 												'name'		=> $user_name,
+												'gender'    => $gender,
 												'message'	=> $functions->fStripTagsContent($user_message, '', false, true)));
 					
 			}
 			
-			
+			//print_r($jsonMessage);
 			$response_text = mask($jsonMessage);
 			
 			if ($user_name !== $null)
 			{
 				if ((int)$user_room == (int)end($myPort))
 				{	
-					echo 'portao identica'.$user_room;
+					/*echo '\nportas comparativo: '.$privated_chat.' --> '.$userLoggedChat;
 					if ($privated_chat != '0'){ //show privated messages only for sender and Person
 						if ($privated_chat == $userLoggedChat)
 							send_message($response_text); //send data
-					}else{
+						elseif ($user_name == $privated_chat)
+							send_message($response_text); //send data
+					}else{*/
 						send_message($response_text); //send data
-					}
+					//}
 					//save chat LOG into database
 					if ($user_message != 'typing_message')
 						$functions->fSaveChat($jsonMessage, end($myPort));
@@ -164,7 +169,7 @@ while (true) {
 			unset($clients[$found_socket]);
 			
 			//notify all users about disconnected connection
-			$jsonMessage = json_encode(array('type'=>'system', 'message'=>$user_name.' saiu do PPV!'));
+			$jsonMessage = json_encode(array('type'=>'system', 'message'=>$user_name.' saiu do chat!'));
 			$response = mask($jsonMessage);
 			send_message($response);
 			//save chat LOG into database

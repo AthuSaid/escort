@@ -63,19 +63,25 @@ $('.docanex2').balloon({
 $('.title').balloon({
   html: true, 
   position: 'top right',
-  contents: '<strong><i class="fa fa-warning"></i> TÍTULO DO SEU ANÚNCIO:</strong><br>Seja criativo. Escolha um título para seu anúncio bem chamativo e provocante.<br><br>1. Não coloque valores, telefones ou WhatsApp no título do seu anúncio;<br>2. Utilize seu cadastro para definir informações de contato;<br>3. Valores de Chachê você pode difinir abaixo;<br><br>Este procedimento será definitivo para aprovação do seu anúncio.<br><br> Veja exemplo abaixo de títulos chamativos:<br><br><i>\'Linda morena de olhos verdes espera por você!\'<br>\'Bem dotado está a sua disposição na Capital\'.</i>'
+  contents: '<strong><i class="fa fa-warning"></i> TÍTULO DO SEU ANÚNCIO:</strong><br>Seja criativo. Escolha um título para seu anúncio bem chamativo e provocante.<br><br>1. Não coloque valores, telefones ou WhatsApp no título do seu anúncio;<br>2. Utilize seu cadastro para definir informações de contato;<br>3. Valores de Cachê você pode difinir abaixo;<br><br>Este procedimento será definitivo para aprovação do seu anúncio.<br><br> Veja exemplo abaixo de títulos chamativos:<br><br><i>\'Linda morena de olhos verdes espera por você!\'<br>\'Bem dotado está a sua disposição na Capital\'.</i>'
 });
 
 $('.descr').balloon({
   html: true, 
   position: 'top right',
-  contents: '<strong><i class="fa fa-warning"></i> DESCRIÇÃO DO SEU ANÚNCIO:</strong><br>Seja criativo. Descreva sobre você, suas qualidades, locais de atendimento.<br><br>1. Não coloque valores, telefones ou WhatsApp no título do seu anúncio;<br>2. Utilize seu cadastro para definir informações de contato;<br>3. Valores de Chachê você pode difinir abaixo;<br><br>Este procedimento será definitivo para aprovação do seu anúncio.'
+  contents: '<strong><i class="fa fa-warning"></i> DESCRIÇÃO DO SEU ANÚNCIO:</strong><br>Seja criativo. Descreva sobre você, suas qualidades, locais de atendimento.<br><br>1. Não coloque valores, telefones ou WhatsApp no título do seu anúncio;<br>2. Utilize seu cadastro para definir informações de contato;<br>3. Valores de Cachê você pode difinir abaixo;<br><br>Este procedimento será definitivo para aprovação do seu anúncio.'
 });
 
 $('.mods').balloon({
   html: true, 
   position: 'top right',
   contents: '<strong><i class="fa fa-warning"></i> MINHAS MODALIDADES:</strong><br>Informe quais modalidades de serviços você realiza.'
+});
+
+$('.adic').balloon({
+  html: true, 
+  position: 'top right',
+  contents: '<strong><i class="fa fa-warning"></i> VALOR ADICIONAL DE MODALIDADES:</strong><br>Informe o valor do cachê cobrado adicionalmente para determinada modalidade.<br>Ex: 100,00 com sexo anal.'
 });
 
 $('.locs').balloon({

@@ -14,6 +14,10 @@ RewriteRule ^home$ index.php
 
 RewriteRule ^signin$ signin.php
 
+RewriteRule ^user-signin$ user-signin.php
+
+RewriteRule ^user-signup$ user-signup.php
+
 RewriteRule ^signin/([A-Za-z0-9_\-]+)$ signin.php?page=$1 [NC,L]
 
 RewriteRule ^signup$ signup.php
@@ -24,9 +28,13 @@ RewriteRule ^plans$ plans.php
 
 RewriteRule ^payment$ payment.php
 
-RewriteRule ^profile$ signup.php
+RewriteRule ^profile$ profile.php
 
 RewriteRule ^dashboard$ dashboard.php
+
+RewriteRule ^testimonial$ testimonial.php
+
+RewriteRule ^testimonial/([A-Za-z0-9_\-]+)$ testimonial.php?person=$1 [NC,L]
 
 RewriteRule ^ad$ ad.php
 
@@ -34,13 +42,13 @@ RewriteRule ^ad/([A-Za-z0-9_\-]+)/([A-Za-z0-9_\-]+)$ ad.php?person=$1&ad=$2 [NC,
 
 RewriteRule ^persons$ persons.php
 
+RewriteRule ^persons/([A-Za-z0-9_\-]+)$ persons.php?type=$1 [NC,L]
+
 RewriteRule ^search$ search.php
 
 RewriteRule ^person/([A-Za-z0-9_\-]+)/([A-Za-z0-9_\-]+)$ person-detail.php?person=$1&ad=$2 [NC,L]
 
 RewriteRule ^verify/(.*)$ verify.php?hash=$1 [B]
-
-RewriteRule ^servicos$ servicos.php
 
 RewriteRule ^privacy$ privacy.php
 

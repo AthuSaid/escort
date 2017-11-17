@@ -7,6 +7,7 @@
             this.hoverDropdown();
             this.navbarSticky();
             this.navbarScrollspy();
+            $(".dropdown-menu").removeClass("shadow-text");
         },
         event : function(){
             
@@ -109,7 +110,7 @@
             // ------------------------------------------------------------------------------ //
             // Navbar Mobile
             // ------------------------------------------------------------------------------ //
-            if( getNav.hasClass("navbar-mobile")){
+            if( getNav.hasClass("navbar-mobile")){            	
                 // Add Class to body
                 $('.navbar-collapse').on('shown.bs.collapse', function() {
                     $("body").addClass("side-right");
@@ -121,6 +122,11 @@
                 $(window).on("resize", function(){
                     $("body").removeClass("side-right");
                 });
+                $(".nav").removeClass("shadow-text");
+                $(".dropdown").removeClass("shadow-text");
+                $(".search").removeClass("shadow-text");
+                $(".dropdown-menu").removeClass("shadow-text");
+                
             }
             
             // ------------------------------------------------------------------------------ //
@@ -131,8 +137,16 @@
                     var scrollTop = $(window).scrollTop();
                     if(scrollTop >34){
                         $(".navbar-fixed").removeClass("no-background");
+                        $(".nav").removeClass("shadow-text");
+                        $(".dropdown").removeClass("shadow-text");
+                        $(".search").removeClass("shadow-text");
+                        $(".dropdown-menu").removeClass("shadow-text");
                     }else {
                         $(".navbar-fixed").addClass("no-background");
+                        $(".nav").addClass("shadow-text");
+                        $(".dropdown").addClass("shadow-text");
+                        $(".search").addClass("shadow-text");
+                        $(".dropdown-menu").removeClass("shadow-text");
                     }
                 });
             }
@@ -141,12 +155,16 @@
             // Navbar Fixed
             // ------------------------------------------------------------------------------ //
             if( getNav.hasClass("navbar-transparent")){
+            	$(".nav").removeClass("shadow-text");
+                $(".dropdown").removeClass("shadow-text");
+                $(".search").removeClass("shadow-text");
+                $(".dropdown-menu").removeClass("shadow-text");
                 $(window).on("scroll", function(){
                     var scrollTop = $(window).scrollTop();
                     if(scrollTop >34){
-                        $(".navbar-fixed").removeClass("navbar-transparent");
+                        $(".navbar-fixed").removeClass("navbar-transparent");                        
                     }else {
-                        $(".navbar-fixed").addClass("navbar-transparent");
+                        $(".navbar-fixed").addClass("navbar-transparent");                       
                     }
                 });
             }
@@ -217,6 +235,8 @@
                 $("nav.navbar.bootsnav ul.nav").find(".title").off("mouseenter"); 
                 $("nav.navbar.bootsnav ul.nav").off("mouseleave");    
                 $(".navbar-collapse").removeClass("animated");
+                $(".nav").removeClass("shadow-text");
+                $(".dropdown-menu").removeClass("shadow-text");
                 
                 // Enable click event
                 $("nav.navbar.bootsnav ul.nav").each(function(){
@@ -224,7 +244,7 @@
                     $(".dropdown-menu", this).removeClass(getOut);
                     
                     // Dropdown Fade Toggle
-                    //$("a.dropdown-toggle", this).off('click');
+                    $("a.dropdown-toggle", this).off('click');
                     $("a.dropdown-toggle", this).on('click', function (e) {
                         e.stopPropagation();
                         $(this).closest("li.dropdown").find(".dropdown-menu").first().stop().fadeToggle().toggleClass(getIn);

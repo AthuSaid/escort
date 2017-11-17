@@ -24,9 +24,39 @@ if ($retAC = $functions->fQueryGlobalSearch($_REQUEST['term'], -1))
 		}
 		
 		$retJson = json_encode($myArray);							
+	
 	}
+	
 }else{
-	$retJson = json_encode(array( 0 => array("id" => "0", "label" => "Ops... Nenhuma pessoa encontrada!", "value" => "")));
+	
+	if (strtolower($_REQUEST['term']) == 'perto' || 
+		strtolower($_REQUEST['term']) == 'perto de' || 
+		strtolower($_REQUEST['term']) == 'perto de mim')
+	{
+		$retJson = null;
+		
+		$myArray = null;
+		
+		$myArray[0] = array("id" => 0, "label" => "Perto de mim", "value" => "persons/close");
+		
+		$retJson = json_encode($myArray);
+		
+	}elseif (strtolower($_REQUEST['term']) == 'pessoas' ||
+			 strtolower($_REQUEST['term']) == 'pessoas online' ||
+			 strtolower($_REQUEST['term']) == 'online')
+	{
+		$retJson = null;
+		
+		$myArray = null;
+		
+		$myArray[0] = array("id" => 0, "label" => "Pessoas Online", "value" => "persons/online");
+		
+		$retJson = json_encode($myArray);	
+		
+	}else{
+		
+		$retJson = json_encode(array( 0 => array("id" => "0", "label" => "Ops... Nenhuma pessoa encontrada!", "value" => "")));
+	}
 }
 
 echo $retJson;

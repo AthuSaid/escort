@@ -114,7 +114,7 @@
 										<h6>	
 											<p>Cadastro restrito exclusivamente apenas para maiores de <strong>18 ANOS</strong>, que devem respeitar as seguintes imposi&ccedil;&otilde;es:</p>											
 											<p><strong>a.</strong> Todas as informa&ccedil;&otilde;es contidas no seu cadastro devem serem VERDADEIRAS bem como sua identidade, fotos e documentos de comprova&ccedil;&atilde;o da mesma.</p>											
-											<p><strong>b.</strong> Ao iniciar seu processo de cadastro abaixo em <strong>NOVO CADASTRO</strong>, voc&ecirc; voc&ecirc; estar&aacute; concordando com nossos <a href="<?php echo SIS_URL?>privacy" target="_blank">Termos de Uso</a>.</p>
+											<p><strong>b.</strong> Ao iniciar seu processo de cadastro abaixo em <strong>NOVO CADASTRO</strong>, voc&ecirc; voc&ecirc; estar&aacute; concordando com nossos <a href="<?php echo SIS_URL?>privacy" target="_blank"><strong>Termos de Uso</strong></a>.</p>
 											<p><strong>c.</strong> Todos os cadastros inseridos no <?php echo SIS_TITULO; ?> s&atilde;o analisados antes de serem publicados pela nossa equipe e, caso n&atilde;o estejam de acordo com os Termos de Uso, ser&atilde;o automaticamente removidos.</p>
 											<p><strong>d.</strong> O site <?php echo SIS_TITULO; ?> tem o direito de enviar toda e qualquer informa&ccedil;&atilde;o (E-mail, Telefone, IP e documentos) para as autoridades respons&aacute;veis, em caso de investiga&ccedil;&atilde;o, decis&atilde;o judicial, ou no caso de voc&ecirc; violar os Termos de Uso do <?php echo SIS_TITULO; ?>.</p>
                                          </h6>

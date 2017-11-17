@@ -103,7 +103,7 @@
                         	<div class="col-md-12">
                                 <div class="head_title text-left sm-text-center wow fadeInDown">
                                     <h3>Seja <?php echo SIS_TITULO; ?>!</h3>
-                                    <h5><em>Venha desfrutar de momentos relaxantes com as melhores pessoas em <?php echo SIS_TITULO;?>!</em></h5>                                    
+                                    <h5><em>Venha desfrutar de momentos relaxantes com acompanhantes e massagistas em <?php echo SIS_TITULO;?>!</em></h5>                                    
                                 </div>
                             </div>
                             <div class="col-md-4 service_left wow fadeInLeft">                                                                
@@ -137,7 +137,7 @@
                                         <div class="col-xs-9">
                                             <div class="text-left service_left_text">
                                                 <h4 class="main-color">Maior Visibilidade nas Buscas</h4>
-                                                <p>O <?php echo SIS_TITULO;?> investe pesado em mecanismos de busca na Internet para divulgar seus perfis</p>
+                                                <p>O <?php echo SIS_TITULO;?> investe pesado em mecanismos de busca na internet para divulgar seus perfis</p>
                                             </div>
                                         </div>
                                     </div>
@@ -154,7 +154,7 @@
                                         <div class="col-xs-9">
                                             <div class="text-left service_left_text">
                                                 <h4 class="main-color">Contate Diretamente a Pessoa</h4>
-                                                <p>O <?php echo SIS_TITULO;?> n&atilde;o intermedia valores de Cach&ecirc;s ou qualquer encontro casual</p>
+                                                <p>O <?php echo SIS_TITULO;?> n&atilde;o intermedia valores de cach&ecirc; ou qualquer encontro casual</p>
                                             </div>
                                         </div>
                                     </div>
@@ -163,7 +163,7 @@
 
 	                            <div class="col-md-4 sm-m-top-40 sm-text-center">
 	                                <div class="service-img wow bounceIn">
-	                                    <img src="assets/img/home-<?php echo $functions->genderPrefer;?>-<?php echo rand(1,2);?>.png" alt="Home Couple">
+	                                    <img src="assets/img/home-<?php echo $functions->genderPrefer;?>-<?php echo rand(1,2);?>.png" alt="Home Present">
 	                                </div>
 	                            </div>
 
@@ -190,7 +190,7 @@
                                         <div class="col-xs-9">
                                             <div class="service_right_text p-l-15 text-right">
                                                 <h4 class="main-color">Site Multi Generos</h4>
-                                                <p>Aqui, o espa&ccedil;o &eacute; livre para quem quiser anunciar. Sem distin&ccedil;&atilde;o! Fique a Vontade</p>
+                                                <p>Aqui, o espa&ccedil;o &eacute; livre para quem quiser anunciar. Sem distin&ccedil;&atilde;o! Fique a vontade</p>
                                             </div>
                                         </div>
                                         <div class="col-xs-3">
@@ -207,7 +207,7 @@
                                         <div class="col-xs-9">
                                             <div class="service_right_text p-l-15 text-right">
                                                 <h4 class="main-color">Perfis Aut&ecirc;nticos</h4>
-                                                <p>Todos os perfis passam por uma Pr&eacute; Aprova&ccedil;&atilde;o antes de ser divulgado</p>
+                                                <p>Todos os perfis passam por uma pr&eacute; aprova&ccedil;&atilde;o antes de ser divulgado</p>
                                             </div>
                                         </div>
                                         <div class="col-xs-3">
@@ -230,8 +230,8 @@
             <?php echo $functions->fCreateGallery(1); ?>            
 
 
-            <!-- TESTEMUNHAS DE USO DOS USUARIOS ################### -->
-            <?php //echo $functions->fCreateUserTestimonials(); ?>
+            <!-- TESTEMUNHAS DE USO DO SITE ("0") PELOS USUARIOS ################### -->
+            <?php echo $functions->fCreateUserTestimonials("0"); ?>
 
 
 			<!-- DESTAQUE HOME - MODELO DESTAQUE NOVAS PESSOAS (4) COM LIMITE DE 11 PESSOAS 

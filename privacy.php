@@ -81,8 +81,8 @@
                     <div class="row">
                         <div class="main_home text-center">
                             <div class="about_text">
-                                <h1 class="text-white text-uppercase">Termos de Uso</h1>
-                                <ol class="breadcrumb">
+                                <h1 class="text-white text-uppercase shadow-text">Termos de Uso</h1>
+                                <ol class="breadcrumb shadow-text">
                                     <li><a href="<?php echo SIS_URL; ?>">Home</a></li>
                                     <li class="active"><a href="<?php echo SIS_URL; ?>privacy">Termos de Uso</a></li>
                                 </ol>
@@ -119,7 +119,7 @@
 											
 												<p>O Usuário concorda e declara que todos os anúncios, mensagens, comentários, arquivos, imagens, fotos, vídeos, arquivos de som ou outros materiais (aqui definidos como "Conteúdo") publicados, transmitidos ou com links no Site, são de responsabilidade total do Usuário que inseriu o Conteúdo. Mais especificamente, o Usuário é inteiramente responsável por todo e qualquer Conteúdo que ele inserir no, ou através do, Site e/ou dos Serviços. O Usuário entende que o '.SIS_TITULO.' não controla e/ou monitora previamente qualquer Anúncio disponibilizado através do Site pelo Usuário anunciante e, portanto, não é responsável por seu conteúdo. Ao acessar e/ou usar o Site, o Usuário pode ser exposto a Conteúdo eventualmente ofensivo, indecente, incorreto, falso, infrator e/ou repreensível. Ademais, o Site e seu Conteúdo podem conter links para outros sites da Internet, que não são relacionados ao '.SIS_TITULO.'. O '.SIS_TITULO.' não representa ou garante a autenticidade e exatidão das informações contidas em seu Site, uma vez que o conteúdo é incluído pelo Usuário sem qualquer tipo de ingerência do '.SIS_TITULO.'. O acesso feito através de links a qualquer outro site também é de responsabilidade e risco do próprio Usuário. 
                                    		
-                                   			<strong>'.strtoupper('Sob nenhuma circunstância o '.SIS_TITULO.' será responsabilizado de forma alguma por Conteúdo ou por qualquer perda ou dano de qualquer tipo incorridos como resultado do uso de qualquer conteúdo listado, por e-mail ou outra forma disponibilizado através do Serviço. O Usuário reconhece que o '.SIS_TITULO.', monitora previamente, aprova ou desaprova o seu Conteúdo, principalmente &agrave;queles que n&atilde;o est&atilde;o de acordo com estes Termos de Uso. O '.SIS_TITULO.' tem o direito de remover TOTAL ou PARCIALMENTE qualquer Conteúdo disponível no Site, a seu próprio critério, por violar o nossos valores, estes Termos, a legislação e/ou regulamentação aplicável, ou por qualquer outro motivo que julgar apropriado, sem que isso gere qualquer tipo de direito ao Usuário.').'</strong></p> 
+                                   			<strong>'.('Sob nenhuma circunstância o '.SIS_TITULO.' será responsabilizado de forma alguma por Conteúdo ou por qualquer perda ou dano de qualquer tipo incorridos como resultado do uso de qualquer conteúdo listado, por e-mail ou outra forma disponibilizado através do Serviço. O Usuário reconhece que o '.SIS_TITULO.', monitora previamente, aprova ou desaprova o seu Conteúdo, principalmente &agrave;queles que n&atilde;o est&atilde;o de acordo com estes Termos de Uso. O '.SIS_TITULO.' tem o direito de remover TOTAL ou PARCIALMENTE qualquer Conteúdo disponível no Site, a seu próprio critério, por violar o nossos valores, estes Termos, a legislação e/ou regulamentação aplicável, ou por qualquer outro motivo que julgar apropriado, sem que isso gere qualquer tipo de direito ao Usuário.').'</strong></p> 
 											
                                     		<h6><strong><i class="fa fa-warning"></i> 3 - Garantias</strong></h6>
 											

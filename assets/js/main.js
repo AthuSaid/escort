@@ -173,6 +173,49 @@ jQuery(document).ready(function ($) {
     });
     
     
+    $('.start-chat').on('click', function(){
+    	$("#loading").fadeIn(500); 
+    	$.ajax({
+            url: $urlProj + "_chat/start.php",
+            type: 'GET',            
+            dataType: "html",
+            success: function (data) {
+            	var json = $.parseJSON(data);
+            	if(json.ret == true){            		
+            		location.reload();
+            	}
+            },
+            cache: false        
+        });
+    });
+    
+    
+    $('.stop-chat').on('click', function(){  
+    	$("#loading").fadeIn(500); 
+    	$.ajax({
+            url: $urlProj + "_chat/stop.php",
+            type: 'GET',            
+            dataType: "html",
+            success: function (data) {
+            	var json = $.parseJSON(data);
+            	if(json.ret == true){            		
+            		location.reload();
+            	}
+            },
+            cache: false        
+        });
+    });
+    
+    
+    $('.btn-remove').on('click', function(){  
+    	if (confirm('Deseja remover sua conta do site?\n\n' +
+    		'Concordando, seu perfil vai ser automaticamente removido do site.\n\n' + 
+    		'Caso deseje voltar a utilizar o site, basta efetuar login normalmente.')){
+    		location.href = $urlProj + "remove";
+    	}
+    });
+    
+    
     $('.search-field').keydown(function(e){
     	if (e.keyCode == 13){
 	    	var searchValue = $('.search-field').val();
@@ -292,9 +335,7 @@ $(function () {
     $(".search-field").autocomplete({
     	source: $urlProj + "_actions/autocomplete.php",    	
         minLength: 3,
-        select: function(event, ui) {
-        	console.log(ui);
-        	console.log( "Selected: " + ui.item.value + " aka " + ui.item.id );         		
+        select: function(event, ui) {        	        		
 	        location.href = $urlProj + ui.item.value;	            
         }
     });          

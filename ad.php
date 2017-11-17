@@ -417,14 +417,14 @@
                                                 <div class="form-group">
                                                     <label><i class="fa fa-venus-mars"></i> Selecione as Modalidades desejadas *</label>
                                                     <select id="modalidades" name="modalidades[]" data-error="Por favor, selecione ao menos uma modalidade!" required class="form-control modalidade" multiple="multiple">
-														<?php echo $functions->fCreateComboModalities($functions->fPersonModalities($retAd[0]['apid'])); ?>  
+														<?php echo $functions->fCreateComboModalities($functions->fPersonModalities($retAd[0]['apid'], false)); ?>  
 													</select>
 													<div class="help-block with-errors"></div>
                                                 </div>
                                             </div>                                            
                                          </div> 
                                          <hr />   
-                                         <h4><i class="fa fa-question-circle cach"></i> Valor do Cach&ecirc;</h4>
+                                         <h4><i class="fa fa-question-circle cach"></i> Valores do Cach&ecirc;</h4>
                                          <div class="caches">  
                                          	<div class="row"> 	                                         	
                                          	
@@ -482,6 +482,21 @@
 	                                                    </select>
 	                                                </div>  
 	                                            </div>
+	                                            <div class="col-sm-4">                                              
+	                                                <div class="form-group">
+	                                                    <label><i class="fa fa-question-circle adic"></i>  Taxa adicional de Modalidades (opcional)</label>
+	                                                    <input type="text" id="taxadd" name="taxadd" maxlength="6" value="<?php echo $retCache[0]['taxadd']; ?>" class="form-control money">	                                                    
+	                                                </div>
+	                                            </div>
+	                                            <div class="col-sm-8">                                              
+	                                                <div class="form-group">
+	                                                    <label><i class="fa fa-venus-mars"></i> Modalidades com taxa adicional</label>
+	                                                    <select id="modalidades-adic" name="modalidades-adic[]" class="form-control modalidade" multiple="multiple">
+															<?php echo $functions->fCreateComboModalities($functions->fPersonModalities($retAd[0]['apid'], true)); ?>  
+														</select>
+														<div class="help-block with-errors"></div>
+	                                                </div>
+	                                            </div>	                                            	                                            
 	                                            <div class="col-sm-12">                                              
 	                                                <div class="form-group">	                                                    
 	                                                    <div class="help-block with-errors money"></div>

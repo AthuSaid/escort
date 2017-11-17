@@ -4,6 +4,12 @@
 	session_start2();
     
     $functions = new functions();  
+    
+    if (isset($_GET['type']))
+    {
+    	$type =	($_GET['type'] == 'online' ? 'online' : ($_GET['type'] == 'close' ? 'perto' : null));
+    	$url  = ($type != null ? '/'.$type : '');
+    }
 ?>
 <!doctype html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
@@ -12,7 +18,7 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
     <head>
         <meta charset="utf-8">
-        <title><?php echo SIS_TITULO; ?> - Pessoas</title>
+        <title><?php echo SIS_TITULO; ?> - Pessoas <?php echo $type; ?></title>
         <meta name="description" content="<?php echo SIS_DESCRICAO; ?>">
         <meta name="robots" content="index,follow" />
 		<meta name="googlebot" content="index,follow" />
@@ -86,7 +92,7 @@
                                 <h1 class="text-white text-uppercase shadow-text"><?php echo SIS_TITULO; ?></h1>
                                 <ol class="breadcrumb shadow-text">
                                     <li><a href="<?php echo SIS_URL; ?>">Home</a></li>
-                                    <li class="active"><a href="<?php echo SIS_URL; ?>persons">Pessoas</a></li>
+                                    <li class="active"><a href="<?php echo SIS_URL; ?>persons<?php echo $url; ?>">Pessoas <?php echo $type; ?></a></li>
                                 </ol>
                             </div>
                         </div>
@@ -96,7 +102,7 @@
 
 
             <!-- GALERIA COM TODAS AS PESSOAS (2) ################### -->
-            <?php echo $functions->fCreateGallery(2); ?> 
+            <?php echo $functions->fCreateGallery(2, $type); ?> 
 
 
             <!-- scroll up-->

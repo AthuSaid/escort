@@ -173,15 +173,18 @@
                                                 	echo $retPerson[0]['mensagem'];
                                                 } ?>
                                             </blockquote>
+                                            
+                                            <?php $newTestimonial = ($retPerson[0]['testimonials'] > 0 ? '<a href="'.SIS_URL.'testimonial/'.$retPerson[0]['url'].'" class="btn btn-warning m-top-30">'.$retPerson[0]['testimonials'].' '.($retPerson[0]['testimonials'] > 1 ? 'novos depoimentos' : 'novo depoimento').' <i class="fa fa-comment"></i></a>' : ""); ?>
 												
 
-												<a href="<?php echo SIS_URL; ?>profile" class="btn btn-primary m-top-30">Editar meu Perfil <i class="fa fa-user"></i></a>												
+												<?php echo $newTestimonial; ?>
+												<a href="<?php echo SIS_URL; ?>signup" class="btn btn-primary m-top-30">Editar meu Perfil <i class="fa fa-user"></i></a>												
 												<?php if($_SESSION['sPersonPlanID'] == 0 && $retPerson[0]['aprovado'] > 0){ ?>
 													<a href="<?php echo SIS_URL; ?>payment" class="btn btn-warning m-top-30">Contratar um Plano Agora <i class="fa fa-cart-plus"></i></a>
 												<?php }elseif($_SESSION['sPersonPlanID'] != 0 && $_SESSION['sPersonPlanExpires'] <= 5){ ?>
 													<a href="<?php echo SIS_URL; ?>payment" class="btn btn-warning m-top-30">Renovar Plano <i class="fa fa-cart-plus"></i></a>													
 												<?php } ?>
-												<a href="<?php echo SIS_URL; ?>remove" style="float: right; margin-top:40px;">Remover Conta</a>																																					
+												<a href="javascript:void();" class="btn-remove" style="float: right; margin-top:40px;">Remover Conta</a>																																					
 												
                                             <p class="m-top-30"><strong style="color: red"><i class="fa fa-warning"></i> ATEN&Ccedil;&Atilde;O <?php echo strtoupper($functions->fReduceName($retPerson[0]['apelido']));?>:</strong><strong> Todos os perfis contidos no <?php echo SIS_TITULO;?>, assim como os an&uacute;ncios e fotos, 
                                               passam por um processo de verifica&ccedil;&atilde;o de autenticidade e 

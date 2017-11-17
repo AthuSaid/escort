@@ -30,6 +30,66 @@ class queries extends mysqlconn {
 		parent::__construct();
 	}
 	
+	
+	/**
+	 * Query Persons Logged after 24H
+	 * @return array
+	 */
+	public function fGetPersonsLoggedAfter24H(){
+	
+		$this->sqlQuery = "SELECT p.pesid 
+							FROM pessoas p 
+						  WHERE DATEDIFF(now(), p.dtultimoacesso) > 1";	
+		$this->fExecuteSql($this->sqlQuery);
+		$this->retRecords = $this->fShowRecords();
+		return $this->retRecords;
+	}
+	
+	
+	/**
+	 * Update Person to Logoff
+	 * @param integer $pesid
+	 * @return boolean
+	 */
+	public function fUpdatePerson2Logoff($pesid){
+	
+		$this->sqlQuery = "UPDATE pessoas 
+							SET logon = 0, ppv_online = 0 
+						  WHERE pesid = ".$pesid;
+		$this->fExecuteSql($this->sqlQuery);		
+		return true;
+	}
+	
+	
+	/**
+	 * Switch Chat Person to ON
+	 * @param integer $pesid
+	 * @return boolean
+	 */
+	public function fStartChat($pesid){
+	
+		$this->sqlQuery = "UPDATE pessoas
+							SET ppv_online = 1
+						  WHERE pesid = ".$pesid;
+		$this->fExecuteSql($this->sqlQuery);
+		return true;
+	}
+	
+	
+	/**
+	 * Switch Chat Person to OFF
+	 * @param integer $pesid
+	 * @return boolean
+	 */
+	public function fStopChat($pesid){
+	
+		$this->sqlQuery = "UPDATE pessoas
+							SET ppv_online = 0
+						  WHERE pesid = ".$pesid;
+		$this->fExecuteSql($this->sqlQuery);
+		return true;
+	}
+	
     
 	/**
 	 * Query Notification Nav Menu 
@@ -49,7 +109,18 @@ class queries extends mysqlconn {
 							WHERE p.lido = 0
 							AND p.pesid = {$_SESSION['sPersonID']}
 							AND p.aprovado = 1
-							AND p.removido = 0 
+							AND p.removido = 0
+						UNION
+							SELECT
+								CONCAT('Seu perfil ', p.apelido) as titulo,
+								'dashboard' as url,
+								CASE WHEN (t.aprovado = 0) THEN
+						    		'recebeu um novo depoimento!'						    	
+						    	END AS aprovado
+							FROM pessoas p
+							INNER JOIN testemunhos t ON t.pesid = p.pesid
+							WHERE t.aprovado = 0
+							AND t.pesid = {$_SESSION['sPersonID']}							
 						UNION 
 							SELECT
 								CONCAT('Seu an&uacute;ncio ', ap.titulo) as titulo,
@@ -64,7 +135,8 @@ class queries extends mysqlconn {
 							WHERE ap.lido = 0
 							AND ap.pesid = {$_SESSION['sPersonID']}
 							AND ap.aprovado = 1
-							AND ap.removido = 0";
+							AND ap.removido = 0
+						";
 		
 		$this->fExecuteSql($this->sqlQuery);
 		$this->retRecords = $this->fShowRecords();
@@ -90,6 +162,7 @@ class queries extends mysqlconn {
 			    				p.googleplus,
 			    				p.nascimento,
 			    				p.url AS person,
+			    				p.ppv_online,
 			    				ap.url AS ad,
 			    				ap.titulo AS titulo_anuncio,
 			    				IFNULL((SELECT pfc.imagemurl AS imagemurl 
@@ -145,7 +218,9 @@ class queries extends mysqlconn {
 								(
 									MATCH(p.nome,p.apelido) AGAINST('{$criteria}') OR
 									MATCH(m.modalidade) AGAINST('{$criteria}') OR
-									MATCH(lp.endereco) AGAINST('{$criteria}') OR
+									(p.naturalidade) LIKE '%{$criteria}%' OR
+									(lp.local) LIKE '%{$criteria}%' OR
+									(lp.endereco) LIKE '%{$criteria}%' OR
 									(SELECT GROUP_CONCAT(pf.titulo) AS items 
 									 FROM pessoas_fotos pf 
 									 WHERE pf.apid = ap.apid
@@ -196,9 +271,9 @@ class queries extends mysqlconn {
 	 */
 	public function fSaveChat($msg, $room){
 	
-		$this->sqlQuery = "INSERT INTO chats (pesid, lido, jsonmessage) VALUES ({$room}, 0, '".$msg."')";
+		$this->sqlQuery = "INSERT INTO chats (pesid, jsonmessage) VALUES ({$room}, '".$msg."')";
 	
-		//$this->fExecuteSql($this->sqlQuery);
+		$this->fExecuteSql($this->sqlQuery);
 	
 		return true;
 	}
@@ -280,6 +355,34 @@ class queries extends mysqlconn {
 	
 	
 	/**
+	 * Save New User Register
+	 *
+	 * @author    Daniel Triboni
+	 * @param	 object $_REQUEST
+	 * @return	 boolean
+	 */
+	public function fSaveNewUser($obj, $files){
+	
+		$this->sqlQuery = "INSERT INTO usuarios (nome, apelido, email, senha,
+												 sexo, 
+												 nascimento, avatar, dtultimoacesso)
+										 VALUES ('".$obj['nome']."', '".$obj['apelido']."', '".$obj['email']."', '".md5($obj['senha'])."',
+										 	     '".$obj['sexo']."',
+										 	     '".$obj['nascimento']."', '".$files['avatar']."', now())";
+	
+		if($this->fExecuteSql($this->sqlQuery))
+		{
+			$_SESSION['sUserLogged'] = true;
+			$_SESSION['sUserID'] = $this->fGetLastInsertID();						
+			$_SESSION['sUserGender'] = $obj['sexo'];
+			$_SESSION['sUserLastLogon'] = null;
+			$_SESSION['sUserSessionTime'] = time();
+			return true;
+		}
+	}
+	
+	
+	/**
 	 * Update Person Register
 	 *
 	 * @author    Daniel Triboni
@@ -324,6 +427,32 @@ class queries extends mysqlconn {
 		$this->sqlQuery	.= "WHERE pesid = ".$_SESSION['sPersonID'];
 		
 		return $this->fExecuteSql($this->sqlQuery);									
+	}
+	
+	
+	/**
+	 * Update User Register
+	 *
+	 * @author    Daniel Triboni
+	 * @param	 object $_REQUEST
+	 * @return	 boolean
+	 */
+	public function fUpdateCurrentUser($obj, $files){
+	
+		$this->sqlQuery = "UPDATE usuarios SET
+									nome = '".$obj['nome']."',
+									senha = '".md5($obj['senha'])."',
+									sexo = '".$obj['sexo']."',
+									nascimento = '".$obj['nascimento']."' ";
+	
+		if ($files['avatar'] != '')
+		{
+			$this->sqlQuery .= ", avatar = '".$files['avatar']."' ";
+		}
+	
+		$this->sqlQuery .= "WHERE usuid = ".$_SESSION['sUserID'];
+	
+		return $this->fExecuteSql($this->sqlQuery);
 	}
 	
 	
@@ -448,6 +577,63 @@ class queries extends mysqlconn {
 	
 	
 	/**
+	 * Update Person Testimonial
+	 *
+	 * @author    Daniel Triboni
+	 * @param	 object $_REQUEST
+	 * @return	 boolean
+	 */
+	public function fQueryAddTestimonial($obj){
+	
+		$this->sqlQuery = "INSERT INTO testemunhos 
+								(titulo, 
+								 usuid,
+								 descricao, 
+								 pesid)
+							VALUES 
+								('".$obj['titulo']."',".
+								 $_SESSION['sUserID'].",		
+								 '".$obj['descricao']."',".
+								    $obj['pesid'].")";
+	
+		if($this->fExecuteSql($this->sqlQuery))
+		{
+			return true;
+				
+		}else{
+	
+			return false;
+		}
+	}
+	
+	
+	/**
+	 * Update Person Testimonial
+	 *
+	 * @author    Daniel Triboni
+	 * @param	 object $_REQUEST
+	 * @return	 boolean
+	 */
+	public function fQueryUpdateTestimonial($obj){
+	
+		 $this->sqlQuery = "UPDATE testemunhos SET 
+									replica = '".$obj['replica']."',
+									aprovado = 1,
+								    avaliacao = 4 
+							WHERE tesid = ".$obj['tesid'];
+	
+		if($this->fExecuteSql($this->sqlQuery))
+		{
+			return true;
+			
+		}else{
+				
+			return false;
+		}
+	}
+	
+	
+	/**
 	 * Update Person Ad
 	 *
 	 * @author    Daniel Triboni
@@ -565,8 +751,16 @@ class queries extends mysqlconn {
 				$this->sqlQueryCompl .= "({$modid}, {$obj['apid']}, 1), ";				
 			}
 			
-			return $this->fExecuteSql(substr($this->sqlQueryCompl, 0, strlen($this->sqlQueryCompl)-2));
+			$this->fExecuteSql(substr($this->sqlQueryCompl, 0, strlen($this->sqlQueryCompl)-2));
 			
+			$this->sqlQueryCompl = "INSERT INTO modalidades_pessoas (modid, adic, apid, ativo) VALUES ";
+			foreach ($obj['modalidades-adic'] as $adic)
+			{
+				$this->sqlQueryCompl .= "({$adic}, {$adic}, {$obj['apid']}, 1), ";
+			}
+				
+			return $this->fExecuteSql(substr($this->sqlQueryCompl, 0, strlen($this->sqlQueryCompl)-2));
+				
 		}else{
 			
 			return false;
@@ -587,9 +781,9 @@ class queries extends mysqlconn {
 		if($this->fExecuteSql($this->sqlQuery))
 		{
 			$this->sqlQueryCompl = "INSERT INTO pessoas_cache (apid, c30, c1, c2, 
-																c4, c8, c12, viagem)
+																c4, c8, c12, taxadd, viagem)
 									VALUES ('{$obj['apid']}', '{$obj['c30']}', '{$obj['c1']}', '{$obj['c2']}', 
-											'{$obj['c4']}', '{$obj['c8']}', '{$obj['c12']}', '{$obj['viagem']}') ";
+											'{$obj['c4']}', '{$obj['c8']}', '{$obj['c12']}', '{$obj['taxadd']}', '{$obj['viagem']}') ";
 			if($this->fExecuteSql($this->sqlQueryCompl))
 			{
 				$this->retAPID = $obj['apid'];
@@ -731,29 +925,79 @@ class queries extends mysqlconn {
     	$this->fExecuteSql($this->sqlQuery);
     	return true;
     }
-       
+      
+    
+    /**
+     * Query User Testimonials
+     * @param integer $pesid
+     */
+    public function fQueryUsersTestimonials($pesid = null){
+    	$this->sqlQuery = "SELECT u.*, 
+    							  t.*, 
+    							  p.url,
+    							  DATE_FORMAT(t.cadastro, 'Publicado em %d/%m/%Y &agrave;s %H:%i') AS dtcad,
+    							  p.apelido AS apelidopessoa
+    					    FROM testemunhos t
+    						INNER JOIN usuarios u ON u.usuid = t.usuid
+    						LEFT JOIN pessoas p ON p.pesid = t.pesid
+    						WHERE t.aprovado = 1";
+    	if ($pesid != null){
+    		$this->sqlQuery .= " AND t.pesid = ".$pesid;
+    	}
+    	$this->sqlQuery .= " ORDER BY t.cadastro DESC LIMIT 15";
+    	$this->fExecuteSql($this->sqlQuery);
+    	$this->retRecords = $this->fShowRecords();
+    	return $this->retRecords;
+    }
+    
+    
+    /**
+     * Query User Testimonials
+     * @param integer $pesid
+     */
+    public function fQueryUsersTestimonialsToApprove($pesid = null){
+    	$this->sqlQuery = "SELECT u.*, t.*,
+    							  DATE_FORMAT(t.cadastro, 'Publicado em %d/%m/%Y &agrave;s %H:%i') AS dtcad,
+    							  p.apelido AS apelidopessoa
+    					    FROM testemunhos t
+    						INNER JOIN usuarios u ON u.usuid = t.usuid
+    						INNER JOIN pessoas p ON p.pesid = t.pesid
+    						WHERE t.aprovado = 0
+    						AND t.removido = 0";
+    	if ($pesid != null){
+    		$this->sqlQuery .= " AND t.pesid = ".$pesid;
+    	}
+    	$this->sqlQuery .= " ORDER BY t.cadastro ASC LIMIT 15";
+    	$this->fExecuteSql($this->sqlQuery);
+    	$this->retRecords = $this->fShowRecords();
+    	return $this->retRecords;
+    }
+    
     
     /**
      * Query Featured Models in Home Page
-     * @param unknown $gender
-     * @param unknown $feature
-     * @param unknown $limit
+     * @param string $gender
+     * @param integer $feature
+     * @param integer $limit
+     * @param integer $type
      */
     public function fQueryFeaturedModels($gender, $service, $feature, $limit){
     	$this->sqlQueryCompl = null;
     	$this->sqlQueryCompl .= (!empty($gender) ? "AND p.sexo = '{$gender}'" : "");
-    	$this->sqlQueryCompl .= (!empty($service) && $service != "T" ? "AND p.especialidade = '{$service}'" : "");
+    	$this->sqlQueryCompl .= (!empty($service) && $service != "T" ? "AND p.especialidade = '{$service}'" : "");    	
     	$this->sqlQuery = "SELECT		    				
 		    				p.apelido,
 		    				p.sexo,
 		    				p.genero,
 		    				p.whatsapp,
+		    				p.ppv_online,
 		    				p.tel1,
 		    				p.tel2,		    				
 		    				p.facebook,
 		    				p.twitter,
 		    				p.googleplus,
 		    				p.nascimento,
+		    				p.naturalidade,
 		    				p.url AS person,
 		    				ap.url AS ad,
 		    				ap.titulo AS titulo_anuncio,
@@ -820,18 +1064,24 @@ class queries extends mysqlconn {
     
     /**
      * Query Gallery Models
-     * @param unknown $gender
+     * @param string $gender
+     * @param string $service
+     * @param number $paging
+     * @param string $limit
+     * @param string $type
      */
-    public function fQueryGalleryModels($gender, $service, $paging = 0, $limit = true){
+    public function fQueryGalleryModels($gender, $service, $paging = 0, $limit = true, $type = null){
     	$this->sqlQueryCompl = null;
     	$this->sqlQueryCompl .= (!empty($gender) ? "AND p.sexo = '{$gender}'" : "");
     	$this->sqlQueryCompl .= (!empty($service) && $service != "T" ? "AND p.especialidade = '{$service}'" : "");
+    	$this->sqlQueryCompl .= ($type == "online" ? "AND p.ppv_online = 1" : "");
     	$this->sqlQuery = "SELECT
     							ap.url AS ad,
     							p.url AS person,
 						    	p.apelido,
 						    	p.genero,						    	
     							ap.pessoasatendimento, 
+    							p.ppv_online,
     						(SELECT COUNT(1) 
 			    				 FROM pessoas_fotos pfc
 			    				 WHERE pfc.apid = ap.apid
@@ -936,7 +1186,7 @@ class queries extends mysqlconn {
 						    	ap.titulo,
 						    	ap.descricao,
 						    	ap.url AS ad,
-						    	ap.visitascount,
+						    	ap.visitascount,						    	
 						    	CASE WHEN (ap.aprovado = 1) THEN
 						    		DATE_FORMAT(ap.cadastro, 'Publicado em %d/%m/%Y as %H:%i:%s')
 						    	WHEN (ap.aprovado = 2) THEN
@@ -946,16 +1196,64 @@ class queries extends mysqlconn {
 						    	END AS publicacao,
 						    	p.url AS person,
 						    	IFNULL((SELECT pf.imagemurl AS thumb
-						    	FROM pessoas_fotos pf
-						    	WHERE pf.apid = ap.apid
-						    	AND pf.local = 1
-						    	AND pf.tipo = 1
-						    	AND pf.principal = 'S'
-						    	ORDER BY pf.fotid DESC LIMIT 1), '../no-portrait.jpg') AS thumb    	
+								    	FROM pessoas_fotos pf
+								    	WHERE pf.apid = ap.apid
+								    	AND pf.local = 1
+								    	AND pf.tipo = 1
+								    	AND pf.principal = 'S'
+								    	ORDER BY pf.fotid DESC LIMIT 1), '../no-portrait.jpg') AS thumb    	
 					    	FROM anuncios_pessoas ap
 					    	INNER JOIN pessoas p ON p.pesid = ap.pesid
 					    	WHERE p.pesid = {$pesid} AND p.removido = 0 AND ap.removido = 0 
     						ORDER BY ap.visitascount DESC, ap.aprovado DESC, ap.cadastro DESC";
+    	$this->fExecuteSql($this->sqlQuery);
+    	$this->retRecords = $this->fShowRecords();
+    	return $this->retRecords;
+    }
+    
+    
+    /**
+     * Get Query All User Testimonials
+     *
+     * @author    Daniel Triboni
+     * @return	 array
+     */
+    public function fQueryAllUserTestimonials($usuid){
+    	$this->sqlQuery = "SELECT
+    							t.tesid,
+						    	ap.apid,
+						    	t.aprovado,
+						    	t.titulo,
+						    	t.descricao,
+						    	t.replica,
+						    	t.avaliacao,
+						    	u.apelido,
+						    	u.sexo,
+						    	u.avatar,
+								p.apelido AS apelidopessoa,
+						    	ap.url AS ad,
+						    	ap.visitascount,
+						    	CASE WHEN (t.aprovado = 1) THEN
+						    	DATE_FORMAT(t.cadastro, 'Publicado em %d/%m/%Y as %H:%i:%s')
+						    	WHEN (ap.aprovado = 2) THEN
+						    	'<strong>REPROVADO!</strong>'
+						    	ELSE
+						    	'<strong>PENDENTE DE APROVA&Ccedil;&Atilde;O!</strong>'
+						    	END AS publicacao,
+						    	p.url AS person,
+						    	IFNULL((SELECT pf.imagemurl AS thumb
+								    	FROM pessoas_fotos pf
+								    	WHERE pf.apid = ap.apid
+								    	AND pf.local = 1
+								    	AND pf.tipo = 1
+								    	AND pf.principal = 'S'
+								    	ORDER BY pf.fotid DESC LIMIT 1), '../no-portrait.jpg') AS thumb
+					    	FROM anuncios_pessoas ap
+					    	INNER JOIN pessoas p ON p.pesid = ap.pesid
+					    	INNER JOIN testemunhos t ON t.pesid = p.pesid
+					    	INNER JOIN usuarios u ON u.usuid = t.usuid 
+					    	WHERE u.usuid = {$usuid} AND p.removido = 0 AND ap.removido = 0 AND t.removido = 0 
+					    	ORDER BY t.cadastro DESC";
     	$this->fExecuteSql($this->sqlQuery);
     	$this->retRecords = $this->fShowRecords();
     	return $this->retRecords;
@@ -1030,6 +1328,14 @@ class queries extends mysqlconn {
 								ap.*,
 								p.*,
 								(SELECT 
+									SUM(t.score)
+								FROM testemunhos t
+								WHERE t.pesid = p.pesid) AS sumscore,
+								(SELECT 
+									COUNT(1)
+								FROM testemunhos t
+								WHERE t.pesid = p.pesid) AS average,
+								(SELECT 
 									DATEDIFF(pp2.vencimento, now()) 
 								 FROM planos_pagamentos pp2
 								 INNER JOIN planos_pessoas pp ON pp.ppid = pp2.ppid								 
@@ -1078,6 +1384,11 @@ class queries extends mysqlconn {
     public function fQueryPersonRegister($person){
     	$this->sqlQuery = "SELECT
 					    		p.*,
+					    		(SELECT
+						    		COUNT(1)
+						    	 FROM testemunhos t
+						    	 WHERE t.pesid = p.pesid
+						    	 AND t.aprovado = 0 AND t.removido = 0) AS testimonials,
 					    		DATE_FORMAT(p.nascimento, '%d/%m/%Y') AS nascimento,					    		
 					    		CASE WHEN p.aprovado = 1 THEN
 					    			'<i class=\"fa fa-check\"></i> PERFIL APROVADO COM SUCESSO!'
@@ -1095,6 +1406,24 @@ class queries extends mysqlconn {
 					    		END AS mensagem					    		
 					    	FROM pessoas p    	
 					    	WHERE p.url = '{$person}'";
+    	$this->fExecuteSql($this->sqlQuery);
+    	$this->retRecords = $this->fShowRecords();
+    	return $this->retRecords;
+    }
+    
+    
+    /**
+     * Get Query User Register
+     *
+     * @author    Daniel Triboni
+     * @return	 array
+     */
+    public function fQueryUserRegister($user){
+    	$this->sqlQuery = "SELECT
+					    		u.*,
+					    		DATE_FORMAT(u.nascimento, '%d/%m/%Y') AS nascimento
+					    	FROM usuarios u
+					    	WHERE u.usuid = {$user}";
     	$this->fExecuteSql($this->sqlQuery);
     	$this->retRecords = $this->fShowRecords();
     	return $this->retRecords;
@@ -1139,6 +1468,23 @@ class queries extends mysqlconn {
     
     
     /**
+     * Get Query User AKA
+     *
+     * @author    Daniel Triboni
+     * @return	 boolean
+     */
+    public function fQueryUserAka($aka){
+    	$this->sqlQuery = "SELECT
+					    		u.apelido
+					    	FROM usuarios u
+					    	WHERE u.apelido = '{$aka}'";
+    	$this->fExecuteSql($this->sqlQuery);
+    	$this->retRecords = $this->fShowRecords();
+    	return (count($this->retRecords) == 0 ? true : false);
+    }
+    
+    
+    /**
      * Get Query Person CPF
      *
      * @author    Daniel Triboni
@@ -1167,6 +1513,23 @@ class queries extends mysqlconn {
 					    		p.email
 					    	FROM pessoas p
 					    	WHERE p.email = '{$email}'";
+    	$this->fExecuteSql($this->sqlQuery);
+    	$this->retRecords = $this->fShowRecords();
+    	return (count($this->retRecords) == 0 ? true : false);
+    }
+    
+    
+    /**
+     * Get Query User Email
+     *
+     * @author    Daniel Triboni
+     * @return	 boolean
+     */
+    public function fQueryUserEmail($email){
+    	$this->sqlQuery = "SELECT
+					    		u.email
+					    	FROM usuarios u
+					    	WHERE u.email = '{$email}'";
     	$this->fExecuteSql($this->sqlQuery);
     	$this->retRecords = $this->fShowRecords();
     	return (count($this->retRecords) == 0 ? true : false);
@@ -1218,6 +1581,32 @@ class queries extends mysqlconn {
     
     
     /**
+     * Query to Remove Testimonial Logically
+     * @param integer $tesid
+     */
+    public function fQueryRemoveTestimonial($tesid) {
+    	$this->sqlQuery = "UPDATE testemunhos SET
+					    		removido = 1
+					    	WHERE tesid = {$tesid}";
+    	$this->fExecuteSql($this->sqlQuery);
+    	return true;
+    }
+    
+    
+    /**
+     * Query to Remove User Logically
+     * @param integer $pesid
+     */
+    public function fQueryRemoveUser($usuid) {
+    	$this->sqlQuery = "UPDATE usuarios SET
+					    		removido = 1
+					    	WHERE usuid = {$usuid}";
+    	$this->fExecuteSql($this->sqlQuery);
+    	return true;
+    }
+    
+    
+    /**
      * Get Query Person Ad
      *
      * @author    Daniel Triboni
@@ -1242,13 +1631,14 @@ class queries extends mysqlconn {
      * @author    Daniel Triboni
      * @return	 array
      */
-    public function fQueryPersonModalities($apid){
+    public function fQueryPersonModalities($apid, $adic = false){
     	if (!empty($apid))
     	{
-	    	$this->sqlQuery = "SELECT
-						    		mp.modid
-						    	FROM modalidades_pessoas mp					    	
-						    	WHERE mp.apid = {$apid}";
+	    	$this->sqlQuery = "SELECT ";
+			$this->sqlQuery .= ($adic == true ? "mp.adic AS modid" : "mp.modid");
+			$this->sqlQuery .= " FROM modalidades_pessoas mp					    	
+						    	WHERE mp.apid = {$apid} ";
+			$this->sqlQuery .= ($adic == true ? "" : "AND mp.adic = 0");
 	    	$this->fExecuteSql($this->sqlQuery);
 	    	$this->retRecords = $this->fShowRecords();
 	    	return $this->retRecords;
@@ -1393,14 +1783,18 @@ class queries extends mysqlconn {
      * @author    Daniel Triboni
      * @return	 array
      */
-    public function fQueryCurrentPersonModalities($apid){
+    public function fQueryCurrentPersonModalities($apid, $adic = false){
     	$this->sqlQuery = "SELECT
     						m.modid,
-    						UPPER(m.modalidade) AS modalidade, m.descricao, m.tipo							    	
+    						m.modalidade AS modalidade_adic,
+    						UPPER(m.modalidade) AS modalidade, 
+    						m.descricao, 
+    						m.tipo							    	
 				    	FROM modalidades_pessoas mp
 				    	INNER JOIN modalidades m ON m.modid = mp.modid				    	
 				    	WHERE mp.ativo = 1
-				    	AND m.ativo = 1				    					    
+				    	AND m.ativo = 1		
+				    	AND mp.adic ".($adic == false ? "= 0" : " <> 0")." 
 				    	AND mp.apid = {$apid}
 				    	GROUP BY m.modalidade
 				    	ORDER BY m.ordem ASC";
