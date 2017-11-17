@@ -1328,11 +1328,11 @@ class queries extends mysqlconn {
 								ap.*,
 								p.*,
 								(SELECT 
-									SUM(t.score)
+									CASE WHEN t.score IS NULL THEN 0 ELSE SUM(t.score) END
 								FROM testemunhos t
 								WHERE t.pesid = p.pesid) AS sumscore,
 								(SELECT 
-									COUNT(1)
+									CASE WHEN t.score IS NULL THEN 1 ELSE COUNT(1) END
 								FROM testemunhos t
 								WHERE t.pesid = p.pesid) AS average,
 								(SELECT 

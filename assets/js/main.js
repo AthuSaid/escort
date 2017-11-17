@@ -240,7 +240,7 @@ jQuery(document).ready(function ($) {
 
 
 function removeImg(hash) {
-	if (confirm('Deseja remover esta foto?'))
+	if (confirm('Deseja remover esta midia?'))
 	{
 		$.ajax({
             url: $urlProj + "_actions/photo.php",
