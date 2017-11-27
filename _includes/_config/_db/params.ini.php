@@ -8,7 +8,7 @@
 /* Site em Manutencao */
 define("SIS_MANUTENCAO", false);
 /* Site Inauguracao */
-define("SIS_INAUGURACAO", '2017-11-22 19:57:20');
+define("SIS_INAUGURACAO", '2017-12-01 00:00:00');
 /* Nome do Proprietario */
 define("SIS_TITULO", "Libidinous Club");
 /* Descricao Meta Description */

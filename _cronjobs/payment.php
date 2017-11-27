@@ -23,7 +23,7 @@ $query = new queries();
 
 $func = new functions();
 
-$email = new email;
+$email = new email();
 
 $autoloadFuncs = spl_autoload_functions();
 

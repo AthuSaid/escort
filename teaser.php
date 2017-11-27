@@ -46,7 +46,7 @@
         <div class="culmn">
                    
             <!--Home Sections-->
-            <section id="hello" class="teaser-banner-<?php echo rand(1,2);?> bg-mega">
+            <section id="hello" class="teaser-banner-<?php echo rand(1,1);?> bg-mega">
                 <div class="overlay"></div>
                 <div class="container">
                     <div class="row">
