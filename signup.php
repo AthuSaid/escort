@@ -461,7 +461,7 @@
         <script src="<?php echo SIS_URL; ?>assets/js/slick.min.js"></script>
         <script src="<?php echo SIS_URL; ?>assets/js/jquery.collapse.js"></script>
         <script src="<?php echo SIS_URL; ?>assets/js/bootsnav.js"></script>
-        <script src="<?php echo SIS_URL; ?>assets/js/jquery.modal.min.js"</script>
+        <script src="<?php echo SIS_URL; ?>assets/js/jquery.modal.min.js"></script>
         <script src="<?php echo SIS_URL; ?>assets/js/masonry.min.js"></script>
         <script src="<?php echo SIS_URL; ?>assets/js/plugins.js"></script>
         <script src="<?php echo SIS_URL; ?>assets/js/select2.full.min.js"></script>
