@@ -246,7 +246,10 @@
                                     <h2><?php echo $retPerson[0]['apelido']; ?></h2>                                                                        
 						            <h6><div id="star-detalhe"></div></h6>                                    
                                     <h6>Nasci em <?php echo $retPerson[0]['naturalidade']; ?></h6>
-                                    <h5>Meu perfil foi visitado <strong><?php echo $retPerson[0]['visitascount']; ?></strong> vezes</h5>                                    
+                                    <?php if($retPerson[0]['visitascount'] > 0){ 
+                                    		$vezes = ($retPerson[0]['visitascount'] < 2 ? "visita" : "visitas"); ?>
+                                    	<h5 title="<?php echo number_format($retPerson[0]['visitascount'], 0, ",", ".").' '.$vezes; ?>">Meu perfil j&aacute; recebeu <strong><?php echo $functions->fStripNumbers($retPerson[0]['visitascount']); ?></strong> <?php echo $vezes; ?></h5>                                    
+                                    <?php } ?>
                                     <hr/>
                                     <!--p><?php //echo nl2br($retPerson[0]['descricao']); ?></p-->                                    
                                 </div>                               
@@ -478,7 +481,7 @@
 
 
             <!-- TESTEMUNHAS DE USUARIOS QUE JA CONHECERAM A PESSOA ################### -->
-            <?php echo $functions->fCreateUserTestimonials($retPerson[0]['pesid']); ?>
+            <?php echo $functions->fCreateUserTestimonials($retPerson[0]['pesid'], $retPerson[0]['url'], $functions->fReduceName($retPerson[0]['apelido'])); ?>
 
 
             <!--Gallery Section-->
@@ -522,7 +525,7 @@
 
         <!-- JS includes -->
         <script>var $urlProj = '<?php echo SIS_URL; ?>';
-		        var cropperFileUpload;
+		        var cropperFileUpload;		        
         </script>
         <script src="<?php echo SIS_URL; ?>assets/js/vendor/jquery-1.11.2.min.js"></script>
         <script type="text/javascript" src="<?php echo SIS_URL; ?>assets/webcam/jquery.webcam.as3.js"></script>
@@ -534,6 +537,7 @@
 	        <script src="<?php echo SIS_URL; ?>assets/js/chat.js"></script>
         <?php } ?>        
         <script src="<?php echo SIS_URL; ?>assets/js/vendor/bootstrap.min.js"></script>
+        <script type="text/javascript">$cc = '<?php echo $retPerson[0]['apelido']; ?><br>#<?php echo strtolower(str_replace(' ', '', $retPerson[0]['titulo']).'no'.SIS_TITULO); ?>';</script>
         <script src="<?php echo SIS_URL; ?>assets/js/isotope.min.js"></script>
         <script src="<?php echo SIS_URL; ?>assets/js/jquery.magnific-popup.js"></script>
         <script src="<?php echo SIS_URL; ?>assets/js/jquery.easing.1.3.js"></script>
@@ -561,7 +565,7 @@
         <script type="text/javascript">
         	<?php echo $functions->fGetPersonModalitiesBalloonTip($retPerson[0]['apid'], $retPerson[0]['sexo']); ?>            
 		</script>         
-        <script>
+        <script>        		
                 jQuery().ready(function($){
                     $.fn.raty.defaults.path = '<?php echo SIS_URL;?>assets/images/stars/';
                     $('#star-detalhe').raty({

@@ -108,9 +108,9 @@
                             <div class="about_text">
                                 <h1 class="text-white text-uppercase">Seus Depoimentos</h1>
                                 <ol class="breadcrumb">
-                                    <li><a href="<?php echo SIS_URL; ?>">Home</a></li>
-                                    <li><a href="<?php echo SIS_URL; ?>dashboard">Dashboard</a></li>
-                                    <li class="active"><a href="<?php echo SIS_URL; ?>testimonial">Seus Depoimentos</a></li>
+                                    <li><a href="<?php echo SIS_URL; ?>"><?php echo SIS_TITULO; ?></a></li>
+                                    <li><a href="<?php echo SIS_URL; ?>dashboard">minha conta</a></li>
+                                    <li class="active"><a href="<?php echo SIS_URL; ?>testimonial">seus depoimentos</a></li>
                                 </ol>
                             </div>
                         </div>
@@ -152,9 +152,7 @@
                                                     <div class="help-block with-errors"></div>
                                                 </div> 
                                             </div>
-                                         </div> 
-                                         
-                                         <hr/>                        
+                                         </div>                        
                                          
                                          <?php 
                                          		if ($personID != '0' && !$_SESSION['sUserLogged'])
@@ -163,8 +161,10 @@
                                          		}
                                            ?>
                                               
-                                         <?php if ($_SESSION['sUserLogged']){ ?>                           	  
-	                                         <h4><i class="fa fa-comment"></i> Depoimento para <?php echo $retPerson[0]['apelido'];?></h4>
+                                         <?php if ($_SESSION['sUserLogged']){ ?>   
+                                         	
+                                         	<hr/>                        	  
+	                                         <h4><i class="fa fa-comment"></i> Depoimento <?php echo ($retPerson[0]['apelido'] != '' ? 'para '.$retPerson[0]['apelido'] : SIS_TITULO);?></h4>
 	                                         <div class="row">                                         	                                     
 		                                            <div class="col-sm-12">                                                                                          
 		                                                <div class="form-group">
@@ -180,9 +180,17 @@
 		                                                    <div class="help-block with-errors descricao"></div>
 		                                                </div>	                                                
 		                                            </div>	   		                                            	                                               
-	                                         </div> 	                                                                               
+	                                         </div> 
 	                                         <div class="row">                                           	
 	                                            <div class="col-sm-12 direita">
+	                                            	<div class="form-group">
+		                                                <label>Sua avalia&ccedil;&atilde;o <?php echo ($retPerson[0]['apelido'] != '' ? 'de '.$functions->fReduceName($retPerson[0]['apelido']) : '');?></label>
+	                                            		<div class="star" id="star"></div>
+	                                            	</div>                                                
+	                                            </div>                                                                                        
+	                                         </div>	                                                                               
+	                                         <div class="row">                                           	
+	                                            <div class="col-sm-12 direita">	                                            	
 	                                            	<input type="hidden" name="pesid" id="pesid" value="<?php echo $personID; ?>">  
 	                                            	<a href="<?php echo SIS_URL; ?>dashboard" class="btn btn-warning m-top-30">Cancelar <i class="fa fa-remove"></i></a>                                              
 	                                                <button type="submit" class="btn btn-primary m-top-30">Salvar <i class="fa fa-check"></i></button>                                                
@@ -224,30 +232,16 @@
         <script src="<?php echo SIS_URL; ?>assets/js/bootsnav.js"></script>
         <script src="<?php echo SIS_URL; ?>assets/js/masonry.min.js"></script>
         <script src="<?php echo SIS_URL; ?>assets/js/plugins.js"></script>
-        <script src="<?php echo SIS_URL; ?>assets/js/select2.full.min.js"></script>
-        <script src="<?php echo SIS_URL; ?>assets/js/vendor/jquery.balloon.min.js"></script>
+        <script src="<?php echo SIS_URL; ?>assets/js/select2.full.min.js"></script>      
         <script src="<?php echo SIS_URL; ?>assets/js/jquery.mask.js"></script>        
         <script src="<?php echo SIS_URL; ?>assets/js/jquery.ui.js"></script>
         <script src="<?php echo SIS_URL; ?>assets/js/main.js"></script>
         <script src="<?php echo SIS_URL; ?>assets/js/counter.js"></script> 				
         <script src="<?php echo SIS_URL; ?>assets/js/validator.js"></script>
-        <script src="<?php echo SIS_URL; ?>assets/js/form.js"></script>
-        <script src="<?php echo SIS_URL; ?>assets/js/balloon.js"></script>
-        <script src="<?php echo SIS_URL; ?>assets/js/hotels.js"></script>
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB0EgJjuN8-iBhgg8EMg2gjip6jRQSoTXs&libraries=places&callback=initMap" async defer></script>
+        <script src="<?php echo SIS_URL; ?>assets/js/form.js"></script>        
+        <script src="<?php echo SIS_URL; ?>assets/js/jquery.raty.min.js"></script>
         <script type="text/javascript">
-			$(".multiple-select").select2({
-				placeholder: "Informe ao menos um item!"
-			});
 			
-			$(".modalidade").select2({
-				placeholder: "Informe ao menos uma modalidade que realiza!"
-			});
-
-			$(".localidade").select2({
-				placeholder: "Informe ao menos uma localidade onde atende!"
-			});
-
 			$('.active-ad').on('click', function(){	
 				if (!$(this).is(':checked')) {
 					if (confirm('Desmarcando esta op\u00e7\u00e3o, seu an\u00fancio n\u00e3o aparecer\u00e1 no portal, at\u00e9 que o mesmo seja ativado novamente. Deseja mesmo desativar?')) {
@@ -258,7 +252,23 @@
 				}		
 			});
 			
-			$('.money').mask("#.##0", {reverse: true});
+			
+            jQuery().ready(function($){
+                $.fn.raty.defaults.path = '<?php echo SIS_URL;?>assets/images/stars';
+                $('.star').raty({
+                  <?php if (isset($_SESSION['sPersonID'])){ ?>
+                  starHalf : 'star-half-<?php echo $_SESSION['sPersonGender'];?>.png',
+                  starOff  : 'star-off-<?php echo $_SESSION['sPersonGender'];?>.png',
+                  starOn   : 'star-on-<?php echo $_SESSION['sPersonGender'];?>.png',                  
+                  <?php }else{ ?>
+                  starHalf : 'star-half-big-<?php echo ($retPerson[0]['sexo'] != '' ? $retPerson[0]['sexo'] : 'm');?>.png',
+                  starOff  : 'star-off-big-<?php echo ($retPerson[0]['sexo'] != '' ? $retPerson[0]['sexo'] : 'm');?>.png',
+                  starOn   : 'star-on-big-<?php echo ($retPerson[0]['sexo'] != '' ? $retPerson[0]['sexo'] : 'm');?>.png',
+				  <?php } ?>
+                  width: 140
+                });
+            });
+        
 
 			$('.cancel').on('click', function(){
 				if(confirm('Todas as altera\u00e7oes n\u00e3o gravadas ser\u00e3o perdidas! Deseja continuar?'))

@@ -17,7 +17,7 @@ function fSetCookieLocation() {
 	var cUserDefinedLocation = fGetCookie("cUserDefinedLocation");
     if (cUserDefinedLocation == "") {        
 	    var d = new Date();
-	    d.setTime(d.getTime() + (10*60*1000));
+	    d.setTime(d.getTime() + (60*1000));
 	    var expires = "expires="+ d.toUTCString();
 	    var cvalue = latitude + "_" + longitude;
 	    document.cookie = "cUserDefinedLocation=" + cvalue + ";" + expires + ";path=/";

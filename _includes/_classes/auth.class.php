@@ -58,7 +58,8 @@ class auth extends functions {
 				$_SESSION['sUserLogged'] = true;
 				$_SESSION['sUserID'] = $ret[0]['usuid'];						
                 $_SESSION['sUserName'] = $ret[0]['nome'];                
-                $_SESSION['sUserEmail'] = $ret[0]['email'];   
+                $_SESSION['sUserEmail'] = $ret[0]['email'];
+                $_SESSION['sUserGender'] = $ret[0]['sexo'];
                 $_SESSION['sUserAka'] = $ret[0]['apelido'];
                 $_SESSION['sUserLastLogon'] = $ret[0]['ultimoacesso'];                
                 $_SESSION['sUserSessionTime'] = time();
@@ -225,10 +226,11 @@ class auth extends functions {
 			$_SESSION['sPersonLogged'] = false;
 		}else{
 			$_SESSION['sSessionTime'] = time();
+			return true;
 		}
 		if($_SESSION['sPersonLogged'] == false){
 			$this->fLogoutPerson();
-			return 2;
+			return false;
 		}
 	}
 

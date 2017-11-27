@@ -21,6 +21,8 @@ include_once $_SERVER['DOCUMENT_ROOT']."/_includes/_config/config.ini.php";
 
 $query = new queries();
 
+$func = new functions();
+
 $email = new email;
 
 $autoloadFuncs = spl_autoload_functions();
@@ -48,15 +50,11 @@ spl_autoload_register(function ($class_name) {
 	 $credentials = PagSeguroConfig::getAccountCredentials(); 
 	 
 	 $response = PagSeguroTransactionSearchService::searchByDate($credentials, 1, 1000, $dateIni."T00:00", $dateEnd."T".$timeEnd);
-	
-	if (is_object($response) || is_object($response->transactions))
-	{	 	
+	 
+	 if (is_object($response))
+	 {	 	
 	 	foreach ($response->transactions as $transactions)
 	 	{	 		
-	 		/*print '<pre>';
-	 		print_r($transactions);
-	 		die;*/
-	 		
 	 		$retPlan = $query->getAcquiredPlans($transactions->code);
 	 	
 	 		if ($retPlan[0]['psid'] == $transactions->code)
@@ -116,7 +114,7 @@ spl_autoload_register(function ($class_name) {
 	 							}
 	 							
 	 							$message = '<html><img src="'.SIS_URL.'assets/images/logos/libidinous-transp-black.png"><br><br>
-									Ol&aacute; '.$functions->fReduceName($retPlan[0]['apelido']).',<br><br>
+									Ol&aacute; '.$func->fReduceName($retPlan[0]['apelido']).',<br><br>
 									O pagamento do seu Plano '.$retPlan[0]['plano'].' no '.SIS_TITULO.' foi confirmado com sucesso!<br>
 										<strong>Plano '.$retPlan[0]['plano'].'</strong> no valor de
 										<strong>R$ '.number_format($transactions->grossAmount, 2, ",", ".").'</strong> com vencimento em

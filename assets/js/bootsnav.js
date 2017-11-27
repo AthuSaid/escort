@@ -4,10 +4,11 @@
     var bootsnav = {
         initialize: function() {
             this.event();
-            this.hoverDropdown();
+            //this.hoverDropdown();
             this.navbarSticky();
             this.navbarScrollspy();
             $(".dropdown-menu").removeClass("shadow-text");
+            $('.link-comment').removeClass('shadow-text');
         },
         event : function(){
             
@@ -71,6 +72,7 @@
                         megaMenu = $("ul.megamenu-content", this);
                     dropDown.closest("li").addClass("dropdown");
                     megaMenu.closest("li").addClass("megamenu-fw");
+                    $(".dropdown-menu").removeClass("shadow-text");
                 });
             }
             
@@ -103,8 +105,10 @@
                 $("ul.nav.navbar-nav").prepend("<li class='close-full-menu'><a href='#'><i class='fa fa-times'></i></a></li>");
             }else if( getNav.hasClass("navbar-mobile")){
                 getNav.removeClass("no-full");
+                $(".dropdown-menu").removeClass("shadow-text");
             }else{
                 getNav.addClass("no-full");
+                $(".dropdown-menu").removeClass("shadow-text");
             }
                 
             // ------------------------------------------------------------------------------ //
@@ -126,6 +130,8 @@
                 $(".dropdown").removeClass("shadow-text");
                 $(".search").removeClass("shadow-text");
                 $(".dropdown-menu").removeClass("shadow-text");
+                $('.notify-html').removeClass('shadow-text');
+                $('.link-comment').removeClass('shadow-text');
                 
             }
             
@@ -141,12 +147,16 @@
                         $(".dropdown").removeClass("shadow-text");
                         $(".search").removeClass("shadow-text");
                         $(".dropdown-menu").removeClass("shadow-text");
+                        $('.notify-html').removeClass('shadow-text');
+                        $('.link-comment').removeClass('shadow-text');
                     }else {
                         $(".navbar-fixed").addClass("no-background");
                         $(".nav").addClass("shadow-text");
                         $(".dropdown").addClass("shadow-text");
                         $(".search").addClass("shadow-text");
                         $(".dropdown-menu").removeClass("shadow-text");
+                        $('.notify-html').removeClass('shadow-text');
+                        $('.link-comment').removeClass('shadow-text');
                     }
                 });
             }
@@ -159,12 +169,16 @@
                 $(".dropdown").removeClass("shadow-text");
                 $(".search").removeClass("shadow-text");
                 $(".dropdown-menu").removeClass("shadow-text");
+                $('.link-comment').removeClass('shadow-text');
+                $('.notify-html').removeClass('shadow-text');
                 $(window).on("scroll", function(){
                     var scrollTop = $(window).scrollTop();
                     if(scrollTop >34){
-                        $(".navbar-fixed").removeClass("navbar-transparent");                        
+                        $(".navbar-fixed").removeClass("navbar-transparent"); 
+                        $(".dropdown-menu").removeClass("shadow-text");
                     }else {
-                        $(".navbar-fixed").addClass("navbar-transparent");                       
+                        $(".navbar-fixed").addClass("navbar-transparent"); 
+                        $(".dropdown-menu").removeClass("shadow-text");
                     }
                 });
             }
@@ -237,6 +251,8 @@
                 $(".navbar-collapse").removeClass("animated");
                 $(".nav").removeClass("shadow-text");
                 $(".dropdown-menu").removeClass("shadow-text");
+                $('.notify-html').removeClass('shadow-text');
+                $('.link-comment').removeClass('shadow-text');
                 
                 // Enable click event
                 $("nav.navbar.bootsnav ul.nav").each(function(){
@@ -288,6 +304,7 @@
                     $(".col-menu", this).removeClass("on");
                     $(".col-menu .content", this).stop().fadeOut();
                     $(".col-menu .content", this).removeClass(getIn);
+                    $(".dropdown-menu").removeClass("shadow-text");
                 }
                 
                 // Hidden om mouse leave
@@ -359,14 +376,15 @@
                             });
                         });
                         
-                       /* $(this).on("mouseleave", function(){
+                        //descomentado 
+                        $(this).on("mouseleave", function(){
                             $(".dropdown-menu", this).stop().removeClass(getIn);
                             $(".dropdown-menu", this).stop().addClass(getOut).fadeOut();
                             $(".col-menu", this).find(".content").stop().fadeOut().removeClass(getIn);
                             $(".col-menu", this).removeClass("on");
                             $("li.dropdown", this).removeClass("on");
                             return false;
-                        });*/
+                        });
                     }); 
                 }else{
                     // Hover effect Default Menu
@@ -390,7 +408,7 @@
                             return false;
                         });
 
-                        /*$("li.dropdown", this).on("mouseleave", function(){
+                        $("li.dropdown", this).on("mouseleave", function(){
                             $(".dropdown-menu", this).eq(0).removeClass(getIn);
                             $(".dropdown-menu", this).eq(0).stop().fadeOut().addClass(getOut);
                             $(this).removeClass("on");
@@ -401,8 +419,9 @@
                             $(".dropdown-menu", this).eq(0).stop().fadeOut().addClass(getOut);
                             $("li.dropdown", this).removeClass("on");
                             return false;
-                        });*/
+                        });
                     });
+                    $(".dropdown-menu").removeClass("shadow-text");
                 }
                 
                 // ------------------------------------------------------------------------------ //

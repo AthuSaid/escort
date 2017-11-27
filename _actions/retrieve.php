@@ -7,20 +7,47 @@ $auth = new auth();
 
 $_REQUEST = $auth->fSanitizeRequest($_POST);
 
-if ($auth->fUpdatePersonCredentials($_REQUEST['email'], $_REQUEST['senha']))
+switch ($_REQUEST['type'])
 {
-	if ($auth->fAuthenticatePerson($_REQUEST['email'], $_REQUEST['senha']))
-	{		
-		$retJson = json_encode(array("ret" => true, "msg" => 'Sua senha foi alterada com sucesso!', "url" => null));
+	case 1:
 		
-	}else{
+		if ($auth->fUpdatePersonCredentials($_REQUEST['email'], $_REQUEST['senha']))
+		{
+			if ($auth->fAuthenticatePerson($_REQUEST['email'], $_REQUEST['senha']))
+			{
+				$retJson = json_encode(array("ret" => true, "msg" => 'Sua senha foi alterada com sucesso!', "url" => 1));
+		
+			}else{
+		
+				$retJson = json_encode(array("ret" => false, "msg" => 'Credenciais de acesso incorretas. Tente novamente!'));
+			}
+		
+		}else{
+		
+			$retJson = json_encode(array("ret" => false, "msg" => 'Falha ao alterar sua senha. Tente novamente mais tarde!'));
+		}
+		
+	break;
 	
-		$retJson = json_encode(array("ret" => false, "msg" => 'Credenciais de acesso incorretas. Tente novamente!'));
-	}
-	
-}else{
-	
-	$retJson = json_encode(array("ret" => false, "msg" => 'Falha ao alterar sua senha. Tente novamente mais tarde!'));
+	case 2:
+		
+		if ($auth->fUpdateUserCredentials($_REQUEST['email'], $_REQUEST['senha']))
+		{
+			if ($auth->fAuthenticateUser($_REQUEST['email'], $_REQUEST['senha']))
+			{
+				$retJson = json_encode(array("ret" => true, "msg" => 'Sua senha foi alterada com sucesso!', "url" => 2));
+		
+			}else{
+		
+				$retJson = json_encode(array("ret" => false, "msg" => 'Credenciais de acesso incorretas. Tente novamente!'));
+			}
+		
+		}else{
+		
+			$retJson = json_encode(array("ret" => false, "msg" => 'Falha ao alterar sua senha. Tente novamente mais tarde!'));
+		}
+		
+	break;	
 }
 
 echo $retJson;

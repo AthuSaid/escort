@@ -5,7 +5,7 @@
     
     $functions = new functions();  
      
-    if ($_SESSION['sPersonLogged'])
+    if ($_SESSION['sPersonLogged']) //$functions->fCheckIsPersonLogged()
     {
     	if ($_SESSION['sPersonUrl'])
     	{
@@ -105,8 +105,8 @@
                             <div class="about_text">
                                 <h1 class="text-white text-uppercase shadow-text">Minha Conta</h1>
                                 <ol class="breadcrumb shadow-text">
-                                    <li><a href="<?php echo SIS_URL; ?>">Home</a></li>
-                                    <li class="active"><a href="<?php echo SIS_URL; ?>dashboard">Minha Conta</a></li>
+                                    <li><a href="<?php echo SIS_URL; ?>"><?php echo SIS_TITULO; ?></a></li>
+                                    <li class="active"><a href="<?php echo SIS_URL; ?>dashboard">minha conta</a></li>
                                 </ol>
                             </div>
                         </div>
@@ -250,5 +250,8 @@
         <script src="<?php echo SIS_URL; ?>assets/js/counter.js"></script>
         <script src="<?php echo SIS_URL; ?>assets/js/validator.js"></script>
         <script src="<?php echo SIS_URL; ?>assets/js/form.js"></script>
+        <?php if ($_SESSION['sPersonLogged']){ ?>
+        	<script src="<?php echo SIS_URL; ?>assets/js/check.js"></script>
+        <?php } ?>
     </body>
 </html>

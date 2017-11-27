@@ -10,9 +10,10 @@ $retBanner = $functions->fQueryCoverModels();
 if (count($retBanner) > 0)
 {
 	for ($x = 0; $x < count($retBanner); $x++)
-	{		
+	{	
+		$imgCover = ($retBanner[$x]['cover'] == '0' ? SIS_URL.'assets/img/no-cover-'.$retBanner[$x]['sexo'].'.jpg' : SIS_URL.'images/persons/'.$retBanner[$x]['person'].'/'.$retBanner[$x]['cover']);
 		echo '.style-'.$retBanner[$x]['person'].$retBanner[$x]['ad'].'{
-					background: url('.SIS_URL.'images/persons/'.$retBanner[$x]['person'].'/'.$retBanner[$x]['cover'].') no-repeat top center; height:649px;
+					background: url('.$imgCover.') no-repeat top center; height:649px;
 				} ';				
 	}
 }

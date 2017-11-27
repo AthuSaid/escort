@@ -13,10 +13,12 @@ function fCountHomeResume(){
                 $('.mo').html("<em>" + data.mo + "</em>");
                 $('.pr').html("<em>" + data.pr + "</em>");
                 $('.ac').html("<em>" + data.ac + "</em>");
-                $('.statistic-counter').counterUp({
-                    delay: 10,
-                    time: 2000
-                });
+                if (data.pc < 1999 && data.mo < 1999 && data.pr < 1999 && data.ac < 1999){
+	                $('.statistic-counter').counterUp({
+	                    delay: 10,
+	                    time: 2000
+	                });
+            	}
             }
         }, "json"
     );       

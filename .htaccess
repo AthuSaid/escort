@@ -8,9 +8,11 @@ RewriteRule ^(.*)$ http://%1%{REQUEST_URI} [R=301,QSA,NC,L]
 
 RewriteRule ^not-found$ 404.php
 
-ErrorDocument 404 /persons
+ErrorDocument 404 /home
 
 RewriteRule ^home$ index.php
+
+RewriteRule ^offline$ teaser.php
 
 RewriteRule ^signin$ signin.php
 
@@ -48,7 +50,7 @@ RewriteRule ^search$ search.php
 
 RewriteRule ^person/([A-Za-z0-9_\-]+)/([A-Za-z0-9_\-]+)$ person-detail.php?person=$1&ad=$2 [NC,L]
 
-RewriteRule ^verify/(.*)$ verify.php?hash=$1 [B]
+RewriteRule ^verify/([0-9_\-]+)/(.*)$ verify.php?type=$1&hash=$2 [B]
 
 RewriteRule ^privacy$ privacy.php
 

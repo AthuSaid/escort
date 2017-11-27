@@ -89,10 +89,10 @@
 	                    <div class="row">
 	                        <div class="main_home text-center">
 	                            <div class="about_text">
-	                                <h1 class="text-white text-uppercase shadow-text">Cadastre-se</h1>
+	                                <h1 class="text-white text-uppercase shadow-text">Divulgue-se</h1>
 	                                <ol class="breadcrumb shadow-text">
-	                                    <li><a href="<?php echo SIS_URL; ?>">Home</a></li>
-	                                    <li class="active"><a href="<?php echo SIS_URL; ?>signup">Cadastre-se</a></li>
+	                                    <li><a href="<?php echo SIS_URL; ?>"><?php echo SIS_TITULO; ?></a></li>
+	                                    <li class="active"><a href="<?php echo SIS_URL; ?>signup">divulgue-se</a></li>
 	                                </ol>
 	                            </div>
 	                        </div>

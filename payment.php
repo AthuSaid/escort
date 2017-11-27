@@ -39,6 +39,8 @@
         <link rel="stylesheet" href="<?php echo SIS_URL; ?>assets/css/bootsnav.css">        
         <link rel="stylesheet" href="<?php echo SIS_URL; ?>assets/css/jquery.ui.css" type="text/css" media="screen" />
         <link rel="stylesheet" href="<?php echo SIS_URL; ?>assets/css/select2.css" type="text/css" media="screen" />
+        <link rel="stylesheet" href="<?php echo SIS_URL; ?>assets/css/jquery.ui.css" type="text/css" media="screen" />
+        
         <!--For Plugins external css-->
         <!--<link rel="stylesheet" href="assets/css/plugins.css" />-->
         <!--Theme custom css -->
@@ -88,11 +90,11 @@
 	                    <div class="row">
 	                        <div class="main_home text-center">
 	                            <div class="about_text">
-	                                <h1 class="text-white text-uppercase shadow-text">Planos de Contrata&ccedil;&atilde;o</h1>
+	                                <h1 class="text-white text-uppercase shadow-text">Formas de Pagamento</h1>
 	                                <ol class="breadcrumb shadow-text">
-	                                    <li><a href="<?php echo SIS_URL; ?>">Home</a></li>
-	                                    <li><a href="<?php echo SIS_URL; ?>dashboard">Minha Conta</a></li>
-	                                    <li class="active"><a href="<?php echo SIS_URL; ?>payment">Planos de Contrata&ccedil;&atilde;o</a></li>
+	                                    <li><a href="<?php echo SIS_URL; ?>"><?php echo SIS_TITULO; ?></a></li>
+	                                    <li><a href="<?php echo SIS_URL; ?>dashboard">minha conta</a></li>
+	                                    <li class="active"><a href="<?php echo SIS_URL; ?>payment">formas de pagamento</a></li>
 	                                </ol>
 	                            </div>
 	                        </div>
@@ -205,7 +207,7 @@
                             <div class="col-md-6 div-boleto">
                             <div class="main_blog_details">
                                 <div class="live_chate">                                
-                                	<form method="post" role="form" name="form-signin" id="form-signin" data-toggle="validator">                                	                                                                     	
+                                	<form method="post" role="form" name="form-boleto" id="form-boleto" data-toggle="validator">                                	                                                                     	
                                     	<div class="row">  
                                     	   <h3><i class="fa fa-barcode"></i> Boleto Banc&aacute;rio</h3>                                  	 
                                            <div class="col-sm-12">                                             		                                                                                          
@@ -241,7 +243,7 @@
                             <div class="col-md-6 div-installments hidden">
                               <div class="main_blog_details">
                                 <div class="live_chate">                                
-                                	<form method="post" role="form" name="form-signin" id="form-signin" data-toggle="validator">                                	                                                                     	
+                                	<form method="post" role="form" name="form-confirm" id="form-confirm" data-toggle="validator">                                	                                                                     	
                                     	<div class="row">  
                                     	   <h3><i class="fa fa-credit-card"></i> Parcelamento</h3>                                  	 
                                            <div class="col-sm-12">                                             		                                                                                          

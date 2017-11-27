@@ -101,11 +101,11 @@
                     <div class="row">
                         <div class="main_home text-center">
                             <div class="about_text">
-                                <h1 class="text-white text-uppercase text-shadow"><?php echo ($_SESSION['sPersonLogged'] ? "Meu Cadastro" : "Cadastre-se");?></h1>
+                                <h1 class="text-white text-uppercase text-shadow"><?php echo ($_SESSION['sPersonLogged'] ? "Meu Cadastro" : "Divulgue-se");?></h1>
                                 <ol class="breadcrumb">
-                                    <li><a href="<?php echo SIS_URL; ?>">Home</a></li>
-                                    <li><a href="<?php echo SIS_URL; ?>dashboard">Minha Conta</a></li>
-                                    <li class="active"><a href="<?php echo SIS_URL; ?><?php echo ($_SESSION['sPersonLogged'] ? "dashboard" : "signup");?>">Meu Cadastro</a></li>
+                                    <li><a href="<?php echo SIS_URL; ?>"><?php echo SIS_TITULO; ?></a></li>
+                                    <li><a href="<?php echo SIS_URL; ?>dashboard">minha conta</a></li>
+                                    <li class="active"><a href="<?php echo SIS_URL; ?><?php echo ($_SESSION['sPersonLogged'] ? "dashboard" : "signup");?>"><?php echo ($_SESSION['sPersonLogged'] ? "Meu Cadastro" : "Divulgue-se");?></a></li>
                                 </ol>
                             </div>
                         </div>
@@ -118,6 +118,7 @@
             <section id="blog_details" class="blog_details roomy-100">
                 <div class="container">
                     <div class="row">
+                                          
                         <div class="col-md-12">
                             <div class="main_blog_details">
                                 <div class="live_chate">

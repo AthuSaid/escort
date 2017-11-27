@@ -9,7 +9,7 @@ $_REQUEST = $functions->fSanitizeRequest($_GET);
 
 if (isset($_REQUEST['apelido']))
 {
-	if ($functions->fGetAka($_REQUEST['apelido']))
+	if ($functions->fGetAka($_REQUEST['apelido']) && filter_var($_REQUEST['apelido'], FILTER_VALIDATE_EMAIL) === false)
 		http_response_code(200);
 	else
 		http_response_code(500);

@@ -942,7 +942,7 @@ Nav Menu style
 
 .navbar-brand {
     height: 80px;
-    padding: 30px 15px;
+    padding: 20px 10px;
 }
 
 .navbar-nav > li > a {
@@ -974,6 +974,8 @@ Nav Menu style
 .model-banner,
 .contact-banner,
 .about-banner,
+.teaser-banner-m,
+.teaser-banner-f,
 .blog-banner,
 .home{
     background-size: cover;
@@ -991,6 +993,12 @@ Nav Menu style
 }
 .about-banner{
     background: url(../img/privacy.png) no-repeat bottom center; height:650px;
+}
+.teaser-banner-1{
+    background: url(../img/teaser-f.jpg) no-repeat bottom center; height:650px;
+}
+.teaser-banner-2{
+    background: url(../img/teaser-m.jpg) no-repeat bottom center; height:650px;
 }
 .dash-banner-F1{
     background: url(../img/dashboard-f1.jpg) no-repeat bottom center; height:650px;
@@ -1611,6 +1619,7 @@ Footer Section style
     list-style: none;
     background-color: transparent;
     border-radius: 0px;
+    text-transform: lowercase;
 }
 .breadcrumb li a{
     font-size:16px;
@@ -2052,6 +2061,46 @@ Blog Details Page
 	text-shadow: 2px 1px #000;
 }
 
+.logoVideo {
+	z-index:2;
+	position:absolute;
+	height:32px;
+	display:block;
+	top: 20px;
+	
+	min-width: 50px;	
+	background: url(../images/logos/ltv.png) no-repeat center;
+	 -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none; 
+}
+
+ .mfp-iframe-scaler .logoVideo{
+	left: 132px;
+}
+
+.txtLogoVideo  {
+	z-index:2;
+	position:absolute;
+	height:32px;
+	display:block;
+	top: 19px;
+	
+	min-width: 50px;
+	font-family: 'Roboto Condensed', tahoma, sans-serif;;
+	color: #ccc;
+	text-shadow: 1px 1px #222;
+	font-weight: bold;
+	font-size: 14px;
+	line-height: 17px;
+	 -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none; 
+}
+ .mfp-iframe-scaler .txtLogoVideo{
+	left: 188px;
+}
+
 .imgPhotoVideoCounterLeft{
 	z-index:2;
 	position:absolute;
@@ -2090,6 +2139,25 @@ Blog Details Page
 	padding-left:5px;
 }
 
+.imgKMLeft{
+	z-index:2;
+	position:absolute;
+	height:19px;
+	display:block;
+	/* top: -31px; */
+	top: 0px;
+	left: 0px;
+	min-width: 20px;
+	text-align: center;
+	font-family: 'Roboto Condensed', 'Montserrat', sans-serif;
+	color: #fff;
+	font-weight: bold;
+	font-size: 14px;
+	background-color:rgba(0,0,0,0.35); 
+	padding-right:5px;
+	padding-left:5px;
+}
+
 .imgChatLeftPad{
 	z-index:2;
 	position:absolute;
@@ -2100,7 +2168,7 @@ Blog Details Page
 	left: 15px;
 	min-width: 20px;
 	text-align: center;
-	font-family: sans-serif;
+	font-family: 'Montserrat', sans-serif;
 	color: #00ff00;
 	font-weight: bold;
 	font-size: 14px;
@@ -2119,7 +2187,7 @@ Blog Details Page
 	right: 0px;
 	min-width: 50px;
 	text-align: center;
-	font-family: sans-serif;
+	font-family: 'Roboto Condensed', 'Montserrat', sans-serif;
 	color: #fff;
 	font-weight: bold;
 	font-size: 14px;
@@ -2138,7 +2206,7 @@ Blog Details Page
 	right: 0px;
 	min-width: 50px;
 	text-align: center;
-	font-family: sans-serif;
+	font-family: 'Roboto Condensed', 'Montserrat', sans-serif;
 	color: #00ff00;
 	font-weight: bold;
 	font-size: 14px;
@@ -2157,7 +2225,7 @@ Blog Details Page
 	right: 15px;
 	min-width: 50px;
 	text-align: center;
-	font-family: sans-serif;
+	font-family: 'Roboto Condensed', 'Montserrat', sans-serif;
 	color: #fff;
 	font-weight: bold;
 	font-size: 18px;
@@ -2176,7 +2244,7 @@ Blog Details Page
 	right: 3px;
 	min-width: 20px;
 	text-align: center;
-	font-family: sans-serif;
+	font-family: 'Montserrat', sans-serif;
 	color: #00ff00;
 	font-weight: bold;
 	font-size: 18px;
@@ -2195,7 +2263,7 @@ Blog Details Page
 	right: 25px;
 	min-width: 50px;
 	text-align: center;
-	font-family: 'Montserrat', sans-serif;
+	font-family: 'Roboto Condensed', 'Montserrat', sans-serif;
 	color: #fff;
 	cursor: pointer; 
 	font-size: 18px;
@@ -2210,7 +2278,7 @@ Blog Details Page
 	height:23px;
 	display:block;	
 	text-align: center;
-	font-family: 'Montserrat', sans-serif;
+	font-family: 'Roboto Condensed', 'Montserrat', sans-serif;
 	color: #fff;
 	cursor: pointer; 
 	font-size: 18px;	
@@ -2226,7 +2294,9 @@ Blog Details Page
     margin: auto;
     width: 50%;   
 }
-
+.redli {
+	color: #ff7d7d!important;
+}
 
 #mymap {
        height: 300px;

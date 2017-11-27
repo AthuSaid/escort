@@ -17,9 +17,9 @@
                             </div>
                             <div class="col-md-5 text-right sm-text-center sm-m-top-20">
                                 <ul class="list-inline">
-                                    <li><a href="https://www.facebook.com/libidinous/" target="_blank"><i class="fa fa-facebook"></i> Facebook</a></li>
-                                    <li><a href="https://www.twitter.com/libidinous/" target="_blank"><i class="fa fa-twitter"></i> Twitter</a></li>
-                                    <li><a href="https://www.instagram.com/libidinous/" target="_blank"><i class="fa fa-instagram"></i> Instagram</a></li>                                    
+                                    <li><a href="https://www.facebook.com/libidinousclub/" target="_blank"><i class="fa fa-facebook"></i> Facebook</a></li>
+                                    <li><a href="https://www.twitter.com/libidinousclub/" target="_blank"><i class="fa fa-twitter"></i> Twitter</a></li>
+                                    <li><a href="https://www.instagram.com/libidinousclub/" target="_blank"><i class="fa fa-instagram"></i> Instagram</a></li>                                    
                                 </ul>
                             </div>
                         </div>

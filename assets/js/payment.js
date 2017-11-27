@@ -150,6 +150,7 @@ $(".btn-pay").click(function(e) {
         	$("#loading").hide();
         },
     });
+
 });
 
 $(".btn-confirm").click(function(e) {

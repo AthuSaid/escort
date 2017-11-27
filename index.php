@@ -102,7 +102,7 @@
                         <div class="service_content_area">
                         	<div class="col-md-12">
                                 <div class="head_title text-left sm-text-center wow fadeInDown">
-                                    <h3>Seja <?php echo SIS_TITULO; ?>!</h3>
+                                    <h3>Seja Libidinous!</h3>
                                     <h5><em>Venha desfrutar de momentos relaxantes com acompanhantes e massagistas em <?php echo SIS_TITULO;?>!</em></h5>                                    
                                 </div>
                             </div>
@@ -263,6 +263,9 @@
         <script src="<?php echo SIS_URL; ?>assets/js/counter.js"></script> 
         <script src="<?php echo SIS_URL; ?>assets/js/cookie.js"></script>        
         <script src="<?php echo SIS_URL; ?>assets/js/validator.js"></script>
-        <script src="<?php echo SIS_URL; ?>assets/js/form.js"></script>                    
+        <script src="<?php echo SIS_URL; ?>assets/js/form.js"></script>
+        <?php if ($_SESSION['sPersonLogged']){ ?>
+        	<script src="<?php echo SIS_URL; ?>assets/js/check.js"></script>
+        <?php } ?>                    
     </body>
 </html>

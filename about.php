@@ -1,8 +1,8 @@
 <?php
 	require_once $_SERVER["DOCUMENT_ROOT"]."/_includes/_config/config.ini.php";
       	
-	//header('Location: '.SIS_URL.'home');
-    //exit;                      
+	header('Location: '.SIS_URL.'home');
+    exit;                      
 ?>
 <!doctype html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->

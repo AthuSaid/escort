@@ -59,7 +59,7 @@ if($_SESSION['sPersonLogged'] && isset($_SESSION['sPersonID']) && isset($_REQUES
 									  'subject' => SIS_TITULO.' - Anuncio Alterado',
 									  'message' => $message);
 					
-					//$email->fSendEmailToPerson($arrEmail);
+					$email->fSendEmailToPerson($arrEmail);
 					
 					$retJson = json_encode(array("ret" => true, "msg" => null, "url" => $_SESSION['sPersonUrl'], "title" => $_REQUEST['url']));
 				}else

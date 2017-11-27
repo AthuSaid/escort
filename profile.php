@@ -95,8 +95,8 @@
                             <div class="about_text">
                                 <h1 class="text-white text-uppercase shadow-text">Painel do Usu&aacute;rio</h1>
                                 <ol class="breadcrumb shadow-text">
-                                    <li><a href="<?php echo SIS_URL; ?>">Home</a></li>
-                                    <li class="active"><a href="<?php echo SIS_URL; ?>profile">Painel do Usu&aacute;rio</a></li>
+                                    <li><a href="<?php echo SIS_URL; ?>"><?php echo SIS_TITULO; ?></a></li>
+                                    <li class="active"><a href="<?php echo SIS_URL; ?>profile">painel do usu&aacute;rio</a></li>
                                 </ol>
                             </div>
                         </div>

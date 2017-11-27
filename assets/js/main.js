@@ -208,9 +208,9 @@ jQuery(document).ready(function ($) {
     
     
     $('.btn-remove').on('click', function(){  
-    	if (confirm('Deseja remover sua conta do site?\n\n' +
-    		'Concordando, seu perfil vai ser automaticamente removido do site.\n\n' + 
-    		'Caso deseje voltar a utilizar o site, basta efetuar login normalmente.')){
+    	if (confirm('Deseja remover sua conta do Libidinous?\n\n' +
+    		'Concordando, seu perfil sera automaticamente removido do site.\n\n' + 
+    		'Caso deseje voltar a utilizar o portal, basta efetuar login normalmente.')){
     		location.href = $urlProj + "remove";
     	}
     });
@@ -233,7 +233,7 @@ jQuery(document).ready(function ($) {
 	            cache: false        
 	        });
     	}
-    });
+    });        
     
 
 });

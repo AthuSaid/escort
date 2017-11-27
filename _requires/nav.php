@@ -129,11 +129,13 @@
                     <div class="attr-nav">
                         <ul>
                         
-	                        <li class="search shadow-text">
-                                <a href="#">
-                                    <i class="fa fa-search"></i>                                                                        
-                                </a>
-	                         </li>     
+	                        <?php if(!isset($_SESSION['sPersonLogged'])){ ?>
+		                        <li class="search shadow-text">
+	                                <a href="#">
+	                                    <i class="fa fa-search"></i>                                                                        
+	                                </a>
+		                         </li>     
+	                        <?php } ?>
 	                         
 	                         <?php if (!isset($_SESSION['sPersonLogged'])) {  
 	                         	       if (!isset($_SESSION['sUserLogged'])) { ?>
@@ -150,50 +152,26 @@
 	                            </li>
 	                        <?php }} ?>   
                         
-                            <?php if (!isset($_SESSION['sPersonLogged'])) { ?>
+                            <?php if (!isset($_SESSION['sUserLogged'])) {
+                            		if (!isset($_SESSION['sPersonLogged'])) {
+                            		 ?>
                             
-	                            <!--li class="dropdown">
-	                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" >
-	                                    <i class="fa fa-sign-in"></i>                                                                        
-	                                </a>
-		                                <ul class="dropdown-menu text-capitalize">
-		                                	<form method="post" role="form" name="form-signin" id="form-signin" data-toggle="validator">
-			                                    <li>
-			                                    	<div class="col-sm-12">
-				                                        <div class="form-group">
-			                                                <label>E-mail *</label>                                                    
-			                                                <input type="text" tabindex="1" id="eml" name="eml" data-error="Informe seu Email e Senha corretamente!" required class="form-control frm-login" placeholder="Informe seu Email!">
-			                                             	<div class="help-block with-errors login"></div>
-			                                             </div>
-		                                             </div>
-			                                    </li> 
-			                                    <li>
-			                                        <div class="col-sm-12">                                             		                                                                                       
-		                                                <div class="form-group">
-		                                                    <label>Senha *</label>                                                    
-		                                                    <input type="password" tabindex="2" id="pwd" name="pwd" class="form-control frm-login" placeholder="Informe sua Senha!">		                                                	
-		                                                </div> 
-		                                            </div> 
-			                                    </li> 
-			                                    <li>
-			                                    	<div class="col-sm-12">                                             		                                                                                       
-		                                                <div class="form-group">
-			                                        		<button type="submit" class="btn btn-primary signup">Entrar <i class="fa fa-sign-in"></i></button>
-			                                        	</div>
-			                                        </div>
-			                                    </li>                                    
-		                            		</form>
-		                                </ul>
-	                            </li-->  
+                            	<li class="dropdown shadow-text" title="Login Profissional">
+		                            <a href="<?php echo SIS_URL."signin"; ?>">
+		                                <i class="fa fa-group"></i>                                                                        
+		                            </a> 
+		                        </li>	                              
 	                                                      
-                            <?php } else { ?>
+                            <?php } } 
+                            		
+                               if (isset($_SESSION['sPersonLogged'])) { ?>
                                                         	
-	                            <li class="dropdown shadow-text">
-	                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" >
+	                            <li class="dropdown">
+	                                <a href="#" class="dropdown-toggle link-comment shadow-text" data-toggle="dropdown" >
 	                                    <i class="fa fa-comment"></i>
 	                                    <span class="badge counter-notify"></span>
 	                                </a>
-	                                <ul class="dropdown-menu cart-list text-capitalize notify-html shadow-text"></ul>
+	                                <ul class="dropdown-menu cart-list text-capitalize notify-html"></ul>
 	                            </li>
 	                            <li class="dropdown shadow-text">
                             		<a href="<?php echo SIS_URL;?>signout" title="Sair">
@@ -222,10 +200,17 @@
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="navbar-menu">
                         <ul class="nav navbar-nav navbar-right shadow-text" data-in="fadeInDown" data-out="fadeOutUp">
-                            <li><a href="<?php echo SIS_URL; ?>"><?php echo SIS_TITULO; ?></a></li> 
-							<li><a href="<?php echo (!isset($_SESSION['sPersonLogged']) ? SIS_URL."signin/dashboard" : SIS_URL."dashboard"); ?>">anuncie-se!</a></li> 							                   
-                            <li><a href="<?php echo SIS_URL; ?>persons">acompanhantes</a></li> 							
+                            <li><a href="<?php echo SIS_URL; ?>">home</a></li> 
+							<?php if(!isset($_SESSION['sUserLogged'])){ ?>
+							<li><a <?php echo (isset($_SESSION['sPersonLogged']) ? "" : 'class="redli"'); ?> href="<?php echo (!isset($_SESSION['sPersonLogged']) ? SIS_URL."signin/dashboard" : SIS_URL."dashboard"); ?>"><?php echo (!isset($_SESSION['sPersonLogged']) ? "divulgue-se!" : "minha conta"); ?></a></li> 							                   
+                            <?php } ?>
+                            <?php $arrPrefer = array("A" => "acompanhantes", "M" => "massagistas", "T" => "profissionais");?>
+                            <?php if(!isset($_SESSION['sPersonLogged'])){ ?>
+                            	<li><a href="<?php echo SIS_URL; ?>persons"><?php echo $arrPrefer[$functions->servicePrefer]; ?></a></li> 							
+                            <?php } ?>
+                            <?php if(!isset($_SESSION['sUserLogged'])){ ?>
                             <li><a href="<?php echo (!isset($_SESSION['sPersonLogged']) ? SIS_URL."plans" : SIS_URL."payment"); ?>">planos</a></li>                                    
+                            <?php } ?>
                             <li><a href="<?php echo SIS_URL; ?>contact">contato</a></li>                    
                         </ul>
                     </div><!-- /.navbar-collapse -->

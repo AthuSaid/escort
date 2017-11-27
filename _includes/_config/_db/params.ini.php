@@ -5,8 +5,12 @@
 * @author Libidinous Development Team
 */
 
+/* Site em Manutencao */
+define("SIS_MANUTENCAO", false);
+/* Site Inauguracao */
+define("SIS_INAUGURACAO", '2017-11-22 19:57:20');
 /* Nome do Proprietario */
-define("SIS_TITULO", "Libidinous");
+define("SIS_TITULO", "Libidinous Club");
 /* Descricao Meta Description */
 define("SIS_DESCRICAO", utf8_encode(SIS_TITULO." | Anúncios GRÁTIS. Acompanhantes, escort, escorts, ficha rosa, acompanhantes e massagem, massagens, encontros casuais, VIP, massagem nuru, massagem lingam, massagem tailandesa, massagem relaxante, podolatria, massagem tântrica, massagem prostática, sexo oral, sexo anal, sexo vaginal, sexo grupal, swing, streptease, e muito mais. "));
 /* URL do Proprietario - Configurar de acordo com a URL amigavel utilizada */
@@ -31,9 +35,11 @@ define("SIS_BANCO", "escort");
 define("SIS_TEMPO", 7200);
 /* Registros por Pagina */		
 define("SIS_PAGINACAO", 5); 
+/* Distancia proxima do usuario (em kilometros) */
+define("SIS_KM_CLOSE", 10);
 /* Dias gratis do Plano Gratuito */
 define ("SIS_DIAS_GRATIS", 30);
-
+/* URL (Pagseguro) */
 define("SIS_URL_PAGSEGURO", "https://stc.sandbox.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.directpayment.js");
 //define("SIS_URL_PAGSEGURO", "https://stc.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.directpayment.js");
 /* Parcelas sem Juros no Cartao (PAGSEGURO) */

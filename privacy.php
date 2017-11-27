@@ -83,8 +83,8 @@
                             <div class="about_text">
                                 <h1 class="text-white text-uppercase shadow-text">Termos de Uso</h1>
                                 <ol class="breadcrumb shadow-text">
-                                    <li><a href="<?php echo SIS_URL; ?>">Home</a></li>
-                                    <li class="active"><a href="<?php echo SIS_URL; ?>privacy">Termos de Uso</a></li>
+                                    <li><a href="<?php echo SIS_URL; ?>"><?php echo SIS_TITULO; ?></a></li>
+                                    <li class="active"><a href="<?php echo SIS_URL; ?>privacy">termos de uso</a></li>
                                 </ol>
                             </div>
                         </div>

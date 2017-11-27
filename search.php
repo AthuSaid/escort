@@ -85,8 +85,9 @@
                             <div class="model_text">
                                 <h1 class="text-white text-uppercase shadow-text">Encontrar Pessoas</h1>
                                 <ol class="breadcrumb shadow-text">
-                                    <li><a href="<?php echo SIS_URL; ?>">Home</a></li>
-                                    <li class="active"><a href="<?php echo SIS_URL; ?>search">Encontrar Pessoas</a></li>
+                                    <li><a href="<?php echo SIS_URL; ?>"><?php echo SIS_TITULO; ?></a></li>
+                                    <?php $arrPrefer = array("A" => "acompanhantes", "M" => "massagistas", "T" => "acompanhantes & massagistas");?>                            
+                                    <li class="active"><a href="<?php echo SIS_URL; ?>search">encontrar <?php echo $arrPrefer[$functions->servicePrefer]; ?></a></li>
                                 </ol>
                             </div>
                         </div>
@@ -125,6 +126,9 @@
         <script src="<?php echo SIS_URL; ?>assets/js/main.js"></script>
         <script src="<?php echo SIS_URL; ?>assets/js/pagins.js"></script>
 		<script src="<?php echo SIS_URL; ?>assets/js/cookie.js"></script>
-		<script src="<?php echo SIS_URL; ?>assets/js/validator.js"></script>       
+		<script src="<?php echo SIS_URL; ?>assets/js/validator.js"></script>  
+		<?php if ($_SESSION['sPersonLogged']){ ?>
+        	<script src="<?php echo SIS_URL; ?>assets/js/check.js"></script>
+        <?php } ?>     
     </body>
 </html>

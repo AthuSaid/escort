@@ -89,10 +89,11 @@
                     <div class="row">
                         <div class="main_home text-center">
                             <div class="model_text">
-                                <h1 class="text-white text-uppercase shadow-text"><?php echo SIS_TITULO; ?></h1>
+                            	<?php $arrPrefer = array("A" => "acompanhantes", "M" => "massagistas", "T" => "acompanhantes & massagistas");?>                            	
+                                <h1 class="text-white text-uppercase shadow-text"><?php echo $arrPrefer[$functions->servicePrefer]; ?></h1>
                                 <ol class="breadcrumb shadow-text">
-                                    <li><a href="<?php echo SIS_URL; ?>">Home</a></li>
-                                    <li class="active"><a href="<?php echo SIS_URL; ?>persons<?php echo $url; ?>">Pessoas <?php echo $type; ?></a></li>
+                                    <li><a href="<?php echo SIS_URL; ?>"><?php echo SIS_TITULO; ?></a></li>
+                                    <li class="active"><a href="<?php echo SIS_URL; ?>persons<?php echo $url; ?>"><?php echo $arrPrefer[$functions->servicePrefer]; ?> <?php echo $type; ?></a></li>
                                 </ol>
                             </div>
                         </div>
@@ -126,13 +127,14 @@
         <script src="<?php echo SIS_URL; ?>assets/js/slick.min.js"></script>
         <script src="<?php echo SIS_URL; ?>assets/js/jquery.ui.js"</script>
         <script src="<?php echo SIS_URL; ?>assets/js/jquery.collapse.js"></script>                               
-        <script src="<?php echo SIS_URL; ?>assets/js/bootsnav.js"></script>
-                       
+        <script src="<?php echo SIS_URL; ?>assets/js/bootsnav.js"></script>                       
         <script src="<?php echo SIS_URL; ?>assets/js/plugins.js"></script>
         <script src="<?php echo SIS_URL; ?>assets/js/main.js"></script>
         <script src="<?php echo SIS_URL; ?>assets/js/pagins.js"></script>
 		<script src="<?php echo SIS_URL; ?>assets/js/cookie.js"></script>
 		<script src="<?php echo SIS_URL; ?>assets/js/validator.js"></script>       
-		
+		<?php if ($_SESSION['sPersonLogged']){ ?>
+        	<script src="<?php echo SIS_URL; ?>assets/js/check.js"></script>
+        <?php } ?>
     </body>
 </html>

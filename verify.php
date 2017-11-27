@@ -5,7 +5,7 @@
     
     $email = $functions->fDecrypt($_GET['hash']);
     
-    $retPerson = $functions->fRetrievePassword(trim($email));
+    $retPerson = $functions->fRetrievePassword(trim($email), ($_GET['type'] == 1 ? 'pessoas' : 'usuarios'));
     	
     if (count($retPerson) == 0)
     {
@@ -84,16 +84,16 @@
 
 
             <!--Home Sections-->
-            <section id="hello" class="blog-banner bg-mega">
+            <section id="hello" class="dash-banner-<?php echo $functions->genderPrefer.rand(1,5);?> bg-mega">
                 <div class="overlay"></div>
                 <div class="container">
                     <div class="row">
-                        <div class="main_home text-center">
+                        <div class="main_home text-center shadow-text">
                             <div class="about_text">
                                 <h1 class="text-white text-uppercase">Recuperar Senha</h1>
                                 <ol class="breadcrumb">
-                                    <li><a href="<?php echo SIS_URL; ?>">Home</a></li>
-                                    <li class="active"><a href="<?php echo SIS_URL; ?><?php echo ($_SESSION['sPersonLogged'] ? "profile" : "signup");?>">Cadastro</a></li>
+                                    <li><a href="<?php echo SIS_URL; ?>"><?php echo SIS_TITULO; ?></a></li>
+                                    <li class="active"><a href="<?php echo SIS_URL; ?><?php echo ($_SESSION['sPersonLogged'] ? "profile" : "signup");?>">recuperar senha</a></li>
                                 </ol>
                             </div>
                         </div>
@@ -135,7 +135,8 @@
 	                                                	<div class="help-block with-errors"></div>
 	                                                </div>
 	                                            </div>
-	                                            <div class="col-sm-12 direita">                                                
+	                                            <div class="col-sm-12 direita"> 
+	                                            <input type="hidden" name="type" value="<?php echo $_GET['type'];?>">                                               
                                                 <a href="<?php echo SIS_URL.'home'; ?>" class="btn btn-warning m-top-30">Voltar <i class="fa fa-arrow-left"></i></a>
                                                 <button type="submit" class="btn btn-primary m-top-30 retrieve">Alterar Senha <i class="fa fa-check"></i></button>                                                
                                             </div>

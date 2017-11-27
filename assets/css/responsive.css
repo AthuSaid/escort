@@ -101,6 +101,10 @@ Author URI: http://www.xpeedstudio.com
     ol {
 		display: none;
 	}
+	.logoVideo,
+	.txtLogoVideo{
+		display:none;
+	}
 }
 
 @media (min-width: 656px) and (max-width: 870px) {
@@ -204,6 +208,15 @@ Author URI: http://www.xpeedstudio.com
 		margin-bottom:20px;
 	}
 }
+
+@media (max-width: 930px) {	
+	 .logoVideo,
+	.txtLogoVideo{
+		display:none;
+	}
+}
+
+
 
 /* Landscape phones and portrait tablets */
 @media  (max-width: 768px) {
@@ -347,6 +360,10 @@ Author URI: http://www.xpeedstudio.com
     .work_separator2 {
     	display:none;
     }
+    .logoVideo,
+	.txtLogoVideo{
+		display:none;
+	}
 }
 
 

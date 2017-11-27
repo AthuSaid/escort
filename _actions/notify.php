@@ -17,6 +17,16 @@ switch ($_GET['mtd'])
 	
 	break;
 	
+	case "pay":
+		
+		$retPay = $functions->fGetPersonPaymentChecked();
+		if ($retPay['return'] > 0)
+			echo json_encode(array("ret" => true));
+		else
+			echo json_encode(array("ret" => false));
+		
+	break;	
+	
 	case "ntf":
 		
 		$retCounter = $functions->fGetNotificationCounters();

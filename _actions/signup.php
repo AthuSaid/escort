@@ -50,7 +50,7 @@ if($_SESSION['sPersonLogged'] && isset($_SESSION['sPersonID']))
 	if ($_GET['mtd'] != 'pre')
 	{
 		# Check if Person AKA Already exists
-		if ($functions->fGetAka($_REQUEST['apelido']))
+		if ($functions->fGetAka($_REQUEST['apelido']) && filter_var($_REQUEST['apelido'], FILTER_VALIDATE_EMAIL) === false)
 		{
 			# Check if is a valid Email
 			if (filter_var($_REQUEST['email'], FILTER_VALIDATE_EMAIL) !== false)
@@ -118,7 +118,7 @@ if($_SESSION['sPersonLogged'] && isset($_SESSION['sPersonID']))
 		
 	}else{
 		
-		if ($functions->fGetAka($_REQUEST['apelido']))
+		if ($functions->fGetAka($_REQUEST['apelido']) && filter_var($_REQUEST['apelido'], FILTER_VALIDATE_EMAIL) === false)
 		{
 			# Check if is a valid Email
 			if (filter_var($_REQUEST['n-eml'], FILTER_VALIDATE_EMAIL) !== false)

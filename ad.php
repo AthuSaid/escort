@@ -109,11 +109,11 @@
                     <div class="row">
                         <div class="main_home text-center">
                             <div class="about_text">
-                                <h1 class="text-white text-uppercase">Seu An&uacute;ncio</h1>
+                                <h1 class="text-white text-uppercase shadow-text">Seu An&uacute;ncio</h1>
                                 <ol class="breadcrumb">
-                                    <li><a href="<?php echo SIS_URL; ?>">Home</a></li>
-                                    <li><a href="<?php echo SIS_URL; ?>dashboard">Dashboard</a></li>
-                                    <li class="active"><a href="<?php echo SIS_URL; ?>ad">Seu An&uacute;ncio</a></li>
+                                    <li><a href="<?php echo SIS_URL; ?>"><?php echo SIS_TITULO; ?></a></li>
+                                    <li><a href="<?php echo SIS_URL; ?>dashboard">dashboard</a></li>
+                                    <li class="active"><a href="<?php echo SIS_URL; ?>ad">seu an&uacute;ncio</a></li>
                                 </ol>
                             </div>
                         </div>

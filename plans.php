@@ -84,9 +84,9 @@
 	                            <div class="about_text">
 	                                <h1 class="text-white text-uppercase shadow-text">Planos de Contrata&ccedil;&atilde;o</h1>
 	                                <ol class="breadcrumb shadow-text">
-	                                    <li><a href="<?php echo SIS_URL; ?>">Home</a></li>
-	                                    <li><a href="<?php echo SIS_URL; ?>dashboard">Minha Conta</a></li>
-	                                    <li class="active"><a href="<?php echo SIS_URL; ?>payment">Planos de Contrata&ccedil;&atilde;o</a></li>
+	                                    <li><a href="<?php echo SIS_URL; ?>"><?php echo SIS_TITULO; ?></a></li>
+	                                    <li><a href="<?php echo SIS_URL; ?>dashboard">minha conta</a></li>
+	                                    <li class="active"><a href="<?php echo SIS_URL; ?>payment">planos de contrata&ccedil;&atilde;o</a></li>
 	                                </ol>
 	                            </div>
 	                        </div>

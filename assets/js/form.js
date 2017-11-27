@@ -41,7 +41,7 @@ $('#form-retrieve').validator().on('submit', function(e){
 	        	var json = $.parseJSON(data);
 	        	alert(json.msg);
 	        	if(json.ret == true)
-	        		location.href = $urlProj + "dashboard"
+	        		location.href = $urlProj + (json.url == 1 ? "dashboard" : "profile");
 	        	else{	        		
 		        	$("#loading").fadeOut(500);		        	
 	        	}
@@ -421,10 +421,11 @@ $('.save-test').on('click', function(){
 		$("#loading").fadeIn(500);
 		var tesid = $(this).data("register");
 		var replica = $("#replica-" + tesid).val();
+		var star = $("input[name='score']").val();
 		$.ajax({
 	        url: $urlProj + "_actions/testimonial.php",
 	        type: 'POST',
-	        data: {method: 'update', tesid: tesid, replica : replica},
+	        data: {method: 'update', tesid: tesid, replica : replica, star: star},
 	        dataType: "html",
 	        success: function (data) {
 	        	location.reload();	        	
@@ -437,7 +438,9 @@ $('.save-test').on('click', function(){
 $('.add-test').on('click', function(){
 	$("#loading").fadeIn(500);
 	var tesid = $(this).data("register");
+	$('.repplica').addClass('hidden');
 	$('.txt-test-' + tesid).removeClass('hidden');
+	$('.score-test-' + tesid).removeClass('hidden');
 	$('.btn-test-' + tesid).removeClass('hidden');
 	$("#loading").fadeOut(500);	       
 });
@@ -445,6 +448,7 @@ $('.add-test').on('click', function(){
 $('.cancel-test').on('click', function(){
 	var tesid = $(this).data("register");
 	$('.txt-test-' + tesid).addClass('hidden');
+	$('.score-test-' + tesid).addClass('hidden');
 	$('.btn-test-' + tesid).addClass('hidden');     
 });
 
@@ -467,6 +471,7 @@ $('.resetpwd').on('click', function(){
 	        	$('.remember').removeClass('hidden');
 	        	$('.apls').html('<i class="fa fa-lock"></i> Acesso ao Portal');	
 	        	$('.login').removeClass('label-error-ajax');
+	        	$('.login').html('');
 	        	$('.eml').removeClass('form-error-ajax');
 	        	$('.eml').val('');
         	}else{
@@ -481,3 +486,36 @@ $('.resetpwd').on('click', function(){
     });
 });
 	
+$('.user-resetpwd').on('click', function(){	
+	$("#loading").fadeIn(500); 
+	var email = $('.eml').val();
+	$.ajax({
+        url: $urlProj + "_actions/user-remember.php",
+        type: 'POST',
+        data: {email: email},
+        dataType: "html",
+        success: function (data) {
+        	var json = $.parseJSON(data);
+        	if(json.ret == true){
+        		alert('Verifique seu email ' + email + ' com os procedimentos de gerar nova senha!');
+        		$('.passw').removeClass('hidden');
+	        	$('.signin').removeClass('hidden');
+	        	$('.cancel').addClass('hidden');	        	
+	        	$('.user-resetpwd').addClass('hidden');
+	        	$('.remember').removeClass('hidden');
+	        	$('.apls').html('<i class="fa fa-lock"></i> Acesso ao Portal');	
+	        	$('.login').removeClass('label-error-ajax');
+	        	$('.login').html('');
+	        	$('.eml').removeClass('form-error-ajax');
+	        	$('.eml').val('');
+        	}else{
+        		$('.eml').addClass('form-error-ajax');
+	        	$('.login').html('<ul class="list-unstyled"><li>' + json.msg + '</li></ul>');
+	        	$('.login').addClass('label-error-ajax');	
+	        	$('.eml').val('');
+        	}
+        	$("#loading").fadeOut(500);
+        },
+        cache: false        
+    });
+});

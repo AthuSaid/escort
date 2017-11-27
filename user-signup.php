@@ -101,9 +101,9 @@
                             <div class="about_text">
                                 <h1 class="text-white text-uppercase text-shadow"><?php echo ($_SESSION['sPersonLogged'] ? "Meu Cadastro" : "Acesso ao Usu&aacute;rio");?></h1>
                                 <ol class="breadcrumb">
-                                    <li><a href="<?php echo SIS_URL; ?>">Home</a></li>
-                                    <li><a href="<?php echo SIS_URL; ?>profile">Minha Conta</a></li>
-                                    <li class="active"><a href="<?php echo SIS_URL; ?><?php echo ($_SESSION['sUserLogged'] ? "profile" : "user-signup");?>">Meu Cadastro</a></li>
+                                    <li><a href="<?php echo SIS_URL; ?>"><?php echo SIS_TITULO; ?></a></li>
+                                    <li><a href="<?php echo SIS_URL; ?>profile">minha conta</a></li>
+                                    <li class="active"><a href="<?php echo SIS_URL; ?><?php echo ($_SESSION['sUserLogged'] ? "profile" : "user-signup");?>">meu cadastro</a></li>
                                 </ol>
                             </div>
                         </div>

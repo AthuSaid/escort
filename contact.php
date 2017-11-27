@@ -84,8 +84,8 @@
                             <div class="contact_text">
                                 <h1 class="text-white text-uppercase shadow-text">Contate-nos</h1>
                                 <ol class="breadcrumb shadow-text">
-                                    <li><a href="<?php echo SIS_URL; ?>">Home</a></li>
-                                    <li class="active"><a href="#">Contate-nos</a></li>
+                                    <li><a href="<?php echo SIS_URL; ?>"><?php echo SIS_TITULO; ?></a></li>
+                                    <li class="active"><a href="#">contate-nos</a></li>
                                 </ol>
                             </div>
                         </div>

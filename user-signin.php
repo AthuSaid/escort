@@ -91,8 +91,8 @@
 	                            <div class="about_text">
 	                                <h1 class="text-white text-uppercase shadow-text">Acesso ao Usu&aacute;rio</h1>
 	                                <ol class="breadcrumb shadow-text">
-	                                    <li><a href="<?php echo SIS_URL; ?>">Home</a></li>
-	                                    <li class="active"><a href="<?php echo SIS_URL; ?>user-signin">Acesso ao Usu&aacute;rio</a></li>
+	                                    <li><a href="<?php echo SIS_URL; ?>"><?php echo SIS_TITULO; ?></a></li>
+	                                    <li class="active"><a href="<?php echo SIS_URL; ?>user-signin">acesso ao usu&aacute;rio</a></li>
 	                                </ol>
 	                            </div>
 	                        </div>
@@ -138,7 +138,7 @@
 		                                                    <input type="password" tabindex="2" id="pwd" name="pwd" data-error="Por favor, informe sua Senha!" required class="form-control frm-login" placeholder="Por favor, informe sua Senha!">
 		                                                	<div class="help-block with-errors"></div>
 		                                                </div>
-		                                                <button type="button" class="btn btn-primary hidden m-top-30 m-bottom-70 resetpwd">Nova Senha <i class="fa fa-lock"></i></button>
+		                                                <button type="button" class="btn btn-primary hidden m-top-30 m-bottom-70 user-resetpwd">Nova Senha <i class="fa fa-lock"></i></button>
 		                                                <button type="button" class="btn btn-warning hidden m-top-30 m-bottom-70 cancel">Voltar</button> 
 	                                            	</div>                                               
 	                                            	<div class="col-sm-12">                                                 
@@ -215,7 +215,7 @@
 	        	$('.passw').addClass('hidden');
 	        	$('.signin').addClass('hidden');
 	        	$(this).addClass('hidden');	        	
-	        	$('.resetpwd').removeClass('hidden');
+	        	$('.user-resetpwd').removeClass('hidden');
 	        	$('.cancel').removeClass('hidden');
 	        	$('.apls').html('<i class="fa fa-unlock"></i> Nova Senha');
 	        });
@@ -223,7 +223,7 @@
 	        	$('.passw').removeClass('hidden');
 	        	$('.signin').removeClass('hidden');
 	        	$(this).addClass('hidden');	        	
-	        	$('.resetpwd').addClass('hidden');
+	        	$('.user-resetpwd').addClass('hidden');
 	        	$('.remember').removeClass('hidden');
 	        	$('.apls').html('<i class="fa fa-lock"></i> Acesso ao Portal');
 	        });

@@ -1610,6 +1610,8 @@ $.magnificPopup.registerModule(IFRAME_NS, {
 	options: {
 		markup: '<div class="mfp-iframe-scaler">'+
 					'<div class="mfp-close"></div>'+
+					'<div class="logoVideo"></div>'+
+					'<div class="txtLogoVideo">'+($cc != null ? $cc : null)+'</div>'+
 					'<iframe class="mfp-iframe" src="//about:blank" frameborder="0" allowfullscreen></iframe>'+
 				'</div>',
 
@@ -1678,9 +1680,9 @@ $.magnificPopup.registerModule(IFRAME_NS, {
 				dataObj[iframeSt.srcAction] = embedSrc;
 			}
 			mfp._parseMarkup(template, dataObj, item);
-
+			
 			mfp.updateStatus('ready');
-
+		
 			return template;
 		}
 	}
