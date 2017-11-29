@@ -36,8 +36,15 @@ class mysqlconn {
 	private function fConnect($host, $user, $senha, $banco){
 		try {   			
 			$this->connection = mysqli_connect($host, $user, $senha);
-			if(!mysqli_select_db($this->connection, $banco))
+			if(!mysqli_select_db($this->connection, $banco)){
 			 	echo $this->fShowError(mysqli_error($this->connection));
+			}else{
+			    // Force utf8 collation to fix bug
+			    mysqli_query($this->connection, "SET NAMES 'utf8'");
+			    mysqli_query($this->connection, "SET character_set_connection=utf8");
+			    mysqli_query($this->connection, "SET character_set_client=utf8");
+			    mysqli_query($this->connection, "SET character_set_results=utf8");
+			}
 			if(!$this->connection){
 				echo $this->fShowError(mysqli_error($this->connection));
 			}        

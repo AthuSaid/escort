@@ -6,15 +6,15 @@
 */
 
 /* Site em Manutencao */
-define("SIS_MANUTENCAO", false);
+define("SIS_MANUTENCAO", true);
 /* Site Inauguracao */
-define("SIS_INAUGURACAO", '2017-12-01 00:00:00');
+define("SIS_INAUGURACAO", '2017-11-15 00:00:00');
 /* Nome do Proprietario */
 define("SIS_TITULO", "Libidinous Club");
 /* Descricao Meta Description */
-define("SIS_DESCRICAO", utf8_encode(SIS_TITULO." | An˙ncios GR¡TIS. Acompanhantes, escort, escorts, ficha rosa, acompanhantes e massagem, massagens, encontros casuais, VIP, massagem nuru, massagem lingam, massagem tailandesa, massagem relaxante, podolatria, massagem t‚ntrica, massagem prost·tica, sexo oral, sexo anal, sexo vaginal, sexo grupal, swing, streptease, e muito mais. "));
+define("SIS_DESCRICAO", (SIS_TITULO." | An√∫ncios GR√ÅTIS. Acompanhantes, escort, escorts, ficha rosa, acompanhantes e massagem, massagens, encontros casuais, VIP, massagem nuru, massagem lingam, massagem tailandesa, massagem relaxante, podolatria, massagem tantrica, massagem prost√°tica, sexo oral, sexo anal, sexo vaginal, sexo grupal, swing, streptease, bondage, chuva dourada, domina√ß√£o, fetiche, e muito mais. "));
 /* URL do Proprietario - Configurar de acordo com a URL amigavel utilizada */
-define("SIS_URL", "https://escort.local/");
+define("SIS_URL", "http://lc.local/");
 /* Cookie secure mode */
 define("SIS_SECURE", false);
 /* Email de Interacao */
@@ -22,7 +22,7 @@ define("SIS_EMAIL", "atendimento@url.com.br");
 /* Idioma do Proprietario */
 define("SIS_IDIOMA", "portugues");		
 /* Servidor de Conexao ao banco */
-define("SIS_HOST", "localhost");
+define("SIS_HOST", "localhost"); //50.62.176.34
 /* Porta de Conexao ao banco */
 define("SIS_PORTA", "3306");
 /* Usuario de Conexao ao banco */
@@ -36,7 +36,7 @@ define("SIS_TEMPO", 7200);
 /* Registros por Pagina */		
 define("SIS_PAGINACAO", 5); 
 /* Distancia proxima do usuario (em kilometros) */
-define("SIS_KM_CLOSE", 10);
+define("SIS_KM_CLOSE", 2);
 /* Dias gratis do Plano Gratuito */
 define ("SIS_DIAS_GRATIS", 30);
 /* URL (Pagseguro) */

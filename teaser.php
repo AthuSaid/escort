@@ -47,7 +47,7 @@
                    
             <!--Home Sections-->
             <section id="hello" class="teaser-banner-<?php echo rand(1,1);?> bg-mega">
-                <div class="overlay"></div>
+                
                 <div class="container">
                     <div class="row">
                         <div class="main_home text-center">
