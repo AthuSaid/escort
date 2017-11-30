@@ -417,6 +417,39 @@ class queries extends mysqlconn {
 	
 	
 	/**
+	 * Save New Person Register via Miner
+	 *
+	 * @author    Daniel Triboni
+	 * @param	 object $_REQUEST
+	 * @return	 boolean
+	 */
+	public function fSaveNewPersonViaMiner($obj){
+	    
+	    $this->sqlQuery = "INSERT INTO pessoas (nome, apelido, url, email, senha,
+												 sexo, genero, etnia,
+												 olhos, cabelos, peso, altura,
+												 busto, cintura, quadril, pcm, especialidade,
+												 whatsapp, tel1, tel2,
+												 facebook, twitter, googleplus,
+												 rg, cpf, nascimento, naturalidade,
+												 documento, comprovacao, dtultimoacesso, aprovado)
+										 VALUES ('".$obj['title']."', '".$obj['title']."', '".$obj['url']."', '".$obj['url']."@libidinous.club', '".md5('libidinous')."',
+										 	     '".$obj['gender']."', '".($obj['gender'] == 'M' ? 'mars' : 'venus')."', '',
+										 	     '', '', '', '',
+										 		 '', '', '', '', 'A',
+										 		 '".$obj['phone']."', '', '',
+										 		 '', '', '',
+										 		 '0', '0', '0', '',
+										 		 '0', '0', now(), 1)";
+	    
+	    if($this->fExecuteSql($this->sqlQuery))
+	    {
+	        return $this->fGetLastInsertID();
+	    }
+	}
+	
+	
+	/**
 	 * Save New User Register
 	 *
 	 * @author    Daniel Triboni
@@ -566,6 +599,62 @@ class queries extends mysqlconn {
 	
 	
 	/**
+	 * Save New Person Ad via Miner
+	 *
+	 * @author    Daniel Triboni
+	 * @param	 object $_REQUEST
+	 * @param    integer $pesid
+	 * @return	 boolean
+	 */
+	public function fSaveNewAdViaMiner($obj, $pesid){
+	    
+	    $this->sqlQuery = "INSERT INTO anuncios_pessoas (titulo, descricao, ativo, url,
+														 diahoraatendimentoutil,
+														 diahoraatendimentofds,
+														 atendimento24H,
+														 pessoasatendimento, idiomas,
+														 moeda, localproprio, pesid, aprovado)
+							VALUES ('".$obj['title']."', '".$obj['description']."', 1, '".$obj['url']."',
+									'0-0-99-99',
+									'0-0-99-99',
+									'0',
+									'Homens, Mulheres, Casais', 'Portugues',
+									'R$', '1', {$pesid}, 1)";
+	    
+	    if($this->fExecuteSql($this->sqlQuery))
+	    {
+	        $obj['apid'] = $this->fGetLastInsertID();
+	        
+	        if ($this->fAdLocations($obj))
+	        {
+	            if($this->fAdModalities($obj))
+	            {
+	                if($this->fAdCaches($obj))
+	                {
+	                    return $obj['apid'];
+	                    
+	                }else{
+	                    
+	                    return false;
+	                }
+	                
+	            }else{
+	                
+	                return false;
+	            }
+	            
+	        }else{
+	            
+	            return false;
+	        }
+	    }else{
+	        
+	        return false;
+	    }
+	}
+	
+	
+	/**
 	 * Save New Person Ad
 	 *
 	 * @author    Daniel Triboni
@@ -602,6 +691,37 @@ class queries extends mysqlconn {
 	
 			return false;
 		}
+	}
+	
+	
+	/**
+	 * Save New Person Ad via Miner
+	 *
+	 * @author    Daniel Triboni
+	 * @param	 object $_REQUEST
+	 * @return	 boolean
+	 */
+	public function fQuerySavePersonPlanViaMiner($obj){
+	    
+	    $this->sqlQuery = "INSERT INTO planos_pessoas (plaid, pesid, lido)
+							VALUES (".$obj['plaid'].", {$obj['pesid']}, ".($obj['lido'] == 1 ? 1 : '0').")";
+	    
+	    if($this->fExecuteSql($this->sqlQuery))
+	    {
+	        $obj['ppid'] = $this->fGetLastInsertID();
+	        	       
+	        if($this->fQueryPaymentPlans($obj))
+	        {
+	            return true;
+	        }else{
+	            
+	            return false;
+	        }
+	        
+	    }else{
+	        
+	        return false;
+	    }
 	}
 	
 	
@@ -818,12 +938,18 @@ class queries extends mysqlconn {
 			$this->fExecuteSql(substr($this->sqlQueryCompl, 0, strlen($this->sqlQueryCompl)-2));
 			
 			$this->sqlQueryCompl = "INSERT INTO modalidades_pessoas (modid, adic, apid, ativo) VALUES ";
+			
+			$add = 0;
 			foreach ($obj['modalidades-adic'] as $adic)
 			{
 				$this->sqlQueryCompl .= "({$adic}, {$adic}, {$obj['apid']}, 1), ";
+				$add++;
 			}
-				
-			return $this->fExecuteSql(substr($this->sqlQueryCompl, 0, strlen($this->sqlQueryCompl)-2));
+			
+			if($add > 0)
+			    $this->fExecuteSql(substr($this->sqlQueryCompl, 0, strlen($this->sqlQueryCompl)-2));
+			
+			return true;
 				
 		}else{
 			

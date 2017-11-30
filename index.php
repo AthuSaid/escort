@@ -1,9 +1,9 @@
 <?php
-	require_once $_SERVER["DOCUMENT_ROOT"]."/_includes/_config/config.ini.php";
+	require_once $_SERVER["DOCUMENT_ROOT"]."/escort/_includes/_config/config.ini.php";
 	
 	session_start2();
     
-    $functions = new functions();  
+    $functions = new functions(false);  
 ?> 
 <!doctype html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->

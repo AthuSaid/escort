@@ -35,26 +35,29 @@ class functions extends queries {
 	* @author    Daniel Triboni
 	* @return    resource
 	*/
-	public function __construct() {	
+	public function __construct($checkCookie = true) {	
 		
 		parent::__construct();
 		
-		if (isset($_COOKIE['cUserDefinedData']))
+		if ($checkCookie == true)
 		{
-			list($this->myGender, $this->genderPrefer, $this->servicePrefer) = explode("_", $_COOKIE['cUserDefinedData']);
-			
-		}else{
-			
-			if($_SERVER['SCRIPT_NAME'] != '/index.php'){
-				header('Location: '.SIS_URL.'home');
-				exit;
-			}			
+        		if (isset($_COOKIE['cUserDefinedData']))
+        		{
+        			list($this->myGender, $this->genderPrefer, $this->servicePrefer) = explode("_", $_COOKIE['cUserDefinedData']);
+        			
+        		}else{
+        			
+        			if($_SERVER['SCRIPT_NAME'] != '/index.php'){
+        				header('Location: '.SIS_URL.'home');
+        				exit;
+        			}			
+        		}
+        		
+        		if (isset($_COOKIE['cUserDefinedLocation']))
+        		{
+        			list($this->cookieLatitude, $this->cookieLongitude) = explode("_", $_COOKIE['cUserDefinedLocation']);
+        		}
 		}
-		
-		if (isset($_COOKIE['cUserDefinedLocation']))
-		{
-			list($this->cookieLatitude, $this->cookieLongitude) = explode("_", $_COOKIE['cUserDefinedLocation']);
-		}				
 	}
 
 	

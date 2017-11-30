@@ -21,7 +21,7 @@ include_once $_SERVER['DOCUMENT_ROOT']."/_includes/_config/config.ini.php";
 
 $query = new queries();
 
-$func = new functions();
+$func = new functions(false);
 
 $email = new email();
 
